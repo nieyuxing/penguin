@@ -5,8 +5,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="79c09084-1b18-4d70-b583-7815fbbc0ba3" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application-dev.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application-dev.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/qexz/dao/PositionMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/qexz/model/Position.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/qexz/service/PositionService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/qexz/service/impl/PositionServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/mapper/PositionMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/spring.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/spring.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/qexz/controller/DefaultController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/qexz/controller/DefaultController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/problem/problemlist.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/js/problem/problemlist.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/problem/problemlist.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/problem/problemlist.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/problem/problemset.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/problem/problemset.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application-dev.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application-dev.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/qexz/controller/DefaultController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/qexz/controller/DefaultController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/problem/problemlist.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/problem/problemlist.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/problem/problemlist.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/problem/problemlist.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/problem/problemset.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/problem/problemset.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,6 +32,14 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
   </component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
@@ -29,6 +54,9 @@
     <option name="skipTests" value="true" />
   </component>
   <component name="ProjectId" id="1s6lEvF2IxXhm10vP14EoJVzMsj" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -36,11 +64,25 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Workspaceswt/springboot-penguin-master" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources/mapper" />
     <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="File.Encoding" />
+    <property name="settings.editor.selected.configurable" value="http.certificates" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\workspace\springboot-penguin\src\main\resources\mapper" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.qexz.service" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.qexz.dao" />
+      <recent name="com.qexz.service.impl" />
+      <recent name="com.qexz.model" />
+    </key>
   </component>
   <component name="RunAnythingCache">
     <option name="myCommands">
@@ -77,6 +119,29 @@
       <updated>1620200813520</updated>
     </task>
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/qexz/controller/ManageController.java</url>
+          <line>66</line>
+          <option name="timeStamp" value="11" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

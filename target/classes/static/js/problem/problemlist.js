@@ -10,6 +10,19 @@ var problemListPage = {
         problemsetId: 0,
         questions: [],
     },
+    initAddUserData: function () {
+    console.log("sdahkdjhf");
+            //初始化数据
+            $('#questionTitle').val("");
+            $('#questionContent').val("");
+            $('#optionA').val("");
+            $('#optionB').val("");
+            $('#optionC').val("");
+            $('#optionD').val("");
+            $('#questionAnswer').val("");
+            $('#questionParse').val("");
+            $('#questionScore').val("");
+        },
     init: function (pageNum, pageSize, totalPageNum, totalPageSize, problemsetId, questions) {
         problemListPage.data.pageNum = pageNum;
         problemListPage.data.pageSize = pageSize;
@@ -20,6 +33,19 @@ var problemListPage = {
         //分页初始化
         problemListPage.subPageMenuInit();
 
+        $("#addQuestionModal").attr("style","display:none");
+
+        //新增题目，弹出新增窗口
+                $("#applyPositionBtn").click(function () {
+                    //输入框初始化数据
+                    problemListPage.initAddUserData();
+
+                    $("#addQuestionModal").modal({
+                        keyboard : false,
+                        show : true,
+                        backdrop : "static"
+                    });
+                });
         /**
          TODO::代码规范,折叠菜单效果
          */

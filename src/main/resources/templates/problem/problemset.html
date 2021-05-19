@@ -23,7 +23,7 @@
         <i class="desktop icon"></i>在线考试
     </a>
     <a th:href="@{/problemset/list}" class="active item">
-        <i class="list layout icon"></i>题库中心
+        <i class="list layout icon"></i>职位
     </a>
     <a th:href="@{/discuss}" class="item">
         <i class="talk icon"></i>讨论区
@@ -48,17 +48,17 @@
     <div class="ui large breadcrumb">
         <a class="section" th:href="@{/}"><i class="home icon"></i>首页</a>
         <i class="right chevron icon divider"></i>
-        <div class="active section">题库中心</div>
+        <div class="active section"> </div>
     </div>
 </div>
 
 <div class="ui problemSet container">
     <div class="ui secondary pointing menu">
-        <a class="active item"><i class="book icon"></i>所有课程</a>
+        <a class="active item"><i class="book icon"></i>所有职位</a>
     </div>
     <!-- 第一排 -->
     <div class="ui four column stackable grid">
-        <div class="column" th:each="item,itemStats : ${data['subjects']}">
+        <div class="column" th:each="item,itemStats : ${data['positions']}">
             <div class="ui fluid card">
                 <a href="javascript:void(0)" class="image">
                     <img th:src="@{'/upload/images/'+${item.imgUrl}}" style="max-height: 240px;" />

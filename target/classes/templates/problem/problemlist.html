@@ -3,14 +3,28 @@
 <head>
     <meta charset="utf-8" />
     <title>GDUFE在线考试系统</title>
+
+    <link rel="stylesheet" th:href="@{https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css}" />
+    <link th:href="@{https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css}" rel="stylesheet" />
+    <link th:href="@{/css/bootstrap-datetimepicker/bootstrap-datetimepicker.min.css}" rel="stylesheet" />
+    <link rel="stylesheet" th:href="@{/css/manage/manage-app.css}" />
+
+    <script type="text/javascript" th:src="@{https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js}"></script>
+    <script type="text/javascript" th:src="@{https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/bootstrap-datetimepicker/locales/bootstrap-datetimepicker.zh-CN.js}"></script>
+    <script type="text/javascript" th:src="@{/js/manage/manage-app.js}"></script>
+    <script type="text/javascript" th:src="@{/js/manage/manage-questionBoard.js}"></script>
+    <script type="text/javascript" th:src="@{/js/problem/problemlist.js}"></script>
+
     <link rel="stylesheet" th:href="@{https://cdn.bootcss.com/semantic-ui/2.2.13/semantic.min.css}" />
     <link rel="stylesheet" th:href="@{/css/app.css}" />
     <link rel="stylesheet" th:href="@{/css/problem/problemlist.css}" />
-    <script type="text/javascript" th:src="@{https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js}"></script>
-    <script type="text/javascript" th:src="@{https://cdn.bootcss.com/semantic-ui/2.2.13/semantic.min.js}"></script>
-    <script type="text/javascript" th:src="@{https://cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.min.js}"></script>
-    <script type="text/javascript" th:src="@{/js/app.js}"></script>
-    <script type="text/javascript" th:src="@{/js/problem/problemlist.js}"></script>
+<!--    <script type="text/javascript" th:src="@{https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js}"></script>-->
+<!--    <script type="text/javascript" th:src="@{https://cdn.bootcss.com/semantic-ui/2.2.13/semantic.min.js}"></script>-->
+<!--    <script type="text/javascript" th:src="@{https://cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.min.js}"></script>-->
+<!--    <script type="text/javascript" th:src="@{/js/app.js}"></script>-->
+<!--    <script type="text/javascript" th:src="@{/js/problem/problemlist.js}"></script>-->
 </head>
 <body>
 <div class="ui fixed inverted menu">
@@ -22,7 +36,7 @@
         <i class="desktop icon"></i>在线考试
     </a>
     <a th:href="@{/problemset/list}" class="active item">
-        <i class="list layout icon"></i>题库中心
+        <i class="list layout icon"></i>职位
     </a>
     <a th:href="@{/discuss}" class="item">
         <i class="talk icon"></i>讨论区
@@ -49,134 +63,139 @@
         <i class="right chevron icon divider"></i>
         <a class="section" th:href="@{/problemset/list}">题库中心</a>
         <i class="right chevron icon divider"></i>
-        <div class="active section" th:text="${data['subject'].name}">数据结构与算法</div>
+        <div class="active section" th:text="${data['position'].name}">数据结构与算法</div>
     </div>
 </div>
 
 <div class="ui problemList container">
     <div class="ui secondary pointing menu">
-        <a class="active item"><i class="list icon"></i>题目列表</a>
+        <a class="active item"><i class="list icon"></i>职位详情</a>
     </div>
-    <div class="ui accordion segment">
-        <div class="title"><i class="dropdown icon"></i>筛选</div>
-        <form class="content ui form segment">
-            <div class="two stackable fields">
-                <div class="field">
-                    <label>题目描述</label>
-                    <input placeholder="请输入相关题目描述" type="text" />
-                </div>
-                <div class="field">
-                    <label>题目难度</label>
-                    <select class="ui fluid dropdown">
-                        <option value="1">一星难度</option>
-                        <option value="2">两星难度</option>
-                        <option value="3">三星难度</option>
-                        <option value="4">四星难度</option>
-                        <option value="5">五星难度</option>
-                    </select>
-                </div>
-            </div>
-            <input type="submit" class="positive ui button" value="查询" />
-        </form>
+    <div class="column">
+        <h3 th:text="${data['position'].name}">项目介绍</h3>
+        <div class="active section" th:text="${data['position'].name}"></div>
+        <button type="button" class="btn btn-success" id="applyPositionBtn"><i class="fa fa-plus"></i>申请</button>
     </div>
-    <table class="ui table">
-        <thead><tr>
-            <th class="ten wide">题目</th>
-            <th class="second wide">难度</th>
-            <th class="second wide">题型</th>
-            <th class="second wide">操作</th>
-        </tr></thead>
-        <tbody>
-        <tr th:each="item,itemStats : ${data['questions']}">
-            <td><span th:text="${item.title}">一个作业的完成要经过若干加工步骤,每个步骤称为( )</span></td>
-            <td>
-                <div th:if="${item.difficulty == 1}" class="ui star rating" data-rating="1"></div>
-                <div th:if="${item.difficulty == 2}" class="ui star rating" data-rating="2"></div>
-                <div th:if="${item.difficulty == 3}" class="ui star rating" data-rating="3"></div>
-                <div th:if="${item.difficulty == 4}" class="ui star rating" data-rating="4"></div>
-                <div th:if="${item.difficulty == 5}" class="ui star rating" data-rating="5"></div>
-            </td>
-            <td>
-                <span th:if="${item.questionType == 0}">单选题</span>
-                <span th:if="${item.questionType == 1}">多选题</span>
-                <span th:if="${item.questionType == 2}">问答题</span>
-                <span th:if="${item.questionType == 3}">编程题</span>
-            </td>
-            <td><a th:href="@{'/problemset/'+${item.subjectId}+'/problem/'+${item.id}}" class="tiny blue ui button">详情</a></td>
-        </tr>
-        <!--
-        <tr>
-            <td><span>一个作业的完成要经过若干加工步骤,每个步骤称为( )</span></td>
-            <td>
-                <div class="ui star rating" data-rating="3"></div>
-            </td>
-            <td><span>单选题</span></td>
-            <td><a class="tiny blue ui button">详情</a></td>
-        </tr>
-        <tr>
-            <td><span>某保险公司多年的资料表明，在索赔户中，被盗索赔户占20%，以 表示在随机抽查100个索赔户中因被盗而向保险公司索赔的户数，求 . x 0 0.5 1 1.5 2 2.5 3 Ф (x) 0.500 0.691 0.841 0.933 0.977 0.994 0.999</span></td>
-            <td>
-                <div class="ui star rating" data-rating="3"></div>
-            </td>
-            <td><span>问答题</span></td>
-            <td><a class="tiny blue ui button">详情</a></td>
-        </tr>
-        <tr>
-            <td><span>写一个算法，逐层遍历一棵二叉树（从上到下，从左到右）</span></td>
-            <td>
-                <div class="ui star rating" data-rating="3"></div>
-            </td>
-            <td><span>编程题</span></td>
-            <td><a class="tiny blue ui button">详情</a></td>
-        </tr>
-        <tr>
-            <td colspan="9" style="padding: 0px;"><div class="ui icon message" style="margin: 0px; box-shadow: none;"><i class="info circle icon"></i><div class="content"><p>当前还没有题目呢！_(:зゝ∠)_</p></div></div></td>
-        </tr>
-        -->
-        </tbody>
-    </table>
 </div>
-<!-- 分页 -->
-<div class="ui subPage container">
-    <div class="ui pagination menu" id="subPageMenu">
-        <!--
-        <a class="item">
-            首页
-        </a>
-        <a class="item">
-            上一页
-        </a>
-        <a class="active item">
-            1
-        </a>
-        <a class="item">
-            2
-        </a>
-        <a class="item">
-            3
-        </a>
-        <a class="item">
-            4
-        </a>
-        <a class="item">
-            5
-        </a>
-        <a class="item">
-            6
-        </a>
-        <a class="item">
-            7
-        </a>
-        <a class="item">
-            8
-        </a>
-        <a class="item">
-            下一页
-        </a>
-        <a class="item">
-            末页
-        </a>
-        -->
+
+<!--新增窗口-->
+<div id="addQuestionModal" class="bootbox modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog ">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">新增题目</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" role="form" onsubmit="return false;">
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">题目标题</label>
+                        <div class="col-sm-8">
+                            <input id="questionTitle" type="text" class="form-control" placeholder="" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">题目内容</label>
+                        <div class="col-sm-8">
+                            <textarea  id="questionContent" class="form-control" rows="8"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">题目类型</label>
+                        <div class="col-sm-8">
+                            <select class="form-control" id="questionType">
+                                <option th:value="0">单选</option>
+                                <option th:value="1">多选</option>
+                                <option th:value="2">问答</option>
+                                <option th:value="3">编程</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">所属课程</label>
+                        <div class="col-sm-8">
+                            <select class="form-control" id="subjectId">
+                                <option th:each="item,itemStats : ${data['subjects']}"
+                                        th:value="${item.id}" th:text="${item.name}">
+
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">A选项</label>
+                        <div class="col-sm-8">
+                            <input id="optionA" type="text" class="form-control" placeholder="" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">B选项</label>
+                        <div class="col-sm-8">
+                            <input id="optionB" type="text" class="form-control" placeholder="" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">C选项</label>
+                        <div class="col-sm-8">
+                            <input id="optionC" type="text" class="form-control" placeholder="" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">D选项</label>
+                        <div class="col-sm-8">
+                            <input id="optionD" type="text" class="form-control" placeholder="" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">题目答案</label>
+                        <div class="col-sm-8">
+                            <textarea  id="questionAnswer" class="form-control" rows="8"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">答案解析</label>
+                        <div class="col-sm-8">
+                            <textarea  id="questionParse" class="form-control" rows="8"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">题目难度</label>
+                        <div class="col-sm-8">
+                            <select class="form-control" id="questionDifficulty">
+                                <option th:value="1">
+                                    一星难度
+                                </option>
+                                <option th:value="2">
+                                    二星难度
+                                </option>
+                                <option th:value="3">
+                                    三星难度
+                                </option>
+                                <option th:value="4">
+                                    四星难度
+                                </option>
+                                <option th:value="5">
+                                    五星难度
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">题目分值</label>
+                        <div class="col-sm-8">
+                            <input id="questionScore" type="text" class="form-control" placeholder="" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button data-bb-handler="confirm" type="button" id="confirmAddQuestionBtn" class="btn btn-success radius">
+                    <span><i class="icon-ok"></i></span> 确定
+                </button>
+                <button data-bb-handler="cancel" type="button" id="cancelAddQuestionBtn" class="btn btn-danger radius">取消</button>
+            </div>
+        </div>
     </div>
 </div>
 <!-- 不可抗力元素 -->

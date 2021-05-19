@@ -38,6 +38,9 @@ public class DefaultController {
     @Autowired
     private ReplyService replyService;
 
+    @Autowired
+    private PositionService positionService;
+
     /**
      * 首页
      */
@@ -90,12 +93,12 @@ public class DefaultController {
     }
 
     /**
-     * 题库中心页
+     * 职位中心页
      */
     @RequestMapping(value="/problemset/list", method= RequestMethod.GET)
     public String problemSet(HttpServletRequest request, @RequestParam(value = "page", defaultValue = "1") int page, Model model) {
         Account currentAccount = (Account) request.getSession().getAttribute(QexzConst.CURRENT_ACCOUNT);
-        Map<String, Object> data = subjectService.getSubjects(page, QexzConst.subjectPageSize);
+        Map<String, Object> data = positionService.getPositions(page, QexzConst.subjectPageSize);
 
         model.addAttribute(QexzConst.CURRENT_ACCOUNT, currentAccount);
         model.addAttribute(QexzConst.DATA, data);
@@ -115,8 +118,8 @@ public class DefaultController {
         Account currentAccount = (Account) request.getSession().getAttribute(QexzConst.CURRENT_ACCOUNT);
         Map<String, Object> data = questionService.getQuestionsByProblemsetIdAndContentAndDiffculty(page, QexzConst.questionPageSize,
                 problemsetId, content, difficulty);
-        Subject subject = subjectService.getSubjectById(problemsetId);
-        data.put("subject", subject);
+        Position position = positionService.getPositionById(problemsetId);
+        data.put("position", position);
         model.addAttribute(QexzConst.CURRENT_ACCOUNT, currentAccount);
         model.addAttribute(QexzConst.DATA, data);
         return "/problem/problemlist";
