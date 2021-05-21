@@ -8,12 +8,12 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.File;
+import java.io.IOException;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -73,6 +73,27 @@ public class ManageController {
             return "/manage/manage-accountList";
         }
     }
+
+    @PostMapping("/upload")
+    @ResponseBody
+    public String upload(@RequestParam("file") MultipartFile file) {
+        if (file.isEmpty()) {
+            return "上传失败，请选择文件";
+        }
+
+        String fileName = file.getOriginalFilename();
+        String filePath = "/Users/itinypocket/workspace/temp/";
+        File dest = new File(filePath + fileName);
+        try {
+            file.transferTo(dest);
+            LOG.info("上传成功");
+            return "上传成功";
+        } catch (IOException e) {
+            LOG.error(e.toString(), e);
+        }
+        return "上传失败！";
+    }
+
 
     /**
      * 考试管理

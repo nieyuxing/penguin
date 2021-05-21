@@ -46,14 +46,20 @@ var problemListPage = {
                         backdrop : "static"
                     });
                 });
+
         /**
          TODO::代码规范,折叠菜单效果
          */
+
+
         $('.ui.accordion').accordion(
             {
                 exclusive: true,/*不可打开多节*/
             }
         );
+        $('#cancelAddQuestionBtn').click(function(){
+             $("#addQuestionModal").modal('hide');
+        });
         /**
          TODO::代码规范,难度系数
          */

@@ -9558,3 +9558,136 @@ Caused by: java.net.SocketTimeoutException: connect timed out
 2021-05-20 00:09:48.757  INFO 5076 --- [http-nio-8082-exec-2] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization started
 2021-05-20 00:09:48.843  INFO 5076 --- [http-nio-8082-exec-2] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization completed in 82 ms
 2021-05-20 00:09:50.696  INFO 5076 --- [http-nio-8082-exec-2] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2021-05-20 00:42:31.861  WARN 5076 --- [redisMessageListenerContainer-1] o.s.d.r.l.RedisMessageListenerContainer  : Error closing subscription connection
+
+org.springframework.data.redis.RedisConnectionFailureException: java.net.SocketTimeoutException: connect timed out; nested exception is redis.clients.jedis.exceptions.JedisConnectionException: java.net.SocketTimeoutException: connect timed out
+	at org.springframework.data.redis.connection.jedis.JedisExceptionConverter.convert(JedisExceptionConverter.java:67) ~[spring-data-redis-1.8.9.RELEASE.jar:na]
+	at org.springframework.data.redis.connection.jedis.JedisExceptionConverter.convert(JedisExceptionConverter.java:41) ~[spring-data-redis-1.8.9.RELEASE.jar:na]
+	at org.springframework.data.redis.PassThroughExceptionTranslationStrategy.translate(PassThroughExceptionTranslationStrategy.java:37) ~[spring-data-redis-1.8.9.RELEASE.jar:na]
+	at org.springframework.data.redis.FallbackExceptionTranslationStrategy.translate(FallbackExceptionTranslationStrategy.java:37) ~[spring-data-redis-1.8.9.RELEASE.jar:na]
+	at org.springframework.data.redis.connection.jedis.JedisConnection.convertJedisAccessException(JedisConnection.java:241) ~[spring-data-redis-1.8.9.RELEASE.jar:na]
+	at org.springframework.data.redis.connection.jedis.JedisConnection.close(JedisConnection.java:335) ~[spring-data-redis-1.8.9.RELEASE.jar:na]
+	at org.springframework.data.redis.listener.RedisMessageListenerContainer$SubscriptionTask.closeConnection(RedisMessageListenerContainer.java:875) [spring-data-redis-1.8.9.RELEASE.jar:na]
+	at org.springframework.data.redis.listener.RedisMessageListenerContainer.handleSubscriptionException(RedisMessageListenerContainer.java:644) [spring-data-redis-1.8.9.RELEASE.jar:na]
+	at org.springframework.data.redis.listener.RedisMessageListenerContainer$SubscriptionTask.run(RedisMessageListenerContainer.java:756) [spring-data-redis-1.8.9.RELEASE.jar:na]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_20]
+Caused by: redis.clients.jedis.exceptions.JedisConnectionException: java.net.SocketTimeoutException: connect timed out
+	at redis.clients.jedis.Connection.connect(Connection.java:207) ~[jedis-2.9.0.jar:na]
+	at redis.clients.jedis.BinaryClient.connect(BinaryClient.java:93) ~[jedis-2.9.0.jar:na]
+	at redis.clients.jedis.Connection.sendCommand(Connection.java:126) ~[jedis-2.9.0.jar:na]
+	at redis.clients.jedis.Connection.sendCommand(Connection.java:121) ~[jedis-2.9.0.jar:na]
+	at redis.clients.jedis.BinaryClient.quit(BinaryClient.java:124) ~[jedis-2.9.0.jar:na]
+	at redis.clients.jedis.BinaryJedis.quit(BinaryJedis.java:252) ~[jedis-2.9.0.jar:na]
+	at org.springframework.data.redis.connection.jedis.JedisConnection.close(JedisConnection.java:325) ~[spring-data-redis-1.8.9.RELEASE.jar:na]
+	... 4 common frames omitted
+Caused by: java.net.SocketTimeoutException: connect timed out
+	at java.net.DualStackPlainSocketImpl.waitForConnect(Native Method) ~[na:1.8.0_20]
+	at java.net.DualStackPlainSocketImpl.socketConnect(DualStackPlainSocketImpl.java:85) ~[na:1.8.0_20]
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:345) ~[na:1.8.0_20]
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206) ~[na:1.8.0_20]
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188) ~[na:1.8.0_20]
+	at java.net.PlainSocketImpl.connect(PlainSocketImpl.java:172) ~[na:1.8.0_20]
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392) ~[na:1.8.0_20]
+	at java.net.Socket.connect(Socket.java:589) ~[na:1.8.0_20]
+	at redis.clients.jedis.Connection.connect(Connection.java:184) ~[jedis-2.9.0.jar:na]
+	... 10 common frames omitted
+
+2021-05-20 00:42:31.878 ERROR 5076 --- [redisMessageListenerContainer-1] o.s.d.r.l.RedisMessageListenerContainer  : Connection failure occurred. Restarting subscription task after 5000 ms
+2021-05-20 23:06:57.530  INFO 3476 --- [main] com.qexz.Application                     : Starting Application on MS-RNKQRXQEZXFI with PID 3476 (D:\workspace\springboot-penguin\target\classes started by Administrator in D:\workspace\springboot-penguin)
+2021-05-20 23:06:57.548  INFO 3476 --- [main] com.qexz.Application                     : The following profiles are active: dev
+2021-05-20 23:06:58.613  INFO 3476 --- [main] ationConfigEmbeddedWebApplicationContext : Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@19932c16: startup date [Thu May 20 23:06:58 CST 2021]; root of context hierarchy
+2021-05-20 23:07:01.194  INFO 3476 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2021-05-20 23:07:04.326  INFO 3476 --- [main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat initialized with port(s): 8082 (http)
+2021-05-20 23:07:04.342  INFO 3476 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-05-20 23:07:04.358  INFO 3476 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.23
+2021-05-20 23:07:04.592  INFO 3476 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-05-20 23:07:04.592  INFO 3476 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 5985 ms
+2021-05-20 23:07:05.529  INFO 3476 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Mapping servlet: 'statViewServlet' to [/druid/*]
+2021-05-20 23:07:05.545  INFO 3476 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Mapping servlet: 'dispatcherServlet' to [/]
+2021-05-20 23:07:05.557  INFO 3476 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2021-05-20 23:07:05.559  INFO 3476 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'springSessionRepositoryFilter' to: [/*]
+2021-05-20 23:07:05.560  INFO 3476 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2021-05-20 23:07:05.563  INFO 3476 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2021-05-20 23:07:05.564  INFO 3476 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2021-05-20 23:07:05.565  INFO 3476 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'webStatFilter' to urls: [/*]
+2021-05-20 23:07:10.458  INFO 3476 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@19932c16: startup date [Thu May 20 23:06:58 CST 2021]; root of context hierarchy
+2021-05-20 23:07:10.583  INFO 3476 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/account/profile],methods=[GET]}" onto public java.lang.String com.qexz.controller.AccountController.profile(javax.servlet.http.HttpServletRequest,org.springframework.ui.Model)
+2021-05-20 23:07:10.583  INFO 3476 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/account/password],methods=[GET]}" onto public java.lang.String com.qexz.controller.AccountController.password(javax.servlet.http.HttpServletRequest,org.springframework.ui.Model)
+2021-05-20 23:07:10.583  INFO 3476 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/account/myExam],methods=[GET]}" onto public java.lang.String com.qexz.controller.AccountController.myExam(javax.servlet.http.HttpServletRequest,int,org.springframework.ui.Model)
+2021-05-20 23:07:10.583  INFO 3476 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/account/logout],methods=[GET]}" onto public java.lang.String com.qexz.controller.AccountController.logout(javax.servlet.http.HttpServletRequest)
+2021-05-20 23:07:10.599  INFO 3476 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/account/api/disabledAccount/{id}],methods=[POST]}" onto public com.qexz.dto.AjaxResult com.qexz.controller.AccountController.disabledAccount(int)
+2021-05-20 23:07:10.599  INFO 3476 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/account/api/abledAccount/{id}],methods=[POST]}" onto public com.qexz.dto.AjaxResult com.qexz.controller.AccountController.abledAccount(int)
+2021-05-20 23:07:10.599  INFO 3476 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/account/api/login],methods=[POST]}" onto public com.qexz.dto.AjaxResult com.qexz.controller.AccountController.login(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2021-05-20 23:07:10.599  INFO 3476 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/account/api/updateManegeAccount],methods=[POST]}" onto public com.qexz.dto.AjaxResult com.qexz.controller.AccountController.updateAccount(com.qexz.model.Account)
+2021-05-20 23:07:10.599  INFO 3476 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/account/api/updateAccount],methods=[POST]}" onto public com.qexz.dto.AjaxResult com.qexz.controller.AccountController.updateAccount(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2021-05-20 23:07:10.599  INFO 3476 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/account/myDiscussPost],methods=[GET]}" onto public java.lang.String com.qexz.controller.AccountController.myDiscussPost(javax.servlet.http.HttpServletRequest,int,org.springframework.ui.Model)
+2021-05-20 23:07:10.599  INFO 3476 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/account/api/updatePassword],methods=[POST]}" onto public com.qexz.dto.AjaxResult com.qexz.controller.AccountController.updatePassword(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2021-05-20 23:07:10.599  INFO 3476 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/account/api/uploadAvatar],methods=[POST]}" onto public java.util.Map<java.lang.String, java.lang.Object> com.qexz.controller.AccountController.uploadAvatar(javax.servlet.http.HttpServletRequest,org.springframework.web.multipart.MultipartFile) throws java.lang.IllegalStateException,java.io.IOException
+2021-05-20 23:07:10.599  INFO 3476 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/account/api/addAccount],methods=[POST]}" onto public com.qexz.dto.AjaxResult com.qexz.controller.AccountController.addAccount(com.qexz.model.Account)
+2021-05-20 23:07:10.599  INFO 3476 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/account/api/deleteAccount/{id}],methods=[DELETE]}" onto public com.qexz.dto.AjaxResult com.qexz.controller.AccountController.deleteAccount(int)
+2021-05-20 23:07:10.599  INFO 3476 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/comment/api/deleteComment/{id}],methods=[DELETE]}" onto public com.qexz.dto.AjaxResult com.qexz.controller.CommentController.deleteComment(int)
+2021-05-20 23:07:10.599  INFO 3476 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/comment/api/addComment],methods=[POST]}" onto public com.qexz.dto.AjaxResult com.qexz.controller.CommentController.addComment(com.qexz.model.Comment)
+2021-05-20 23:07:10.599  INFO 3476 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/contest/api/updateContest],methods=[POST]}" onto public com.qexz.dto.AjaxResult com.qexz.controller.ContestController.updateContest(com.qexz.model.Contest)
+2021-05-20 23:07:10.599  INFO 3476 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/contest/api/addContest],methods=[POST]}" onto public com.qexz.dto.AjaxResult com.qexz.controller.ContestController.addContest(com.qexz.model.Contest)
+2021-05-20 23:07:10.599  INFO 3476 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/contest/api/deleteContest/{id}],methods=[DELETE]}" onto public com.qexz.dto.AjaxResult com.qexz.controller.ContestController.deleteContest(int)
+2021-05-20 23:07:10.614  INFO 3476 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/contest/api/finishContest/{id}],methods=[POST]}" onto public com.qexz.dto.AjaxResult com.qexz.controller.ContestController.finishContest(int)
+2021-05-20 23:07:10.614  INFO 3476 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/time/now],methods=[GET]}" onto public com.qexz.dto.AjaxResult com.qexz.controller.DefaultController.time()
+2021-05-20 23:07:10.614  INFO 3476 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/],methods=[GET]}" onto public java.lang.String com.qexz.controller.DefaultController.home(javax.servlet.http.HttpServletRequest,org.springframework.ui.Model)
+2021-05-20 23:07:10.614  INFO 3476 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/discuss],methods=[GET]}" onto public java.lang.String com.qexz.controller.DefaultController.discuss(javax.servlet.http.HttpServletRequest,int,org.springframework.ui.Model)
+2021-05-20 23:07:10.614  INFO 3476 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/discuss/post],methods=[GET]}" onto public java.lang.String com.qexz.controller.DefaultController.postDiscuss(javax.servlet.http.HttpServletRequest,org.springframework.ui.Model)
+2021-05-20 23:07:10.614  INFO 3476 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/problemset/{problemsetId}/problems],methods=[GET]}" onto public java.lang.String com.qexz.controller.DefaultController.problemList(javax.servlet.http.HttpServletRequest,java.lang.Integer,int,java.lang.String,int,org.springframework.ui.Model)
+2021-05-20 23:07:10.614  INFO 3476 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/problemset/{problemsetId}/problem/{problemId}],methods=[GET]}" onto public java.lang.String com.qexz.controller.DefaultController.problemDetail(javax.servlet.http.HttpServletRequest,java.lang.Integer,java.lang.Integer,org.springframework.ui.Model)
+2021-05-20 23:07:10.614  INFO 3476 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/uid],methods=[GET]}" onto public com.qexz.dto.AjaxResult com.qexz.controller.DefaultController.uid(javax.servlet.http.HttpSession)
+2021-05-20 23:07:10.614  INFO 3476 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/contest/{contestId}],methods=[GET]}" onto public java.lang.String com.qexz.controller.DefaultController.contestDetail(javax.servlet.http.HttpServletRequest,int,org.springframework.ui.Model)
+2021-05-20 23:07:10.630  INFO 3476 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/problemset/list],methods=[GET]}" onto public java.lang.String com.qexz.controller.DefaultController.problemSet(javax.servlet.http.HttpServletRequest,int,org.springframework.ui.Model)
+2021-05-20 23:07:10.630  INFO 3476 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/contest/index],methods=[GET]}" onto public java.lang.String com.qexz.controller.DefaultController.contestIndex(javax.servlet.http.HttpServletRequest,int,org.springframework.ui.Model)
+2021-05-20 23:07:10.630  INFO 3476 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/discuss/{postId}],methods=[GET]}" onto public java.lang.String com.qexz.controller.DefaultController.discussDetail(javax.servlet.http.HttpServletRequest,java.lang.Integer,org.springframework.ui.Model)
+2021-05-20 23:07:10.630  INFO 3476 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/grade/api/submitContest],methods=[POST]}" onto public com.qexz.dto.AjaxResult com.qexz.controller.GradeController.submitContest(javax.servlet.http.HttpServletRequest,com.qexz.model.Grade)
+2021-05-20 23:07:10.630  INFO 3476 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/grade/api/finishGrade],methods=[POST]}" onto public com.qexz.dto.AjaxResult com.qexz.controller.GradeController.finishGrade(com.qexz.model.Grade)
+2021-05-20 23:07:10.646  INFO 3476 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/manage/contest/{contestId}/problems],methods=[GET]}" onto public java.lang.String com.qexz.controller.ManageController.contestProblemList(javax.servlet.http.HttpServletRequest,java.lang.Integer,org.springframework.ui.Model)
+2021-05-20 23:07:10.646  INFO 3476 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/manage/result/contest/list],methods=[GET]}" onto public java.lang.String com.qexz.controller.ManageController.resultContestList(javax.servlet.http.HttpServletRequest,int,org.springframework.ui.Model)
+2021-05-20 23:07:10.646  INFO 3476 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/manage/result/contest/{contestId}/list],methods=[GET]}" onto public java.lang.String com.qexz.controller.ManageController.resultStudentList(javax.servlet.http.HttpServletRequest,int,int,org.springframework.ui.Model)
+2021-05-20 23:07:10.646  INFO 3476 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/manage/login],methods=[GET]}" onto public java.lang.String com.qexz.controller.ManageController.login(javax.servlet.http.HttpServletRequest,org.springframework.ui.Model)
+2021-05-20 23:07:10.646  INFO 3476 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/manage/contest/list],methods=[GET]}" onto public java.lang.String com.qexz.controller.ManageController.contestList(javax.servlet.http.HttpServletRequest,int,org.springframework.ui.Model)
+2021-05-20 23:07:10.646  INFO 3476 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/manage/question/list],methods=[GET]}" onto public java.lang.String com.qexz.controller.ManageController.questionList(javax.servlet.http.HttpServletRequest,int,java.lang.String,org.springframework.ui.Model)
+2021-05-20 23:07:10.646  INFO 3476 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/manage/subject/list],methods=[GET]}" onto public java.lang.String com.qexz.controller.ManageController.subjectList(javax.servlet.http.HttpServletRequest,int,org.springframework.ui.Model)
+2021-05-20 23:07:10.646  INFO 3476 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/manage/post/list],methods=[GET]}" onto public java.lang.String com.qexz.controller.ManageController.postList(javax.servlet.http.HttpServletRequest,int,org.springframework.ui.Model)
+2021-05-20 23:07:10.646  INFO 3476 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/manage/comment/list],methods=[GET]}" onto public java.lang.String com.qexz.controller.ManageController.commentList(javax.servlet.http.HttpServletRequest,int,org.springframework.ui.Model)
+2021-05-20 23:07:10.646  INFO 3476 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/manage/account/list],methods=[GET]}" onto public java.lang.String com.qexz.controller.ManageController.accountList(javax.servlet.http.HttpServletRequest,int,org.springframework.ui.Model)
+2021-05-20 23:07:10.646  INFO 3476 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/post/api/addPost],methods=[POST]}" onto public com.qexz.dto.AjaxResult com.qexz.controller.PostController.addPost(com.qexz.model.Post)
+2021-05-20 23:07:10.646  INFO 3476 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/post/api/deletePost/{id}],methods=[DELETE]}" onto public com.qexz.dto.AjaxResult com.qexz.controller.PostController.deletePost(int)
+2021-05-20 23:07:10.661  INFO 3476 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/post/api/updatePost],methods=[POST]}" onto public com.qexz.dto.AjaxResult com.qexz.controller.PostController.updatePost(com.qexz.model.Post)
+2021-05-20 23:07:10.661  INFO 3476 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/question/api/deleteQuestion/{id}],methods=[DELETE]}" onto public com.qexz.dto.AjaxResult com.qexz.controller.QuestionController.deleteContest(int)
+2021-05-20 23:07:10.661  INFO 3476 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/question/api/updateQuestion],methods=[POST]}" onto public com.qexz.dto.AjaxResult com.qexz.controller.QuestionController.updateQuestion(com.qexz.model.Question)
+2021-05-20 23:07:10.661  INFO 3476 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/question/api/addQuestion],methods=[POST]}" onto public com.qexz.dto.AjaxResult com.qexz.controller.QuestionController.addQuestion(com.qexz.model.Question)
+2021-05-20 23:07:10.661  INFO 3476 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/reply/api/addReply],methods=[POST]}" onto public com.qexz.dto.AjaxResult com.qexz.controller.ReplyController.addReply(com.qexz.model.Reply)
+2021-05-20 23:07:10.661  INFO 3476 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/subject/api/getSubjects],methods=[POST]}" onto public com.qexz.dto.AjaxResult com.qexz.controller.SubjectController.getSubjects(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2021-05-20 23:07:10.661  INFO 3476 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/subject/api/addSubject],methods=[POST]}" onto public com.qexz.dto.AjaxResult com.qexz.controller.SubjectController.addSubject(com.qexz.model.Subject)
+2021-05-20 23:07:10.661  INFO 3476 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/subject/api/deleteSubject/{id}],methods=[DELETE]}" onto public com.qexz.dto.AjaxResult com.qexz.controller.SubjectController.deleteSubject(int)
+2021-05-20 23:07:10.661  INFO 3476 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/subject/api/updateSubject],methods=[POST]}" onto public com.qexz.dto.AjaxResult com.qexz.controller.SubjectController.updateSubject(com.qexz.model.Subject)
+2021-05-20 23:07:10.708  INFO 3476 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2021-05-20 23:07:10.708  INFO 3476 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2021-05-20 23:07:10.786  INFO 3476 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/upload/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2021-05-20 23:07:10.786  INFO 3476 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2021-05-20 23:07:10.786  INFO 3476 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2021-05-20 23:07:10.958  INFO 3476 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2021-05-20 23:07:12.520  INFO 3476 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2021-05-20 23:07:12.520  INFO 3476 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'dataSource' has been autodetected for JMX exposure
+2021-05-20 23:07:12.520  INFO 3476 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'statFilter' has been autodetected for JMX exposure
+2021-05-20 23:07:12.520  INFO 3476 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'wallFilter' has been autodetected for JMX exposure
+2021-05-20 23:07:12.536  INFO 3476 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Located MBean 'dataSource': registering with JMX server as MBean [com.alibaba.druid.pool:name=dataSource,type=DruidDataSource]
+2021-05-20 23:07:12.536  INFO 3476 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Located MBean 'wallFilter': registering with JMX server as MBean [com.alibaba.druid.wall:name=wallFilter,type=WallFilter]
+2021-05-20 23:07:12.536  INFO 3476 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Located MBean 'statFilter': registering with JMX server as MBean [com.alibaba.druid.filter.stat:name=statFilter,type=StatFilter]
+2021-05-20 23:07:12.552  INFO 3476 --- [main] o.s.c.support.DefaultLifecycleProcessor  : Starting beans in phase 2147483647
+2021-05-20 23:07:12.567  INFO 3476 --- [main] s.a.ScheduledAnnotationBeanPostProcessor : No TaskScheduler/ScheduledExecutorService bean found for scheduled processing
+2021-05-20 23:07:12.927  INFO 3476 --- [main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat started on port(s): 8082 (http)
+2021-05-20 23:07:12.927  INFO 3476 --- [main] com.qexz.Application                     : Started Application in 16.311 seconds (JVM running for 18.645)
+2021-05-20 23:07:51.666  INFO 3476 --- [http-nio-8082-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2021-05-20 23:07:51.667  INFO 3476 --- [http-nio-8082-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization started
+2021-05-20 23:07:51.723  INFO 3476 --- [http-nio-8082-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization completed in 55 ms
+2021-05-20 23:07:56.748  INFO 3476 --- [http-nio-8082-exec-10] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2021-05-20 23:41:31.846  INFO 3476 --- [Thread-3] ationConfigEmbeddedWebApplicationContext : Closing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@19932c16: startup date [Thu May 20 23:06:58 CST 2021]; root of context hierarchy
+2021-05-20 23:41:31.966  INFO 3476 --- [Thread-3] o.s.c.support.DefaultLifecycleProcessor  : Stopping beans in phase 2147483647
+2021-05-20 23:41:32.031  INFO 3476 --- [Thread-3] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+2021-05-20 23:41:32.034  INFO 3476 --- [Thread-3] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans
+2021-05-20 23:41:32.191  INFO 3476 --- [Thread-3] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closed
