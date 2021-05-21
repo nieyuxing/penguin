@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qexz.dao.UserMapper" >
+    <resultMap id="BaseResultMap" type="com.qexz.model.User" >
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="name" property="name" jdbcType="VARCHAR" />
+        <result column="sex" property="sex" jdbcType="INTEGER" />
+        <result column="ismarry" property="ismarry" jdbcType="INTEGER" />
+        <result column="nation" property="nation" jdbcType="INTEGER" />
+        <result column="degree" property="degree" jdbcType="INTEGER" />
+        <result column="cert_type" property="cert_type" jdbcType="INTEGER" />
+        <result column="college" property="college" jdbcType="VARCHAR" />
+        <result column="certno" property="certno" jdbcType="VARCHAR" />
+        <result column="addr" property="addr" jdbcType="VARCHAR" />
+        <result column="resume_file" property="resume_file" jdbcType="VARCHAR" />
+        <result column="attribute1" property="attribute1" jdbcType="VARCHAR" />
+        <result column="attribute2" property="attribute2" jdbcType="VARCHAR" />
+        <result column="attribute3" property="attribute3" jdbcType="VARCHAR" />
+        <result column="attribute4" property="attribute4" jdbcType="VARCHAR" />
+        <result column="attribute5" property="attribute5" jdbcType="VARCHAR" />
+        <result column="username" property="username" jdbcType="VARCHAR" />
+        <result column="password" property="password" jdbcType="VARCHAR" />
+        <result column="qq" property="qq" jdbcType="VARCHAR" />
+        <result column="phone" property="phone" jdbcType="VARCHAR" />
+        <result column="email" property="email" jdbcType="VARCHAR" />
+        <result column="description" property="description" jdbcType="VARCHAR" />
+        <result column="avatar_img_url" property="avatarImgUrl" jdbcType="VARCHAR" />
+        <result column="state" property="state" jdbcType="INTEGER" />
+        <result column="approvestatus" property="approvestatus" jdbcType="INTEGER" />
+        <result column="level" property="level" jdbcType="INTEGER" />
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    </resultMap>
+    <sql id="Base_Column_List" >
+        id,`name`,username,password,qq,phone,email,description,avatar_img_url,state,`level`,create_time
+    </sql>
+
+    <insert id="insertUser" parameterType="com.qexz.model.User" >
+        insert into t_User
+                (id, name, sex, ismarry, nation, degree, college, cert_type, cartno, password, qq, vchat, phone, email, description, avatar_img_url, approvestatus, state, create_time, update_time, addr, resume_file, attribute1, attribute2, attribute3, attribute4, attribute5)
+        values
+               (#{User.id}, #{User.name}, #{User.sex}, #{User.ismarry}, #{User.nation}, #{User.degree}, #{User.college}, #{User.cert_type}, #{User.cartno}, #{User.password}, #{User.qq}, #{User.vchat}, #{User.phone}, #{User.email}, #{User.description}, #{User.avatar_img_url}, #{User.approvestatus}, #{User.state}, #{User.create_time}, #{User.update_time}, #{User.addr}, #{User.resume_file}, #{User.attribute1}, #{User.attribute2}, #{User.attribute3}, #{User.attribute4}, #{User.attribute5})
+
+    </insert>
+    
+    <update id="updateUserById" parameterType="com.qexz.model.User">
+        UPDATE t_User
+        SET
+            name = #{User.name}, sex = #{User.sex}, ismarry = #{User.ismarry}, nation = #{User.nation}, degree = #{User.degree}, college = #{User.college}, cert_type = #{User.cert_type}, cartno = #{User.cartno},
+            qq = #{User.qq}, vchat = #{User.vchat}, phone = #{User.phone}, email = #{User.email}, description = #{User.description}, avatar_img_url = #{User.avatar_img_url}, approvestatus = #{User.approvestatus},
+            state = #{User.state}, addr = #{User.addr}, resume_file = #{User.resume_file}, attribute1 = #{User.attribute1},
+            attribute2 = #{User.attribute2}, attribute3 = #{User.attribute3}, attribute4 = #{User.attribute4}, attribute5 = #{User.attribute5}
+        WHERE
+        id = #{User.id}
+    </update>
+
+    <update id="updateAvatarImgUrlById">
+        UPDATE t_User
+        SET
+        avatar_img_url = #{avatarImgUrl}
+        WHERE
+        id = #{id}
+    </update>
+
+    <!--根据账号查询账号信息-->
+    <select id="getUserByUsername" resultMap="BaseResultMap" parameterType="String" >
+        select
+        <include refid="Base_Column_List" />
+        from t_User
+        where username = #{username}
+    </select>
+
+    <select id="getUsersByIds" resultMap="BaseResultMap">
+        SELECT
+         *
+        FROM t_User
+        WHERE 1 = 1
+        <if test="studentIds != null and studentIds.size > 0">
+            AND id IN
+            <foreach collection="studentIds" item="studentId" open="(" separator="," close=")">
+                #{studentId}
+            </foreach>
+        </if>
+    </select>
+
+    <select id="getCount" resultType="int">
+        SELECT
+        COUNT(1)
+        FROM t_User
+    </select>
+
+    <select id="getUsers" resultMap="BaseResultMap" >
+        SELECT
+        *
+        FROM t_User
+        ORDER BY create_time DESC
+    </select>
+
+    <delete id="deleteUser" parameterType="int" >
+        delete from t_User
+        where id = #{id}
+    </delete>
+
+    <update id="updateState" >
+        update t_User set
+        state = #{state}
+        where id = #{id}
+    </update>
+
+    <select id="getUsersByIdSets" resultMap="BaseResultMap">
+        SELECT
+        *
+        FROM t_User
+        WHERE 1 = 1
+        <if test="ids != null and ids.size > 0">
+            AND id IN
+            <foreach collection="ids" item="id" open="(" separator="," close=")">
+                #{id}
+            </foreach>
+        </if>
+    </select>
+
+    <!--根据主键ID查询账号信息-->
+    <select id="getUserById" resultMap="BaseResultMap" parameterType="int" >
+        select
+        *
+        from t_User
+        where id = #{id}
+    </select>
+    <!--更新简历审核状态-->
+    <update id="updateApproveStatus" >
+        update t_User set
+            approvestatus = #{approvestatus}
+        where id = #{id}
+    </update>
+
+</mapper>
