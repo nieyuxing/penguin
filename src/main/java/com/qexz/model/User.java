@@ -1,9 +1,11 @@
-﻿package com.qexz.model;
+package com.qexz.model;
 
 import java.io.Serializable;
 import java.util.Date;
 
 public class User implements Serializable {
+
+    private static final long serialVersionUID = -5833060742923499664L;
     private int id; //'主键ID',
     private String name; //'姓名',
     private int sex; //'性别,0-男,1-女',
