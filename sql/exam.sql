@@ -34,8 +34,8 @@ CREATE TABLE `t_user` (
 -- ----------------------------
 -- Table structure for t_penguin_question
 -- ----------------------------
-DROP TABLE IF EXISTS `t_penguin_question`;
-CREATE TABLE `t_penguin_question` (
+DROP TABLE IF EXISTS `t_examination_question`;
+CREATE TABLE `t_examination_question` (
                                       `id` int(8) NOT NULL AUTO_INCREMENT,
                                       `title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '题目标题',
                                       `content` text COLLATE utf8mb4_unicode_ci COMMENT '题目内容',
@@ -56,6 +56,65 @@ CREATE TABLE `t_penguin_question` (
                                       PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+
+-- ----------------------------
+-- Table structure for t_penguin_question
+-- ----------------------------
+DROP TABLE IF EXISTS `t_examination_paper`;
+CREATE TABLE `t_penguin_question` (
+  `id` int(8) NOT NULL AUTO_INCREMENT,
+  `exam_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '试卷名称',
+  `examination_type` int(8) DEFAULT NULL COMMENT '试卷类型,1-技术类',
+  `department_id` int(8) DEFAULT NULL COMMENT '所属部门',
+  `state` int(8) DEFAULT NULL COMMENT '试卷状态',
+  `create_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `create_by` int(8) DEFAULT NULL COMMENT '创建时间',
+  `update_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  `update_by` int(8) DEFAULT NULL COMMENT '创建时间',
+  `score` int(8) DEFAULT NULL COMMENT '题目分值',
+  `difficulty` int(8) DEFAULT '1' COMMENT '试题难度',
+  `version` int(8) DEFAULT NULL COMMENT '数据版本',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- ----------------------------
+-- Table structure for t_examination_paper_detail
+-- ----------------------------
+DROP TABLE IF EXISTS `t_examination_paper_detail`;
+CREATE TABLE `t_examination_paper_detail` (
+  `id` int(8) NOT NULL AUTO_INCREMENT,
+  `paper_id` int(8) DEFAULT NULL COMMENT '试卷ID',
+  `answer_id` int(8) DEFAULT NULL  COMMENT '题目ID',
+  `parse` text COLLATE utf8mb4_unicode_ci COMMENT '答案解析',
+  `option_a` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '选项A',
+  `option_b` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '选项B',
+  `option_c` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '选项C',
+  `option_d` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '选项D',
+  `answer` text COLLATE utf8mb4_unicode_ci COMMENT '作答',
+  `create_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  `get_score` int(8) DEFAULT NULL COMMENT '得分',
+  `state` int(8) DEFAULT '1' COMMENT '0表示未考试题目,1表示已考试题目',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+
+-- ----------------------------
+-- Table structure for t_examination_answer
+-- ----------------------------
+DROP TABLE IF EXISTS `t_examination_answer`;
+CREATE TABLE `t_examination_answer` (
+  `id` int(8) NOT NULL AUTO_INCREMENT,
+  `paper_id` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '试卷ID',
+  `user_id` text COLLATE utf8mb4_unicode_ci COMMENT '用户ID',
+  `answer` text COLLATE utf8mb4_unicode_ci COMMENT '作答',
+  `parse` text COLLATE utf8mb4_unicode_ci COMMENT '答案解析',
+  `create_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  `score` int(8) DEFAULT NULL COMMENT '得分',
+  `state` int(8) DEFAULT '1' COMMENT '答卷状态',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 
 
