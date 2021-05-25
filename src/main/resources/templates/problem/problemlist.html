@@ -20,11 +20,7 @@
     <link rel="stylesheet" th:href="@{https://cdn.bootcss.com/semantic-ui/2.2.13/semantic.min.css}" />
     <link rel="stylesheet" th:href="@{/css/app.css}" />
     <link rel="stylesheet" th:href="@{/css/problem/problemlist.css}" />
-<!--    <script type="text/javascript" th:src="@{https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js}"></script>-->
-<!--    <script type="text/javascript" th:src="@{https://cdn.bootcss.com/semantic-ui/2.2.13/semantic.min.js}"></script>-->
-<!--    <script type="text/javascript" th:src="@{https://cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.min.js}"></script>-->
-<!--    <script type="text/javascript" th:src="@{/js/app.js}"></script>-->
-<!--    <script type="text/javascript" th:src="@{/js/problem/problemlist.js}"></script>-->
+
 </head>
 <body>
 <div class="ui fixed inverted menu">
@@ -87,9 +83,9 @@
                 <h4 class="modal-title" id="myModalLabel">上传简历</h4>
             </div>
             <div class="modal-body">
-                <form method="post" action="/upload" enctype="multipart/form-data">
-                    <input type="file" name="file"><br>
-                    <input type="submit" value="提交">
+                <form method="post" action="/manage/upload" enctype="multipart/form-data">
+                    <input type="file" name="file"/><br/>
+                    <input type="submit" value="提交"/>
                 </form>
             </div>
             <div class="modal-footer">

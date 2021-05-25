@@ -82,7 +82,7 @@ public class ManageController {
         }
 
         String fileName = file.getOriginalFilename();
-        String filePath = "/Users/itinypocket/workspace/temp/";
+        String filePath = QexzConst.UPLOAD_FILE_IMAGE_PATH;
         File dest = new File(filePath + fileName);
         try {
             file.transferTo(dest);

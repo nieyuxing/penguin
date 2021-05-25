@@ -4,26 +4,26 @@
     <resultMap id="BaseResultMap" type="com.qexz.model.Position" >
         <id column="id" property="id" jdbcType="INTEGER" />
         <result column="name" property="name" jdbcType="VARCHAR" />
-        <result column="question_num" property="questionNum" jdbcType="INTEGER" />
+        <result column="position_num" property="positionNum" jdbcType="INTEGER" />
         <result column="img_url" property="imgUrl" jdbcType="VARCHAR" />
         <result column="state" property="state" jdbcType="INTEGER" />
         <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
         <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
     </resultMap>
     <sql id="Base_Column_List" >
-        id,`name`,question_num,img_url,state,create_time,update_time
+        id,`name`,position_num,img_url,state,create_time,update_time
     </sql>
 
     <insert id="insertPosition" parameterType="com.qexz.model.Position" >
         insert into t_position
-        (name, question_num, img_url)
-        values (#{position.name}, #{position.questionNum}, #{position.imgUrl})
+        (name, position_num, img_url)
+        values (#{position.name}, #{position.positionNum}, #{position.imgUrl})
     </insert>
 
     <update id="updatePositionById" parameterType="com.qexz.model.Position">
         UPDATE t_position
         SET
-        name = #{position.name}, question_num = #{position.questionNum},
+        name = #{position.name}, position_num = #{position.positionNum},
         img_url = #{position.imgUrl}
         WHERE
         id = #{position.id}
