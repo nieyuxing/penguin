@@ -192,8 +192,8 @@ public class AccountController {
     public AjaxResult login(HttpServletRequest request, HttpServletResponse response) {
         AjaxResult ajaxResult = new AjaxResult();
         try {
-            String username = request.getParameter("phoneNum");
-            String password = request.getParameter("pwd");
+            String username = request.getParameter("username");
+            String password = request.getParameter("password");
             Account current_account = accountService.getAccountByUsername(username);
             if(current_account != null) {
                 String pwd = MD5.md5(QexzConst.MD5_SALT+password);
