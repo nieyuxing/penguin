@@ -14,7 +14,7 @@ public interface UserMapper {
 
     int insertAccount(@Param("User") User user);
 
-    int updateUserById(@Param("User") User user);
+    int updateUserById(@Param("user") User user);
 
     int updateAvatarImgUrlById(@Param("avatarImgUrl") String avatarImgUrl, @Param("id") int id);
 

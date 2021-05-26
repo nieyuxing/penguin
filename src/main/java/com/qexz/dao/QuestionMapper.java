@@ -35,4 +35,6 @@ public interface QuestionMapper {
 
     int updateQuestionsStateByContestId(@Param("contestId") int contestId,
                                         @Param("state") int state);
+
+    List<Question> getQuestions();
 }

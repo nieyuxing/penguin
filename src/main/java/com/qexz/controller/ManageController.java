@@ -10,8 +10,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
 import java.util.*;
@@ -37,12 +39,22 @@ public class ManageController {
     private PostService postService;
     @Autowired
     private CommentService commentService;
+    @Autowired
+    private ExaminationPaperService examinationPaperService;
+    @Autowired
+    private ExaminationPaperDetailService examinationPaperDetailService;
+
+    @Autowired
+    private ExaminationAnswerService examinationAnswerService;
+
+    @Autowired
+    private UserService userService;
 
     /**
      * 管理员登录页
      */
     @RequestMapping(value="/login", method= RequestMethod.GET)
-    public String login(HttpServletRequest request, Model model) {
+    public String login(HttpServletRequest request,  Model model) {
         Account currentAccount = (Account) request.getSession().getAttribute(QexzConst.CURRENT_ACCOUNT);
         model.addAttribute(QexzConst.CURRENT_ACCOUNT, currentAccount);
 
@@ -74,6 +86,26 @@ public class ManageController {
         }
     }
 
+    /**
+     * 用户管理
+     */
+    @RequestMapping(value="/user/list", method= RequestMethod.GET)
+    public String userList(HttpServletRequest request,
+                              @RequestParam(value = "page", defaultValue = "1") int page,
+                              Model model) {
+        Account currentAccount = (Account) request.getSession().getAttribute(QexzConst.CURRENT_ACCOUNT);
+        //TODO::处理
+        //currentAccount = accountService.getAccountByUsername("admin");
+        model.addAttribute(QexzConst.CURRENT_ACCOUNT, currentAccount);
+        if (currentAccount == null || currentAccount.getLevel() < 1) {
+            //return "redirect:/";
+            return "/error/404";
+        } else {
+            Map<String, Object> data = userService.getUsers(page, QexzConst.accountPageSize);
+            model.addAttribute(QexzConst.DATA, data);
+            return "/manage/manage-UserList";
+        }
+    }
     @PostMapping("/upload")
     @ResponseBody
     public String upload(@RequestParam("file") MultipartFile file) {
@@ -144,6 +176,37 @@ public class ManageController {
     }
 
     /**
+     * 考试管理-查看试题
+     */
+    @RequestMapping(value="/paper/{paperId}/questions", method= RequestMethod.GET)
+    public String paperProblemList(HttpServletRequest request,
+                                     @PathVariable("paperId") Integer paperId, Model model) {
+        Account currentAccount = (Account) request.getSession().getAttribute(QexzConst.CURRENT_ACCOUNT);
+        //TODO::处理
+        //currentAccount = accountService.getAccountByUsername("admin");
+        model.addAttribute(QexzConst.CURRENT_ACCOUNT, currentAccount);
+        if (currentAccount == null || currentAccount.getLevel() < 1) {
+            //return "redirect:/";
+            return "/error/404";
+        } else {
+            Map<String, Object> data = new HashMap<>();
+            List<ExaminationPaperDetail> examinationPaperDetails = examinationPaperDetailService.getExaminationPaperDetailsByPaperId(paperId);
+            ExaminationPaper examinationPaper = examinationPaperService.getExaminationPaperById(paperId);
+            List<Question> questions = questionService.getQuestions();
+            for(ExaminationPaperDetail examinationPaperDetail:examinationPaperDetails){
+                Question question = questionService.getQuestionById(examinationPaperDetail.getQuestion_id());
+                examinationPaperDetail.setQuestion(question);
+            }
+            data.put("examinationPaperDetailsSize", examinationPaperDetails.size());
+            data.put("examinationPaperDetails", examinationPaperDetails);
+            data.put("examinationPaper", examinationPaper);
+            data.put("questions", questions);
+            model.addAttribute(QexzConst.DATA, data);
+            return "/manage/manage-editExaminationPaperDetail";
+        }
+    }
+
+    /**
      * 題目管理
      */
     @RequestMapping(value="/question/list", method= RequestMethod.GET)
@@ -181,8 +244,8 @@ public class ManageController {
      */
     @RequestMapping(value="/result/contest/list", method= RequestMethod.GET)
     public String resultContestList(HttpServletRequest request,
-                              @RequestParam(value = "page", defaultValue = "1") int page,
-                              Model model) {
+                                    @RequestParam(value = "page", defaultValue = "1") int page,
+                                    Model model) {
         Account currentAccount = (Account) request.getSession().getAttribute(QexzConst.CURRENT_ACCOUNT);
         //TODO::处理
         //currentAccount = accountService.getAccountByUsername("admin");
@@ -199,6 +262,39 @@ public class ManageController {
         }
     }
 
+
+    /**
+     * 成绩管理-考试详情列表
+     */
+    @RequestMapping(value="/examAnswer/list", method= RequestMethod.GET)
+    public String examAnswerList(HttpServletRequest request,
+                                    @RequestParam(value = "page", defaultValue = "1") int page,
+                                    Model model) {
+        Account currentAccount = (Account) request.getSession().getAttribute(QexzConst.CURRENT_ACCOUNT);
+        //TODO::处理
+        //currentAccount = accountService.getAccountByUsername("admin");
+        model.addAttribute(QexzConst.CURRENT_ACCOUNT, currentAccount);
+        if (currentAccount == null || currentAccount.getLevel() < 1) {
+            //return "redirect:/";
+            return "/error/404";
+        } else {
+            Map<String, Object> retdata = new HashMap<>();
+            List<ExaminationAnswer> answers = new ArrayList<ExaminationAnswer>();
+            Map<String, Object> data =examinationAnswerService.getExaminationAnswers(page, QexzConst.contestPageSize);
+            List<ExaminationAnswer> examinationAnswers = (List<ExaminationAnswer>) data.get("examinationAnswers");
+            List<ExaminationPaper> papers = examinationPaperService.getExaminationPapers();
+            for(ExaminationAnswer examinationAnswer : examinationAnswers){
+                ExaminationPaper examinationPaper = examinationPaperService.getExaminationPaperById(examinationAnswer.getPaper_id());
+                examinationAnswer.setPaper(examinationPaper);
+                answers.add(examinationAnswer);
+            }
+            retdata.put("examinationAnswersSize",answers.size());
+            retdata.put("examinationAnswers", answers);
+            retdata.put("papers", papers);
+            model.addAttribute(QexzConst.DATA, retdata);
+            return "/manage/manage-examAnswerBoard";
+        }
+    }
     /**
      * 成绩管理-考试列表-学生成绩列表
      */
@@ -311,6 +407,26 @@ public class ManageController {
             }
             model.addAttribute(QexzConst.DATA, data);
             return "/manage/manage-commentBoard";
+        }
+    }
+
+    /**
+     * 考卷管理
+     */
+    @RequestMapping(value="/paper/list", method= RequestMethod.GET)
+    public String paperList(HttpServletRequest request,
+                              @RequestParam(value = "page", defaultValue = "1") int page,
+                              Model model) {
+        Account currentAccount = (Account) request.getSession().getAttribute(QexzConst.CURRENT_ACCOUNT);
+        //TODO::处理
+        //currentAccount = accountService.getAccountByUsername("admin");
+        model.addAttribute(QexzConst.CURRENT_ACCOUNT, currentAccount);
+        if (currentAccount == null || currentAccount.getLevel() < 1) {
+            return "/error/404";
+        } else {
+            Map<String, Object> data = examinationPaperService.getPagesExaminationPapers(page, QexzConst.contestPageSize);
+            model.addAttribute(QexzConst.DATA, data);
+            return "/manage/manage-paperBoard";
         }
     }
 }

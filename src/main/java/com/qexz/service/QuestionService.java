@@ -13,6 +13,8 @@ public interface QuestionService {
 
     List<Question> getQuestionsByContestId(int contestId);
 
+    List<Question> getQuestions();
+
     Map<String, Object> getQuestionsByContent(int pageNum, int pageSize, String content);
 
     Map<String, Object> getQuestionsByProblemsetIdAndContentAndDiffculty(int pageNum, int pageSize,

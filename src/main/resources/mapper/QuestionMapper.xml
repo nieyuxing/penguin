@@ -63,6 +63,12 @@
         WHERE id = #{id}
     </select>
 
+    <select id="getQuestions" resultMap="BaseResultMap"  >
+        SELECT
+        *
+        FROM t_penguin_question
+    </select>
+
     <select id="getCountByContent" resultType="int">
         SELECT
           COUNT(1)

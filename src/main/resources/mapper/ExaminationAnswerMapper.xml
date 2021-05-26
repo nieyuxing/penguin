@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qexz.dao.ExaminationAnswerMapper" >
+    <resultMap id="BaseResultMap" type="com.qexz.model.ExaminationAnswer" >
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="paper_id" property="paper_id" jdbcType="INTEGER" />
+        <result column="user_id" property="user_id" jdbcType="INTEGER" />
+        <result column="score" property="score" jdbcType="INTEGER" />
+        <result column="state" property="state" jdbcType="INTEGER" />
+        <result column="version" property="version" jdbcType="VARCHAR" />
+        <result column="create_time" property="create_time" jdbcType="TIMESTAMP" />
+        <result column="update_time" property="update_time" jdbcType="TIMESTAMP" />
+        <result column="startDate" property="startDate" jdbcType="TIMESTAMP" />
+        <result column="endDate" property="endDate" jdbcType="TIMESTAMP" />
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+        id, paper_id, user_id, score, state, version, create_time, update_time, startDate, endDate
+    </sql>
+
+    <insert id="insertExaminationAnswer" parameterType="com.qexz.model.ExaminationAnswer" >
+        insert into t_examination_answer
+          ( id, paper_id, user_id, score, state, version, create_time, update_time, startDate, endDate)
+        values
+          ( #{ExaminationAnswer.id}, #{ExaminationAnswer.paper_id}, #{ExaminationAnswer.user_id}, 0, 0, 1, CURRENT_TIMESTAMP , CURRENT_TIMESTAMP , NULL , NULL )
+
+    </insert>
+    
+    <update id="updateExaminationAnswerById" parameterType="com.qexz.model.ExaminationAnswer">
+        UPDATE t_examination_answer
+        SET
+          paper_id = #{ExaminationAnswer.paper_id},
+          user_id = #{ExaminationAnswer.user_id},
+          score = #{ExaminationAnswer.score},
+          state = #{ExaminationAnswer.state},
+          version = version + 1,
+          update_time = CURRENT_TIMESTAMP ,
+          startDate = #{ExaminationAnswer.startDate},
+          endDate = #{ExaminationAnswer.endDate})
+
+        WHERE
+        id = #{ExaminationAnswer.id}
+    </update>
+
+
+    <select id="getCount" resultType="int">
+        SELECT
+        COUNT(1)
+        FROM t_examination_answer
+    </select>
+
+    <select id="getExaminationAnswers" resultMap="BaseResultMap" >
+        SELECT
+        *
+        FROM t_examination_answer
+        ORDER BY create_time DESC
+    </select>
+
+    <delete id="deleteExaminationAnswer" parameterType="int" >
+        delete from t_examination_answer
+        where id = #{id}
+    </delete>
+
+    <update id="updateState" >
+        update t_examination_answer set
+        state = #{state}
+        where id = #{id}
+    </update>
+
+    <select id="getExaminationAnswersByIdSets" resultMap="BaseResultMap">
+        SELECT
+        *
+        FROM t_examination_answer
+        WHERE 1 = 1
+        <if test="ids != null and ids.size > 0">
+            AND id IN
+            <foreach collection="ids" item="id" open="(" separator="," close=")">
+                #{id}
+            </foreach>
+        </if>
+    </select>
+
+    <!--根据主键ID查询账号信息-->
+    <select id="getExaminationAnswerById" resultMap="BaseResultMap" parameterType="int" >
+        select
+        *
+        from t_examination_answer
+        where id = #{id}
+    </select>
+
+
+</mapper>

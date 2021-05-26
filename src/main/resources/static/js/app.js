@@ -27,10 +27,10 @@ var app = {
             return app.data.contextPath+"/problemset/"+problemsetId+"/problems";
         },
         contestIndexUrl: function () {
-            return app.data.contextPath+"/contest/index";
+            return app.data.contextPath+"/paper/index";
         },
         contestDetailUrl: function () {
-            return app.data.contextPath+"/contest/";
+            return app.data.contextPath+"/paper/";
         },
         updateAccountUrl: function () {
             return app.data.contextPath+"/account/api/updateAccount";

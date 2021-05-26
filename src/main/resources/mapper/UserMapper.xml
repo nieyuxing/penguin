@@ -28,14 +28,14 @@
         <result column="state" property="state" jdbcType="INTEGER" />
         <result column="approvestatus" property="approvestatus" jdbcType="INTEGER" />
         <result column="level" property="level" jdbcType="INTEGER" />
-        <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+        <result column="create_time" property="create_time" jdbcType="TIMESTAMP" />
     </resultMap>
     <sql id="Base_Column_List" >
         id,`name`,username,password,qq,phone,email,description,avatar_img_url,state,`level`,create_time
     </sql>
 
     <insert id="insertUser" parameterType="com.qexz.model.User" >
-        insert into t_User
+        insert into t_user
                 (id, name, sex, ismarry, nation, degree, college, cert_type, cartno, password, qq, vchat, phone, email, description, avatar_img_url, approvestatus, state, create_time, update_time, addr, resume_file, attribute1, attribute2, attribute3, attribute4, attribute5)
         values
                (#{User.id}, #{User.name}, #{User.sex}, #{User.ismarry}, #{User.nation}, #{User.degree}, #{User.college}, #{User.cert_type}, #{User.cartno}, #{User.password}, #{User.qq}, #{User.vchat}, #{User.phone}, #{User.email}, #{User.description}, #{User.avatar_img_url}, #{User.approvestatus}, #{User.state}, #{User.create_time}, #{User.update_time}, #{User.addr}, #{User.resume_file}, #{User.attribute1}, #{User.attribute2}, #{User.attribute3}, #{User.attribute4}, #{User.attribute5})
@@ -43,18 +43,22 @@
     </insert>
     
     <update id="updateUserById" parameterType="com.qexz.model.User">
-        UPDATE t_User
+        UPDATE t_user
         SET
-            name = #{User.name}, sex = #{User.sex}, ismarry = #{User.ismarry}, nation = #{User.nation}, degree = #{User.degree}, college = #{User.college}, cert_type = #{User.cert_type}, cartno = #{User.cartno},
-            qq = #{User.qq}, vchat = #{User.vchat}, phone = #{User.phone}, email = #{User.email}, description = #{User.description}, avatar_img_url = #{User.avatar_img_url}, approvestatus = #{User.approvestatus},
-            state = #{User.state}, addr = #{User.addr}, resume_file = #{User.resume_file}, attribute1 = #{User.attribute1},
-            attribute2 = #{User.attribute2}, attribute3 = #{User.attribute3}, attribute4 = #{User.attribute4}, attribute5 = #{User.attribute5}
+            name = #{user.name},
+            sex = #{user.sex},
+            ismarry = #{user.ismarry},
+            qq = #{user.qq},
+            vchat = #{user.vchat},
+            phone = #{user.phone},
+            email = #{user.email}
+
         WHERE
-        id = #{User.id}
+        id = #{user.id}
     </update>
 
     <update id="updateAvatarImgUrlById">
-        UPDATE t_User
+        UPDATE t_user
         SET
         avatar_img_url = #{avatarImgUrl}
         WHERE
@@ -65,14 +69,14 @@
     <select id="getUserByUsername" resultMap="BaseResultMap" parameterType="String" >
         select
         <include refid="Base_Column_List" />
-        from t_User
+        from t_user
         where username = #{username}
     </select>
 
     <select id="getUsersByIds" resultMap="BaseResultMap">
         SELECT
          *
-        FROM t_User
+        FROM t_user
         WHERE 1 = 1
         <if test="studentIds != null and studentIds.size > 0">
             AND id IN
@@ -85,23 +89,23 @@
     <select id="getCount" resultType="int">
         SELECT
         COUNT(1)
-        FROM t_User
+        FROM t_user
     </select>
 
     <select id="getUsers" resultMap="BaseResultMap" >
         SELECT
         *
-        FROM t_User
+        FROM t_user
         ORDER BY create_time DESC
     </select>
 
     <delete id="deleteUser" parameterType="int" >
-        delete from t_User
+        delete from t_user
         where id = #{id}
     </delete>
 
     <update id="updateState" >
-        update t_User set
+        update t_user set
         state = #{state}
         where id = #{id}
     </update>
@@ -109,7 +113,7 @@
     <select id="getUsersByIdSets" resultMap="BaseResultMap">
         SELECT
         *
-        FROM t_User
+        FROM t_user
         WHERE 1 = 1
         <if test="ids != null and ids.size > 0">
             AND id IN
@@ -123,12 +127,12 @@
     <select id="getUserById" resultMap="BaseResultMap" parameterType="int" >
         select
         *
-        from t_User
+        from t_user
         where id = #{id}
     </select>
     <!--更新简历审核状态-->
     <update id="updateApproveStatus" >
-        update t_User set
+        update t_user set
             approvestatus = #{approvestatus}
         where id = #{id}
     </update>

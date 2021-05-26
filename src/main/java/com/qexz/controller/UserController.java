@@ -154,28 +154,10 @@ public class UserController {
      */
     @RequestMapping(value = "/api/updateUser", method = RequestMethod.POST)
     @ResponseBody
-    public AjaxResult updateUser(HttpServletRequest request, HttpServletResponse response) {
+    public AjaxResult updateUser(@RequestBody User user) {
         AjaxResult ajaxResult = new AjaxResult();
-        try {
-            String phone = request.getParameter("phone");
-            String qq = request.getParameter("qq");
-            String email = request.getParameter("email");
-            String description = request.getParameter("description");
-            String avatarImgUrl = request.getParameter("avatarImgUrl");
-
-            User currentAccount = (User) request.getSession().getAttribute(QexzConst.CURRENT_ACCOUNT);
-            currentAccount.setPhone(phone);
-            currentAccount.setQq(qq);
-            currentAccount.setEmail(email);
-            currentAccount.setDescription(description);
-            currentAccount.setAvatar_img_url(avatarImgUrl);
-            boolean result = userService.updateUser(currentAccount);
-            ajaxResult.setSuccess(result);
-        } catch (Exception e) {
-            LOG.error(e.getMessage(), e);
-            return AjaxResult.fixedError(QexzWebError.COMMON);
-        }
-        return ajaxResult;
+        boolean result = userService.updateUser(user);
+        return ajaxResult.setData(result);
     }
 
     /**
@@ -253,36 +235,6 @@ public class UserController {
             return AjaxResult.fixedError(QexzWebError.UPLOAD_FILE_IMAGE_ANALYZE_ERROR);
         }
         return ajaxResult;
-    }
-
-    /**
-     * API:添加用户
-     */
-    @RequestMapping(value="/api/addUser", method= RequestMethod.POST)
-    @ResponseBody
-    public AjaxResult addUser(@RequestBody User user) {
-        AjaxResult ajaxResult = new AjaxResult();
-        User existUser = userService.getUserByUsername(user.getName());
-        if(existUser == null) {//检测该用户是否已经注册
-            user.setPassword(MD5.md5(QexzConst.MD5_SALT+user.getPassword()));
-            user.setAvatar_img_url(QexzConst.DEFAULT_AVATAR_IMG_URL);
-            user.setDescription("");
-            int accountId = userService.addUser(user);
-            return new AjaxResult().setData(accountId);
-        }
-        return AjaxResult.fixedError(QexzWebError.AREADY_EXIST_USERNAME);
-    }
-
-    /**
-     * API:更新用户
-     */
-    @RequestMapping(value="/api/updateManegeUser", method= RequestMethod.POST)
-    @ResponseBody
-    public AjaxResult updateUser(@RequestBody User user) {
-        AjaxResult ajaxResult = new AjaxResult();
-        user.setPassword(MD5.md5(QexzConst.MD5_SALT+user.getPassword()));
-        boolean result = userService.updateUser(user);
-        return new AjaxResult().setData(result);
     }
 
     /**

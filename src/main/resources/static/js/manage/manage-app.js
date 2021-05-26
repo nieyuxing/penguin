@@ -111,6 +111,57 @@ var app = {
             return app.data.contextPath+"/comment/api/deleteComment/";
         },
 
+        //考卷管理
+        addPaperUrl: function () {
+            return app.data.contextPath+"/paper/api/addPaper/";
+        },
+        deletePaperUrl: function () {
+            return app.data.contextPath+"/paper/api/deletePaper/";
+        },
+        updatePaperUrl: function () {
+            return app.data.contextPath+"/paper/api/updatePaper/";
+        },
+        abledPaperUrl: function () {
+            return app.data.contextPath+"/paper/api/abledPaper/";
+        },
+        disabledPaperUrl: function () {
+            return app.data.contextPath+"/paper/api/disabledPaper/";
+        },
+
+        //考卷试题编辑
+        addPaperDetailUrl: function () {
+            return app.data.contextPath+"/paperDetail/api/addExaminationPaperDetail";
+        },
+        deletePaperDetailUrl: function () {
+            return app.data.contextPath+"/paperDetail/api/deleteExaminationPaperDetail/";
+        },
+        updatePaperDetailUrl: function () {
+            return app.data.contextPath+"/paperDetail/api/updateExaminationPaperDetail";
+        },
+
+        //用户管理
+        addUserUrl: function () {
+            return app.data.contextPath+"/user/api/addUser";
+        },
+        deleteUserUrl: function () {
+            return app.data.contextPath+"/user/api/deleteUser/";
+        },
+        updateUserUrl: function () {
+            return app.data.contextPath+"/user/api/updateUser";
+        },
+        abledUserUrl: function () {
+            return app.data.contextPath+"/user/api/abledUser/";
+        },
+        disabledUserUrl: function () {
+            return app.data.contextPath+"/user/api/disabledUser/";
+        },
+        rejectedUserUrl: function () {
+            return app.data.contextPath+"/user/api/rejectedUser/";
+        },
+        approvedUserUrl: function () {
+            return app.data.contextPath+"/user/api/approvedUser/";
+        },
+
     },
     /**
      * 全局初始化:服务器时间获取,登录功能,退出登录

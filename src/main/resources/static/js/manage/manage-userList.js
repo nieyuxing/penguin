@@ -18,41 +18,26 @@ var manageUserListPage = {
         //分页初始化
         manageUserListPage.subPageMenuInit();
 
-        //新增用户，弹出新增窗口
-        $("#addAccountBtn").click(function () {
-            //输入框初始化数据
-            manageUserListPage.initAddAccountData();
-            $("#addAccountModal").modal({
-                keyboard : false,
-                show : true,
-                backdrop : "static"
-            });
-        });
-
-        //新增用户，取消增加
-        $('#cancelAddAccountBtn').click(function(){
-            $("#addAccountModal").modal('hide');
-        });
-
         //审核通过
         $('#confirmapproveUserBtn').click(function(){
-            manageUserListPage.approvedAccountAction();
+            manageUserListPage.approvedUserAction();
         });
 
         //审核拒绝
-        $('#confirmRejectAccountBtn').click(function(){
-            manageUserListPage.rejectedAccountAction();
+        $('#confirmRejectUserBtn').click(function(){
+            manageUserListPage.rejectedUserAction();
         });
 
         //编辑账号，取消编辑
-        $('#cancelUpdateAccountBtn').click(function(){
-            $("#updateAccountModal").modal('hide');
+        $('#cancelUpdateUserBtn').click(function(){
+            $("#updateUserModal").modal('hide');
         });
 
         //编辑账号，确定保存
-        $('#confirmUpdateAccountBtn').click(function(){
-            manageUserListPage.updateAccountAction();
+        $('#confirmUpdateUserBtn').click(function(){
+            manageUserListPage.updateUserAction();
         });
+
     },
     firstPage: function () {
         window.location.href = app.URL.manageUserListUrl() + '?page=1';
@@ -100,178 +85,8 @@ var manageUserListPage = {
         }
         $('#subPageHead').html(subPageStr);
     },
-    initAddAccountData: function () {
-        //初始化数据
-        $('#addName').val("");
-        $('#addUsername').val("");
-        $('#addPassword').val("");
-        $('#addQq').val("");
-        $('#addPhone').val("");
-        $('#addEmail').val("");
-    },
-    checkAddAccountData: function (name, username, password, qq, phone, email) {
-        return true;
-    },
-    addAccountAction: function () {
-        var name = $('#addName').val();
-        var username = $('#addUsername').val();
-        var password = $('#addPassword').val();
-        var qq = $('#addQq').val();
-        var phone = $('#addPhone').val();
-        var email = $('#addEmail').val();
-        var level = $('#addLevel').val();
 
-        if (manageUserListPage.checkAddAccountData(name, username, password, qq, phone, email)) {
-            $.ajax({
-                url : app.URL.addAccountUrl(),
-                type : "POST",
-                dataType: "json",
-                contentType : "application/json;charset=UTF-8",
-                <!-- 向后端传输的数据 -->
-                data : JSON.stringify({
-                    name: name,
-                    username: username,
-                    password: password,
-                    qq: qq,
-                    phone: phone,
-                    email: email,
-                    level: level,
-                }),
-                success:function(result) {
-                    if (result && result['success']) {
-                        // 验证通过 刷新页面
-                        window.location.reload();
-                    } else {
-                        console.log(result.message);
-                    }
-                },
-                error:function(result){
-                    console.log(result.message);
-                }
-            });
-        }
-    },
-    //编辑考试模态框触发
-    updateAccountModalAction: function (index) {
-        //编辑考试，弹出编辑窗口
-        console.log(index);
-        //输入框初始化数据
-        manageUserListPage.initUpdateAccountData(index);
-        $("#updateAccountModal").modal({
-            keyboard : false,
-            show : true,
-            backdrop : "static"
-        });
-    },
-
-    //简历审核框触发
-    approvedAccountModalAction: function (index) {
-        //编辑考试，弹出编辑窗口
-        //输入框初始化数据
-        manageUserListPage.initApproveAccountData(index);
-        $("#approvedAccountModal").modal({
-            keyboard : false,
-            show : true,
-            backdrop : "static"
-        });
-    },
-    initUpdateAccountData: function (index) {
-        var accounts = manageUserListPage.data.accounts;
-        //初始化数据
-        $('#updateAccountIndex').val(accounts[index].id);
-        $('#updateName').val(accounts[index].name);
-        $('#updateUsername').val(accounts[index].username);
-        $('#updatePassword').val("");
-        $('#updateQq').val(accounts[index].qq);
-        $('#updatePhone').val(accounts[index].phone);
-        $('#updateEmail').val(accounts[index].email);
-        var selectLevels = document.getElementById('updateLevel');
-        for (var i = 0; i < selectLevels.length; i++) {
-            if (selectLevels[i].value == accounts[index].level) {
-                selectLevels[i].selected = true;
-            }
-        }
-    },
-    initApproveAccountData: function (index) {
-        var accounts = manageUserListPage.data.accounts;
-        //初始化数据
-        $('#approveAccountIndex').val(accounts[index].id);
-        $('#approveName').val(accounts[index].name);
-        $('#approveUsername').val(accounts[index].username);
-        $('#approveQq').val(accounts[index].qq);
-        $('#approvePhone').val(accounts[index].phone);
-        $('#approveEmail').val(accounts[index].email);
-        var selectLevels = document.getElementById('updateLevel');
-        for (var i = 0; i < selectLevels.length; i++) {
-            if (selectLevels[i].value == accounts[index].level) {
-                selectLevels[i].selected = true;
-            }
-        }
-    },
-    checkUpdateAccountData: function (name, username, password, qq, phone, email) {
-        return true;
-    },
-    updateAccountAction: function () {
-        var index = $('#updateAccountIndex').val();
-        var name = $('#updateName').val();
-        var username = $('#updateUsername').val();
-        var password = $('#updatePassword').val();
-        var qq = $('#updateQq').val();
-        var phone = $('#updatePhone').val();
-        var email = $('#updateEmail').val();
-        var level = $('#updateLevel').val();
-
-        if (manageUserListPage.checkUpdateAccountData(username, phone, qq, password)) {
-            $.ajax({
-                url : app.URL.updateAccountUrl(),
-                type : "POST",
-                dataType: "json",
-                contentType : "application/json;charset=UTF-8",
-                <!-- 向后端传输的数据 -->
-                data : JSON.stringify({
-                    id: index,
-                    name: name,
-                    username: username,
-                    password: password,
-                    qq: qq,
-                    phone: phone,
-                    email: email,
-                    level: level,
-                }),
-                success:function(result) {
-                    if (result && result['success']) {
-                        // 验证通过 刷新页面
-                        window.location.reload();
-                    } else {
-                        console.log(result.message);
-                    }
-                },
-                error:function(result){
-                    console.log(result.message);
-                }
-            });
-        }
-    },
-    deleteAccountAction: function (index) {
-        $.ajax({
-            url : app.URL.deleteAccountUrl()+index,
-            type : "DELETE",
-            dataType: "json",
-            contentType : "application/json;charset=UTF-8",
-            success:function(result) {
-                if (result && result['success']) {
-                    // 验证通过 刷新页面
-                    window.location.reload();
-                } else {
-                    console.log(result.message);
-                }
-            },
-            error:function(result){
-                console.log(result.message);
-            }
-        });
-    },
-    disabledAccountAction: function (index) {
+    disabledUserAction: function (index) {
         $.ajax({
             url : app.URL.disabledUserUrl()+index,
             type : "POST",
@@ -290,7 +105,7 @@ var manageUserListPage = {
             }
         });
     },
-    abledAccountAction: function (index) {
+    abledUserAction: function (index) {
         $.ajax({
             url : app.URL.abledUserUrl()+index,
             type : "POST",
@@ -310,4 +125,75 @@ var manageUserListPage = {
         });
     },
 
+        //编辑考试模态框触发
+        updateUserModalAction: function (index) {
+            //编辑考试，弹出编辑窗口
+            console.log(index);
+            //输入框初始化数据
+            manageUserListPage.initUpdateUserData(index);
+            $("#updateUserModal").modal({
+                keyboard : false,
+                show : true,
+                backdrop : "static"
+            });
+        },
+    initUpdateUserData: function (index) {
+        var users = manageUserListPage.data.users;
+        //初始化数据
+        $('#updateUserIndex').val(users[index].id);
+        console.log(users);
+        $('#updateName').val(users[index].name);
+        $('#updatesex').val(users[index].sex);
+        $('#updateismarry').val(users[index].ismarry);
+        $('#updateQq').val(users[index].qq);
+        $('#updatePhone').val(users[index].phone);
+        $('#updateEmail').val(users[index].email);
+        $('#updatevchat').val(users[index].vchat);
+
+    },
+    checkUpdateUserData: function (name, sex, ismarry, qq, phone, email ,vchat) {
+        return true;
+    },
+    updateUserAction: function () {
+        var index = $('#updateUserIndex').val();
+        console.log(index);
+        var name = $('#updateName').val();
+        var sex = $('#updatesex').val();
+        var ismarry = $('#updateismarry').val();
+        var qq = $('#updateQq').val();
+        var phone = $('#updatePhone').val();
+        var email = $('#updateEmail').val();
+        var vchat = $('#updatevchat').val();
+
+        if (manageUserListPage.checkUpdateUserData(name, sex, ismarry, qq, phone, email ,vchat)) {
+            $.ajax({
+                url : app.URL.updateUserUrl(),
+                type : "POST",
+                dataType: "json",
+                contentType : "application/json;charset=UTF-8",
+                <!-- 向后端传输的数据 -->
+                data : JSON.stringify({
+                    id: index,
+                    name: name,
+                    sex: sex,
+                    ismarry: ismarry,
+                    qq: qq,
+                    phone: phone,
+                    email: email,
+                    vchat: vchat,
+                }),
+                success:function(result) {
+                    if (result && result['success']) {
+                        // 验证通过 刷新页面
+                        window.location.reload();
+                    } else {
+                        console.log(result.message);
+                    }
+                },
+                error:function(result){
+                    console.log(result.message);
+                }
+            });
+        }
+    },
 };

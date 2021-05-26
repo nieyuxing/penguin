@@ -15,35 +15,37 @@
         <result column="startDate" property="startDate" jdbcType="TIMESTAMP" />
         <result column="endDate" property="endDate" jdbcType="TIMESTAMP" />
     </resultMap>
+
+    <sql id="Base_Column_List" >
+        id, exam_name, examination_type, department_id, state, score, difficulty, version, create_time, update_time, startDate, endDate
+    </sql>
    
 
     <insert id="insertExaminationPaper" parameterType="com.qexz.model.ExaminationPaper" >
         insert into t_examination_paper
-                (id, name, sex, ismarry, nation, degree, college, cert_type, cartno, password, qq, vchat, phone, email, description, avatar_img_url, approvestatus, state, create_time, update_time, addr, resume_file, attribute1, attribute2, attribute3, attribute4, attribute5)
+          (id, exam_name, examination_type, department_id, state, score, difficulty, version,   startDate, endDate)
         values
-               (#{User.id}, #{User.name}, #{User.sex}, #{User.ismarry}, #{User.nation}, #{User.degree}, #{User.college}, #{User.cert_type}, #{User.cartno}, #{User.password}, #{User.qq}, #{User.vchat}, #{User.phone}, #{User.email}, #{User.description}, #{User.avatar_img_url}, #{User.approvestatus}, #{User.state}, #{User.create_time}, #{User.update_time}, #{User.addr}, #{User.resume_file}, #{User.attribute1}, #{User.attribute2}, #{User.attribute3}, #{User.attribute4}, #{User.attribute5})
+          (#{ExaminationPaper.id}, #{ExaminationPaper.exam_name}, #{ExaminationPaper.examination_type}, #{ExaminationPaper.department_id}, #{ExaminationPaper.state}, #{ExaminationPaper.score}, #{ExaminationPaper.difficulty}, #{ExaminationPaper.version},  #{ExaminationPaper.startDate}, #{ExaminationPaper.endDate})
 
     </insert>
     
     <update id="updateExaminationPaperById" parameterType="com.qexz.model.ExaminationPaper">
         UPDATE t_examination_paper
         SET
-            name = #{User.name}, sex = #{User.sex}, ismarry = #{User.ismarry}, nation = #{User.nation}, degree = #{User.degree}, college = #{User.college}, cert_type = #{User.cert_type}, cartno = #{User.cartno},
-            qq = #{User.qq}, vchat = #{User.vchat}, phone = #{User.phone}, email = #{User.email}, description = #{User.description}, avatar_img_url = #{User.avatar_img_url}, approvestatus = #{User.approvestatus},
-            state = #{User.state}, addr = #{User.addr}, resume_file = #{User.resume_file}, attribute1 = #{User.attribute1},
-            attribute2 = #{User.attribute2}, attribute3 = #{User.attribute3}, attribute4 = #{User.attribute4}, attribute5 = #{User.attribute5}
+          exam_name = #{ExaminationPaper.exam_name},
+          examination_type = #{ExaminationPaper.examination_type},
+          department_id = #{ExaminationPaper.department_id},
+          state = #{ExaminationPaper.state},
+          score = #{ExaminationPaper.score},
+          difficulty = #{ExaminationPaper.difficulty},
+          version = version + 1,
+          update_time = CURRENT_TIMESTAMP ,
+          startDate = #{ExaminationPaper.startDate},
+          endDate = #{ExaminationPaper.endDate}
         WHERE
-        id = #{User.id}
+          id = #{ExaminationPaper.id}
     </update>
 
-
-    <!--根据账号查询账号信息-->
-    <select id="getExaminationPaperByname" resultMap="BaseResultMap" parameterType="String" >
-        select
-        <include refid="Base_Column_List" />
-        from t_examination_paper
-        where exam_name = #{exam_name}
-    </select>
 
     <select id="getCount" resultType="int">
         SELECT
