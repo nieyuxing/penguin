@@ -37,7 +37,7 @@
         <i class="sign in icon"></i>注册
     </a>
     <div class="ui simple dropdown right item" th:if="${current_account != null}">
-        <img class="ui avatar image" th:src="@{'/upload/images/'+${current_account.avatarImgUrl}}" />
+<!--        <img class="ui avatar image" th:src="@{'/upload/images/'+${current_account.avatar_img_url}}" />-->
         <span th:text="${current_account.name}"></span> <i class="dropdown icon"></i>
         <div class="menu">
             <a class="item" th:href="@{/account/profile}">
@@ -130,14 +130,14 @@
             <div class="field required">
                 <label>账号</label>
                 <div class="ui left icon input">
-                    <input id="username" type="text" placeholder="请输入学号或教工号或指定账号" />
+                    <input id="phoneNum" type="text" placeholder="请输入手机号" />
                     <i class="user icon"></i>
                 </div>
             </div>
             <div class="field required">
                 <label>密码</label>
                 <div class="ui left icon input">
-                    <input id="password" type="password" />
+                    <input id="pwd" type="password" />
                     <i class="lock icon"></i>
                 </div>
             </div>
@@ -158,7 +158,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">新增账号</h4>
+                <h4 class="modal-title" id="myModalLabel">注册</h4>
             </div>
             <div class="modal-body">
                 <form class="form-horizontal" role="form" onsubmit="return false;">
@@ -166,37 +166,37 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label">姓名</label>
                         <div class="col-sm-8">
-                            <input id="addName" type="text" class="form-control" placeholder="" />
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">账号</label>
-                        <div class="col-sm-8">
-                            <input id="addUsername" type="text" class="form-control" placeholder="" />
+                            <input id="name" type="text" class="form-control" placeholder="" />
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">密码</label>
                         <div class="col-sm-8">
-                            <input id="addPassword" type="password" class="form-control" placeholder="" />
+                            <input id="password" type="password" class="form-control" placeholder="" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">微信</label>
+                        <div class="col-sm-8">
+                            <input id="vchat" type="text" class="form-control" placeholder="" />
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">QQ</label>
                         <div class="col-sm-8">
-                            <input id="addQq" type="text" class="form-control" placeholder="" />
+                            <input id="qq" type="text" class="form-control" placeholder="" />
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">手机</label>
                         <div class="col-sm-8">
-                            <input id="addPhone" type="text" class="form-control" placeholder="" />
+                            <input id="phone" type="text" class="form-control" placeholder="" />
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">邮箱</label>
                         <div class="col-sm-8">
-                            <input id="addEmail" type="text" class="form-control" placeholder="" />
+                            <input id="email" type="text" class="form-control" placeholder="" />
                         </div>
                     </div>
 <!--                    <div class="form-group">-->
