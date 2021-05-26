@@ -23,8 +23,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean updateUser(User account) {
-        return userMapper.updateUserById(account) > 0;
+    public boolean updateUser(User user) {
+        return userMapper.updateUserById(user) > 0;
     }
 
     @Override
@@ -51,7 +51,7 @@ public class UserServiceImpl implements UserService {
             data.put("pageSize", 0);
             data.put("totalPageNum", 1);
             data.put("totalPageSize", 0);
-            data.put("accounts", new ArrayList<>());
+            data.put("users", new ArrayList<>());
             return data;
         }
         int totalPageNum = count % pageSize == 0 ? count / pageSize : count / pageSize + 1;
@@ -60,16 +60,16 @@ public class UserServiceImpl implements UserService {
             data.put("pageSize", 0);
             data.put("totalPageNum", totalPageNum);
             data.put("totalPageSize", 0);
-            data.put("accounts", new ArrayList<>());
+            data.put("users", new ArrayList<>());
             return data;
         }
         PageHelper.startPage(pageNum, pageSize);
-        List<User> accounts = userMapper.getUsers();
+        List<User> users = userMapper.getUsers();
         data.put("pageNum", pageNum);
         data.put("pageSize", pageSize);
         data.put("totalPageNum", totalPageNum);
         data.put("totalPageSize", count);
-        data.put("accounts", accounts);
+        data.put("users", users);
         return data;
     }
 

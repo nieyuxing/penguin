@@ -59,6 +59,11 @@ public class QuestionServiceImpl implements QuestionService {
     }
 
     @Override
+    public List<Question> getQuestions() {
+        return questionMapper.getQuestions();
+    }
+
+    @Override
     public Map<String, Object> getQuestionsByContent(int pageNum, int pageSize, String content) {
         Map<String, Object> data = new HashMap<>();
         int count = questionMapper.getCountByContent(content);
