@@ -14,6 +14,9 @@ var app = {
         checkLoginUrl: function () {
             return app.data.contextPath+"/account/api/login";
         },
+        checkRegisterUrl: function () {
+                    return app.data.contextPath+"/user/api/addUser";
+                },
         logoutUrl: function () {
             return app.data.contextPath+"/account/logout";
         },
@@ -27,10 +30,10 @@ var app = {
             return app.data.contextPath+"/problemset/"+problemsetId+"/problems";
         },
         contestIndexUrl: function () {
-            return app.data.contextPath+"/contest/index";
+            return app.data.contextPath+"/paper/index";
         },
         contestDetailUrl: function () {
-            return app.data.contextPath+"/contest/";
+            return app.data.contextPath+"/paper/";
         },
         updateAccountUrl: function () {
             return app.data.contextPath+"/account/api/updateAccount";
@@ -107,6 +110,9 @@ var app = {
         $('#loginModalSubmitButton').click(function (e) {
             app.checkLogin();
         });
+        $('#confirmAddAccountBtn').click(function (e) {
+                    app.checkRegister();
+                });
         /**
          * 退出登录
          */
@@ -233,13 +239,14 @@ var app = {
      * 验证登录
      */
     checkLogin: function () {
-        var username = $('#username').val();
-        var password = $('#password').val();
+        var username = $('#phoneNum').val();
+        console.log("phoneNum",phoneNum);
+        var password = $('#pwd').val();
         if (app.checkUsernameAndPassword(username, password)) {
             //调用后端API
             $.post(app.URL.checkLoginUrl(), {
-                username: username,
-                password: password
+                phoneNum: username,
+                pwd: password
             }, function (result) {
                 // console.log("result.success = " + result.success);
                 // console.log("result.success = " + result['success']);
@@ -260,4 +267,39 @@ var app = {
             }, "json");
         }
     },
+    /**
+     * 验证注册
+     */
+    checkRegister: function () {
+        var name = $('#name').val();
+        var password = $('#password').val();
+        var vchat = $('#vchat').val();
+        var qq = $('#qq').val();
+        var phone = $('#phone').val();
+        var email = $('#email').val();
+        if (app.checkUsernameAndPassword(phone, password)) {
+            //调用后端API
+            $.post(app.URL.checkRegisterUrl(), {
+                username: username,
+                password: password,
+                vchat: vchat,
+                qq: qq,
+                phone: phone,
+                email: email,
+
+            }, function (result) {
+                // console.log("result.success = " + result.success);
+                // console.log("result.success = " + result['success']);
+                // console.log(result);
+                if (result && result['success']) {
+                    // 验证通过 刷新页面
+                    window.location.reload();
+                } else {
+                    $('#loginModalErrorMessage').html('<i class="close icon"></i><div class="header">错误提示</div>\n' +
+                        '                <p>'+result.message+'</p>');
+                    $('#loginModalErrorMessage').removeClass('hidden');
+                }
+            }, "json");
+        }
+    }
 };
