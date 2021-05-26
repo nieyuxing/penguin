@@ -88,7 +88,7 @@
                         </td>
                     </tr>
                     <tr th:each="item,itemStats : ${data['examinationAnswers']}">
-                        <td th:text="${item.paper.exam_name}">广东财经大学2017年数据库原理与应用考试试题</td>
+                        <td th:text="${item.paper.exam_name}">慧为智能2017年数据库原理与应用考试试题</td>
                         <td th:text="${#dates.format(item.start_time, 'yyyy-MM-dd HH:mm:ss')}">2018-1-11 09:00:00</td>
                         <td th:text="${#dates.format(item.end_time, 'yyyy-MM-dd HH:mm:ss')}">2018-1-11 11:00:00</td>
                         <td th:text="${item.paper.examination_type}">数据库原理与应用</td>

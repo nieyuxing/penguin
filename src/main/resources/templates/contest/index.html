@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8" />
-    <title>GDUFE在线考试系统</title>
+    <title>慧为智能在线考试系统</title>
     <link rel="stylesheet" th:href="@{https://cdn.bootcss.com/semantic-ui/2.2.13/semantic.min.css}" />
     <link rel="stylesheet" th:href="@{/css/app.css}" />
     <link rel="stylesheet" th:href="@{/css/contest/index.css}" />
@@ -77,7 +77,7 @@
                 <span th:if="${item.state == 1}" class="ui green ribbon label">进行中</span>
                 <span th:if="${item.state == 2 or item.state == 3}" class="ui red ribbon label">已结束</span>
                 <span class="ui header" th:text="${item.title}">
-                    广东财经大学2017年数据库原理与应用考试试题
+                    慧为智能2017年数据库原理与应用考试试题
                 </span>
             </td>
             <td><span th:text="${#dates.format(item.startTime, 'yyyy-MM-dd HH:mm:ss')}">2018-1-11 09:00:00</span></td>
@@ -97,7 +97,7 @@
             <td>
                 <span class="ui green ribbon label">进行中</span>
                 <span class="ui header">
-                    广东财经大学2017年数据库原理与应用考试试题
+                    慧为智能2017年数据库原理与应用考试试题
                 </span>
             </td>
             <td><span>2018-1-11 09:00:00</span></td>
@@ -111,7 +111,7 @@
             <td>
                 <span class="ui green ribbon label">进行中</span>
                 <span class="ui header">
-                    广东财经大学2017年数据库原理与应用考试试题
+                    慧为智能2017年数据库原理与应用考试试题
                 </span>
             </td>
             <td><span>2018-1-11 09:00:00</span></td>
@@ -125,7 +125,7 @@
             <td>
                 <span class="ui yellow ribbon label">未开始</span>
                 <span class="ui header">
-                    广东财经大学2017年数据库原理与应用考试试题
+                    慧为智能2017年数据库原理与应用考试试题
                 </span>
             </td>
             <td><span>2018-1-11 09:00:00</span></td>
@@ -139,7 +139,7 @@
             <td>
                 <span class="ui red ribbon label">已结束</span>
                 <span class="ui header">
-                    广东财经大学2017年数据库原理与应用考试试题
+                    慧为智能2017年数据库原理与应用考试试题
                 </span>
             </td>
             <td><span>2018-1-11 09:00:00</span></td>
@@ -221,7 +221,7 @@
                 </div>
             </div>
             <div class="right aligned column">
-                &copy; 2018 GDUFE All Rights Reserved &nbsp;&nbsp;
+                &copy; 2018 慧为智能 All Rights Reserved &nbsp;&nbsp;
                 <br />
                 网站版本：<a href="#">v1.0.0 Beta #20180109</a>&nbsp;&nbsp;
                 服务器时间：<span id="current_server_timer"></span>
