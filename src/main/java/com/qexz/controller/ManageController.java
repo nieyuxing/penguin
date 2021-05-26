@@ -61,7 +61,7 @@ public class ManageController {
         if (currentAccount == null) {
             return "/manage/manage-login";
         } else {
-            return "redirect:/manage/contest/list";
+            return "redirect:/manage/paper/list";
         }
     }
 
@@ -229,7 +229,7 @@ public class ManageController {
             Map<Integer, String> positionId2name = positions.stream().
                     collect(Collectors.toMap(Position::getId, Position::getName));
             for (Question question : questions) {
-                question.setpositionName(positionId2name.
+                question.setPositionName(positionId2name.
                         getOrDefault(question.getpositionId(), "未知科目"));
             }
             data.put("positions", positions);
@@ -244,8 +244,8 @@ public class ManageController {
      */
     @RequestMapping(value="/result/contest/list", method= RequestMethod.GET)
     public String resultContestList(HttpServletRequest request,
-                                    @RequestParam(value = "page", defaultValue = "1") int page,
-                                    Model model) {
+                              @RequestParam(value = "page", defaultValue = "1") int page,
+                              Model model) {
         Account currentAccount = (Account) request.getSession().getAttribute(QexzConst.CURRENT_ACCOUNT);
         //TODO::处理
         //currentAccount = accountService.getAccountByUsername("admin");
