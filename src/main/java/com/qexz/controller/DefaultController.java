@@ -44,7 +44,7 @@ public class DefaultController {
      */
     @RequestMapping(value="/", method= RequestMethod.GET)
     public String home(HttpServletRequest request, Model model) {
-        Account currentAccount = (Account) request.getSession().getAttribute(QexzConst.CURRENT_ACCOUNT);
+        User currentAccount = (User) request.getSession().getAttribute(QexzConst.CURRENT_ACCOUNT);
         model.addAttribute(QexzConst.CURRENT_ACCOUNT, currentAccount);
         return "/home";
     }

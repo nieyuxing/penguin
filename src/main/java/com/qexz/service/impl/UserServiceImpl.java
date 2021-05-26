@@ -19,7 +19,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public int addUser(User user) {
         user.setAvatar_img_url(QexzConst.DEFAULT_AVATAR_IMG_URL);
-        return userMapper.insertAccount(user);
+        return userMapper.insertUser(user);
     }
 
     @Override
@@ -35,6 +35,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public User getUserByUsername(String username) {
         return userMapper.getUserByUsername(username);
+    }
+
+    @Override
+    public User getUserByPhone(String phone) {
+        return userMapper.getUserByPhone(phone);
     }
 
     @Override

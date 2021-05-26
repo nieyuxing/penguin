@@ -16,6 +16,9 @@ public interface UserService {
 
     User getUserByUsername(String username);
 
+    User getUserByPhone(String phone);
+
+
     List<User> getUsersByIds(List<Integer> studentIds);
 
     Map<String, Object> getUsers(int pageNum, int pageSize);

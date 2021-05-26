@@ -57,16 +57,16 @@
                                 </div>
                             </div>
                         </div>
-                        <img th:src="@{'/upload/images/'+${current_account.avatarImgUrl}}" />
+                        <img th:src="@{'/upload/images/'+${current_account.avatar_img_url}}" />
                     </div>
                     <div class="content">
                         <div class="header" th:text="${current_account.name}"></div>
-                        <div class="meta">
-                            <!--<a class="group">信息学院</a>-->
-                            <div class="group">
-                                <i class="student icon"></i>信息学院
-                            </div>
-                        </div>
+<!--                        <div class="meta">-->
+<!--                            &lt;!&ndash;<a class="group">信息学院</a>&ndash;&gt;-->
+<!--                            <div class="group">-->
+<!--                                <i class="student icon"></i>信息学院-->
+<!--                            </div>-->
+<!--                        </div>-->
                         <div class="description" th:text="${current_account.description}"></div>
                     </div>
                 </div>
@@ -87,11 +87,6 @@
                     <div class="content">
                         <a th:href="@{/account/myExam}">
                             <i class="history icon"></i>考试记录
-                        </a>
-                    </div>
-                    <div class="content">
-                        <a th:href="@{/account/myDiscussPost}">
-                            <i class="talk icon"></i>我的发帖
                         </a>
                     </div>
                 </div>
@@ -115,7 +110,7 @@
                     <div class="field">
                         <label><i class="student icon"></i>学号</label>
                         <input id="myUsername" name="myUsername" readonly="" placeholder="请输入学号"
-                               type="text" th:value="${current_account.username}" />
+                               type="text" th:value="${current_account.name}" />
                     </div>
                     <div class="field">
                         <label><i class="qq icon"></i>QQ</label>
@@ -138,13 +133,13 @@
                             <div class="column">
                                 <div class="ui fluid card">
                                     <div class="image">
-                                        <img id="avatarImgPreview" class="ui tiny image" th:src="@{'/upload/images/'+${current_account.avatarImgUrl}}" />
+                                        <img id="avatarImgPreview" class="ui tiny image" th:src="@{'/upload/images/'+${current_account.avatar_img_url}}" />
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <input type="file" id="myfile" name="myfile" value="" onchange="profilePage.uploadAvatar()"/>
-                        <input type="hidden" id="myAvatarImgUrl" name="myAvatarImgUrl" value="" />
+                        <input type="hidden" id="myavatar_img_url" name="myavatar_img_url" value="" />
                     </div>
                     <div class="field">
                         <label><i class="smile icon"></i>自我描述</label>

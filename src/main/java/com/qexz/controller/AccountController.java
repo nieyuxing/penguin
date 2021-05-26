@@ -41,13 +41,16 @@ public class AccountController {
     private ContestService contestService;
     @Autowired
     private PositionService positionService;
+    @Autowired
+    private UserService userService;
+
 
     /**
      * 个人信息页面
      */
     @RequestMapping(value="/profile", method= RequestMethod.GET)
     public String profile(HttpServletRequest request, Model model) {
-        Account currentAccount = (Account) request.getSession().getAttribute(QexzConst.CURRENT_ACCOUNT);
+        User currentAccount = (User) request.getSession().getAttribute(QexzConst.CURRENT_ACCOUNT);
         //TODO::拦截器过滤处理
         if (currentAccount == null) {
             //用户未登录直接返回首页面
@@ -77,7 +80,7 @@ public class AccountController {
      */
     @RequestMapping(value="/myExam", method= RequestMethod.GET)
     public String myExam(HttpServletRequest request, @RequestParam(value = "page", defaultValue = "1") int page, Model model) {
-        Account currentAccount = (Account) request.getSession().getAttribute(QexzConst.CURRENT_ACCOUNT);
+        User currentAccount = (User) request.getSession().getAttribute(QexzConst.CURRENT_ACCOUNT);
         //TODO::拦截器过滤处理
         if (currentAccount == null) {
             //用户未登录直接返回首页面
@@ -166,13 +169,13 @@ public class AccountController {
             String description = request.getParameter("description");
             String avatarImgUrl = request.getParameter("avatarImgUrl");
 
-            Account currentAccount = (Account) request.getSession().getAttribute(QexzConst.CURRENT_ACCOUNT);
+            User currentAccount = (User) request.getSession().getAttribute(QexzConst.CURRENT_ACCOUNT);
             currentAccount.setPhone(phone);
             currentAccount.setQq(qq);
             currentAccount.setEmail(email);
             currentAccount.setDescription(description);
-            currentAccount.setAvatarImgUrl(avatarImgUrl);
-            boolean result = accountService.updateAccount(currentAccount);
+            currentAccount.setAvatar_img_url(avatarImgUrl);
+            boolean result = userService.updateUser(currentAccount);
             ajaxResult.setSuccess(result);
         } catch (Exception e) {
             LOG.error(e.getMessage(), e);

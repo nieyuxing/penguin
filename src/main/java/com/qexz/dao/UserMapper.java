@@ -12,13 +12,15 @@ import java.util.Set;
 @Mapper
 public interface UserMapper {
 
-    int insertAccount(@Param("User") User user);
+    int insertUser(@Param("User") User user);
 
     int updateUserById(@Param("user") User user);
 
     int updateAvatarImgUrlById(@Param("avatarImgUrl") String avatarImgUrl, @Param("id") int id);
 
     User getUserByUsername(@Param("username") String username);
+
+    User getUserByPhone(@Param("phone") String phone);
 
     List<User> getUsersByIds(@Param("studentIds") List<Integer> studentIds);
 

@@ -18,27 +18,25 @@
         <result column="attribute3" property="attribute3" jdbcType="VARCHAR" />
         <result column="attribute4" property="attribute4" jdbcType="VARCHAR" />
         <result column="attribute5" property="attribute5" jdbcType="VARCHAR" />
-        <result column="username" property="username" jdbcType="VARCHAR" />
         <result column="password" property="password" jdbcType="VARCHAR" />
         <result column="qq" property="qq" jdbcType="VARCHAR" />
         <result column="phone" property="phone" jdbcType="VARCHAR" />
         <result column="email" property="email" jdbcType="VARCHAR" />
         <result column="description" property="description" jdbcType="VARCHAR" />
-        <result column="avatar_img_url" property="avatarImgUrl" jdbcType="VARCHAR" />
+        <result column="avatar_img_url" property="avatar_img_url" jdbcType="VARCHAR" />
         <result column="state" property="state" jdbcType="INTEGER" />
         <result column="approvestatus" property="approvestatus" jdbcType="INTEGER" />
-        <result column="level" property="level" jdbcType="INTEGER" />
         <result column="create_time" property="create_time" jdbcType="TIMESTAMP" />
     </resultMap>
     <sql id="Base_Column_List" >
-        id,`name`,username,password,qq,phone,email,description,avatar_img_url,state,`level`,create_time
+        id,`name`,password,qq,phone,email,description,avatar_img_url,state,create_time
     </sql>
 
     <insert id="insertUser" parameterType="com.qexz.model.User" >
         insert into t_user
-                (id, name, sex, ismarry, nation, degree, college, cert_type, cartno, password, qq, vchat, phone, email, description, avatar_img_url, approvestatus, state, create_time, update_time, addr, resume_file, attribute1, attribute2, attribute3, attribute4, attribute5)
+                (id, name, sex, ismarry, nation, degree, college, cert_type,  password, qq, vchat, phone, email, description, avatar_img_url, approvestatus, state, create_time, update_time, addr, resume_file, attribute1, attribute2, attribute3, attribute4, attribute5)
         values
-               (#{User.id}, #{User.name}, #{User.sex}, #{User.ismarry}, #{User.nation}, #{User.degree}, #{User.college}, #{User.cert_type}, #{User.cartno}, #{User.password}, #{User.qq}, #{User.vchat}, #{User.phone}, #{User.email}, #{User.description}, #{User.avatar_img_url}, #{User.approvestatus}, #{User.state}, #{User.create_time}, #{User.update_time}, #{User.addr}, #{User.resume_file}, #{User.attribute1}, #{User.attribute2}, #{User.attribute3}, #{User.attribute4}, #{User.attribute5})
+               (#{User.id}, #{User.name}, #{User.sex}, #{User.ismarry}, #{User.nation}, #{User.degree}, #{User.college}, #{User.cert_type},  #{User.password}, #{User.qq}, #{User.vchat}, #{User.phone}, #{User.email}, #{User.description}, #{User.avatar_img_url}, #{User.approvestatus}, #{User.state}, #{User.create_time}, #{User.update_time}, #{User.addr}, #{User.resume_file}, #{User.attribute1}, #{User.attribute2}, #{User.attribute3}, #{User.attribute4}, #{User.attribute5})
 
     </insert>
     
@@ -70,8 +68,16 @@
         select
         <include refid="Base_Column_List" />
         from t_user
-        where username = #{username}
+        where name = #{username}
     </select>
+
+    <select id="getUserByPhone" resultMap="BaseResultMap" parameterType="String" >
+        select
+        <include refid="Base_Column_List" />
+        from t_user
+        where phone = #{phone}
+    </select>
+
 
     <select id="getUsersByIds" resultMap="BaseResultMap">
         SELECT

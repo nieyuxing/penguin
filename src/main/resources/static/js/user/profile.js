@@ -35,7 +35,7 @@ var profilePage = {
     /**
      * 检查个人信息输入是否合法
      */
-    checkProfile: function (phone, qq, email, description, avatarImgUrl) {
+    checkProfile: function (phone, qq, email, description, avatar_img_url) {
         if (phone == null || phone == ''
             || phone.replace(/(^s*)|(s*$)/g, "").length == 0) {
             $('#updateAccountErrorMessage').html('<i class="close icon"></i><div class="header">错误提示</div>\n' +
@@ -75,19 +75,19 @@ var profilePage = {
         var qq = $('#myQq').val();
         var email = $('#myEmail').val();
         var description = $('#myDescription').val();
-        var avatarImgUrl = $('#myAvatarImgUrl').val();
-        if (avatarImgUrl == null || avatarImgUrl == ''
-            || avatarImgUrl.replace(/(^s*)|(s*$)/g, "").length == 0) {
-            avatarImgUrl = 'headimg_placeholder.png';
+        var avatar_img_url = $('#myavatar_img_url').val();
+        if (avatar_img_url == null || avatar_img_url == ''
+            || avatar_img_url.replace(/(^s*)|(s*$)/g, "").length == 0) {
+            avatar_img_url = 'headimg_placeholder.png';
         }
-        if (profilePage.checkProfile(phone, qq, email, description, avatarImgUrl)) {
+        if (profilePage.checkProfile(phone, qq, email, description, avatar_img_url)) {
             //调用后端API
             $.post(app.URL.updateAccountUrl(), {
                 phone: phone,
                 qq: qq,
                 email: email,
                 description: description,
-                avatarImgUrl: avatarImgUrl
+                avatar_img_url: avatar_img_url
             }, function (result) {
                 console.log(result);
                 if (result && result['success']) {
@@ -121,10 +121,10 @@ var profilePage = {
                 processData: false,
                 contentType: false,
                 success:function(result){
-                    // $('#myAvatarImgUrl').val(result.response.imgUrl);
+                    // $('#myavatar_img_url').val(result.response.imgUrl);
                     // $('#avatarImgPreview').attr("src", '/upload/images/'+result.response.imgUrl);
                     if (result && result['success']) {
-                        $('#myAvatarImgUrl').val(result.data);
+                        $('#myavatar_img_url').val(result.data);
                         $('#avatarImgPreview').attr("src", app.URL.uploadImageUrl()+result.data);
                     } else {
                         $('#updateAccountErrorMessage').html('<i class="close icon"></i><div class="header">错误提示</div>\n' +
@@ -179,7 +179,7 @@ var profilePage = {
             console.log("fileuploaded");
             // var ref=$(this).attr("data-ref");
             // $("input[name='"+ref+"']").val(data.response.imgUrl);
-            $('#myAvatarImgUrl').val(data.response.imgUrl);
+            $('#myavatar_img_url').val(data.response.imgUrl);
         });
 
         //同步上传错误处理

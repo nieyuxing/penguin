@@ -55,6 +55,31 @@ public class UserController {
     }
 
     /**
+     * API:添加用户
+     */
+    @RequestMapping(value="/api/addUser", method= RequestMethod.POST)
+    @ResponseBody
+    public AjaxResult addAccount(HttpServletRequest request, HttpServletResponse response) {
+        User user = new User();
+        user.setName(request.getParameter("user"));
+        user.setPassword(request.getParameter("password"));
+        user.setPhone(request.getParameter("phone"));
+        user.setVchat(request.getParameter("vchart"));
+        user.setEmail(request.getParameter("email"));
+        user.setQq(request.getParameter("qq"));
+        AjaxResult ajaxResult = new AjaxResult();
+        User existAccount = userService.getUserByUsername(user.getName());
+        if(existAccount == null) {//检测该用户是否已经注册
+            user.setPassword(MD5.md5(QexzConst.MD5_SALT+user.getPassword()));
+            user.setAvatar_img_url(QexzConst.DEFAULT_AVATAR_IMG_URL);
+            user.setDescription("");
+            int accountId = userService.addUser(user);
+            return new AjaxResult().setData(accountId);
+        }
+        return AjaxResult.fixedError(QexzWebError.AREADY_EXIST_USERNAME);
+    }
+
+    /**
      * 更改密码页面
      */
     @RequestMapping(value="/password", method= RequestMethod.GET)
@@ -168,9 +193,9 @@ public class UserController {
     public AjaxResult login(HttpServletRequest request, HttpServletResponse response) {
         AjaxResult ajaxResult = new AjaxResult();
         try {
-            String username = request.getParameter("username");
+            String phone = request.getParameter("phone");
             String password = request.getParameter("password");
-            User current_account = userService.getUserByUsername(username);
+            User current_account = userService.getUserByPhone(phone);
             if(current_account != null) {
                 String pwd = MD5.md5(QexzConst.MD5_SALT+password);
                 if(pwd.equals(current_account.getPassword())) {

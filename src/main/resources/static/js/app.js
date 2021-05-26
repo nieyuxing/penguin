@@ -12,7 +12,7 @@ var app = {
             return app.data.contextPath+"/time/now";
         },
         checkLoginUrl: function () {
-            return app.data.contextPath+"/account/api/login";
+            return app.data.contextPath+"/user/api/userlogin";
         },
         checkRegisterUrl: function () {
                     return app.data.contextPath+"/user/api/addUser";
@@ -218,11 +218,11 @@ var app = {
     /**
      * 验证用户名和密码是否合法
      */
-    checkUsernameAndPassword: function (username, password) {
-        if (username == null || username == ''
-            || username.replace(/(^s*)|(s*$)/g, "").length == 0) {
+    checkUsernameAndPassword: function (phone, password) {
+        if (phone == null || phone == ''
+            || phone.replace(/(^s*)|(s*$)/g, "").length == 0) {
             $('#loginModalErrorMessage').html('<i class="close icon"></i><div class="header">错误提示</div>\n' +
-                '                <p>'+'账号不能为空'+'</p>');
+                '                <p>'+'手机号不能为空'+'</p>');
             $('#loginModalErrorMessage').removeClass('hidden');
             return false;
         }
@@ -239,14 +239,14 @@ var app = {
      * 验证登录
      */
     checkLogin: function () {
-        var username = $('#phoneNum').val();
-        console.log("phoneNum",phoneNum);
+        var phone = $('#phoneNum').val();
+        console.log("phoneNum",phone);
         var password = $('#pwd').val();
-        if (app.checkUsernameAndPassword(username, password)) {
+        if (app.checkUsernameAndPassword(phone, password)) {
             //调用后端API
             $.post(app.URL.checkLoginUrl(), {
-                phoneNum: username,
-                pwd: password
+                phone: phone,
+                password: password
             }, function (result) {
                 // console.log("result.success = " + result.success);
                 // console.log("result.success = " + result['success']);
@@ -280,7 +280,7 @@ var app = {
         if (app.checkUsernameAndPassword(phone, password)) {
             //调用后端API
             $.post(app.URL.checkRegisterUrl(), {
-                username: username,
+                name: name,
                 password: password,
                 vchat: vchat,
                 qq: qq,
