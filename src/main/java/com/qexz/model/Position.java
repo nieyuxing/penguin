@@ -8,10 +8,18 @@ public class Position {
     private String name;
     private Date createTime;
     private Date updateTime;
-    private int questionNum;
+    private int positionNum;
     private String imgUrl;
     private String position;
     private int state;
+
+    public String getPosition() {
+        return position;
+    }
+
+    public void setPosition(String position) {
+        this.position = position;
+    }
 
     public int getId() {
         return id;
@@ -46,11 +54,11 @@ public class Position {
     }
 
     public int getQuestionNum() {
-        return questionNum;
+        return positionNum;
     }
 
-    public void setQuestionNum(int questionNum) {
-        this.questionNum = questionNum;
+    public void setQuestionNum(int positionNum) {
+        this.positionNum = positionNum;
     }
 
     public String getImgUrl() {
@@ -76,9 +84,11 @@ public class Position {
                 ", name='" + name + '\'' +
                 ", createTime=" + createTime +
                 ", updateTime=" + updateTime +
-                ", questionNum=" + questionNum +
+                ", positionNum=" + positionNum +
                 ", imgUrl='" + imgUrl + '\'' +
                 ", state=" + state +
+                ", position=" + position +
+
                 '}';
     }
 }

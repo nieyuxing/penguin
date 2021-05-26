@@ -33,7 +33,7 @@
 //    public void addContest() throws Exception {
 //        Contest contest = new Contest();
 //        contest.setTitle("广东财经大学2017年数据库原理与应用考试试题A卷");
-//        contest.setSubjectId(8);
+//        contest.setpositionId(8);
 //
 //        //获得2010年9月13日22点36分01秒 的Date对象
 //        DateFormat startTimeDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");

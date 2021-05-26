@@ -3,10 +3,7 @@ package com.qexz.controller;
 import com.qexz.common.QexzConst;
 import com.qexz.dto.AjaxResult;
 import com.qexz.exception.QexzWebError;
-import com.qexz.model.Account;
-import com.qexz.model.Contest;
-import com.qexz.model.Grade;
-import com.qexz.model.Subject;
+import com.qexz.model.*;
 import com.qexz.service.*;
 import com.qexz.util.MD5;
 import org.apache.commons.lang3.StringUtils;
@@ -43,7 +40,7 @@ public class AccountController {
     @Autowired
     private ContestService contestService;
     @Autowired
-    private SubjectService subjectService;
+    private PositionService positionService;
 
     /**
      * 个人信息页面
@@ -90,12 +87,12 @@ public class AccountController {
         List<Grade> grades = (List<Grade>) data.get("grades");
         Set<Integer> contestIds = grades.stream().map(Grade::getContestId).collect(Collectors.toCollection(HashSet::new));
         List<Contest> contests = contestService.getContestsByContestIds(contestIds);
-        List<Subject> subjects = subjectService.getSubjects();
-        Map<Integer, String> subjectId2name = subjects.stream().
-                collect(Collectors.toMap(Subject::getId, Subject::getName));
+        List<Position> positions = positionService.getPositions();
+        Map<Integer, String> positionId2name = positions.stream().
+                collect(Collectors.toMap(Position::getId, Position::getName));
         for (Contest contest : contests) {
-            contest.setSubjectName(subjectId2name.
-                    getOrDefault(contest.getSubjectId(), "未知科目"));
+            contest.setpositionName(positionId2name.
+                    getOrDefault(contest.getpositionId(), "未知科目"));
         }
         Map<Integer, Contest> id2contest = contests.stream().
                 collect(Collectors.toMap(Contest::getId, contest -> contest));

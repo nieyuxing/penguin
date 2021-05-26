@@ -83,17 +83,17 @@ var app = {
         disabledAccountUrl: function () {
             return app.data.contextPath+"/account/api/disabledAccount/";
         },
-        manageSubjectListUrl: function () {
-            return app.data.contextPath+"/manage/subject/list"
+        managepositionListUrl: function () {
+            return app.data.contextPath+"/manage/position/list"
         },
-        addSubjectUrl: function () {
-            return app.data.contextPath+"/subject/api/addSubject";
+        addpositionUrl: function () {
+            return app.data.contextPath+"/position/api/addposition";
         },
-        updateSubjectUrl: function () {
-            return app.data.contextPath+"/subject/api/updateSubject"
+        updatepositionUrl: function () {
+            return app.data.contextPath+"/position/api/updateposition"
         },
-        deleteSubjectUrl: function () {
-            return app.data.contextPath+"/subject/api/deleteSubject/";
+        deletepositionUrl: function () {
+            return app.data.contextPath+"/position/api/deleteposition/";
         },
         managePostListUrl: function () {
             return app.data.contextPath+"/manage/post/list"

@@ -28,7 +28,7 @@ public class ManageController {
     @Autowired
     private AccountService accountService;
     @Autowired
-    private SubjectService subjectService;
+    private PositionService positionService;
     @Autowired
     private ContestService contestService;
     @Autowired
@@ -114,7 +114,7 @@ public class ManageController {
         }
 
         String fileName = file.getOriginalFilename();
-        String filePath = "/Users/itinypocket/workspace/temp/";
+        String filePath = QexzConst.UPLOAD_FILE_IMAGE_PATH;
         File dest = new File(filePath + fileName);
         try {
             file.transferTo(dest);
@@ -143,8 +143,8 @@ public class ManageController {
             return "/error/404";
         } else {
             Map<String, Object> data = contestService.getContests(page, QexzConst.contestPageSize);
-            List<Subject> subjects = subjectService.getSubjects();
-            data.put("subjects", subjects);
+            List<Position> positions = positionService.getPositions();
+            data.put("positions", positions);
             model.addAttribute(QexzConst.DATA, data);
             return "/manage/manage-contestBoard";
         }
@@ -225,14 +225,14 @@ public class ManageController {
             Map<String, Object> data = questionService.getQuestionsByContent(page,
                     QexzConst.questionPageSize, content);
             List<Question> questions = (List<Question>) data.get("questions");
-            List<Subject> subjects = subjectService.getSubjects();
-            Map<Integer, String> subjectId2name = subjects.stream().
-                    collect(Collectors.toMap(Subject::getId, Subject::getName));
+            List<Position> positions = positionService.getPositions();
+            Map<Integer, String> positionId2name = positions.stream().
+                    collect(Collectors.toMap(Position::getId, Position::getName));
             for (Question question : questions) {
-                question.setSubjectName(subjectId2name.
-                        getOrDefault(question.getSubjectId(), "未知科目"));
+                question.setpositionName(positionId2name.
+                        getOrDefault(question.getpositionId(), "未知科目"));
             }
-            data.put("subjects", subjects);
+            data.put("positions", positions);
             data.put("content", content);
             model.addAttribute("data", data);
             return "/manage/manage-questionBoard";
@@ -255,8 +255,8 @@ public class ManageController {
             return "/error/404";
         } else {
             Map<String, Object> data = contestService.getContests(page, QexzConst.contestPageSize);
-            List<Subject> subjects = subjectService.getSubjects();
-            data.put("subjects", subjects);
+            List<Position> positions = positionService.getPositions();
+            data.put("positions", positions);
             model.addAttribute(QexzConst.DATA, data);
             return "/manage/manage-resultContestBoard";
         }
@@ -332,10 +332,10 @@ public class ManageController {
     }
 
     /**
-     * 课程管理
+     * 职位管理
      */
-    @RequestMapping(value="/subject/list", method= RequestMethod.GET)
-    public String subjectList(HttpServletRequest request,
+    @RequestMapping(value="/position/list", method= RequestMethod.GET)
+    public String positionList(HttpServletRequest request,
                               @RequestParam(value = "page", defaultValue = "1") int page,
                               Model model) {
         Account currentAccount = (Account) request.getSession().getAttribute(QexzConst.CURRENT_ACCOUNT);
@@ -346,9 +346,9 @@ public class ManageController {
             //return "redirect:/";
             return "/error/404";
         } else {
-            Map<String, Object> data = subjectService.getSubjects(page, QexzConst.subjectPageSize);
+            Map<String, Object> data = positionService.getPositions(page, QexzConst.positionPageSize);
             model.addAttribute(QexzConst.DATA, data);
-            return "/manage/manage-subjectBoard";
+            return "/manage/manage-positionBoard";
         }
     }
 

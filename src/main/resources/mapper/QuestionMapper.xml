@@ -12,7 +12,7 @@
         <result column="option_d" property="optionD" jdbcType="VARCHAR" />
         <result column="answer" property="answer" jdbcType="LONGVARCHAR" />
         <result column="parse" property="parse" jdbcType="LONGVARCHAR" />
-        <result column="subject_id" property="subjectId" jdbcType="INTEGER" />
+        <result column="position_id" property="positionId" jdbcType="INTEGER" />
         <result column="contest_id" property="contestId" jdbcType="INTEGER" />
         <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
         <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
@@ -22,18 +22,18 @@
     </resultMap>
     <sql id="Base_Column_List" >
         id,title,content,question_type,option_a,option_b,option_c,
-        option_d,answer,parse,subject_id,contest_id,create_time,
+        option_d,answer,parse,position_id,contest_id,create_time,
         update_time,score,difficulty,state
     </sql>
 
     <insert id="insertQuestion" parameterType="com.qexz.model.Question" >
         insert into t_penguin_question
         (title, content, question_type, option_a, option_b, option_c,
-        option_d, answer, parse, subject_id, contest_id, score, difficulty,
+        option_d, answer, parse, position_id, contest_id, score, difficulty,
         state)
         values (#{question.title}, #{question.content}, #{question.questionType},
         #{question.optionA}, #{question.optionB}, #{question.optionC}, #{question.optionD},
-        #{question.answer}, #{question.parse}, #{question.subjectId}, #{question.contestId},
+        #{question.answer}, #{question.parse}, #{question.positionId}, #{question.contestId},
         #{question.score}, #{question.difficulty}, #{question.state})
     </insert>
 
@@ -49,7 +49,7 @@
           question_type = #{question.questionType}, option_a = #{question.optionA},
           option_b = #{question.optionB}, option_c = #{question.optionC},
           option_d = #{question.optionD}, answer = #{question.answer},
-          parse = #{question.parse}, subject_id = #{question.subjectId},
+          parse = #{question.parse}, position_id = #{question.positionId},
           contest_id = #{question.contestId}, score = #{question.score},
           difficulty = #{question.difficulty}
         WHERE
@@ -101,7 +101,7 @@
         SELECT
         COUNT(1)
         FROM t_penguin_question
-        WHERE state = 1 AND subject_id = #{problemsetId}
+        WHERE state = 1 AND position_id = #{problemsetId}
         <if test="content != null and content != ''">
             AND content LIKE CONCAT(CONCAT('%', #{content}), '%')
         </if>
@@ -114,7 +114,7 @@
         SELECT
         *
         FROM t_penguin_question
-        WHERE state = 1 AND subject_id = #{problemsetId}
+        WHERE state = 1 AND position_id = #{problemsetId}
         <if test="content != null and content != ''">
             AND content LIKE CONCAT(CONCAT('%', #{content}), '%')
         </if>

@@ -5,7 +5,7 @@ import com.qexz.dao.ContestMapper;
 import com.qexz.dao.QuestionMapper;
 import com.qexz.model.Contest;
 import com.qexz.model.Question;
-import com.qexz.model.Subject;
+import com.qexz.model.Position;
 import com.qexz.service.QuestionService;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;

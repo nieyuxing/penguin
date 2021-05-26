@@ -1,4 +1,4 @@
-﻿DROP TABLE IF EXISTS `t_user`;
+﻿﻿DROP TABLE IF EXISTS `t_user`;
 CREATE TABLE `t_user` (
     `id` int(8) NOT NULL AUTO_INCREMENT COMMENT '主键ID',
     `name` varchar(63) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '姓名',

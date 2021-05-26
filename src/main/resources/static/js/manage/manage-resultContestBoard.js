@@ -123,10 +123,10 @@ var manageResultContestBoardPage = {
         //初始化数据
         $('#updateContestIndex').val(index);
         $('#updateContestTitle').val(contests[index].title);
-        var selectSubjects = document.getElementById('updateContestSubjectId');
-        for (var i = 0; i < selectSubjects.length; i++) {
-            if (selectSubjects[i].value == contests[index].subjectId) {
-                selectSubjects[i].selected = true;
+        var selectpositions = document.getElementById('updateContestpositionId');
+        for (var i = 0; i < selectpositions.length; i++) {
+            if (selectpositions[i].value == contests[index].positionId) {
+                selectpositions[i].selected = true;
             }
         }
         $('#updateContestStartDatetimepicker').val(app.formatTime(contests[index].startTime, "Y-M-D h:m:s"));
@@ -153,7 +153,7 @@ var manageResultContestBoardPage = {
     updateContestAction: function () {
         var index = $('#updateContestIndex').val();
         var contestTitle = $('#updateContestTitle').val();
-        var subjectId = $('#updateContestSubjectId').val();
+        var positionId = $('#updateContestpositionId').val();
         var startTimeStr = $('#updateContestStartDatetimepicker').val();
         var endTimeStr = $('#updateContestEndDatetimepicker').val();
         var startTime = new Date($('#updateContestStartDatetimepicker').val());
@@ -169,7 +169,7 @@ var manageResultContestBoardPage = {
                 data : JSON.stringify({
                     id: contests[index].id,
                     title: contestTitle,
-                    subjectId: subjectId,
+                    positionId: positionId,
                     startTime: startTime,
                     endTime: endTime,
                     totalScore: contests[index].totalScore,

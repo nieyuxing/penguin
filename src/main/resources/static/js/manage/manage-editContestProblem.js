@@ -75,7 +75,7 @@ var manageEditContestProblemPage = {
         var questionDifficulty = $('#questionDifficulty').val();
         var questionScore = $('#questionScore').val();
         var contestId = manageEditContestProblemPage.data.contest.id;
-        var subjectId = manageEditContestProblemPage.data.contest.subjectId;
+        var positionId = manageEditContestProblemPage.data.contest.positionId;
 
         if (manageEditContestProblemPage.checkAddQuestionData(questionTitle, questionContent,
                 questionType, optionA,optionB, optionC, optionD, questionAnswer, questionParse,
@@ -96,7 +96,7 @@ var manageEditContestProblemPage = {
                     optionD: optionD,
                     answer: questionAnswer,
                     parse: questionParse,
-                    subjectId: subjectId,
+                    positionId: positionId,
                     contestId: contestId,
                     score: questionScore,
                     difficulty: questionDifficulty,
@@ -178,7 +178,7 @@ var manageEditContestProblemPage = {
         var questionDifficulty = $('#updateQuestionDifficulty').val();
         var questionScore = $('#updateQuestionScore').val();
         var contestId = manageEditContestProblemPage.data.contest.id;
-        var subjectId = manageEditContestProblemPage.data.contest.subjectId;
+        var positionId = manageEditContestProblemPage.data.contest.positionId;
 
         if (manageEditContestProblemPage.checkUpdateQuestionData(questionTitle, questionContent,
                 questionType, optionA,optionB, optionC, optionD, questionAnswer, questionParse,
@@ -200,7 +200,7 @@ var manageEditContestProblemPage = {
                     optionD: optionD,
                     answer: questionAnswer,
                     parse: questionParse,
-                    subjectId: subjectId,
+                    positionId: positionId,
                     contestId: contestId,
                     score: questionScore,
                     difficulty: questionDifficulty,

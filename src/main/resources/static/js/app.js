@@ -194,6 +194,21 @@ var app = {
             blurring: true,
         }).modal('show');
     },
+
+    showRegister: function() {
+            $('#addUsername').val("");
+            $('#addPassword').val("");
+            $('#registerModal').modal({
+                /**
+                 * 必须点击相关按钮才能关闭
+                 */
+                closable  : false,
+                /**
+                 * 模糊背景
+                 */
+                blurring: false,
+            }).modal('show');
+    },
     /**
      * 验证用户名和密码是否合法
      */
