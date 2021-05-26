@@ -26,8 +26,6 @@ public class DefaultController {
     @Autowired
     private AccountService accountService;
     @Autowired
-    private SubjectService subjectService;
-    @Autowired
     private ContestService contestService;
     @Autowired
     private QuestionService questionService;
@@ -98,7 +96,7 @@ public class DefaultController {
     @RequestMapping(value="/problemset/list", method= RequestMethod.GET)
     public String problemSet(HttpServletRequest request, @RequestParam(value = "page", defaultValue = "1") int page, Model model) {
         Account currentAccount = (Account) request.getSession().getAttribute(QexzConst.CURRENT_ACCOUNT);
-        Map<String, Object> data = positionService.getPositions(page, QexzConst.subjectPageSize);
+        Map<String, Object> data = positionService.getPositions(page, QexzConst.positionPageSize);
 
         model.addAttribute(QexzConst.CURRENT_ACCOUNT, currentAccount);
         model.addAttribute(QexzConst.DATA, data);
@@ -136,9 +134,9 @@ public class DefaultController {
         Account currentAccount = (Account) request.getSession().getAttribute(QexzConst.CURRENT_ACCOUNT);
         Map<String, Object> data = new HashMap<>();
         Question question = questionService.getQuestionById(problemId);
-        Subject subject = subjectService.getSubjectById(problemsetId);
+        Position position = positionService.getPositionById(problemsetId);
         data.put("question", question);
-        data.put("subject", subject);
+        data.put("position", position);
         model.addAttribute(QexzConst.CURRENT_ACCOUNT, currentAccount);
         model.addAttribute(QexzConst.DATA, data);
         return "/problem/problemdetail";

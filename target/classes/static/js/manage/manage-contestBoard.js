@@ -133,7 +133,7 @@ var manageContestBoardPage = {
     },
     addContestAction: function () {
         var contestTitle = $('#contestTitle').val();
-        var subjectId = $('#contestSubjectId').val();
+        var positionId = $('#contestpositionId').val();
         var startTimeStr = $('#contestStartDatetimepicker').val();
         var endTimeStr = $('#contestEndDatetimepicker').val();
         var startTime = new Date($('#contestStartDatetimepicker').val());
@@ -148,7 +148,7 @@ var manageContestBoardPage = {
                 <!-- 向后端传输的数据 -->
                 data : JSON.stringify({
                     title: contestTitle,
-                    subjectId: subjectId,
+                    positionId: positionId,
                     startTime: startTime,
                     endTime: endTime,
                 }),
@@ -186,10 +186,10 @@ var manageContestBoardPage = {
         //初始化数据
         $('#updateContestIndex').val(index);
         $('#updateContestTitle').val(contests[index].title);
-        var selectSubjects = document.getElementById('updateContestSubjectId');
-        for (var i = 0; i < selectSubjects.length; i++) {
-            if (selectSubjects[i].value == contests[index].subjectId) {
-                selectSubjects[i].selected = true;
+        var selectpositions = document.getElementById('updateContestpositionId');
+        for (var i = 0; i < selectpositions.length; i++) {
+            if (selectpositions[i].value == contests[index].positionId) {
+                selectpositions[i].selected = true;
             }
         }
         $('#updateContestStartDatetimepicker').val(app.formatTime(contests[index].startTime, "Y-M-D h:m:s"));
@@ -216,7 +216,7 @@ var manageContestBoardPage = {
     updateContestAction: function () {
         var index = $('#updateContestIndex').val();
         var contestTitle = $('#updateContestTitle').val();
-        var subjectId = $('#updateContestSubjectId').val();
+        var positionId = $('#updateContestpositionId').val();
         var startTimeStr = $('#updateContestStartDatetimepicker').val();
         var endTimeStr = $('#updateContestEndDatetimepicker').val();
         var startTime = new Date($('#updateContestStartDatetimepicker').val());
@@ -232,7 +232,7 @@ var manageContestBoardPage = {
                 data : JSON.stringify({
                     id: contests[index].id,
                     title: contestTitle,
-                    subjectId: subjectId,
+                    positionId: positionId,
                     startTime: startTime,
                     endTime: endTime,
                     totalScore: contests[index].totalScore,

@@ -7,14 +7,14 @@ var problemSetPage = {
         pageSize: 0,
         totalPageNum: 0,
         totalPageSize: 0,
-        subjects: [],
+        positions: [],
     },
-    init: function (pageNum, pageSize, totalPageNum, totalPageSize, subjects) {
+    init: function (pageNum, pageSize, totalPageNum, totalPageSize, positions) {
         problemSetPage.data.pageNum = pageNum;
         problemSetPage.data.pageSize = pageSize;
         problemSetPage.data.totalPageNum = totalPageNum;
         problemSetPage.data.totalPageSize = totalPageSize;
-        problemSetPage.data.subjects = subjects;
+        problemSetPage.data.positions = positions;
         //分页初始化
         problemSetPage.subPageMenuInit();
     },

@@ -19,13 +19,13 @@ var managePostBoardPage = {
         managePostBoardPage.subPageMenuInit();
 
         //编辑考试，取消考试编辑
-        $('#cancelUpdateSubjectBtn').click(function(){
-            $("#updateSubjectModal").modal('hide');
+        $('#cancelUpdatepositionBtn').click(function(){
+            $("#updatepositionModal").modal('hide');
         });
 
         //编辑考试，确定保存考试
-        $('#confirmUpdateSubjectBtn').click(function(){
-            managePostBoardPage.updateSubjectAction();
+        $('#confirmUpdatepositionBtn').click(function(){
+            managePostBoardPage.updatepositionAction();
         });
     },
     firstPage: function () {

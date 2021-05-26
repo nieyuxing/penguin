@@ -1,7 +1,7 @@
 //package com.qexz.service;
 //
 //import com.qexz.common.QexzConst;
-//import com.qexz.model.Subject;
+//import com.qexz.model.position;
 //import org.apache.commons.logging.Log;
 //import org.apache.commons.logging.LogFactory;
 //import org.junit.Test;
@@ -20,84 +20,84 @@
 //@RunWith(SpringRunner.class)
 //@SpringBootTest
 //@ActiveProfiles("dev")
-//public class SubjectServiceTest {
+//public class positionServiceTest {
 //
-//    private static Log LOG = LogFactory.getLog(SubjectServiceTest.class);
+//    private static Log LOG = LogFactory.getLog(positionServiceTest.class);
 //
 //    @Autowired
-//    private SubjectService subjectService;
+//    private positionService positionService;
 //
 //    @Test
-//    public void addSubject() throws Exception {
-////        Subject subject = new Subject();
-////        subject.setName("计算机组成原理");
-////        int result = subjectService.addSubject(subject);
+//    public void addposition() throws Exception {
+////        position position = new position();
+////        position.setName("计算机组成原理");
+////        int result = positionService.addposition(position);
 ////        LOG.info("result = " + result);
 //
-//        Subject subject1 = new Subject();
-//        subject1.setName("C语言程序设计");
-//        subject1.setImgUrl("problemset_c.jpg");
-//        int result = subjectService.addSubject(subject1);
+//        position position1 = new position();
+//        position1.setName("C语言程序设计");
+//        position1.setImgUrl("problemset_c.jpg");
+//        int result = positionService.addposition(position1);
 //        LOG.info("result = " + result);
 //
-//        Subject subject2 = new Subject();
-//        subject2.setName("Java语言程序设计");
-//        subject2.setImgUrl("problemset_java.jpg");
-//        result = subjectService.addSubject(subject2);
+//        position position2 = new position();
+//        position2.setName("Java语言程序设计");
+//        position2.setImgUrl("problemset_java.jpg");
+//        result = positionService.addposition(position2);
 //        LOG.info("result = " + result);
 //
-//        Subject subject3 = new Subject();
-//        subject3.setName("C++语言程序设计");
-//        subject3.setImgUrl("problemset_c++.jpg");
-//        result = subjectService.addSubject(subject3);
+//        position position3 = new position();
+//        position3.setName("C++语言程序设计");
+//        position3.setImgUrl("problemset_c++.jpg");
+//        result = positionService.addposition(position3);
 //        LOG.info("result = " + result);
 //
-//        Subject subject4 = new Subject();
-//        subject4.setName("Python语言程序设计");
-//        subject4.setImgUrl("problemset_python.jpg");
-//        result = subjectService.addSubject(subject4);
+//        position position4 = new position();
+//        position4.setName("Python语言程序设计");
+//        position4.setImgUrl("problemset_python.jpg");
+//        result = positionService.addposition(position4);
 //        LOG.info("result = " + result);
 //
-//        Subject subject5 = new Subject();
-//        subject5.setName("数据结构与算法");
-//        subject5.setImgUrl("problemset_datastructures.jpg");
-//        result = subjectService.addSubject(subject5);
+//        position position5 = new position();
+//        position5.setName("数据结构与算法");
+//        position5.setImgUrl("problemset_datastructures.jpg");
+//        result = positionService.addposition(position5);
 //        LOG.info("result = " + result);
 //
-//        Subject subject6 = new Subject();
-//        subject6.setName("数据结构与算法");
-//        subject6.setImgUrl("problemset_datastructures.jpg");
-//        result = subjectService.addSubject(subject6);
+//        position position6 = new position();
+//        position6.setName("数据结构与算法");
+//        position6.setImgUrl("problemset_datastructures.jpg");
+//        result = positionService.addposition(position6);
 //        LOG.info("result = " + result);
 //
-//        Subject subject7 = new Subject();
-//        subject7.setName("数据库概论");
-//        subject7.setImgUrl("problemset_database.jpg");
-//        result = subjectService.addSubject(subject7);
-//        LOG.info("result = " + result);
-//    }
-//
-//    @Test
-//    public void updateSubject() throws Exception {
-//        Subject subject = subjectService.getSubjectById(7);
-//        subject.setName("软件测试");
-//        subject.setImgUrl("problemset_softwareTest.jpg");
-//        boolean result = subjectService.updateSubject(subject);
+//        position position7 = new position();
+//        position7.setName("数据库概论");
+//        position7.setImgUrl("problemset_database.jpg");
+//        result = positionService.addposition(position7);
 //        LOG.info("result = " + result);
 //    }
 //
 //    @Test
-//    public void getSubjectById() throws Exception {
-//        Subject subject = subjectService.getSubjectById(7);
-//        LOG.info("subject = " + subject);
+//    public void updateposition() throws Exception {
+//        position position = positionService.getpositionById(7);
+//        position.setName("软件测试");
+//        position.setImgUrl("problemset_softwareTest.jpg");
+//        boolean result = positionService.updateposition(position);
+//        LOG.info("result = " + result);
 //    }
 //
 //    @Test
-//    public void getSubjects() throws Exception {
-//        Map<String, Object> data = subjectService.getSubjects(100, 1);
-//        List<Subject> subjects = (List<Subject>) data.getOrDefault("subjects", new ArrayList<>());
-//        for (Subject subject : subjects) {
-//            LOG.info("subject = " + subject);
+//    public void getpositionById() throws Exception {
+//        position position = positionService.getpositionById(7);
+//        LOG.info("position = " + position);
+//    }
+//
+//    @Test
+//    public void getpositions() throws Exception {
+//        Map<String, Object> data = positionService.getpositions(100, 1);
+//        List<position> positions = (List<position>) data.getOrDefault("positions", new ArrayList<>());
+//        for (position position : positions) {
+//            LOG.info("position = " + position);
 //        }
 //    }
 //

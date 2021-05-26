@@ -51,7 +51,7 @@
         <i class="right chevron icon divider"></i>
         <a class="section" th:href="@{/problemset/list}">题库中心</a>
         <i class="right chevron icon divider"></i>
-        <a class="section" th:href="@{'/problemset/'+${data[subject].id}+'/problems'}" th:text="${data['subject'].name}">数据结构与算法</a>
+        <a class="section" th:href="@{'/problemset/'+${data[position].id}+'/problems'}" th:text="${data['position'].name}">数据结构与算法</a>
         <i class="right chevron icon divider"></i>
         <div class="active section" th:text="${data['question'].title}">某保险公司多年的资料表明，在索赔户中，被盗索赔户占20%，以 表示在随机抽查100个索赔户中因被盗而向保险公司索赔的户数，求 . x 0 0.5 1 1.5 2 2.5 3 Ф (x) 0.500 0.691 0.841 0.933 0.977 0.994 0.999</div>
     </div>
@@ -180,7 +180,7 @@ public static void main(String[] args){
                 <div class="ui two columns grid">
                     <div class="column">
                         <h3>项目介绍</h3>
-                        在线考试系统是一个在线测试学习系统，并用于辅助课程教学和学生学习。
+                        在线考试系统是一个在线测试学习系统，并用于辅助职位教学和学生学习。
                     </div>
                     <div class="column">
                         <h3>联系我们</h3>

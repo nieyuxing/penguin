@@ -3,9 +3,9 @@ package com.qexz.service.impl;
 import com.github.pagehelper.PageHelper;
 import com.qexz.common.QexzConst;
 import com.qexz.dao.ContestMapper;
-import com.qexz.dao.SubjectMapper;
+import com.qexz.dao.PositionMapper;
 import com.qexz.model.Contest;
-import com.qexz.model.Subject;
+import com.qexz.model.Position;
 import com.qexz.service.ContestService;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.logging.Log;
@@ -24,7 +24,7 @@ public class ContestServiceImpl implements ContestService{
     @Autowired
     private ContestMapper contestMapper;
     @Autowired
-    private SubjectMapper subjectMapper;
+    private PositionMapper positionMapper;
 
     @Override
     public int addContest(Contest contest) {
@@ -64,14 +64,14 @@ public class ContestServiceImpl implements ContestService{
             data.put("contests", new ArrayList<>());
             return data;
         }
-        List<Subject> subjects = subjectMapper.getSubjects();
+        List<Position> positions = positionMapper.getPositions();
         PageHelper.startPage(pageNum, pageSize);
         List<Contest> contests = contestMapper.getContests();
-        Map<Integer, String> subjectId2name = subjects.stream().
-                collect(Collectors.toMap(Subject::getId, Subject::getName));
+        Map<Integer, String> positionId2name = positions.stream().
+                collect(Collectors.toMap(Position::getId, Position::getName));
         for (Contest contest : contests) {
-            contest.setSubjectName(subjectId2name.
-                    getOrDefault(contest.getSubjectId(), "未知科目"));
+            contest.setpositionName(positionId2name.
+                    getOrDefault(contest.getpositionId(), "未知科目"));
         }
         data.put("pageNum", pageNum);
         data.put("pageSize", pageSize);

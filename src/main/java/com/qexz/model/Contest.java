@@ -7,14 +7,14 @@ public class Contest {
     private int id;
     private String title;
     private int totalScore;
-    private int subjectId;
+    private int positionId;
     private Date createTime;
     private Date updateTime;
     private Date startTime;
     private Date endTime;
     private int state;
 
-    private String subjectName;
+    private String positionName;
 
     public int getId() {
         return id;
@@ -40,12 +40,12 @@ public class Contest {
         this.totalScore = totalScore;
     }
 
-    public int getSubjectId() {
-        return subjectId;
+    public int getpositionId() {
+        return positionId;
     }
 
-    public void setSubjectId(int subjectId) {
-        this.subjectId = subjectId;
+    public void setpositionId(int positionId) {
+        this.positionId = positionId;
     }
 
     public Date getCreateTime() {
@@ -88,12 +88,12 @@ public class Contest {
         this.state = state;
     }
 
-    public String getSubjectName() {
-        return subjectName;
+    public String getpositionName() {
+        return positionName;
     }
 
-    public void setSubjectName(String subjectName) {
-        this.subjectName = subjectName;
+    public void setpositionName(String positionName) {
+        this.positionName = positionName;
     }
 
     @Override
@@ -102,13 +102,13 @@ public class Contest {
                 "id=" + id +
                 ", title='" + title + '\'' +
                 ", totalScore=" + totalScore +
-                ", subjectId=" + subjectId +
+                ", positionId=" + positionId +
                 ", createTime=" + createTime +
                 ", updateTime=" + updateTime +
                 ", startTime=" + startTime +
                 ", endTime=" + endTime +
                 ", state=" + state +
-                ", subjectName='" + subjectName + '\'' +
+                ", positionName='" + positionName + '\'' +
                 '}';
     }
 }

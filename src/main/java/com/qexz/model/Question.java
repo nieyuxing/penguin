@@ -14,7 +14,7 @@ public class Question {
     private String optionD;
     private String answer;
     private String parse;
-    private int subjectId;
+    private int positionId;
     private int contestId;
     private int score;
     private int difficulty;
@@ -22,7 +22,7 @@ public class Question {
     private Date updateTime;
     private int state;
 
-    private String subjectName;
+    private String positionName;
 
     public int getId() {
         return id;
@@ -104,12 +104,12 @@ public class Question {
         this.parse = parse;
     }
 
-    public int getSubjectId() {
-        return subjectId;
+    public int getpositionId() {
+        return positionId;
     }
 
-    public void setSubjectId(int subjectId) {
-        this.subjectId = subjectId;
+    public void setpositionId(int positionId) {
+        this.positionId = positionId;
     }
 
     public int getContestId() {
@@ -160,12 +160,12 @@ public class Question {
         this.state = state;
     }
 
-    public String getSubjectName() {
-        return subjectName;
+    public String getpositionName() {
+        return positionName;
     }
 
-    public void setSubjectName(String subjectName) {
-        this.subjectName = subjectName;
+    public void setpositionName(String positionName) {
+        this.positionName = positionName;
     }
 
     @Override
@@ -181,14 +181,14 @@ public class Question {
                 ", optionD='" + optionD + '\'' +
                 ", answer='" + answer + '\'' +
                 ", parse='" + parse + '\'' +
-                ", subjectId=" + subjectId +
+                ", positionId=" + positionId +
                 ", contestId=" + contestId +
                 ", score=" + score +
                 ", difficulty=" + difficulty +
                 ", createTime=" + createTime +
                 ", updateTime=" + updateTime +
                 ", state=" + state +
-                ", subjectName='" + subjectName + '\'' +
+                ", positionName='" + positionName + '\'' +
                 '}';
     }
 }

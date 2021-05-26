@@ -86,8 +86,8 @@
     <div class="col-sm-3 col-md-2 sidebar">
     <ul class="nav nav-sidebar">
     <li class="active"><a href="#"><i class="fa fa-tv"></i>&nbsp;考试管理 <span class="sr-only">(current)</span></a></li>
-    <li><a th:href="@{/manage/question/list}"><span class="glyphicon glyphicon-list-alt"></span>&nbsp;题目管理</a></li>
-    <li><a th:href="@{/manage/subject/list}"><span class="glyphicon glyphicon-book"></span>&nbsp;课程管理</a></li>
+    <li><a th:href="@{/manage/question/list}"><span class="glyphicon glyphicon-list-alt"></span>&nbsp;职位管理</a></li>
+    <li><a th:href="@{/manage/position/list}"><span class="glyphicon glyphicon-book"></span>&nbsp;职位管理</a></li>
     <li><a th:href="@{/manage/result/contest/list}"><span class="glyphicon glyphicon-signal"></span>&nbsp;成绩管理</a></li>
     <li><a th:href="@{/manage/account/list}"><span class="glyphicon glyphicon-user"></span>&nbsp;用户管理</a></li>
     <li><a th:href="@{/manage/post/list}"><i class="fa fa-paper-plane"></i>&nbsp;帖子管理</a></li>
@@ -160,7 +160,7 @@
     <td th:text="${item.title}">广东财经大学2017年数据库原理与应用考试试题</td>
     <td th:text="${#dates.format(item.startTime, 'yyyy-MM-dd HH:mm:ss')}">2018-1-11 09:00:00</td>
     <td th:text="${#dates.format(item.endTime, 'yyyy-MM-dd HH:mm:ss')}">2018-1-11 11:00:00</td>
-    <td th:text="${item.subjectName}">数据库原理与应用</td>
+    <td th:text="${item.positionName}">数据库原理与应用</td>
     <td th:if="${item.state == 0}"><span class="label label-warning">未开始</span></td>
     <td th:if="${item.state == 1}"><span class="label label-success">进行中</span></td>
     <td th:if="${item.state == 2 or item.state == 3}"><span class="label label-danger">已结束</span></td>
@@ -350,8 +350,8 @@
     <div class="form-group">
     <label class="col-sm-2 control-label">考试科目</label>
     <div class="col-sm-8">
-    <select class="form-control" id="contestSubjectId">
-        <option th:each="item,itemStats : ${data['subjects']}"
+    <select class="form-control" id="contestpositionId">
+        <option th:each="item,itemStats : ${data['positions']}"
                 th:value="${item.id}" th:text="${item.name}">
 
         </option>
@@ -419,8 +419,8 @@
                         <div class="form-group">
                             <label class="col-sm-2 control-label">考试科目</label>
                             <div class="col-sm-8">
-                                <select class="form-control" id="updateContestSubjectId">
-                                    <option th:each="item,itemStats : ${data['subjects']}"
+                                <select class="form-control" id="updateContestpositionId">
+                                    <option th:each="item,itemStats : ${data['positions']}"
                                             th:value="${item.id}" th:text="${item.name}">
 
                                     </option>

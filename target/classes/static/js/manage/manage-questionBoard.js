@@ -138,7 +138,7 @@ var manageQuestionBoardPage = {
         var questionTitle = $('#questionTitle').val();
         var questionContent = $('#questionContent').val();
         var questionType = $('#questionType').val();
-        var subjectId = $('#subjectId').val();
+        var positionId = $('#positionId').val();
         var optionA = $('#optionA').val();
         var optionB = $('#optionB').val();
         var optionC = $('#optionC').val();
@@ -167,7 +167,7 @@ var manageQuestionBoardPage = {
                     optionD: optionD,
                     answer: questionAnswer,
                     parse: questionParse,
-                    subjectId: subjectId,
+                    positionId: positionId,
                     contestId: 0,
                     score: questionScore,
                     difficulty: questionDifficulty,
@@ -213,10 +213,10 @@ var manageQuestionBoardPage = {
                 selectQuestionTypes[i].selected = true;
             }
         }
-        var selectSubjectIds = document.getElementById('updateSubjectId');
-        for (var i = 0; i < selectSubjectIds.length; i++) {
-            if (selectSubjectIds[i].value == questions[index].subjectId) {
-                selectSubjectIds[i].selected = true;
+        var selectpositionIds = document.getElementById('updatepositionId');
+        for (var i = 0; i < selectpositionIds.length; i++) {
+            if (selectpositionIds[i].value == questions[index].positionId) {
+                selectpositionIds[i].selected = true;
             }
         }
         $('#updateOptionA').val(questions[index].optionA);
@@ -246,7 +246,7 @@ var manageQuestionBoardPage = {
         var questionTitle = $('#updateQuestionTitle').val();
         var questionContent = $('#updateQuestionContent').val();
         var questionType = $('#updateQuestionType').val();
-        var subjectId = $('#updateSubjectId').val();
+        var positionId = $('#updatepositionId').val();
         var optionA = $('#updateOptionA').val();
         var optionB = $('#updateOptionB').val();
         var optionC = $('#updateOptionC').val();
@@ -276,7 +276,7 @@ var manageQuestionBoardPage = {
                     optionD: optionD,
                     answer: questionAnswer,
                     parse: questionParse,
-                    subjectId: subjectId,
+                    positionId: positionId,
                     contestId: 0,
                     score: questionScore,
                     difficulty: questionDifficulty,

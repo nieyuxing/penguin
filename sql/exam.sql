@@ -46,7 +46,7 @@ CREATE TABLE `t_examination_question` (
                                       `option_d` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '选项D',
                                       `answer` text COLLATE utf8mb4_unicode_ci COMMENT '答案',
                                       `parse` text COLLATE utf8mb4_unicode_ci COMMENT '答案解析',
-                                      `subject_id` int(8) DEFAULT NULL COMMENT '所属部门',
+                                      `position_id` int(8) DEFAULT NULL COMMENT '所属部门',
                                       `contest_id` int(8) DEFAULT NULL COMMENT '试卷ID',
                                       `create_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
                                       `update_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',

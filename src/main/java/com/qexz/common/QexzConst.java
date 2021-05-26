@@ -15,10 +15,10 @@ public class QexzConst {
 
     //默认头像url
     public static final String DEFAULT_AVATAR_IMG_URL = "headimg_placeholder.png";
-    //课程默认图片
-    public static final String DEFAULT_SUBJECT_IMG_URL = "problemset_default.jpg";
+    //职位默认图片
+    public static final String DEFAULT_POSITION_IMG_URL = "problemset_default.jpg";
 
-    public static final int subjectPageSize = 16;
+    public static final int positionPageSize = 16;
     public static final int contestPageSize = 10;
     public static final int questionPageSize = 10;
     public static final int accountPageSize = 16;

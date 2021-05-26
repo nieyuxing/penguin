@@ -74,7 +74,7 @@ CREATE TABLE `t_penguin_contest` (
   `id` int(8) NOT NULL AUTO_INCREMENT,
   `title` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `total_score` int(8) DEFAULT NULL COMMENT '考试总分',
-  `subject_id` int(8) DEFAULT NULL COMMENT '学科ID',
+  `position_id` int(8) DEFAULT NULL COMMENT '学科ID',
   `create_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `update_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
   `start_time` timestamp NULL DEFAULT NULL COMMENT '考试开始时间',
@@ -156,7 +156,7 @@ CREATE TABLE `t_penguin_question` (
   `option_d` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '选项D',
   `answer` text COLLATE utf8mb4_unicode_ci COMMENT '答案',
   `parse` text COLLATE utf8mb4_unicode_ci COMMENT '答案解析',
-  `subject_id` int(8) DEFAULT NULL COMMENT '学科ID',
+  `position_id` int(8) DEFAULT NULL COMMENT '学科ID',
   `contest_id` int(8) DEFAULT NULL COMMENT '试卷ID',
   `create_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `update_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
@@ -204,45 +204,45 @@ INSERT INTO `t_penguin_reply` VALUES ('2', '2', '0', '6', '1', '老厉害了', '
 INSERT INTO `t_penguin_reply` VALUES ('3', '1', '2', '6', '1', '哈哈', '2018-03-03 21:02:40');
 
 -- ----------------------------
--- Table structure for t_penguin_subject
+-- Table structure for t_penguin_position
 -- ----------------------------
-DROP TABLE IF EXISTS `t_penguin_subject`;
-CREATE TABLE `t_penguin_subject` (
+DROP TABLE IF EXISTS `t_penguin_position`;
+CREATE TABLE `t_penguin_position` (
   `id` int(8) NOT NULL AUTO_INCREMENT COMMENT '主键ID',
   `name` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '学科名称',
   `create_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `update_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
   `question_num` int(11) DEFAULT '0' COMMENT '题目数量',
   `img_url` varchar(63) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '图片url',
-  `state` int(4) DEFAULT '0' COMMENT '课程状态,0表示正常,1表示弃用',
+  `state` int(4) DEFAULT '0' COMMENT '职位状态,0表示正常,1表示弃用',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- ----------------------------
--- Records of t_penguin_subject
+-- Records of t_penguin_position
 -- ----------------------------
-INSERT INTO `t_penguin_subject` VALUES ('1', '计算机组成原理', '2018-01-18 21:56:29', '2018-01-18 21:56:29', '0', 'problemset_default.jpg', '0');
-INSERT INTO `t_penguin_subject` VALUES ('2', 'C语言程序设计', '2018-01-18 22:32:54', '2018-01-18 22:32:54', '0', 'problemset_c.jpg', '0');
-INSERT INTO `t_penguin_subject` VALUES ('3', 'Java语言程序设计', '2018-01-18 22:32:54', '2018-01-18 22:32:54', '0', 'problemset_java.jpg', '0');
-INSERT INTO `t_penguin_subject` VALUES ('4', 'C++语言程序设计', '2018-01-18 22:32:54', '2018-01-18 22:32:54', '0', 'problemset_c++.jpg', '0');
-INSERT INTO `t_penguin_subject` VALUES ('5', 'Python语言程序设计', '2018-01-18 22:32:54', '2018-01-18 22:32:54', '0', 'problemset_python.jpg', '0');
-INSERT INTO `t_penguin_subject` VALUES ('6', '数据结构与算法', '2018-01-18 22:32:54', '2018-01-18 22:32:54', '0', 'problemset_datastructures.jpg', '0');
-INSERT INTO `t_penguin_subject` VALUES ('7', '软件测试', '2018-01-18 22:32:54', '2018-01-18 22:59:40', '0', 'problemset_softwareTest.jpg', '0');
-INSERT INTO `t_penguin_subject` VALUES ('8', '数据库概论', '2018-01-18 22:32:54', '2018-01-18 22:32:54', '0', 'problemset_database.jpg', '0');
-INSERT INTO `t_penguin_subject` VALUES ('9', '大学计算机', '2018-01-26 15:59:21', '2018-01-26 15:59:37', '0', 'problemset_computer.jpg', '0');
-INSERT INTO `t_penguin_subject` VALUES ('10', '人工智能原理', '2018-01-26 16:01:29', '2018-01-26 16:01:29', '0', 'problemset_ai.png', '0');
-INSERT INTO `t_penguin_subject` VALUES ('11', '大数据算法', '2018-01-26 16:02:40', '2018-01-26 16:02:40', '0', 'problemset_bigdata.jpg', '0');
-INSERT INTO `t_penguin_subject` VALUES ('12', '物联网概论', '2018-01-26 16:05:06', '2018-01-26 16:05:13', '0', 'problemset_internetofthings.jpg', '0');
-INSERT INTO `t_penguin_subject` VALUES ('13', '计算机操作系统', '2018-01-26 16:06:13', '2018-01-26 16:06:13', '0', 'problemset_os.jpg', '0');
-INSERT INTO `t_penguin_subject` VALUES ('14', '计算机网络', '2018-01-26 16:07:25', '2018-01-26 16:08:35', '0', 'problemset_networld.jpg', '0');
-INSERT INTO `t_penguin_subject` VALUES ('15', '算法设计与分析入门', '2018-01-26 16:09:47', '2018-01-26 16:09:47', '0', 'problemset_algorithm.jpg', '0');
-INSERT INTO `t_penguin_subject` VALUES ('16', '计算机图形学', '2018-01-26 16:10:17', '2018-01-26 16:10:17', '0', 'problemset_graphic.jpg', '0');
-INSERT INTO `t_penguin_subject` VALUES ('17', '数字电路与系统', '2018-01-26 16:26:31', '2018-01-26 16:26:31', '0', 'problemset_digitalcircuits.jpg', '0');
-INSERT INTO `t_penguin_subject` VALUES ('19', '线性代数', '2018-03-04 20:40:10', '2018-03-04 20:40:10', '0', 'problemset_default.jpg', '0');
-INSERT INTO `t_penguin_subject` VALUES ('20', 'C语言程序设计', '2018-04-13 19:33:14', '2018-04-13 19:33:14', '0', 'problemset_c.jpg', '0');
-INSERT INTO `t_penguin_subject` VALUES ('21', 'Java语言程序设计', '2018-04-13 19:33:14', '2018-04-13 19:33:14', '0', 'problemset_java.jpg', '0');
-INSERT INTO `t_penguin_subject` VALUES ('22', 'C++语言程序设计', '2018-04-13 19:33:14', '2018-04-13 19:33:14', '0', 'problemset_c++.jpg', '0');
-INSERT INTO `t_penguin_subject` VALUES ('23', 'Python语言程序设计', '2018-04-13 19:33:14', '2018-04-13 19:33:14', '0', 'problemset_python.jpg', '0');
-INSERT INTO `t_penguin_subject` VALUES ('24', '数据结构与算法', '2018-04-13 19:33:14', '2018-04-13 19:33:14', '0', 'problemset_datastructures.jpg', '0');
-INSERT INTO `t_penguin_subject` VALUES ('25', '数据结构与算法', '2018-04-13 19:33:14', '2018-04-13 19:33:14', '0', 'problemset_datastructures.jpg', '0');
-INSERT INTO `t_penguin_subject` VALUES ('26', '数据库概论', '2018-04-13 19:33:14', '2018-04-13 19:33:14', '0', 'problemset_database.jpg', '0');
+INSERT INTO `t_penguin_position` VALUES ('1', '计算机组成原理', '2018-01-18 21:56:29', '2018-01-18 21:56:29', '0', 'problemset_default.jpg', '0');
+INSERT INTO `t_penguin_position` VALUES ('2', 'C语言程序设计', '2018-01-18 22:32:54', '2018-01-18 22:32:54', '0', 'problemset_c.jpg', '0');
+INSERT INTO `t_penguin_position` VALUES ('3', 'Java语言程序设计', '2018-01-18 22:32:54', '2018-01-18 22:32:54', '0', 'problemset_java.jpg', '0');
+INSERT INTO `t_penguin_position` VALUES ('4', 'C++语言程序设计', '2018-01-18 22:32:54', '2018-01-18 22:32:54', '0', 'problemset_c++.jpg', '0');
+INSERT INTO `t_penguin_position` VALUES ('5', 'Python语言程序设计', '2018-01-18 22:32:54', '2018-01-18 22:32:54', '0', 'problemset_python.jpg', '0');
+INSERT INTO `t_penguin_position` VALUES ('6', '数据结构与算法', '2018-01-18 22:32:54', '2018-01-18 22:32:54', '0', 'problemset_datastructures.jpg', '0');
+INSERT INTO `t_penguin_position` VALUES ('7', '软件测试', '2018-01-18 22:32:54', '2018-01-18 22:59:40', '0', 'problemset_softwareTest.jpg', '0');
+INSERT INTO `t_penguin_position` VALUES ('8', '数据库概论', '2018-01-18 22:32:54', '2018-01-18 22:32:54', '0', 'problemset_database.jpg', '0');
+INSERT INTO `t_penguin_position` VALUES ('9', '大学计算机', '2018-01-26 15:59:21', '2018-01-26 15:59:37', '0', 'problemset_computer.jpg', '0');
+INSERT INTO `t_penguin_position` VALUES ('10', '人工智能原理', '2018-01-26 16:01:29', '2018-01-26 16:01:29', '0', 'problemset_ai.png', '0');
+INSERT INTO `t_penguin_position` VALUES ('11', '大数据算法', '2018-01-26 16:02:40', '2018-01-26 16:02:40', '0', 'problemset_bigdata.jpg', '0');
+INSERT INTO `t_penguin_position` VALUES ('12', '物联网概论', '2018-01-26 16:05:06', '2018-01-26 16:05:13', '0', 'problemset_internetofthings.jpg', '0');
+INSERT INTO `t_penguin_position` VALUES ('13', '计算机操作系统', '2018-01-26 16:06:13', '2018-01-26 16:06:13', '0', 'problemset_os.jpg', '0');
+INSERT INTO `t_penguin_position` VALUES ('14', '计算机网络', '2018-01-26 16:07:25', '2018-01-26 16:08:35', '0', 'problemset_networld.jpg', '0');
+INSERT INTO `t_penguin_position` VALUES ('15', '算法设计与分析入门', '2018-01-26 16:09:47', '2018-01-26 16:09:47', '0', 'problemset_algorithm.jpg', '0');
+INSERT INTO `t_penguin_position` VALUES ('16', '计算机图形学', '2018-01-26 16:10:17', '2018-01-26 16:10:17', '0', 'problemset_graphic.jpg', '0');
+INSERT INTO `t_penguin_position` VALUES ('17', '数字电路与系统', '2018-01-26 16:26:31', '2018-01-26 16:26:31', '0', 'problemset_digitalcircuits.jpg', '0');
+INSERT INTO `t_penguin_position` VALUES ('19', '线性代数', '2018-03-04 20:40:10', '2018-03-04 20:40:10', '0', 'problemset_default.jpg', '0');
+INSERT INTO `t_penguin_position` VALUES ('20', 'C语言程序设计', '2018-04-13 19:33:14', '2018-04-13 19:33:14', '0', 'problemset_c.jpg', '0');
+INSERT INTO `t_penguin_position` VALUES ('21', 'Java语言程序设计', '2018-04-13 19:33:14', '2018-04-13 19:33:14', '0', 'problemset_java.jpg', '0');
+INSERT INTO `t_penguin_position` VALUES ('22', 'C++语言程序设计', '2018-04-13 19:33:14', '2018-04-13 19:33:14', '0', 'problemset_c++.jpg', '0');
+INSERT INTO `t_penguin_position` VALUES ('23', 'Python语言程序设计', '2018-04-13 19:33:14', '2018-04-13 19:33:14', '0', 'problemset_python.jpg', '0');
+INSERT INTO `t_penguin_position` VALUES ('24', '数据结构与算法', '2018-04-13 19:33:14', '2018-04-13 19:33:14', '0', 'problemset_datastructures.jpg', '0');
+INSERT INTO `t_penguin_position` VALUES ('25', '数据结构与算法', '2018-04-13 19:33:14', '2018-04-13 19:33:14', '0', 'problemset_datastructures.jpg', '0');
+INSERT INTO `t_penguin_position` VALUES ('26', '数据库概论', '2018-04-13 19:33:14', '2018-04-13 19:33:14', '0', 'problemset_database.jpg', '0');
