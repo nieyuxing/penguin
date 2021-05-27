@@ -283,14 +283,18 @@ public class ManageController {
             Map<String, Object> data =examinationAnswerService.getExaminationAnswers(page, QexzConst.contestPageSize);
             List<ExaminationAnswer> examinationAnswers = (List<ExaminationAnswer>) data.get("examinationAnswers");
             List<ExaminationPaper> papers = examinationPaperService.getExaminationPapers();
+            List<User> users = userService.getUsers();
             for(ExaminationAnswer examinationAnswer : examinationAnswers){
                 ExaminationPaper examinationPaper = examinationPaperService.getExaminationPaperById(examinationAnswer.getPaper_id());
+                User user = userService.getUserById(examinationAnswer.getUser_id());
                 examinationAnswer.setPaper(examinationPaper);
+                examinationAnswer.setUser(user);
                 answers.add(examinationAnswer);
             }
             retdata.put("examinationAnswersSize",answers.size());
             retdata.put("examinationAnswers", answers);
             retdata.put("papers", papers);
+            retdata.put("users", users);
             model.addAttribute(QexzConst.DATA, retdata);
             return "/manage/manage-examAnswerBoard";
         }

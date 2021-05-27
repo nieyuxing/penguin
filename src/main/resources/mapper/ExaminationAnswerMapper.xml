@@ -10,17 +10,17 @@
         <result column="version" property="version" jdbcType="VARCHAR" />
         <result column="create_time" property="create_time" jdbcType="TIMESTAMP" />
         <result column="update_time" property="update_time" jdbcType="TIMESTAMP" />
-        <result column="startDate" property="startDate" jdbcType="TIMESTAMP" />
-        <result column="endDate" property="endDate" jdbcType="TIMESTAMP" />
+        <result column="start_time" property="start_time" jdbcType="TIMESTAMP" />
+        <result column="end_time" property="end_time" jdbcType="TIMESTAMP" />
     </resultMap>
 
     <sql id="Base_Column_List" >
-        id, paper_id, user_id, score, state, version, create_time, update_time, startDate, endDate
+        id, paper_id, user_id, score, state, version, create_time, update_time, start_time, end_time
     </sql>
 
     <insert id="insertExaminationAnswer" parameterType="com.qexz.model.ExaminationAnswer" >
         insert into t_examination_answer
-          ( id, paper_id, user_id, score, state, version, create_time, update_time, startDate, endDate)
+          ( id, paper_id, user_id, score, state, version, create_time, update_time, start_time, end_time)
         values
           ( #{ExaminationAnswer.id}, #{ExaminationAnswer.paper_id}, #{ExaminationAnswer.user_id}, 0, 0, 1, CURRENT_TIMESTAMP , CURRENT_TIMESTAMP , NULL , NULL )
 

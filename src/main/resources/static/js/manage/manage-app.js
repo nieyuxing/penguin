@@ -162,6 +162,20 @@ var app = {
             return app.data.contextPath+"/user/api/approvedUser/";
         },
 
+        //考试成绩管理
+        addAnswerUrl: function () {
+            return app.data.contextPath+"/answer/api/addAnswer";
+        },
+        deleteAnswerUrl: function () {
+            return app.data.contextPath+"/answer/api/deleteAnwser/";
+        },
+        updateAnswerUrl: function () {
+            return app.data.contextPath+"/answer/api/updateAnswer";
+        },
+        manageAnswerListUrl: function () {
+            return app.data.contextPath+"/manage/answer/list";
+        },
+
     },
     /**
      * 全局初始化:服务器时间获取,登录功能,退出登录

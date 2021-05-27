@@ -72,8 +72,9 @@
                     <thead>
                     <tr>
                         <th>考卷名称</th>
-                        <th>开始时间</th>
-                        <th>结束时间</th>
+                        <th>考生名称</th>
+                        <th>分配时间</th>
+                        <th>修改时间</th>
                         <th>考试科目</th>
                         <th>当前状态</th>
                         <th>操作</th>
@@ -88,9 +89,10 @@
                         </td>
                     </tr>
                     <tr th:each="item,itemStats : ${data['examinationAnswers']}">
-                        <td th:text="${item.paper.exam_name}">慧为智能2017年数据库原理与应用考试试题</td>
-                        <td th:text="${#dates.format(item.start_time, 'yyyy-MM-dd HH:mm:ss')}">2018-1-11 09:00:00</td>
-                        <td th:text="${#dates.format(item.end_time, 'yyyy-MM-dd HH:mm:ss')}">2018-1-11 11:00:00</td>
+                        <td th:text="${item.paper.exam_name}"></td>
+                        <td th:text="${item.user.name}"></td>
+                        <td th:text="${#dates.format(item.create_time, 'yyyy-MM-dd HH:mm:ss')}">2018-1-11 09:00:00</td>
+                        <td th:text="${#dates.format(item.update_time, 'yyyy-MM-dd HH:mm:ss')}">2018-1-11 11:00:00</td>
                         <td th:text="${item.paper.examination_type}">数据库原理与应用</td>
                         <td th:if="${item.state == 0}"><span class="label label-warning">未开考</span></td>
                         <td th:if="${item.state == 1}"><span class="label label-success">考试中</span></td>
@@ -130,7 +132,7 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label">考卷</label>
                         <div class="col-sm-8">
-                            <select class="form-control" id="addquestion_id">
+                            <select class="form-control" id="addpaper_id">
                                 <option th:each="item,itemStats : ${data['papers']}"
                                         th:value="${item.id}" th:text="${item.exam_name}">
                                 </option>
@@ -166,10 +168,12 @@
     var totalPageSize = /*[[${data['totalPageSize']}]]*/;
     var examinationAnswers = /*[[${data['contests']}]]*/;
     var contextPath = /*[[${#httpServletRequest.getContextPath()}]]*/;
+    var users = /*[[${data['users']}]]*/;
+    var papers = /*[[${data['papers']}]]*/;
 
     $(function(){
         app.init(contextPath);
-        manageExamAnswerBoardPage.init(pageNum, pageSize, totalPageNum, totalPageSize, examinationAnswers);
+        manageExamAnswerBoardPage.init(pageNum, pageSize, totalPageNum, totalPageSize, examinationAnswers,papers,users);
     });
     /*]]>*/
 </script>

@@ -8,13 +8,17 @@ var manageExamAnswerBoardPage = {
         totalPageNum: 0,
         totalPageSize: 0,
         examinationAnswers: [],
+        users: [],
+        papers: [],
     },
-    init: function (pageNum, pageSize, totalPageNum, totalPageSize, examinationAnswers) {
+    init: function (pageNum, pageSize, totalPageNum, totalPageSize, examinationAnswers,users,papers) {
         manageExamAnswerBoardPage.data.pageNum = pageNum;
         manageExamAnswerBoardPage.data.pageSize = pageSize;
         manageExamAnswerBoardPage.data.totalPageNum = totalPageNum;
         manageExamAnswerBoardPage.data.totalPageSize = totalPageSize;
         manageExamAnswerBoardPage.data.examinationAnswers = examinationAnswers;
+        manageExamAnswerBoardPage.data.users = users;
+        manageExamAnswerBoardPage.data.papers = papers;
         //分页初始化
         manageExamAnswerBoardPage.subPageMenuInit();
 
@@ -31,12 +35,12 @@ var manageExamAnswerBoardPage = {
         //
         //新增考试，取消考试增加
         $('#cancelAddAnswerBtn').click(function(){
-            $("#addContestModal").modal('hide');
+            $("#addAnswerModal").modal('hide');
         });
 
         //新增考试，确定增加考试
         $('#confirmAddAnswerBtn').click(function(){
-            // manageExamAnswerBoardPage.addContestAction();
+            manageExamAnswerBoardPage.addAnswerAction();
         });
         //新增考试，确定增加考试
         $('#cancelAddAnswerBtn').click(function(){
@@ -66,19 +70,19 @@ var manageExamAnswerBoardPage = {
         });
     },
     firstPage: function () {
-        window.location.href = app.URL.manageResultContestListUrl() + '?page=1';
+        window.location.href = app.URL.manageAnswerListUrl() + '?page=1';
     },
     prevPage: function () {
-        window.location.href = app.URL.manageResultContestListUrl() + '?page=' + (pageNum-1);
+        window.location.href = app.URL.manageAnswerListUrl() + '?page=' + (pageNum-1);
     },
     targetPage: function (page) {
-        window.location.href = app.URL.manageResultContestListUrl() + '?page=' + page;
+        window.location.href = app.URL.manageAnswerListUrl() + '?page=' + page;
     },
     nextPage: function () {
-        window.location.href = app.URL.manageResultContestListUrl() + '?page=' + (pageNum+1);
+        window.location.href = app.URL.manageAnswerListUrl() + '?page=' + (pageNum+1);
     },
     lastPage: function () {
-        window.location.href = app.URL.manageResultContestListUrl() + '?page=' + manageExamAnswerBoardPage.data.totalPageNum;
+        window.location.href = app.URL.manageAnswerListUrl() + '?page=' + manageExamAnswerBoardPage.data.totalPageNum;
     },
     subPageMenuInit: function(){
         var subPageStr = '<ul class="pagination">';
@@ -114,8 +118,48 @@ var manageExamAnswerBoardPage = {
 
     initAddAnswerData: function () {
 
-        $('#addquestion_id').val("");
+        $('#addpaper_id').val("");
         $('#adduser_id').val("");
+    },
+
+
+    checkAddAnswerData: function (user_id,question_id) {
+
+        return true;
+    },
+    addAnswerAction: function () {
+        var user_id = $('#adduser_id').val();
+        var paper_id = $('#addpaper_id').val();
+
+        console.log(user_id,paper_id)
+        if (manageExamAnswerBoardPage.checkAddAnswerData(user_id,paper_id)) {
+            $.ajax({
+                url : app.URL.addAnswerUrl(),
+                type : "POST",
+                dataType: "json",
+                contentType : "application/json;charset=UTF-8",
+                <!-- 向后端传输的数据 -->
+                data : JSON.stringify({
+                    user_id:user_id,
+                    paper_id:paper_id,
+                }),
+                success:function(result) {
+                    if (result && result['success']) {
+                        // 验证通过 刷新页面
+                        window.location.reload();
+                    } else {
+                        $('#loginModalErrorMessage').html('<i class="close icon"></i><div class="header">错误提示</div>\n' +
+                            '                <p>'+result.message+'</p>');
+                        $('#loginModalErrorMessage').removeClass('hidden');
+                    }
+                },
+                error:function(result){
+                    $('#loginModalErrorMessage').html('<i class="close icon"></i><div class="header">错误提示</div>\n' +
+                        '                <p>'+result.message+'</p>');
+                    $('#loginModalErrorMessage').removeClass('hidden');
+                }
+            });
+        }
     },
     //编辑考试模态框触发
     // updateContestModalAction: function (index) {

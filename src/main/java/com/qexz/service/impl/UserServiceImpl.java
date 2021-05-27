@@ -112,4 +112,9 @@ public class UserServiceImpl implements UserService {
     public boolean rejectedUser(int id) {
         return userMapper.updateApproveStatus(id, 2) > 0;
     }
+
+    @Override
+    public List<User> getUsers() {
+        return userMapper.getUsers();
+    }
 }

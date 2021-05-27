@@ -36,4 +36,6 @@ public interface UserService {
     List<User> getUsersByIds(Set<Integer> ids);
 
     User getUserById(int id);
+
+    List<User> getUsers();
 }

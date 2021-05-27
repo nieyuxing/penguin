@@ -1,5 +1,7 @@
 package com.qexz.model;
 
+import com.qexz.service.UserService;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -19,8 +21,11 @@ public class ExaminationAnswer implements Serializable {
     private Date update_time;// '更新时间',
     private int score;// '得分',
     private int state;//'答卷状态',
+    private int version;//'答卷状态',
 
     private ExaminationPaper paper;
+
+    private User user ;
 
     public int getId() {
         return id;
@@ -94,11 +99,27 @@ public class ExaminationAnswer implements Serializable {
         this.end_time = end_time;
     }
 
+    public int getVersion() {
+        return version;
+    }
+
+    public void setVersion(int version) {
+        this.version = version;
+    }
+
     public ExaminationPaper getPaper() {
         return paper;
     }
 
     public void setPaper(ExaminationPaper paper) {
         this.paper = paper;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
