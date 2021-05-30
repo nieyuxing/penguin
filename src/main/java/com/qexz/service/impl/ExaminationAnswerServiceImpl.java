@@ -32,6 +32,10 @@ public class ExaminationAnswerServiceImpl implements ExaminationAnswerService {
     public boolean updateExaminationAnswer(ExaminationAnswer answer) {
         return examinationAnswerMapper.updateExaminationAnswerById(answer)>0;
     }
+    @Override
+    public int updateState(int id,int state) {
+        return examinationAnswerMapper.updateState( id, state);
+    }
 
     @Override
     public boolean deleteExaminationAnswer(int id) {

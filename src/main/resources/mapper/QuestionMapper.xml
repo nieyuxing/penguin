@@ -103,7 +103,7 @@
         SELECT
         COUNT(1)
         FROM t_penguin_question
-        WHERE state = 1 AND position_id = #{problemsetId}
+        WHERE state = 1
         <if test="content != null and content != ''">
             AND content LIKE CONCAT(CONCAT('%', #{content}), '%')
         </if>
@@ -116,7 +116,7 @@
         SELECT
         *
         FROM t_penguin_question
-        WHERE state = 1 AND position_id = #{problemsetId}
+        WHERE state = 1
         <if test="content != null and content != ''">
             AND content LIKE CONCAT(CONCAT('%', #{content}), '%')
         </if>

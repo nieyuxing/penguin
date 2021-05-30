@@ -4,6 +4,7 @@ import com.qexz.common.QexzConst;
 import com.qexz.dto.AjaxResult;
 import com.qexz.model.*;
 import com.qexz.service.ExaminationAnswerDetailService;
+import com.qexz.service.ExaminationAnswerService;
 import com.qexz.service.GradeService;
 import com.qexz.service.QuestionService;
 import net.sf.json.JSONObject;
@@ -34,6 +35,8 @@ public class GradeController {
     private QuestionService questionService;
     @Autowired
     private ExaminationAnswerDetailService examinationAnswerDetailService;
+    @Autowired
+    private ExaminationAnswerService examinationAnswerService;
 
     //提交试卷
     @RequestMapping(value="/api/submitContest", method= RequestMethod.POST)
@@ -44,6 +47,9 @@ public class GradeController {
         int autoResult = 0;
         List<Question> questions = questionService.getQuestionsByContestId(grade.getContestId());
         //List<ExaminationAnswerDetail> examinationAnswersDetail = new ArrayList<>();
+        ExaminationAnswer examinationAnswer = examinationAnswerService.getExaminationAnswerById(grade.getAnswerId());
+        examinationAnswer.setState(1);
+        examinationAnswerService.updateState(grade.getAnswerId(),1);
         ExaminationAnswerDetail examinationAnswersDetail;
         for (int i = 0; i < questions.size(); i++) {
             Question question = questions.get(i);
@@ -69,7 +75,7 @@ public class GradeController {
         grade.setAutoResult(autoResult);
         grade.setManulResult(0);
         int gradeId = gradeService.addGrade(grade);
-        return "/home";
+        return "/";
     }
 
     //完成批改试卷
