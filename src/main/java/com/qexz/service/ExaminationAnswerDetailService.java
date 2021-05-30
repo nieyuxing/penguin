@@ -18,4 +18,6 @@ public interface ExaminationAnswerDetailService {
     List<ExaminationAnswerDetail> getExaminationAnswerDetailsByAnswerId(int answer);
 
     Map<String, Object> getExaminationAnswerDetails(int pageNum, int pageSize, int answer);
+
+    List<ExaminationAnswerDetail> getExaminationAnswerDetailByAnswerId(int answerId);
 }

@@ -19,6 +19,10 @@ public class ExaminationAnswerDetail implements Serializable {
     private Date update_time;// '更新时间',
     private int score;// '得分',
 
+    private String upJson ;
+
+    private Question question;
+
     public int getId() {
         return id;
     }
@@ -81,5 +85,21 @@ public class ExaminationAnswerDetail implements Serializable {
 
     public void setScore(int score) {
         this.score = score;
+    }
+
+    public Question getQuestion() {
+        return question;
+    }
+
+    public void setQuestion(Question question) {
+        this.question = question;
+    }
+
+    public String getUpJson() {
+        return upJson;
+    }
+
+    public void setUpJson(String upJson) {
+        this.upJson = upJson;
     }
 }

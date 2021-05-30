@@ -27,13 +27,8 @@
     <update id="updateExaminationAnswerDetailById" parameterType="com.qexz.model.ExaminationAnswerDetail">
         UPDATE t_examination_answer_detail
         SET
-            paper_id = #{ExaminationAnswerDetail.paper_id},
-            answer_id = #{ExaminationAnswerDetail.answer_id},
-            question_id = #{ExaminationAnswerDetail.question_id},
-            answer = #{ExaminationAnswerDetail.answer},
             score = #{ExaminationAnswerDetail.score},
-            version = version + 1,
-            update_time = sysdate
+            update_time = CURRENT_TIMESTAMP
         WHERE
           id = #{ExaminationAnswerDetail.id}
     </update>

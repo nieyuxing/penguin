@@ -3,6 +3,7 @@ package com.qexz.controller;
 import com.qexz.common.QexzConst;
 import com.qexz.dto.AjaxResult;
 import com.qexz.model.*;
+import com.qexz.service.ExaminationAnswerDetailService;
 import com.qexz.service.ExaminationAnswerService;
 import com.qexz.service.ExaminationPaperService;
 import com.qexz.service.QuestionService;
@@ -31,6 +32,8 @@ public class AnsweController {
 
     @Autowired
     private ExaminationPaperService examinationPaperService;
+    @Autowired
+    private ExaminationAnswerDetailService examinationAnswerDetailService;
 
 
     //添加考试
@@ -66,9 +69,14 @@ public class AnsweController {
     public AjaxResult finishExaminationAnswer(@PathVariable int id) {
         AjaxResult ajaxResult = new AjaxResult();
         ExaminationAnswer examinationAnswer = examinationAnswerService.getExaminationAnswerById(id);
+        List<ExaminationAnswerDetail> examinationAnswerDetails = examinationAnswerDetailService.getExaminationAnswerDetailsByAnswerId(id);
+        int total = 0;
+        for(ExaminationAnswerDetail examinationAnswerDetail : examinationAnswerDetails){
+            total += examinationAnswerDetail.getScore();
+        }
+        examinationAnswer.setScore(total);
         examinationAnswer.setState(3);
-        questionService.updateQuestionsStateByContestId(id, 1);
-        boolean result = examinationAnswerService.updateExaminationAnswer(examinationAnswer);
+        boolean result = examinationAnswerService.finishAnswer(examinationAnswer);
         return new AjaxResult().setData(result);
     }
 
@@ -86,7 +94,7 @@ public class AnsweController {
         }
         Map<String, Object> data = examinationPaperService.getExaminationPaperByUserId(page, QexzConst.contestPageSize,currentAccount.getId());
         model.addAttribute(QexzConst.DATA, data);
-        return "/contest/index";
+        return "contest/index";
     }
 
 
@@ -98,7 +106,7 @@ public class AnsweController {
         model.addAttribute(QexzConst.CURRENT_ACCOUNT, currentAccount);
         Map<String, Object> data = examinationPaperService.getExaminationPaperByUserId(page, QexzConst.contestPageSize,currentAccount.getId());
         model.addAttribute(QexzConst.DATA, data);
-        return "/contest/index";
+        return "contest/index";
     }
 
     /**
@@ -125,6 +133,8 @@ public class AnsweController {
         data.put("contest", contest);
         data.put("questions", questions);
         model.addAttribute(QexzConst.DATA, data);
-        return "/contest/detail";
+        return "contest/detail";
     }
+
+
 }

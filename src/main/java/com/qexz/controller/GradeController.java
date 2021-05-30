@@ -69,7 +69,7 @@ public class GradeController {
         grade.setAutoResult(autoResult);
         grade.setManulResult(0);
         int gradeId = gradeService.addGrade(grade);
-        return "/home";
+        return "home";
     }
 
     //完成批改试卷
