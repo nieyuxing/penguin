@@ -176,6 +176,20 @@ var app = {
             return app.data.contextPath+"/manage/answer/list";
         },
 
+        //部门管理
+        addDepartmentUrl: function () {
+            return app.data.contextPath+"/department/api/addDepartment";
+        },
+        deleteDepartmentUrl: function () {
+            return app.data.contextPath+"/department/api/deleteDepartment/";
+        },
+        updateDepartmentUrl: function () {
+            return app.data.contextPath+"/department/api/updateDepartment";
+        },
+        manageDepartmentListUrl: function () {
+            return app.data.contextPath+"/manage/department/list";
+        },
+
     },
     /**
      * 全局初始化:服务器时间获取,登录功能,退出登录

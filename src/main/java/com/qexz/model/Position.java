@@ -12,6 +12,9 @@ public class Position {
     private String imgUrl;
     private String position;
     private int state;
+    private int need_count;
+    private int desc;
+    private int department_id;
 
     public String getPosition() {
         return position;
@@ -75,6 +78,30 @@ public class Position {
 
     public void setState(int state) {
         this.state = state;
+    }
+
+    public int getNeed_count() {
+        return need_count;
+    }
+
+    public void setNeed_count(int need_count) {
+        this.need_count = need_count;
+    }
+
+    public int getDesc() {
+        return desc;
+    }
+
+    public void setDesc(int desc) {
+        this.desc = desc;
+    }
+
+    public int getDepartment_id() {
+        return department_id;
+    }
+
+    public void setDepartment_id(int department_id) {
+        this.department_id = department_id;
     }
 
     @Override

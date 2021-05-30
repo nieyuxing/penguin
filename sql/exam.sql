@@ -128,5 +128,19 @@ CREATE TABLE `t_examination_answer_detail` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+-- ----------------------------
+-- Table structure for t_department
+-- ----------------------------
+DROP TABLE IF EXISTS `t_department`;
+CREATE TABLE `t_department` (
+  `id` int(8) NOT NULL AUTO_INCREMENT,
+  `code` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '编码',
+  `name` varchar(128)  COLLATE utf8mb4_unicode_ci COMMENT '名称',
+  `create_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  `state` int(8) DEFAULT '1' COMMENT '状态',
+	`desc`  varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL  COMMENT '描述',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 

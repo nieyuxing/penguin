@@ -50,6 +50,9 @@ public class ManageController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private DepartmentService departmentService;
+
     /**
      * 管理员登录页
      */
@@ -431,6 +434,26 @@ public class ManageController {
             Map<String, Object> data = examinationPaperService.getPagesExaminationPapers(page, QexzConst.contestPageSize);
             model.addAttribute(QexzConst.DATA, data);
             return "/manage/manage-paperBoard";
+        }
+    }
+
+    /**
+     * 部门管理
+     */
+    @RequestMapping(value="/department/list", method= RequestMethod.GET)
+    public String departmentList(HttpServletRequest request,
+                            @RequestParam(value = "page", defaultValue = "1") int page,
+                            Model model) {
+        Account currentAccount = (Account) request.getSession().getAttribute(QexzConst.CURRENT_ACCOUNT);
+        //TODO::处理
+        //currentAccount = accountService.getAccountByUsername("admin");
+        model.addAttribute(QexzConst.CURRENT_ACCOUNT, currentAccount);
+        if (currentAccount == null || currentAccount.getLevel() < 1) {
+            return "/error/404";
+        } else {
+            Map<String, Object> data = departmentService.getDepartments(page, QexzConst.contestPageSize);
+            model.addAttribute(QexzConst.DATA, data);
+            return "/manage/manage-departmentBoard";
         }
     }
 }

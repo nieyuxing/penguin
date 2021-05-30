@@ -9,6 +9,9 @@
         <result column="state" property="state" jdbcType="INTEGER" />
         <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
         <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+        <result column="need_count" property="need_count" jdbcType="VARCHAR" />
+        <result column="desc" property="desc" jdbcType="VARCHAR" />
+        <result column="department_id" property="department_id" jdbcType="VARCHAR" />
     </resultMap>
     <sql id="Base_Column_List" >
         id,`name`,position_num,img_url,state,create_time,update_time
@@ -16,14 +19,14 @@
 
     <insert id="insertPosition" parameterType="com.qexz.model.Position" >
         insert into t_position
-        (name, position_num, img_url)
-        values (#{position.name}, #{position.positionNum}, #{position.imgUrl})
+        (name, position_num, img_url,need_count,desc,department_id)
+        values (#{position.name}, #{position.positionNum}, #{position.imgUrl}, #{position.need_count} , #{position.desc}, #{position.department_id} )
     </insert>
 
     <update id="updatePositionById" parameterType="com.qexz.model.Position">
         UPDATE t_position
         SET
-        name = #{position.name}, position_num = #{position.positionNum},
+        name = #{position.name}, position_num = #{position.positionNum},need_count = #{position.need_count},desc = #{position.desc},
         img_url = #{position.imgUrl}
         WHERE
         id = #{position.id}
