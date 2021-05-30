@@ -11,6 +11,7 @@ public class Department implements Serializable {
 
     private int id ;
     private String name ;
+    private String code ;
     private int state;
     private Date create_time;
     private Date update_time;
@@ -72,5 +73,13 @@ public class Department implements Serializable {
 
     public void setParent_id(int parent_id) {
         this.parent_id = parent_id;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 }

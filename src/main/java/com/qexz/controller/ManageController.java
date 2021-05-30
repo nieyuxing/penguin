@@ -444,10 +444,10 @@ public class ManageController {
     public String departmentList(HttpServletRequest request,
                             @RequestParam(value = "page", defaultValue = "1") int page,
                             Model model) {
-        Account currentAccount = (Account) request.getSession().getAttribute(QexzConst.CURRENT_ACCOUNT);
+        Account currentAccount = (Account) request.getSession().getAttribute(QexzConst.CURRENT_MANAGE_ACCOUNT);
         //TODO::处理
         //currentAccount = accountService.getAccountByUsername("admin");
-        model.addAttribute(QexzConst.CURRENT_ACCOUNT, currentAccount);
+        model.addAttribute(QexzConst.CURRENT_MANAGE_ACCOUNT, currentAccount);
         if (currentAccount == null || currentAccount.getLevel() < 1) {
             return "/error/404";
         } else {
