@@ -50,13 +50,13 @@ public class AccountController {
      */
     @RequestMapping(value="/profile", method= RequestMethod.GET)
     public String profile(HttpServletRequest request, Model model) {
-        User currentAccount = (User) request.getSession().getAttribute(QexzConst.CURRENT_ACCOUNT);
+        User currentAccount = (User) request.getSession().getAttribute(QexzConst.CURRENT_MANAGE_ACCOUNT);
         //TODO::拦截器过滤处理
         if (currentAccount == null) {
             //用户未登录直接返回首页面
             return "redirect:/";
         }
-        model.addAttribute(QexzConst.CURRENT_ACCOUNT, currentAccount);
+        model.addAttribute(QexzConst.CURRENT_MANAGE_ACCOUNT, currentAccount);
         return "/user/profile";
     }
 
@@ -65,13 +65,13 @@ public class AccountController {
      */
     @RequestMapping(value="/password", method= RequestMethod.GET)
     public String password(HttpServletRequest request, Model model) {
-        Account currentAccount = (Account) request.getSession().getAttribute(QexzConst.CURRENT_ACCOUNT);
+        Account currentAccount = (Account) request.getSession().getAttribute(QexzConst.CURRENT_MANAGE_ACCOUNT);
         //TODO::拦截器过滤处理
         if (currentAccount == null) {
             //用户未登录直接返回首页面
             return "redirect:/";
         }
-        model.addAttribute(QexzConst.CURRENT_ACCOUNT, currentAccount);
+        model.addAttribute(QexzConst.CURRENT_MANAGE_ACCOUNT, currentAccount);
         return "/user/password";
     }
 
@@ -80,7 +80,7 @@ public class AccountController {
      */
     @RequestMapping(value="/myExam", method= RequestMethod.GET)
     public String myExam(HttpServletRequest request, @RequestParam(value = "page", defaultValue = "1") int page, Model model) {
-        User currentAccount = (User) request.getSession().getAttribute(QexzConst.CURRENT_ACCOUNT);
+        User currentAccount = (User) request.getSession().getAttribute(QexzConst.CURRENT_MANAGE_ACCOUNT);
         //TODO::拦截器过滤处理
         if (currentAccount == null) {
             //用户未登录直接返回首页面
@@ -94,7 +94,7 @@ public class AccountController {
         Map<Integer, String> positionId2name = positions.stream().
                 collect(Collectors.toMap(Position::getId, Position::getName));
         for (Contest contest : contests) {
-            contest.setpositionName(positionId2name.
+            contest.setPositionName(positionId2name.
                     getOrDefault(contest.getpositionId(), "未知科目"));
         }
         Map<Integer, Contest> id2contest = contests.stream().
@@ -103,7 +103,7 @@ public class AccountController {
             grade.setContest(id2contest.get(grade.getContestId()));
         }
         model.addAttribute(QexzConst.DATA, data);
-        model.addAttribute(QexzConst.CURRENT_ACCOUNT, currentAccount);
+        model.addAttribute(QexzConst.CURRENT_MANAGE_ACCOUNT, currentAccount);
         return "/user/myExam";
     }
 
@@ -112,7 +112,7 @@ public class AccountController {
      */
     @RequestMapping(value="/myDiscussPost", method= RequestMethod.GET)
     public String myDiscussPost(HttpServletRequest request, @RequestParam(value = "page", defaultValue = "1") int page, Model model) {
-        Account currentAccount = (Account) request.getSession().getAttribute(QexzConst.CURRENT_ACCOUNT);
+        Account currentAccount = (Account) request.getSession().getAttribute(QexzConst.CURRENT_MANAGE_ACCOUNT);
         //TODO::拦截器过滤处理
         if (currentAccount == null) {
             //用户未登录直接返回首页面
@@ -120,7 +120,7 @@ public class AccountController {
         }
         Map<String, Object> data = postService.getPostsByAuthorId(page, QexzConst.postPageSize, currentAccount.getId());
         model.addAttribute(QexzConst.DATA, data);
-        model.addAttribute(QexzConst.CURRENT_ACCOUNT, currentAccount);
+        model.addAttribute(QexzConst.CURRENT_MANAGE_ACCOUNT, currentAccount);
         return "/user/myDiscussPost";
     }
 
@@ -141,7 +141,7 @@ public class AccountController {
                     && !newPassword.equals(confirmNewPassword)) {
                 return AjaxResult.fixedError(QexzWebError.NOT_EQUALS_CONFIRM_PASSWORD);
             }
-            Account currentAccount = (Account) request.getSession().getAttribute(QexzConst.CURRENT_ACCOUNT);
+            Account currentAccount = (Account) request.getSession().getAttribute(QexzConst.CURRENT_MANAGE_ACCOUNT);
             if (!currentAccount.getPassword().equals(md5OldPassword)) {
                 return AjaxResult.fixedError(QexzWebError.WRONG_PASSWORD);
             }
@@ -169,12 +169,12 @@ public class AccountController {
             String description = request.getParameter("description");
             String avatarImgUrl = request.getParameter("avatarImgUrl");
 
-            User currentAccount = (User) request.getSession().getAttribute(QexzConst.CURRENT_ACCOUNT);
+            User currentAccount = (User) request.getSession().getAttribute(QexzConst.CURRENT_MANAGE_ACCOUNT);
             currentAccount.setPhone(phone);
             currentAccount.setQq(qq);
             currentAccount.setEmail(email);
             currentAccount.setDescription(description);
-            currentAccount.setAvatar_img_url(avatarImgUrl);
+            currentAccount.setAvatarImgUrl(avatarImgUrl);
             boolean result = userService.updateUser(currentAccount);
             ajaxResult.setSuccess(result);
         } catch (Exception e) {
@@ -200,7 +200,7 @@ public class AccountController {
                 if(pwd.equals(current_account.getPassword())) {
                     //设置单位为秒，设置为-1永不过期
                     //request.getSession().setMaxInactiveInterval(180*60);    //3小时
-                    request.getSession().setAttribute(QexzConst.CURRENT_ACCOUNT,current_account);
+                    request.getSession().setAttribute(QexzConst.CURRENT_MANAGE_ACCOUNT,current_account);
                     ajaxResult.setData(current_account);
                 } else {
                     return AjaxResult.fixedError(QexzWebError.WRONG_PASSWORD);
@@ -222,7 +222,7 @@ public class AccountController {
      */
     @RequestMapping(value = "/logout", method= RequestMethod.GET)
     public String logout(HttpServletRequest request) {
-        request.getSession().setAttribute(QexzConst.CURRENT_ACCOUNT,null);
+        request.getSession().setAttribute(QexzConst.CURRENT_MANAGE_ACCOUNT,null);
         String url=request.getHeader("Referer");
         LOG.info("url = " + url);
         return "redirect:"+url;

@@ -45,6 +45,11 @@ public class ExaminationAnswerServiceImpl implements ExaminationAnswerService {
     }
 
     @Override
+    public ExaminationAnswer getExaminationAnswerByUserIdAndPaperId(int userId, int paperId) {
+        return examinationAnswerMapper.getExaminationAnswerByUserIdAndPaperId( userId,  paperId);
+    }
+
+    @Override
     public Map<String, Object> getExaminationAnswers(int pageNum, int pageSize) {
         Map<String, Object> data = new HashMap<>();
         int count = examinationAnswerMapper.getCount();

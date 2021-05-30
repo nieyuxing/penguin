@@ -5,6 +5,8 @@ public class QexzConst {
     // Session
     public final static String CURRENT_ACCOUNT = "current_account";
 
+    public final static String CURRENT_MANAGE_ACCOUNT = "current_manage_account";
+
     //本地服务器-文件,图片所在位置,图片上传位置
     public static final String UPLOAD_FILE_PATH = "file:D:/workspace/springboot-penguin/upload/";
     public static final String UPLOAD_FILE_IMAGE_PATH = "D:/workspace/springboot-penguin/upload/images/";

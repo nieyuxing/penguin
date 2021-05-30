@@ -2,9 +2,7 @@ package com.qexz.controller;
 
 import com.qexz.common.QexzConst;
 import com.qexz.dto.AjaxResult;
-import com.qexz.model.Account;
-import com.qexz.model.Grade;
-import com.qexz.model.Question;
+import com.qexz.model.*;
 import com.qexz.service.GradeService;
 import com.qexz.service.QuestionService;
 import net.sf.json.JSONObject;
@@ -38,11 +36,11 @@ public class GradeController {
     @ResponseBody
     public AjaxResult submitContest(HttpServletRequest request, @RequestBody Grade grade) {
         AjaxResult ajaxResult = new AjaxResult();
-        Account currentAccount = (Account) request.getSession().getAttribute(QexzConst.CURRENT_ACCOUNT);
+        User currentAccount = (User) request.getSession().getAttribute(QexzConst.CURRENT_ACCOUNT);
         List<String> answerStrs = Arrays.asList(grade.getAnswerJson().split(QexzConst.SPLIT_CHAR));
         int autoResult = 0;
         List<Question> questions = questionService.getQuestionsByContestId(grade.getContestId());
-
+        // List<ExaminationAnswer> examinationAnswers =
         for (int i = 0; i < questions.size(); i++) {
             Question question = questions.get(i);
             if (question.getQuestionType() <= 1 && question.getAnswer()

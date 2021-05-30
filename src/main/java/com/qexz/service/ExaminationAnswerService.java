@@ -14,5 +14,7 @@ public interface ExaminationAnswerService {
 
     ExaminationAnswer getExaminationAnswerById(int id);
 
+    ExaminationAnswer getExaminationAnswerByUserIdAndPaperId(int userId,int paperId);
+
     Map<String, Object> getExaminationAnswers(int pageNum, int pageSize);
 }

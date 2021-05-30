@@ -3,13 +3,15 @@
  */
 var contestDetailPage = {
     data:{
-        contest: null,
-        questions: [],
         currentQuestionIndex: 0,
+        contest: null,
+        answer: null,
+        questions: [],
     },
-    init: function (contest, questions) {
+    init: function (contest, questions,answer) {
         contestDetailPage.data.contest = contest;
         contestDetailPage.data.questions = questions;
+        contestDetailPage.data.answer = answer;
 
         //console.log(contestDetailPage.data.questions);
 
@@ -282,6 +284,7 @@ var contestDetailPage = {
             data : JSON.stringify({
                 contestId: contestDetailPage.data.contest.id,
                 answerJson: answerJsonStr,
+                answerId: contestDetailPage.data.answer.id,
             }),
             success:function(result) {
                 if (result && result['success']) {

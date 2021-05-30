@@ -22,4 +22,6 @@ public interface ExaminationPaperService {
     boolean disabledExaminationPaper(int id);
 
     List<ExaminationPaper> getExaminationPapers();
+
+    Map<String, Object> getExaminationPaperByUserId(int pageNum, int pageSize,int userId);
 }

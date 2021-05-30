@@ -21,7 +21,7 @@ public class User implements Serializable {
     private String phone; //'手机号',
     private String email; //'邮箱地址',
     private String description; //'个人描述',
-    private String avatar_img_url; //'头像',
+    private String avatarImgUrl; //'头像',
     private int approvestatus;//'审核状态,0-未审核,1-审核通过,2-不通过',
     private int state; //'当前账号状态,0-正常,1-禁用',
     private Date create_time;//'创建时间',
@@ -154,12 +154,12 @@ public class User implements Serializable {
         this.description = description;
     }
 
-    public String getAvatar_img_url() {
-        return avatar_img_url;
+    public String getAvatarImgUrl() {
+        return avatarImgUrl;
     }
 
-    public void setAvatar_img_url(String avatar_img_url) {
-        this.avatar_img_url = avatar_img_url;
+    public void setAvatarImgUrl(String avatarImgUrl) {
+        this.avatarImgUrl = avatarImgUrl;
     }
 
     public int getApprovestatus() {

@@ -70,7 +70,7 @@ public class ContestServiceImpl implements ContestService{
         Map<Integer, String> positionId2name = positions.stream().
                 collect(Collectors.toMap(Position::getId, Position::getName));
         for (Contest contest : contests) {
-            contest.setpositionName(positionId2name.
+            contest.setPositionName(positionId2name.
                     getOrDefault(contest.getpositionId(), "未知科目"));
         }
         data.put("pageNum", pageNum);

@@ -33,7 +33,7 @@ var app = {
             return app.data.contextPath+"/paper/index";
         },
         contestDetailUrl: function () {
-            return app.data.contextPath+"/paper/";
+            return app.data.contextPath+"/answer/";
         },
         updateAccountUrl: function () {
             return app.data.contextPath+"/account/api/updateAccount";

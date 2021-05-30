@@ -23,7 +23,7 @@
     <div class="ui large breadcrumb">
         <a class="section" href="/contest/index"><i class="home icon"></i>在线考试列表</a>
         <i class="right chevron icon divider"></i>
-        <div class="section" th:text="${data['contest'].title}"></div>
+        <div class="section" th:text="${data['contest'].exam_name}"></div>
     </div>
 </div>
 
@@ -55,30 +55,23 @@
             <div class="row">
                 <table class="ui table">
                     <tbody>
-                    <tr>
-                        <td><span style="font-weight: bolder;">考生学号:</span></td>
-                        <td><span th:text="${current_account.username}"></span></td>
-                    </tr>
+<!--                    <tr>-->
+<!--                        <td><span style="font-weight: bolder;">考生学号:</span></td>-->
+<!--                        <td><span th:text="${current_account.name}"></span></td>-->
+<!--                    </tr>-->
                     <tr>
                         <td><span style="font-weight: bolder;">当前考生:</span></td>
                         <td><span th:text="${current_account.name}"></span></td>
                     </tr>
-                    <tr>
-                        <td><span style="font-weight: bolder;">剩余时间:</span></td>
-                        <td><span id="contestTimeCountdown"></span></td>
-                    </tr>
-                    <tr>
-                        <td><span style="font-weight: bolder;">开始时间:</span></td>
-                        <td><span th:text="${#dates.format(data['contest'].startTime, 'yyyy-MM-dd HH:mm:ss')}">2018-02-21 08:00:00</span></td>
-                    </tr>
-                    <tr>
-                        <td><span style="font-weight: bolder;">结束时间:</span></td>
-                        <td><span th:text="${#dates.format(data['contest'].endTime, 'yyyy-MM-dd HH:mm:ss')}">2018-03-16 11:00:00</span></td>
-                    </tr>
-                    <tr>
-                        <td><span style="font-weight: bolder;">总分:</span></td>
-                        <td><span th:text="${data['contest'].totalScore}"></span></td>
-                    </tr>
+<!--                    <tr>-->
+<!--                        <td><span style="font-weight: bolder;">剩余时间:</span></td>-->
+<!--                        <td><span id="contestTimeCountdown"></span></td>-->
+<!--                    </tr>-->
+
+<!--                    <tr>-->
+<!--                        <td><span style="font-weight: bolder;">总分:</span></td>-->
+<!--                        <td><span th:text="${data['contest'].totalScore}"></span></td>-->
+<!--                    </tr>-->
                     </tbody>
                 </table>
             </div>
@@ -182,10 +175,11 @@
     var contest = /*[[${data['contest']}]]*/;
     var questions = /*[[${data['questions']}]]*/;
     var contextPath = /*[[${#httpServletRequest.getContextPath()}]]*/;
+    var answer= /*[[${data['answer']}]]*/;
 
     $(function(){
         app.init(contextPath);
-        contestDetailPage.init(contest, questions);
+        contestDetailPage.init(contest, questions,answer);
     });
     /*]]>*/
 </script>

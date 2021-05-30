@@ -18,7 +18,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public int addUser(User user) {
-        user.setAvatar_img_url(QexzConst.DEFAULT_AVATAR_IMG_URL);
+        user.setAvatarImgUrl(QexzConst.DEFAULT_AVATAR_IMG_URL);
         return userMapper.insertUser(user);
     }
 

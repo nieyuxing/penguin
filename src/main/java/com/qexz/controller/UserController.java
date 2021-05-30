@@ -71,7 +71,7 @@ public class UserController {
         User existAccount = userService.getUserByUsername(user.getName());
         if(existAccount == null) {//检测该用户是否已经注册
             user.setPassword(MD5.md5(QexzConst.MD5_SALT+user.getPassword()));
-            user.setAvatar_img_url(QexzConst.DEFAULT_AVATAR_IMG_URL);
+            user.setAvatarImgUrl(QexzConst.DEFAULT_AVATAR_IMG_URL);
             user.setDescription("");
             int accountId = userService.addUser(user);
             return new AjaxResult().setData(accountId);
@@ -113,7 +113,7 @@ public class UserController {
         Map<Integer, String> positionId2name = positions.stream().
                 collect(Collectors.toMap(Position::getId, Position::getName));
         for (Contest contest : contests) {
-            contest.setpositionName(positionId2name.
+            contest.setPositionName(positionId2name.
                     getOrDefault(contest.getpositionId(), "未知科目"));
         }
         Map<Integer, Contest> id2contest = contests.stream().

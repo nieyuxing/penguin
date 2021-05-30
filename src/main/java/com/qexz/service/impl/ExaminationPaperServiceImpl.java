@@ -5,10 +5,7 @@ import com.qexz.dao.ContestMapper;
 import com.qexz.dao.ExaminationPaperDetailMapper;
 import com.qexz.dao.ExaminationPaperMapper;
 import com.qexz.dao.QuestionMapper;
-import com.qexz.model.Contest;
-import com.qexz.model.ExaminationPaper;
-import com.qexz.model.ExaminationPaperDetail;
-import com.qexz.model.Question;
+import com.qexz.model.*;
 import com.qexz.service.ExaminationPaperService;
 import com.qexz.service.QuestionService;
 import org.apache.commons.logging.Log;
@@ -97,5 +94,36 @@ public class ExaminationPaperServiceImpl implements ExaminationPaperService {
     @Override
     public List<ExaminationPaper> getExaminationPapers() {
         return examinationPaperMapper.getExaminationPapers();
+    }
+
+    @Override
+    public Map<String, Object> getExaminationPaperByUserId(int pageNum, int pageSize,int userId) {
+        Map<String, Object> data = new HashMap<>();
+        int count = examinationPaperMapper.getCountByUserId(userId);
+        if (count == 0) {
+            data.put("pageNum", 0);
+            data.put("pageSize", 0);
+            data.put("totalPageNum", 1);
+            data.put("totalPageSize", 0);
+            data.put("examinationAnswers", new ArrayList<>());
+            return data;
+        }
+        int totalPageNum = count % pageSize == 0 ? count / pageSize : count / pageSize + 1;
+        if (pageNum > totalPageNum) {
+            data.put("pageNum", 0);
+            data.put("pageSize", 0);
+            data.put("totalPageNum", totalPageNum);
+            data.put("totalPageSize", 0);
+            data.put("examinationAnswers", new ArrayList<>());
+            return data;
+        }
+        PageHelper.startPage(pageNum, pageSize);
+        List<ExaminationPaper> examinationAnswers = examinationPaperMapper.getExaminationPaperByUserId(userId);
+        data.put("pageNum", pageNum);
+        data.put("pageSize", pageSize);
+        data.put("totalPageNum", totalPageNum);
+        data.put("totalPageSize", count);
+        data.put("examinationAnswers", examinationAnswers);
+        return data;
     }
 }

@@ -30,4 +30,5 @@ public interface ExaminationAnswerMapper {
 
     ExaminationAnswer getExaminationAnswerById(@Param("id") int id);
 
+    ExaminationAnswer getExaminationAnswerByUserIdAndPaperId(int userId,int PaperId);
 }

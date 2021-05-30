@@ -53,6 +53,16 @@
         FROM t_examination_paper
     </select>
 
+    <select id="getCountByUserId" parameterType="int" resultType="int">
+        SELECT
+        count(1)
+        FROM t_examination_answer answer
+        LEFT JOIN
+        t_examination_paper  paper
+        on answer.paper_id = paper.id
+        where answer.user_id = #{id}
+    </select>
+
     <select id="getExaminationPapers" resultMap="BaseResultMap" >
         SELECT
         *
@@ -90,6 +100,16 @@
         *
         from t_examination_paper
         where id = #{id}
+    </select>
+
+    <select id="getExaminationPaperByUserId" resultMap="BaseResultMap" parameterType="int" >
+        SELECT
+        paper.*
+        FROM t_examination_answer answer
+        LEFT JOIN
+        t_examination_paper  paper
+        on answer.paper_id = paper.id
+        where answer.user_id = #{userId}
     </select>
 
 

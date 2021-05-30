@@ -88,11 +88,11 @@ public class Contest {
         this.state = state;
     }
 
-    public String getpositionName() {
+    public String getPositionName() {
         return positionName;
     }
 
-    public void setpositionName(String positionName) {
+    public void setPositionName(String positionName) {
         this.positionName = positionName;
     }
 

@@ -92,9 +92,11 @@
     <select id="getQuestionByContestId" resultMap="BaseResultMap" >
         SELECT
         *
-        FROM t_penguin_question
-        WHERE
-        contest_id = #{contestId}
+        FROM t_examination_paper_detail p
+        left join
+        t_penguin_question q on p.question_id = q.id
+        where
+        p.paper_id = #{contestId}
     </select>
 
     <select id="getCountByProblemsetIdAndContentAndDiffculty" resultType="int">

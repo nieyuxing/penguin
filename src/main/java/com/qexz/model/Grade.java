@@ -16,6 +16,16 @@ public class Grade {
     private Date finishTime;
     private int state;
 
+    private int answerId;
+
+    public int getAnswerId() {
+        return answerId;
+    }
+
+    public void setAnswerId(int answerId) {
+        this.answerId = answerId;
+    }
+
     private Account student;
     private Contest contest;
     private List<Question> questions;

@@ -21,6 +21,8 @@ public interface ExaminationPaperMapper {
 
     int getCount();
 
+    int getCountByUserId(int userId);
+
     List<ExaminationPaper> getExaminationPapers();
 
     int deleteExaminationPaper(@Param("id") int id);
@@ -31,5 +33,5 @@ public interface ExaminationPaperMapper {
 
     ExaminationPaper getExaminationPaperById(@Param("id") int id);
 
-
+    List<ExaminationPaper> getExaminationPaperByUserId(@Param("userId") int userId);
 }

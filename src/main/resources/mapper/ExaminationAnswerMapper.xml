@@ -88,5 +88,12 @@
         where id = #{id}
     </select>
 
+    <select id="getExaminationAnswerByUserIdAndPaperId" resultMap="BaseResultMap"  >
+        select
+        *
+        from t_examination_answer
+        where user_id = #{userId} and paper_id = #{paperId}
+    </select>
+
 
 </mapper>

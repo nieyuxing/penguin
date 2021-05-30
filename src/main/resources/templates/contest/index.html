@@ -19,7 +19,7 @@
         <!--<img class="ui" th:src="@{/img/logo_flat.png}" width="104" height="24" alt="" />-->
         <img class="ui" th:src="@{/img/logo.png}" width="156" height="32" alt="" />
     </a>
-    <a th:href="@{/contest/index}" href="#" class="active item">
+    <a th:href="@{/answer/index}" href="#" class="active item">
         <i class="desktop icon"></i>在线考试
     </a>
     <a th:href="@{/problemset/list}" class="item">
@@ -71,20 +71,17 @@
             <th class="second wide">操作</th>
         </tr></thead>
         <tbody>
-        <tr th:each="item,itemStats : ${data['contests']}">
+        <tr th:each="item,itemStats : ${data['examinationAnswers']}">
             <td>
                 <span th:if="${item.state == 0}" class="ui yellow ribbon label">未开始</span>
                 <span th:if="${item.state == 1}" class="ui green ribbon label">进行中</span>
                 <span th:if="${item.state == 2 or item.state == 3}" class="ui red ribbon label">已结束</span>
                 <span class="ui header" th:text="${item.title}">
-                    慧为智能2017年数据库原理与应用考试试题
+                    广东财经大学2017年数据库原理与应用考试试题
                 </span>
             </td>
-            <td><span th:text="${#dates.format(item.startTime, 'yyyy-MM-dd HH:mm:ss')}">2018-1-11 09:00:00</span></td>
-            <td><span th:text="${#dates.format(item.endTime, 'yyyy-MM-dd HH:mm:ss')}">2018-1-11 11:00:00</span></td>
-            <td><span th:text="${item.positionName}">
-                数据库原理与应用
-            </span></td>
+            <td><span th:text="${#dates.format(item.create_time, 'yyyy-MM-dd HH:mm:ss')}">2018-1-11 09:00:00</span></td>
+            <td><span th:text="${#dates.format(item.update_time, 'yyyy-MM-dd HH:mm:ss')}">2018-1-11 11:00:00</span></td>
             <td>
                 <a th:if="${item.state == 0}" class="small disabled positive ui button">进入考试</a>
                 <a th:if="${item.state == 1 and current_account == null}" th:onclick="'app.showLogin()'" class="small positive ui button">进入考试</a>
