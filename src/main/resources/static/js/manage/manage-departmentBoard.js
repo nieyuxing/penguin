@@ -108,6 +108,7 @@ var manageDepartmentBoardPage = {
         var departmentState = $('#departmentState').val();
         var departmentDesc = $('#departmentDesc').val();
 
+        console.log(app.URL.addDepartmentUrl());
 
         if (manageDepartmentBoardPage.checkAddDepartmentData(departmentName,departmentCode,departmentState,departmentDesc)) {
             $.ajax({
@@ -152,7 +153,10 @@ var manageDepartmentBoardPage = {
         //初始化数据
         var departments = manageDepartmentBoardPage.data.departments;
         $('#updateDepartmentIndex').val(index);
-        $('#updateDepartmentName').val(departments[index].name);
+        $('#updatename').val(departments[index].name);
+        $('#updatecode').val(departments[index].code);
+        $('#updatestate').val(departments[index].state);
+        $('#updatedesc').val(departments[index].desc);
     },
     checkUpdateDepartmentData: function (departmentName) {
         return true;
@@ -160,7 +164,10 @@ var manageDepartmentBoardPage = {
     updateDepartmentAction: function () {
         var departments = manageDepartmentBoardPage.data.departments;
         var index = $('#updateDepartmentIndex').val();
-        var subjejctName = $('#updateDepartmentName').val();
+        var name = $('#updatename').val();
+        var state = $('#updatestate').val();
+        var code = $('#updatecode').val();
+        var desc = $('#updatedesc').val();
 
         if (manageDepartmentBoardPage.checkUpdateDepartmentData(departmentName)) {
             $.ajax({
@@ -171,10 +178,10 @@ var manageDepartmentBoardPage = {
                 <!-- 向后端传输的数据 -->
                 data : JSON.stringify({
                     id: departments[index].id,
-                    name: subjejctName,
-                    questionNum: departments[index].questionNum,
-                    imgUrl: departments[index].imgUrl,
-
+                    name:name,
+                    state:state,
+                    code:code,
+                    desc:desc,
                 }),
                 success:function(result) {
                     if (result && result['success']) {
