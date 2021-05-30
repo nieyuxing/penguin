@@ -267,7 +267,13 @@ var contestDetailPage = {
 
         var answerJsonStr = '';
         for (var i = 0; i < contestDetailPage.data.questions.length; i++) {
-            answerJsonStr += contestDetailPage.data.questions[i].answer;
+            if(contestDetailPage.data.questions[i].answer == null || contestDetailPage.data.questions[i].answer ==''){
+                answerJsonStr +='-'
+            }else{
+                answerJsonStr += contestDetailPage.data.questions[i].answer;
+
+            }
+
             if (i < contestDetailPage.data.questions.length-1) {
                 answerJsonStr += '_~_';
             }

@@ -57,7 +57,7 @@
                                 </div>
                             </div>
                         </div>
-                        <img th:src="@{'/upload/images/'+${current_account.avatar_img_url}}" />
+                        <img th:src="@{'/upload/images/'+${current_account.avatarImgUrl}}" />
                     </div>
                     <div class="content">
                         <div class="header" th:text="${current_account.name}"></div>
@@ -133,13 +133,13 @@
                             <div class="column">
                                 <div class="ui fluid card">
                                     <div class="image">
-                                        <img id="avatarImgPreview" class="ui tiny image" th:src="@{'/upload/images/'+${current_account.avatar_img_url}}" />
+                                        <img id="avatarImgPreview" class="ui tiny image" th:src="@{'/upload/images/'+${current_account.avatarImgUrl}}" />
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <input type="file" id="myfile" name="myfile" value="" onchange="profilePage.uploadAvatar()"/>
-                        <input type="hidden" id="myavatar_img_url" name="myavatar_img_url" value="" />
+                        <input type="hidden" id="myavatarImgUrl" name="myavatarImgUrl" value="" />
                     </div>
                     <div class="field">
                         <label><i class="smile icon"></i>自我描述</label>

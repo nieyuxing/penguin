@@ -30,5 +30,5 @@ public interface ExaminationAnswerMapper {
 
     ExaminationAnswer getExaminationAnswerById(@Param("id") int id);
 
-    ExaminationAnswer getExaminationAnswerByUserIdAndPaperId(int userId,int PaperId);
+    ExaminationAnswer getExaminationAnswerByUserIdAndPaperId(@Param("userId")int userId,@Param("paperId")int paperId);
 }

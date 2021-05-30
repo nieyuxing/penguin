@@ -23,7 +23,7 @@
         <result column="phone" property="phone" jdbcType="VARCHAR" />
         <result column="email" property="email" jdbcType="VARCHAR" />
         <result column="description" property="description" jdbcType="VARCHAR" />
-        <result column="avatar_img_url" property="avatar_img_url" jdbcType="VARCHAR" />
+        <result column="avatar_img_url" property="avatarImgUrl" jdbcType="VARCHAR" />
         <result column="state" property="state" jdbcType="INTEGER" />
         <result column="approvestatus" property="approvestatus" jdbcType="INTEGER" />
         <result column="create_time" property="create_time" jdbcType="TIMESTAMP" />

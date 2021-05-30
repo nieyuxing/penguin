@@ -19,9 +19,9 @@
 
     <insert id="insertExaminationAnswerDetail" parameterType="com.qexz.model.ExaminationAnswerDetail" >
         insert into t_examination_answer_detail
-          (id, paper_id, answer_id, question_id, answer, score, version, create_time, update_time)
+          (id, paper_id, answer_id, question_id, answer, score,  create_time, update_time)
         values
-          (#{ExaminationAnswerDetail.id}, #{ExaminationAnswerDetail.paper_id}, #{ExaminationAnswerDetail.answer_id}, #{ExaminationAnswerDetail.question_id}, #{ExaminationAnswerDetail.answer}, #{ExaminationAnswerDetail.score}, #{ExaminationAnswerDetail.version}, #{ExaminationAnswerDetail.create_time}, #{ExaminationAnswerDetail.update_time})
+          (#{ExaminationAnswerDetail.id}, #{ExaminationAnswerDetail.paper_id}, #{ExaminationAnswerDetail.answer_id}, #{ExaminationAnswerDetail.question_id}, #{ExaminationAnswerDetail.answer}, #{ExaminationAnswerDetail.score},  #{ExaminationAnswerDetail.create_time}, #{ExaminationAnswerDetail.update_time})
     </insert>
     
     <update id="updateExaminationAnswerDetailById" parameterType="com.qexz.model.ExaminationAnswerDetail">

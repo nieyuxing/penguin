@@ -37,7 +37,7 @@
         <i class="sign in icon"></i>注册
     </a>
     <div class="ui simple dropdown right item" th:if="${current_account != null}">
-<!--        <img class="ui avatar image" th:src="@{'/upload/images/'+${current_account.avatar_img_url}}" />-->
+<!--        <img class="ui avatar image" th:src="@{'/upload/images/'+${current_account.avatarImgUrl}}" />-->
         <span th:text="${current_account.name}"></span> <i class="dropdown icon"></i>
         <div class="menu">
             <a class="item" th:href="@{/account/profile}">

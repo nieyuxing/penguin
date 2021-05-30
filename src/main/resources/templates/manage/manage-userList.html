@@ -81,7 +81,7 @@
     </thead>
     <tbody>
     <tr th:each="item,itemStats : ${data['users']}">
-    <td><img th:src="@{'/upload/images/'+${item.avatar_img_url}}" style="width: 32px;height: 32px;" class="img-circle" /></td>
+    <td><img th:src="@{'/upload/images/'+${item.avatarImgUrl}}" style="width: 32px;height: 32px;" class="img-circle" /></td>
     <td th:text="${item.name}"></td>
     <td th:if="${item.sex == 0}"><span class="label label-info">男</span></td>
     <td th:if="${item.sex == 1}"><span class="label label-success">女</span></td>

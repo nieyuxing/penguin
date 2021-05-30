@@ -46,7 +46,7 @@ public class ExaminationAnswerServiceImpl implements ExaminationAnswerService {
 
     @Override
     public ExaminationAnswer getExaminationAnswerByUserIdAndPaperId(int userId, int paperId) {
-        return examinationAnswerMapper.getExaminationAnswerByUserIdAndPaperId( userId,  paperId);
+        return examinationAnswerMapper.getExaminationAnswerByUserIdAndPaperId(userId,paperId);
     }
 
     @Override
