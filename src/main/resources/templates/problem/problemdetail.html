@@ -24,7 +24,7 @@
         <i class="desktop icon"></i>在线考试
     </a>
     <a th:href="@{/problemset/list}" class="active item">
-        <i class="list layout icon"></i>题库中心
+        <i class="list layout icon"></i>职位中心
     </a>
     <a th:href="@{/discuss}" class="item">
         <i class="talk icon"></i>讨论区
@@ -49,7 +49,7 @@
     <div class="ui large breadcrumb">
         <a class="section" th:href="@{/}"><i class="home icon"></i>首页</a>
         <i class="right chevron icon divider"></i>
-        <a class="section" th:href="@{/problemset/list}">题库中心</a>
+        <a class="section" th:href="@{/problemset/list}">职位中心</a>
         <i class="right chevron icon divider"></i>
         <a class="section" th:href="@{'/problemset/'+${data[position].id}+'/problems'}" th:text="${data['position'].name}">数据结构与算法</a>
         <i class="right chevron icon divider"></i>
