@@ -95,7 +95,7 @@ public class DefaultController {
      */
     @RequestMapping(value="/problemset/list", method= RequestMethod.GET)
     public String problemSet(HttpServletRequest request, @RequestParam(value = "page", defaultValue = "1") int page, Model model) {
-        Account currentAccount = (Account) request.getSession().getAttribute(QexzConst.CURRENT_ACCOUNT);
+        User currentAccount = (User) request.getSession().getAttribute(QexzConst.CURRENT_ACCOUNT);
         Map<String, Object> data = positionService.getPositions(page, QexzConst.positionPageSize);
 
         model.addAttribute(QexzConst.CURRENT_ACCOUNT, currentAccount);
@@ -113,7 +113,7 @@ public class DefaultController {
                               @RequestParam(value = "content", defaultValue = "") String content,
                               @RequestParam(value = "difficulty", defaultValue = "0") int difficulty,
                               Model model) {
-        Account currentAccount = (Account) request.getSession().getAttribute(QexzConst.CURRENT_ACCOUNT);
+        User currentAccount = (User) request.getSession().getAttribute(QexzConst.CURRENT_ACCOUNT);
         Map<String, Object> data = questionService.getQuestionsByProblemsetIdAndContentAndDiffculty(page, QexzConst.questionPageSize,
                 problemsetId, content, difficulty);
         Position position = positionService.getPositionById(problemsetId);
