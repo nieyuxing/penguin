@@ -61,10 +61,10 @@ public class UserController {
     @ResponseBody
     public AjaxResult addAccount(HttpServletRequest request, HttpServletResponse response) {
         User user = new User();
-        user.setName(request.getParameter("user"));
+        user.setName(request.getParameter("name"));
         user.setPassword(request.getParameter("password"));
         user.setPhone(request.getParameter("phone"));
-        user.setVchat(request.getParameter("vchart"));
+        user.setVchat(request.getParameter("vchat"));
         user.setEmail(request.getParameter("email"));
         user.setQq(request.getParameter("qq"));
         AjaxResult ajaxResult = new AjaxResult();

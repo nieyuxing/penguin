@@ -36,7 +36,7 @@
         insert into t_user
                 (id, name, sex, ismarry, nation, degree, college, cert_type,  password, qq, vchat, phone, email, description, avatar_img_url, approvestatus, state, create_time, update_time, addr, resume_file, attribute1, attribute2, attribute3, attribute4, attribute5)
         values
-               (#{User.id}, #{User.name}, #{User.sex}, #{User.ismarry}, #{User.nation}, #{User.degree}, #{User.college}, #{User.cert_type},  #{User.password}, #{User.qq}, #{User.vchat}, #{User.phone}, #{User.email}, #{User.description}, #{User.avatar_img_url}, #{User.approvestatus}, #{User.state}, #{User.create_time}, #{User.update_time}, #{User.addr}, #{User.resume_file}, #{User.attribute1}, #{User.attribute2}, #{User.attribute3}, #{User.attribute4}, #{User.attribute5})
+               (#{User.id}, #{User.name}, #{User.sex}, #{User.ismarry}, #{User.nation}, #{User.degree}, #{User.college}, #{User.cert_type},  #{User.password}, #{User.qq}, #{User.vchat}, #{User.phone}, #{User.email}, #{User.description}, #{User.avatarImgUrl}, #{User.approvestatus}, #{User.state}, #{User.create_time}, #{User.update_time}, #{User.addr}, #{User.resume_file}, #{User.attribute1}, #{User.attribute2}, #{User.attribute3}, #{User.attribute4}, #{User.attribute5})
 
     </insert>
     
