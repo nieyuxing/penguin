@@ -95,5 +95,12 @@
         where user_id = #{userId} and paper_id = #{paperId}
     </select>
 
+    <update id="finishAnswer" >
+        update t_examination_answer set
+        state =  #{state},
+        score = #{score}
+        where id = #{id}
+    </update>
+
 
 </mapper>

@@ -4,6 +4,7 @@ import com.qexz.service.UserService;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by YANGFU18 on 2021/5/23.
@@ -24,6 +25,7 @@ public class ExaminationAnswer implements Serializable {
     private int version;//'答卷状态',
 
     private ExaminationPaper paper;
+    private List<ExaminationAnswerDetail> examinationAnswerDetails ;
 
     private User user ;
 
@@ -121,5 +123,13 @@ public class ExaminationAnswer implements Serializable {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public List<ExaminationAnswerDetail> getExaminationAnswerDetails() {
+        return examinationAnswerDetails;
+    }
+
+    public void setExaminationAnswerDetails(List<ExaminationAnswerDetail> examinationAnswerDetails) {
+        this.examinationAnswerDetails = examinationAnswerDetails;
     }
 }

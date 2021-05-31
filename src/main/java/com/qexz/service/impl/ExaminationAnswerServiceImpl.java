@@ -83,4 +83,9 @@ public class ExaminationAnswerServiceImpl implements ExaminationAnswerService {
         data.put("examinationAnswers", examinationAnswers);
         return data;
     }
+
+    @Override
+    public boolean finishAnswer(ExaminationAnswer answer) {
+        return examinationAnswerMapper.finishAnswer(answer.getId(),answer.getScore(),answer.getState())>0;
+    }
 }

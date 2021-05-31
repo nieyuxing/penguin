@@ -55,7 +55,7 @@ var manageResultStudentBoardPage = {
                     '                        <div class="form-group">\n' +
                     '                            <label class="col-sm-2 control-label">分值</label>\n' +
                     '                            <div class="col-sm-8">\n' +
-                    '                                <input value="'+questions[i].score+'" readonly="readonly" type="text" class="form-control" placeholder="" />\n' +
+                    '                                <input value="'+questions[i].score+'" readonly="readonly" type="text" class="form-control"  placeholder="" />\n' +
                     '                            </div>\n' +
                     '                        </div>\n' +
                     '                    </form>\n' +

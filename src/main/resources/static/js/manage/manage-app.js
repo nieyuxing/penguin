@@ -175,6 +175,12 @@ var app = {
         manageAnswerListUrl: function () {
             return app.data.contextPath+"/manage/answer/list";
         },
+        manageAnswerDetailListUrl : function () {
+            return app.data.contextPath+"/manage/answerDetail/list/";
+        },
+        finishAnswerUrl: function () {
+            return app.data.contextPath+"/answer/api/finishExaminationAnswer/";
+        },
 
         //部门管理
         addDepartmentUrl: function () {
@@ -189,6 +195,18 @@ var app = {
         manageDepartmentListUrl: function () {
             return app.data.contextPath+"/manage/department/list";
         },
+
+        //考卷试题编辑
+        addAnswerDetailUrl: function () {
+            return app.data.contextPath+"/answerDetail/api/addAnswerDetaill";
+        },
+        deleteAnswerDetailUrl: function () {
+            return app.data.contextPath+"/answerDetail/api/deleteAnswerDetail/";
+        },
+        updateAnswerDetailUrl: function () {
+            return app.data.contextPath+"/answerDetail/api/updateAnswerDetail";
+        },
+
 
     },
     /**

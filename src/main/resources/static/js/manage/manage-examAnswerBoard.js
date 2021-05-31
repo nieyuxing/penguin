@@ -270,10 +270,9 @@ var manageExamAnswerBoardPage = {
     //         }
     //     });
     // },
-    // targetResultStudentBoardAction: function (contestId) {
-    //     window.location.href = app.URL.manageResultStudentListUrl(
-    //         contestId);
-    // },
+    targetAnswerDetailBoardAction: function (answerId) {
+        window.location.href = app.URL.manageAnswerDetailListUrl()+answerId;
+    },
 
 
 };

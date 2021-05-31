@@ -91,7 +91,7 @@
 
     <select id="getQuestionByContestId" resultMap="BaseResultMap" >
         SELECT
-        *
+        q.*
         FROM t_examination_paper_detail p
         left join
         t_penguin_question q on p.question_id = q.id

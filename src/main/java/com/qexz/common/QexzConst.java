@@ -35,4 +35,6 @@ public class QexzConst {
 
     public final static String SPLIT_CHAR = "_~_";
 
+    public final static String SPLIT_AP_CHAR = "#";
+
 }

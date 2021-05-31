@@ -79,4 +79,9 @@ public class ExaminationAnswerDetailServiceImpl implements ExaminationAnswerDeta
         data.put("positions", positions);
         return data;
     }
+
+    @Override
+    public List<ExaminationAnswerDetail> getExaminationAnswerDetailByAnswerId(int answerId) {
+        return examinationAnswerDetailMapper.getExaminationAnswerDetailsByAnswerId(answerId);
+    }
 }

@@ -19,4 +19,6 @@ public interface ExaminationAnswerService {
     Map<String, Object> getExaminationAnswers(int pageNum, int pageSize);
 
     int updateState(int id,int state);
+
+    boolean finishAnswer(ExaminationAnswer answer);
 }
