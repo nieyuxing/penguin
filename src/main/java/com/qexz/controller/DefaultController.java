@@ -46,7 +46,7 @@ public class DefaultController {
     public String home(HttpServletRequest request, Model model) {
         User currentAccount = (User) request.getSession().getAttribute(QexzConst.CURRENT_ACCOUNT);
         model.addAttribute(QexzConst.CURRENT_ACCOUNT, currentAccount);
-        return "/home";
+        return "home";
     }
 
     /**
@@ -62,7 +62,7 @@ public class DefaultController {
         model.addAttribute(QexzConst.CURRENT_ACCOUNT, currentAccount);
         Map<String, Object> data = contestService.getContests(page, QexzConst.contestPageSize);
         model.addAttribute(QexzConst.DATA, data);
-        return "/contest/index";
+        return "contest/index";
     }
 
     /**
@@ -87,7 +87,7 @@ public class DefaultController {
         data.put("contest", contest);
         data.put("questions", questions);
         model.addAttribute(QexzConst.DATA, data);
-        return "/contest/detail";
+        return "contest/detail";
     }
 
     /**
@@ -100,7 +100,7 @@ public class DefaultController {
 
         model.addAttribute(QexzConst.CURRENT_ACCOUNT, currentAccount);
         model.addAttribute(QexzConst.DATA, data);
-        return "/problem/problemset";
+        return "problem/problemset";
     }
 
     /**
@@ -120,7 +120,7 @@ public class DefaultController {
         data.put("position", position);
         model.addAttribute(QexzConst.CURRENT_ACCOUNT, currentAccount);
         model.addAttribute(QexzConst.DATA, data);
-        return "/problem/problemlist";
+        return "problem/problemlist";
     }
 
     /**
@@ -139,7 +139,7 @@ public class DefaultController {
         data.put("position", position);
         model.addAttribute(QexzConst.CURRENT_ACCOUNT, currentAccount);
         model.addAttribute(QexzConst.DATA, data);
-        return "/problem/problemdetail";
+        return "problem/problemdetail";
     }
 
     /**
@@ -160,7 +160,7 @@ public class DefaultController {
         }
         model.addAttribute(QexzConst.CURRENT_ACCOUNT, currentAccount);
         model.addAttribute(QexzConst.DATA, data);
-        return "/discuss/discuss";
+        return "discuss/discuss";
     }
 
     /**
@@ -214,7 +214,7 @@ public class DefaultController {
 
         model.addAttribute(QexzConst.CURRENT_ACCOUNT, currentAccount);
         model.addAttribute(QexzConst.DATA, data);
-        return "/discuss/discussDetail";
+        return "discuss/discussDetail";
     }
 
     /**
@@ -227,7 +227,7 @@ public class DefaultController {
         data.put("authorId", currentAccount.getId());
         model.addAttribute(QexzConst.CURRENT_ACCOUNT, currentAccount);
         model.addAttribute(QexzConst.DATA, data);
-        return "/discuss/postDiscuss";
+        return "discuss/postDiscuss";
     }
 
     /**

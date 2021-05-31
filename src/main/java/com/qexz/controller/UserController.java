@@ -51,7 +51,7 @@ public class UserController {
             return "redirect:/";
         }
         model.addAttribute(QexzConst.CURRENT_ACCOUNT, currentAccount);
-        return "/user/profile";
+        return "user/profile";
     }
 
     /**
@@ -91,7 +91,7 @@ public class UserController {
             return "redirect:/";
         }
         model.addAttribute(QexzConst.CURRENT_ACCOUNT, currentAccount);
-        return "/user/password";
+        return "user/password";
     }
 
     /**
@@ -123,7 +123,7 @@ public class UserController {
         }
         model.addAttribute(QexzConst.DATA, data);
         model.addAttribute(QexzConst.CURRENT_ACCOUNT, currentAccount);
-        return "/user/myExam";
+        return "user/myExam";
     }
 
     /**
@@ -140,7 +140,7 @@ public class UserController {
         Map<String, Object> data = postService.getPostsByAuthorId(page, QexzConst.postPageSize, currentAccount.getId());
         model.addAttribute(QexzConst.DATA, data);
         model.addAttribute(QexzConst.CURRENT_ACCOUNT, currentAccount);
-        return "/user/myDiscussPost";
+        return "user/myDiscussPost";
     }
 
     /**

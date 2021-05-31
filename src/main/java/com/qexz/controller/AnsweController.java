@@ -86,7 +86,7 @@ public class AnsweController {
         }
         Map<String, Object> data = examinationPaperService.getExaminationPaperByUserId(page, QexzConst.contestPageSize,currentAccount.getId());
         model.addAttribute(QexzConst.DATA, data);
-        return "/contest/index";
+        return "contest/index";
     }
 
 
@@ -98,7 +98,7 @@ public class AnsweController {
         model.addAttribute(QexzConst.CURRENT_ACCOUNT, currentAccount);
         Map<String, Object> data = examinationPaperService.getExaminationPaperByUserId(page, QexzConst.contestPageSize,currentAccount.getId());
         model.addAttribute(QexzConst.DATA, data);
-        return "/contest/index";
+        return "contest/index";
     }
 
     /**
@@ -125,6 +125,6 @@ public class AnsweController {
         data.put("contest", contest);
         data.put("questions", questions);
         model.addAttribute(QexzConst.DATA, data);
-        return "/contest/detail";
+        return "contest/detail";
     }
 }
