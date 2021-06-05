@@ -43,6 +43,8 @@ public class Application {
 
 			//container.addErrorPages(error401Page, error404Page, error500Page);
 			container.addErrorPages(error404Page);
+			container.setSessionTimeout(1800);//单位为S
 		});
 	}
+
 }
