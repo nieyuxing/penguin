@@ -39,7 +39,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getUserByPhone(String phone) {
-        return userMapper.getUserByPhone(phone);
+         return userMapper.getUserByPhone(phone);
     }
 
     @Override

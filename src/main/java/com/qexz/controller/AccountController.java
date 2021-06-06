@@ -56,7 +56,7 @@ public class AccountController {
             //用户未登录直接返回首页面
             return "redirect:/";
         }
-        model.addAttribute(QexzConst.CURRENT_MANAGE_ACCOUNT, currentAccount);
+        model.addAttribute(QexzConst.CURRENT_ACCOUNT, currentAccount);
         return "user/profile";
     }
 
@@ -71,7 +71,7 @@ public class AccountController {
             //用户未登录直接返回首页面
             return "redirect:/";
         }
-        model.addAttribute(QexzConst.CURRENT_MANAGE_ACCOUNT, currentAccount);
+        model.addAttribute(QexzConst.CURRENT_ACCOUNT, currentAccount);
         return "user/password";
     }
 
@@ -103,7 +103,7 @@ public class AccountController {
             grade.setContest(id2contest.get(grade.getContestId()));
         }
         model.addAttribute(QexzConst.DATA, data);
-        model.addAttribute(QexzConst.CURRENT_MANAGE_ACCOUNT, currentAccount);
+        model.addAttribute(QexzConst.CURRENT_ACCOUNT, currentAccount);
         return "user/myExam";
     }
 
@@ -222,7 +222,7 @@ public class AccountController {
      */
     @RequestMapping(value = "/logout", method= RequestMethod.GET)
     public String logout(HttpServletRequest request) {
-        request.getSession().setAttribute(QexzConst.CURRENT_MANAGE_ACCOUNT,null);
+        request.getSession().setAttribute(QexzConst.CURRENT_ACCOUNT,null);
         String url=request.getHeader("Referer");
         LOG.info("url = " + url);
         return "redirect:"+url;
