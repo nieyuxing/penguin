@@ -225,11 +225,11 @@ public class AccountController {
         request.getSession().setAttribute(QexzConst.CURRENT_ACCOUNT,null);
         String url=request.getHeader("Referer");
         LOG.info("url = " + url);
-        return "redirect:"+url;
+        return "home";
     }
 
     /**
-     * 上传头像
+     * 上传头像taolunqu
      */
     @RequestMapping(value = "/api/uploadAvatar", method = RequestMethod.POST)
     @ResponseBody

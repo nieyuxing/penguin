@@ -17,7 +17,7 @@ var app = {
             return "/account/logout";
         },
         homeUrl: function () {
-            return "/";
+            return "home";
         },
         problemsetUrl: function () {
             return "/problemset/list";

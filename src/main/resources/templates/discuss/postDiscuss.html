@@ -22,12 +22,6 @@
     <a th:href="@{/contest/index}" href="#" class="item">
         <i class="desktop icon"></i>在线考试
     </a>
-    <a th:href="@{/problemset/list}" class="item">
-        <i class="list layout icon"></i>职位中心
-    </a>
-    <a th:href="@{/discuss}" class="active item">
-        <i class="talk icon"></i>讨论区
-    </a>
     <a th:onclick="'app.showLogin()'" class="right item" th:if="${current_account == null}">
         <i class="sign in icon"></i>登录
     </a>
@@ -48,7 +42,7 @@
     <div class="ui large breadcrumb">
         <a class="section" th:href="@{/}"><i class="home icon"></i>首页</a>
         <i class="right chevron icon divider"></i>
-        <a class="section" th:href="@{/discuss}">讨论区</a>
+
         <i class="right chevron icon divider"></i>
         <div class="active section">话题发布</div>
     </div>

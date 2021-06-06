@@ -76,7 +76,6 @@
 
 ![职位中心首页](https://github.com/gdufeZLYL/blog/blob/master/images/20180421163734.png)
 
-![讨论区页](https://github.com/gdufeZLYL/blog/blob/master/images/20180421163808.png)
 
 ## 讨论
 有问题请在[issue](https://github.com/gdufeZLYL/springboot-penguin/issues)讨论

@@ -25,9 +25,7 @@
     <a th:href="@{/problemset/list}" class="active item">
         <i class="list layout icon"></i>职位
     </a>
-    <a th:href="@{/discuss}" class="item">
-        <i class="talk icon"></i>讨论区
-    </a>
+
     <a th:onclick="'app.showLogin()'" class="right item" th:if="${current_account == null}">
         <i class="sign in icon"></i>登录
     </a>
