@@ -44,11 +44,11 @@ public class UserController {
      */
     @RequestMapping(value="/profile", method= RequestMethod.GET)
     public String profile(HttpServletRequest request, Model model) {
-        Account currentAccount = (Account) request.getSession().getAttribute(QexzConst.CURRENT_ACCOUNT);
+        User currentAccount = (User) request.getSession().getAttribute(QexzConst.CURRENT_ACCOUNT);
         //TODO::拦截器过滤处理
         if (currentAccount == null) {
             //用户未登录直接返回首页面
-            return "redirect:/";
+            return "home";
         }
         model.addAttribute(QexzConst.CURRENT_ACCOUNT, currentAccount);
         return "user/profile";
@@ -68,7 +68,7 @@ public class UserController {
         user.setEmail(request.getParameter("email"));
         user.setQq(request.getParameter("qq"));
         AjaxResult ajaxResult = new AjaxResult();
-        User existAccount = userService.getUserByUsername(user.getName());
+        User existAccount = userService.getUserByPhone(user.getPhone());
         if(existAccount == null) {//检测该用户是否已经注册
             user.setPassword(MD5.md5(QexzConst.MD5_SALT+user.getPassword()));
             user.setAvatarImgUrl(QexzConst.DEFAULT_AVATAR_IMG_URL);
@@ -99,11 +99,11 @@ public class UserController {
      */
     @RequestMapping(value="/myExam", method= RequestMethod.GET)
     public String myExam(HttpServletRequest request, @RequestParam(value = "page", defaultValue = "1") int page, Model model) {
-        Account currentAccount = (Account) request.getSession().getAttribute(QexzConst.CURRENT_ACCOUNT);
+        User currentAccount = (User) request.getSession().getAttribute(QexzConst.CURRENT_ACCOUNT);
         //TODO::拦截器过滤处理
         if (currentAccount == null) {
             //用户未登录直接返回首页面
-            return "redirect:/";
+            return "home";
         }
         Map<String, Object> data = gradeService.getGradesByStudentId(page, QexzConst.gradePageSize, currentAccount.getId());
         List<Grade> grades = (List<Grade>) data.get("grades");

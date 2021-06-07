@@ -90,7 +90,7 @@ public class AnsweController {
         User currentAccount = (User) request.getSession().getAttribute(QexzConst.CURRENT_ACCOUNT);
         model.addAttribute(QexzConst.CURRENT_ACCOUNT, currentAccount);
         if (currentAccount == null) {
-            return "redirect:/login";
+            return "home";
         }
         Map<String, Object> data = examinationPaperService.getExaminationPaperByUserId(page, QexzConst.contestPageSize,currentAccount.getId());
         model.addAttribute(QexzConst.DATA, data);
@@ -122,7 +122,7 @@ public class AnsweController {
         ExaminationAnswer  answer= examinationAnswerService.getExaminationAnswerByUserIdAndPaperId(currentAccount.getId(),contest.getId());
         answer.setPaper(contest);
         if (currentAccount == null ) {
-            return "redirect:/login";
+            return "home";
         }
         List<Question> questions = questionService.getQuestionsByContestId(contestId);
         for (Question question : questions) {
