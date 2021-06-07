@@ -8,13 +8,15 @@ var managePositionBoardPage = {
         totalPageNum: 0,
         totalPageSize: 0,
         positions: [],
+        departments:[],
     },
-    init: function (pageNum, pageSize, totalPageNum, totalPageSize, positions) {
+    init: function (pageNum, pageSize, totalPageNum, totalPageSize, positions,departments) {
         managePositionBoardPage.data.pageNum = pageNum;
         managePositionBoardPage.data.pageSize = pageSize;
         managePositionBoardPage.data.totalPageNum = totalPageNum;
         managePositionBoardPage.data.totalPageSize = totalPageSize;
         managePositionBoardPage.data.positions = positions;
+        managePositionBoardPage.data.departments = departments;
         //分页初始化
         managePositionBoardPage.subPageMenuInit();
 
@@ -97,15 +99,94 @@ var managePositionBoardPage = {
     },
     initAddPositionData: function () {
         //初始化数据
-        $('#positionName').val("");
+        $('#addname').val("");
+        $('#adddepartment_id').val("");
+        $('#addposi_code').val("");
+        $('#addplace').val("");
+        $('#addposi_type').val("");
+        $('#adddegree').val("");
+        $('#adddepth').val("");
+        $('#addpositionNum').val("");
+        $('#adddescr').val("");
+
     },
-    checkAddPositionData: function (positionName) {
+    checkAddPositionData: function (name,department_id,posi_code,place,posi_type,degree,depth,positionNum,descr) {
+        if (name == null || name == ''
+            || name.replace(/(^s*)|(s*$)/g, "").length == 0) {
+            $('#addModalErrorMessage').html('<i class="close icon"></i><div class="header">错误提示</div>\n' +
+                '                <p>'+'职位名称不能为空'+'</p>');
+            $('#addModalErrorMessage').removeClass('hidden');
+            return false;
+        }
+        if (department_id == null || department_id == '') {
+            $('#addModalErrorMessage').html('<i class="close icon"></i><div class="header">错误提示</div>\n' +
+                '                <p>'+'所属部门不能为空'+'</p>');
+            $('#addModalErrorMessage').removeClass('hidden');
+            return false;
+        }
+        if (posi_code == null || posi_code == ''
+            || posi_code.replace(/(^s*)|(s*$)/g, "").length == 0) {
+            $('#addModalErrorMessage').html('<i class="close icon"></i><div class="header">错误提示</div>\n' +
+                '                <p>'+'职位编码不能为空'+'</p>');
+            $('#addModalErrorMessage').removeClass('hidden');
+            return false;
+        }
+        if (place == null || place == ''
+            || place.replace(/(^s*)|(s*$)/g, "").length == 0) {
+            $('#addModalErrorMessage').html('<i class="close icon"></i><div class="header">错误提示</div>\n' +
+                '                <p>'+'招聘地点不能为空'+'</p>');
+            $('#addModalErrorMessage').removeClass('hidden');
+            return false;
+        }
+        if (posi_type == null || posi_type == ''
+            || posi_type.replace(/(^s*)|(s*$)/g, "").length == 0) {
+            $('#addModalErrorMessage').html('<i class="close icon"></i><div class="header">错误提示</div>\n' +
+                '                <p>'+'职位类型不能为空'+'</p>');
+            $('#addModalErrorMessage').removeClass('hidden');
+            return false;
+        }
+        if (positionNum == null || positionNum == ''
+            || positionNum.replace(/(^s*)|(s*$)/g, "").length == 0) {
+            $('#addModalErrorMessage').html('<i class="close icon"></i><div class="header">错误提示</div>\n' +
+                '                <p>'+'招聘人数不能为空'+'</p>');
+            $('#addModalErrorMessage').removeClass('hidden');
+            return false;
+        }
+        if (degree == null || degree == ''
+            || degree.replace(/(^s*)|(s*$)/g, "").length == 0) {
+            $('#addModalErrorMessage').html('<i class="close icon"></i><div class="header">错误提示</div>\n' +
+                '                <p>'+'学历不能为空'+'</p>');
+            $('#addModalErrorMessage').removeClass('hidden');
+            return false;
+        }
+        if (depth == null || depth == ''
+            || depth.replace(/(^s*)|(s*$)/g, "").length == 0) {
+            $('#addModalErrorMessage').html('<i class="close icon"></i><div class="header">错误提示</div>\n' +
+                '                <p>'+'工作年限不能为空'+'</p>');
+            $('#addModalErrorMessage').removeClass('hidden');
+            return false;
+        }
+        if (descr == null || descr == ''
+            || descr.replace(/(^s*)|(s*$)/g, "").length == 0) {
+            $('#addModalErrorMessage').html('<i class="close icon"></i><div class="header">错误提示</div>\n' +
+                '                <p>'+'职位描述不能为空'+'</p>');
+            $('#addModalErrorMessage').removeClass('hidden');
+            return false;
+        }
         return true;
     },
     addPositionAction: function () {
-        var positionName = $('#positionName').val();
+        var name =$('#addname').val();
+        var department_id =$('#adddepartment_id').val();
+        var posi_code =$('#addposi_code').val();
+        var place =$('#addplace').val();
+        var posi_type =$('#addposi_type').val();
+        var degree =$('#adddegree').val();
+        var depth =$('#adddepth').val();
+        var positionNum =$('#addpositionNum').val();
+        var descr =$('#adddescr').val();
 
-        if (managePositionBoardPage.checkAddPositionData(positionName)) {
+        if (managePositionBoardPage.checkAddPositionData(name,department_id,posi_code,place,posi_type,degree,depth,positionNum,descr)) {
             $.ajax({
                 url : app.URL.addPositionUrl(),
                 type : "POST",
@@ -113,7 +194,16 @@ var managePositionBoardPage = {
                 contentType : "application/json;charset=UTF-8",
                 <!-- 向后端传输的数据 -->
                 data : JSON.stringify({
-                    name: positionName,
+                    name: name,
+                    department_id:department_id,
+                    posi_code:posi_code,
+                    place:place,
+                    posi_type:posi_type,
+                    degree:degree,
+                    deepth:depth,
+                    positionNum:positionNum,
+                    descr:descr,
+
                 }),
                 success:function(result) {
                     if (result && result['success']) {
@@ -145,17 +235,101 @@ var managePositionBoardPage = {
         //初始化数据
         var positions = managePositionBoardPage.data.positions;
         $('#updatePositionIndex').val(index);
-        $('#updatePositionName').val(positions[index].name);
+        $('#updatename').val(positions[index].name);
+        $('#updatedepartment_id').val(positions[index].department_id);
+        $('#updateposi_code').val(positions[index].posi_code);
+        $('#updateplace').val(positions[index].place);
+        $('#updateposi_type').val(positions[index].posi_type);
+        $('#updatedegree').val(positions[index].degree);
+        $('#updatedepth').val(positions[index].deepth);
+        $('#updatepositionNum').val(positions[index].positionNum);
+        $('#updatedescr').val(positions[index].descr);
+        var department_ids = document.getElementById('updatedepartment_id');
+        for (var i = 0; i < department_ids.length; i++) {
+            if (department_ids[i].value == positions[index].department_id) {
+                department_ids[i].selected = true;
+            }
+        }
     },
-    checkUpdatePositionData: function (positionName) {
+    checkUpdatePositionData: function (name,department_id,posi_code,place,posi_type,degree,depth,positionNum,descr) {
+        if (name == null || name == ''
+            || name.replace(/(^s*)|(s*$)/g, "").length == 0) {
+            $('#updateModalErrorMessage').html('<i class="close icon"></i><div class="header">错误提示</div>\n' +
+                '                <p>'+'职位名称不能为空'+'</p>');
+            $('#updateModalErrorMessage').removeClass('hidden');
+            return false;
+        }
+        if (department_id == null || department_id == '') {
+            $('#updateModalErrorMessage').html('<i class="close icon"></i><div class="header">错误提示</div>\n' +
+                '                <p>'+'所属部门不能为空'+'</p>');
+            $('#updateModalErrorMessage').removeClass('hidden');
+            return false;
+        }
+        if (posi_code == null || posi_code == ''
+            || posi_code.replace(/(^s*)|(s*$)/g, "").length == 0) {
+            $('#updateModalErrorMessage').html('<i class="close icon"></i><div class="header">错误提示</div>\n' +
+                '                <p>'+'职位编码不能为空'+'</p>');
+            $('#updateModalErrorMessage').removeClass('hidden');
+            return false;
+        }
+        if (place == null || place == ''
+            || place.replace(/(^s*)|(s*$)/g, "").length == 0) {
+            $('#updateModalErrorMessage').html('<i class="close icon"></i><div class="header">错误提示</div>\n' +
+                '                <p>'+'招聘地点不能为空'+'</p>');
+            $('#updateModalErrorMessage').removeClass('hidden');
+            return false;
+        }
+        if (posi_type == null || posi_type == ''
+            || posi_type.replace(/(^s*)|(s*$)/g, "").length == 0) {
+            $('#updateModalErrorMessage').html('<i class="close icon"></i><div class="header">错误提示</div>\n' +
+                '                <p>'+'职位类型不能为空'+'</p>');
+            $('#updateModalErrorMessage').removeClass('hidden');
+            return false;
+        }
+        if (positionNum == null || positionNum == ''
+            || positionNum.replace(/(^s*)|(s*$)/g, "").length == 0) {
+            $('#updateModalErrorMessage').html('<i class="close icon"></i><div class="header">错误提示</div>\n' +
+                '                <p>'+'招聘人数不能为空'+'</p>');
+            $('#updateModalErrorMessage').removeClass('hidden');
+            return false;
+        }
+        if (degree == null || degree == ''
+            || degree.replace(/(^s*)|(s*$)/g, "").length == 0) {
+            $('#updateModalErrorMessage').html('<i class="close icon"></i><div class="header">错误提示</div>\n' +
+                '                <p>'+'学历不能为空'+'</p>');
+            $('#updateModalErrorMessage').removeClass('hidden');
+            return false;
+        }
+        if (depth == null || depth == ''
+            || depth.replace(/(^s*)|(s*$)/g, "").length == 0) {
+            $('#updateModalErrorMessage').html('<i class="close icon"></i><div class="header">错误提示</div>\n' +
+                '                <p>'+'工作年限不能为空'+'</p>');
+            $('#updateModalErrorMessage').removeClass('hidden');
+            return false;
+        }
+        if (descr == null || descr == ''
+            || descr.replace(/(^s*)|(s*$)/g, "").length == 0) {
+            $('#updateModalErrorMessage').html('<i class="close icon"></i><div class="header">错误提示</div>\n' +
+                '                <p>'+'职位描述不能为空'+'</p>');
+            $('#updateModalErrorMessage').removeClass('hidden');
+            return false;
+        }
         return true;
     },
     updatePositionAction: function () {
         var positions = managePositionBoardPage.data.positions;
         var index = $('#updatePositionIndex').val();
-        var subjejctName = $('#updatePositionName').val();
+        var name =$('#updatename').val();
+        var department_id =$('#updatedepartment_id').val();
+        var posi_code =$('#updateposi_code').val();
+        var place =$('#updateplace').val();
+        var posi_type =$('#updateposi_type').val();
+        var degree =$('#updatedegree').val();
+        var depth =$('#updatedepth').val();
+        var positionNum =$('#updatepositionNum').val();
+        var descr =$('#updatedescr').val();
 
-        if (managePositionBoardPage.checkUpdatePositionData(positionName)) {
+        if (managePositionBoardPage.checkUpdatePositionData(name,department_id,posi_code,place,posi_type,degree,depth,positionNum,descr)) {
             $.ajax({
                 url : app.URL.updatePositionUrl(),
                 type : "POST",
@@ -164,9 +338,15 @@ var managePositionBoardPage = {
                 <!-- 向后端传输的数据 -->
                 data : JSON.stringify({
                     id: positions[index].id,
-                    name: subjejctName,
-                    questionNum: positions[index].questionNum,
-                    imgUrl: positions[index].imgUrl,
+                    name: name,
+                    department_id:department_id,
+                    posi_code:posi_code,
+                    place:place,
+                    posi_type:posi_type,
+                    degree:degree,
+                    deepth:depth,
+                    positionNum:positionNum,
+                    descr:descr,
 
                 }),
                 success:function(result) {

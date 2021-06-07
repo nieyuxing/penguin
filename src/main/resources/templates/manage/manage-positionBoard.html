@@ -7,7 +7,7 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>慧为智能在线考试系统控制台-课程管理</title>
+    <title>慧为智能在线考试系统控制台-职位管理</title>
     <link rel="stylesheet" th:href="@{https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css}" />
     <!--<link th:href="@{https://cdn.bootcss.com/bootstrap/3.0.0/css/bootstrap.min.css}" rel="stylesheet" />-->
     <link th:href="@{https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css}" rel="stylesheet" />
@@ -22,7 +22,7 @@
     <!--<script type="text/javascript" th:src="@{https://cdn.bootcss.com/moment.js/2.20.1/moment.min.js}"></script>-->
     <script type="text/javascript" th:src="@{/js/bootstrap-datetimepicker/locales/bootstrap-datetimepicker.zh-CN.js}"></script>
     <script type="text/javascript" th:src="@{/js/manage/manage-app.js}"></script>
-    <script type="text/javascript" th:src="@{/js/manage/manage-subjectBoard.js}"></script>
+    <script type="text/javascript" th:src="@{/js/manage/manage-positionBoard.js}"></script>
 </head>
 
 <body>
@@ -64,12 +64,12 @@
     </ul>
     </div>
     <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-    <h1 class="page-header">课程管理</h1>
+    <h1 class="page-header">职位管理</h1>
     <div class="row" style="margin-bottom: 5px;">
     <div class="col-md-10">
     </div>
     <div class="col-md-2">
-    <button type="button" class="btn btn-success" id="addSubjectBtn"><i class="fa fa-plus"></i>添加课程</button>
+    <button type="button" class="btn btn-success" id="addPositionBtn"><i class="fa fa-plus"></i>添加职位</button>
     </div>
     </div>
     <div class="table-responsive">
@@ -77,55 +77,48 @@
     <thead>
     <tr>
     <th>#</th>
-    <th>课程名称</th>
-    <th>创建时间</th>
-    <th>更新时间</th>
-    <th>题目数量</th>
-    <th>操作</th>
+        <th>职位名称</th>
+        <th>所属部门</th>
+        <th>职位编码</th>
+        <th>招聘地点</th>
+        <th>岗位类型</th>
+        <th>学历要求</th>
+        <th>招聘人数</th>
+        <th>要求年限</th>
+        <th>职位描述</th>
+        <th>发布时间</th>
+        <th>更新时间</th>
+        <th>操作</th>
     </tr>
     </thead>
     <tbody>
-    <tr th:each="item,itemStats : ${data['subjects']}">
-    <td th:text="${itemStats.index+1}"></td>
-    <td th:text="${item.name}"></td>
-    <td th:text="${#dates.format(item.createTime, 'yyyy-MM-dd HH:mm:ss')}">2018-1-11 09:00:00</td>
-    <td th:text="${#dates.format(item.updateTime, 'yyyy-MM-dd HH:mm:ss')}">2018-1-11 11:00:00</td>
-    <td th:text="${item.questionNum}"></td>
-    <td>
-        <button type="button" class="btn btn-primary btn-xs" th:onclick="'manageSubjectBoardPage.updateSubjectModalAction('+${itemStats.index}+')'"><i class="fa fa-edit"></i>编辑</button>
-        <button type="button" class="btn btn-danger btn-xs" th:onclick="'manageSubjectBoardPage.deleteSubjectAction('+${item.id}+')'"><i class="fa fa-trash"></i>删除</button>
-    </td>
+    <tr th:each="item,itemStats : ${data['positions']}">
+        <td th:text="${itemStats.index+1}"></td>
+        <td th:text="${item.name}"></td>
+        <td th:text="${item.department.name}"></td>
+        <td th:text="${item.posi_code}"></td>
+        <td th:text="${item.place}"></td>
+        <td th:text="${item.posi_type}"></td>
+        <td th:text="${item.degree}"></td>
+        <td th:text="${item.positionNum}"></td>
+        <td th:text="${item.deepth}"></td>
+        <td th:text="${item.descr}"></td>
+        <td th:if="${item.state == 0}"><span class="label label-success">未招聘</span></td>
+        <td th:if="${item.state == 1}"><span class="label label-danger">招聘中</span></td>
+        <td th:if="${item.state == 2}"><span class="label label-danger">已停止</span></td>
+        <td th:text="${#dates.format(item.createTime, 'yyyy-MM-dd HH:mm:ss')}">2018-1-11 09:00:00</td>
+        <td th:text="${#dates.format(item.updateTime, 'yyyy-MM-dd HH:mm:ss')}">2018-1-11 11:00:00</td>
+        <td>
+            <button type="button" class="btn btn-primary btn-xs" th:onclick="'managePositionBoardPage.updatePositionModalAction('+${itemStats.index}+')'"><i class="fa fa-edit"></i>编辑</button>
+            <button type="button" class="btn btn-danger btn-xs" th:onclick="'managePositionBoardPage.deletePositionAction('+${item.id}+')'"><i class="fa fa-trash"></i>删除</button>
+        </td>
     </tr>
     </tbody>
     </table>
     </div>
     <div class="row">
     <div class="col-md-9" id="subPageHead">
-    <!--
-    <ul class="pagination">
-    <li class="disabled"><a href="#"><span>首页</span></a></li>
-    <li class="disabled"><a href="#"><span>上一页</span></a></li>
-    <li class="active"><a href="#">1</a></li>
-    <li><a href="#">1</a></li>
-    <li><a href="#">2</a></li>
-    <li><a href="#">3</a></li>
-    <li><a href="#">4</a></li>
-    <li><a href="#">5</a></li>
-    <li><a href="#">6</a></li>
-    <li><a href="#">7</a></li>
-    <li><a href="#">8</a></li>
-    <li>
-    <a href="#">
-    <span>下一页</span>
-    </a>
-    </li>
-    <li>
-    <a href="#">
-    <span>末页</span>
-    </a>
-    </li>
-    </ul>
-    -->
+
     </div>
     <div class="col-md-3">
     </div>
@@ -134,59 +127,166 @@
     </div>
     </div>
     <!--新增窗口-->
-    <div id="addSubjectModal" class="bootbox modal fade" tabindex="-1" role="dialog">
+    <div id="addPositionModal" class="bootbox modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog ">
     <div class="modal-content">
     <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-    <h4 class="modal-title" id="myModalLabel">新增课程</h4>
+    <h4 class="modal-title" id="myModalLabel">新增职位</h4>
     </div>
     <div class="modal-body">
     <form class="form-horizontal" role="form" onsubmit="return false;">
 
-    <div class="form-group">
-    <label class="col-sm-2 control-label">课程名称</label>
-    <div class="col-sm-8">
-    <input id="subjectName" type="text" class="form-control" placeholder="" />
-    </div>
-    </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">职位名称</label>
+            <div class="col-sm-8">
+                <input id="addname" type="text" class="form-control" placeholder="" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">所属部门</label>
+            <div class="col-sm-8">
+                <select class="form-control" id="adddepartment_id">
+                    <option th:each="item,itemStats : ${data['departments']}"
+                            th:value="${item.id}" th:text="${item.name}">
+                    </option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">职位编码</label>
+            <div class="col-sm-8">
+                <input id="addposi_code" type="text" class="form-control" placeholder="" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">招聘地点</label>
+            <div class="col-sm-8">
+                <input id="addplace" type="text" class="form-control" placeholder="" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">职位类型</label>
+            <div class="col-sm-8">
+                <input id="addposi_type" type="text" class="form-control" placeholder="" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">要求学历</label>
+            <div class="col-sm-8">
+                <input id="adddegree" type="text" class="form-control" placeholder="" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">工作年限</label>
+            <div class="col-sm-8">
+                <input id="adddepth" type="text" class="form-control" placeholder="" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">招聘人数</label>
+            <div class="col-sm-8">
+                <input id="addpositionNum" type="text" class="form-control" placeholder="" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">职位描述</label>
+            <div class="col-sm-8">
+                <textarea  id="adddescr" class="form-control" rows="8"></textarea>
+            </div>
+        </div>
+        <div class="ui hidden negative message" id="addModalErrorMessage"></div>
+
 
     </form>
     </div>
     <div class="modal-footer">
-    <button data-bb-handler="confirm" type="button" id="confirmAddSubjectBtn" class="btn btn-success radius">
+    <button data-bb-handler="confirm" type="button" id="confirmAddPositionBtn" class="btn btn-success radius">
     <span><i class="icon-ok"></i></span> 确定
     </button>
-    <button data-bb-handler="cancel" type="button" id="cancelAddSubjectBtn" class="btn btn-danger radius">取消</button>
+    <button data-bb-handler="cancel" type="button" id="cancelAddPositionBtn" class="btn btn-danger radius">取消</button>
     </div>
     </div>
     </div>
     </div>
 
     <!-- 编辑窗口 -->
-    <div id="updateSubjectModal" class="bootbox modal fade" tabindex="-1" role="dialog">
+    <div id="updatePositionModal" class="bootbox modal fade" tabindex="-1" role="dialog">
         <div class="modal-dialog ">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title">编辑课程</h4>
+                    <h4 class="modal-title">编辑职位</h4>
                 </div>
                 <div class="modal-body">
                     <form class="form-horizontal" role="form" onsubmit="return false;">
-                        <input type="hidden" id="updateSubjectIndex" />
+                        <input type="hidden" id="updatePositionIndex" />
                         <div class="form-group">
-                            <label class="col-sm-2 control-label">课程名称</label>
+                            <label class="col-sm-2 control-label">职位名称</label>
                             <div class="col-sm-8">
-                                <input id="updateSubjectName" type="text" class="form-control" placeholder="" />
+                                <input id="updatename" type="text" class="form-control" placeholder="" />
                             </div>
                         </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">所属部门</label>
+                            <div class="col-sm-8">
+                                <select class="form-control" id="updatedepartment_id">
+                                    <option th:each="item,itemStats : ${data['departments']}"
+                                            th:value="${item.id}" th:text="${item.name}">
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">职位编码</label>
+                            <div class="col-sm-8">
+                                <input id="updateposi_code" type="text" class="form-control" placeholder="" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">招聘地点</label>
+                            <div class="col-sm-8">
+                                <input id="updateplace" type="text" class="form-control" placeholder="" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">职位类型</label>
+                            <div class="col-sm-8">
+                                <input id="updateposi_type" type="text" class="form-control" placeholder="" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">要求学历</label>
+                            <div class="col-sm-8">
+                                <input id="updatedegree" type="text" class="form-control" placeholder="" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">工作年限</label>
+                            <div class="col-sm-8">
+                                <input id="updatedepth" type="text" class="form-control" placeholder="" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">招聘人数</label>
+                            <div class="col-sm-8">
+                                <input id="updatepositionNum" type="text" class="form-control" placeholder="" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">职位描述</label>
+                            <div class="col-sm-8">
+                                <textarea  id="updatedescr" class="form-control" rows="8"></textarea>
+                            </div>
+                        </div>
+                        <div class="ui hidden negative message" id="updateModalErrorMessage"></div>
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button data-bb-handler="confirm" type="button" id="confirmUpdateSubjectBtn" class="btn btn-success radius">
+                    <button data-bb-handler="confirm" type="button" id="confirmUpdatePositionBtn" class="btn btn-success radius">
                         <span><i class="icon-ok"></i></span> 保存
                     </button>
-                    <button data-bb-handler="cancel" type="button" id="cancelUpdateSubjectBtn" class="btn btn-danger radius">取消</button>
+                    <button data-bb-handler="cancel" type="button" id="cancelUpdatePositionBtn" class="btn btn-danger radius">取消</button>
                 </div>
             </div>
         </div>
@@ -197,12 +297,13 @@
     var pageSize = /*[[${data['pageSize']}]]*/;
     var totalPageNum = /*[[${data['totalPageNum']}]]*/;
     var totalPageSize = /*[[${data['totalPageSize']}]]*/;
-    var subjects = /*[[${data['subjects']}]]*/;
+    var positions = /*[[${data['positions']}]]*/;
     var contextPath = /*[[${#httpServletRequest.getContextPath()}]]*/;
+    var departments = /*[[${data['departments']}]]*/;
 
     $(function(){
         app.init(contextPath);
-        manageSubjectBoardPage.init(pageNum, pageSize, totalPageNum, totalPageSize, subjects);
+        managePositionBoardPage.init(pageNum, pageSize, totalPageNum, totalPageSize, positions,departments);
     });
     /*]]>*/
 </script>

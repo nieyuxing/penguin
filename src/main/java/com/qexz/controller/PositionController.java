@@ -29,7 +29,6 @@ public class PositionController {
     public AjaxResult addPosition(@RequestBody Position position) {
         AjaxResult ajaxResult = new AjaxResult();
         position.setImgUrl(QexzConst.DEFAULT_POSITION_IMG_URL);
-        position.setQuestionNum(0);
         int positionId = positionService.addPosition(position);
         return new AjaxResult().setData(positionId);
     }

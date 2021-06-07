@@ -30,7 +30,6 @@ public class PositionServiceImpl implements PositionService {
         if (position != null && StringUtils.isEmpty(position.getImgUrl())) {
             position.setImgUrl(QexzConst.DEFAULT_POSITION_IMG_URL);
         }
-        position.setQuestionNum(0);
         return positionMapper.insertPosition(position);
     }
 

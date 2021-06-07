@@ -10,18 +10,106 @@ public class Position {
     private Date updateTime;
     private int positionNum;
     private String imgUrl;
-    private String position;
     private int state;
-    private int need_count;
-    private int desc;
+    private String descr;
     private int department_id;
+    private String posi_code ;
+    private String place;
+    private String posi_type ;
+    private String degree;
+    private String deepth ;
+    private String attr1 ;
+    private String attr2 ;
+    private String attr3 ;
 
-    public String getPosition() {
-        return position;
+    private Department department;
+
+    public Department getDepartment() {
+        return department;
     }
 
-    public void setPosition(String position) {
-        this.position = position;
+    public void setDepartment(Department department) {
+        this.department = department;
+    }
+
+    public int getPositionNum() {
+        return positionNum;
+    }
+
+    public void setPositionNum(int positionNum) {
+        this.positionNum = positionNum;
+    }
+
+    public String getDescr() {
+        return descr;
+    }
+
+    public void setDescr(String descr) {
+        this.descr = descr;
+    }
+
+    public String getPosi_code() {
+        return posi_code;
+    }
+
+    public void setPosi_code(String posi_code) {
+        this.posi_code = posi_code;
+    }
+
+    public String getPlace() {
+        return place;
+    }
+
+    public void setPlace(String place) {
+        this.place = place;
+    }
+
+    public String getPosi_type() {
+        return posi_type;
+    }
+
+    public void setPosi_type(String posi_type) {
+        this.posi_type = posi_type;
+    }
+
+    public String getDegree() {
+        return degree;
+    }
+
+    public void setDegree(String degree) {
+        this.degree = degree;
+    }
+
+    public String getDeepth() {
+        return deepth;
+    }
+
+    public void setDeepth(String deepth) {
+        this.deepth = deepth;
+    }
+
+    public String getAttr1() {
+        return attr1;
+    }
+
+    public void setAttr1(String attr1) {
+        this.attr1 = attr1;
+    }
+
+    public String getAttr2() {
+        return attr2;
+    }
+
+    public void setAttr2(String attr2) {
+        this.attr2 = attr2;
+    }
+
+    public String getAttr3() {
+        return attr3;
+    }
+
+    public void setAttr3(String attr3) {
+        this.attr3 = attr3;
     }
 
     public int getId() {
@@ -56,14 +144,6 @@ public class Position {
         this.updateTime = updateTime;
     }
 
-    public int getQuestionNum() {
-        return positionNum;
-    }
-
-    public void setQuestionNum(int positionNum) {
-        this.positionNum = positionNum;
-    }
-
     public String getImgUrl() {
         return imgUrl;
     }
@@ -80,21 +160,6 @@ public class Position {
         this.state = state;
     }
 
-    public int getNeed_count() {
-        return need_count;
-    }
-
-    public void setNeed_count(int need_count) {
-        this.need_count = need_count;
-    }
-
-    public int getDesc() {
-        return desc;
-    }
-
-    public void setDesc(int desc) {
-        this.desc = desc;
-    }
 
     public int getDepartment_id() {
         return department_id;
@@ -114,8 +179,16 @@ public class Position {
                 ", positionNum=" + positionNum +
                 ", imgUrl='" + imgUrl + '\'' +
                 ", state=" + state +
-                ", position=" + position +
-
+                ", descr=" + descr +
+                ", department_id=" + department_id +
+                ", posi_code='" + posi_code + '\'' +
+                ", place='" + place + '\'' +
+                ", posi_type='" + posi_type + '\'' +
+                ", degree='" + degree + '\'' +
+                ", deepth='" + deepth + '\'' +
+                ", attr1='" + attr1 + '\'' +
+                ", attr2='" + attr2 + '\'' +
+                ", attr3='" + attr3 + '\'' +
                 '}';
     }
 }

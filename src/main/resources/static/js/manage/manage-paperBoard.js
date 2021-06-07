@@ -8,13 +8,15 @@ var managePaperBoardPage = {
         totalPageNum: 0,
         totalPageSize: 0,
         papers: [],
+        departments:[],
     },
-    init: function (pageNum, pageSize, totalPageNum, totalPageSize, papers) {
+    init: function (pageNum, pageSize, totalPageNum, totalPageSize, papers,departments) {
         managePaperBoardPage.data.pageNum = pageNum;
         managePaperBoardPage.data.pageSize = pageSize;
         managePaperBoardPage.data.totalPageNum = totalPageNum;
         managePaperBoardPage.data.totalPageSize = totalPageSize;
         managePaperBoardPage.data.papers = papers;
+        managePaperBoardPage.data.departments=departments;
 
         console.log("dshak：",papers);
         //分页初始化

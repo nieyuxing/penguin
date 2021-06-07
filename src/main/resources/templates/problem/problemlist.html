@@ -66,10 +66,38 @@
         <a class="active item"><i class="list icon"></i>职位详情</a>
     </div>
     <div class="column">
-        <h3 th:text="${data['position'].name}">项目介绍</h3>
+        <h3 th:text="${data['position'].name}">职位名称</h3>
         <div class="active section" th:text="${data['position'].name}"></div>
-        <button type="button" class="btn btn-success" id="applyPositionBtn"><i class="fa fa-plus"></i>申请</button>
     </div>
+    <div class="column">
+        <h4 >职位编码</h4>
+        <div class="active section" th:text="${data['position'].posi_code}"></div>
+    </div>
+    <div class="column">
+        <h4 >招聘地点</h4>
+        <div class="active section" th:text="${data['position'].place}"></div>
+    </div>
+    <div class="column">
+        <h4 >职位类型</h4>
+        <div class="active section" th:text="${data['position'].posi_type}"></div>
+    </div>
+    <div class="column">
+        <h4 >学历</h4>
+        <div class="active section" th:text="${data['position'].degree}"></div>
+    </div>
+    <div class="column">
+        <h4 >招聘人数</h4>
+        <div class="active section" th:text="${data['position'].positionNum}"></div>
+    </div>
+    <div class="column">
+        <h4 >工作年限</h4>
+        <div class="active section" th:text="${data['position'].deepth}"></div>
+    </div>
+    <div class="column">
+        <h4 >职位描述</h4>
+        <div class="active section" th:text="${data['position'].descr}"></div>
+    </div>
+    <button type="button" class="btn btn-success" id="applyPositionBtn"><i class="fa fa-plus"></i>申请</button>
 </div>
 
 <!--新增窗口-->

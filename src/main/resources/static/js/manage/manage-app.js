@@ -207,6 +207,14 @@ var app = {
             return app.data.contextPath+"/answerDetail/api/updateAnswerDetail";
         },
 
+        //职位管理
+        addPositionUrl: function () {
+            return app.data.contextPath+"/position/api/addPosition";
+        },
+        updatePositionUrl: function () {
+            return app.data.contextPath+"/position/api/updatePosition";
+        },
+
 
     },
     /**

@@ -9,25 +9,38 @@
         <result column="state" property="state" jdbcType="INTEGER" />
         <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
         <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
-        <result column="need_count" property="need_count" jdbcType="VARCHAR" />
-        <result column="desc" property="desc" jdbcType="VARCHAR" />
+        <result column="descr" property="descr" jdbcType="VARCHAR" />
         <result column="department_id" property="department_id" jdbcType="VARCHAR" />
+        <result column="posi_code" property="posi_code" jdbcType="VARCHAR" />
+        <result column="place" property="place" jdbcType="VARCHAR" />
+        <result column="posi_type" property="posi_type" jdbcType="VARCHAR" />
+        <result column="degree" property="degree" jdbcType="VARCHAR" />
+        <result column="deepth" property="deepth" jdbcType="VARCHAR" />
     </resultMap>
     <sql id="Base_Column_List" >
-        id,`name`,position_num,img_url,state,create_time,update_time
+        id,`name`,position_num,img_url,state,create_time,update_time,posi_code,descr,place,posi_type,degree,deepth
     </sql>
 
     <insert id="insertPosition" parameterType="com.qexz.model.Position" >
         insert into t_position
-        (name, position_num, img_url,need_count,desc,department_id)
-        values (#{position.name}, #{position.positionNum}, #{position.imgUrl}, #{position.need_count} , #{position.desc}, #{position.department_id} )
+        (name, position_num, department_id,posi_code,descr,place,posi_type,degree,deepth,state)
+        values (#{position.name}, #{position.positionNum},  #{position.department_id}
+               , #{position.posi_code}, #{position.descr} , #{position.place}, #{position.posi_type}, #{position.degree}, #{position.deepth},0)
     </insert>
 
     <update id="updatePositionById" parameterType="com.qexz.model.Position">
         UPDATE t_position
         SET
-        name = #{position.name}, position_num = #{position.positionNum},need_count = #{position.need_count},desc = #{position.desc},
-        img_url = #{position.imgUrl}
+        name = #{position.name},
+            position_num = #{position.positionNum},
+            descr = #{position.descr},
+            department_id = #{position.department_id},
+            posi_code = #{position.posi_code},
+            place = #{position.place},
+            posi_type = #{position.posi_type},
+            degree = #{position.degree},
+            deepth = #{position.deepth},
+            update_time = current_timestamp
         WHERE
         id = #{position.id}
     </update>

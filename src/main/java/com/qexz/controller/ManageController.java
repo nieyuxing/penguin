@@ -356,8 +356,20 @@ public class ManageController {
             //return "redirect:/";
             return "error/404";
         } else {
-            Map<String, Object> data = positionService.getPositions(page, QexzConst.positionPageSize);
-            model.addAttribute(QexzConst.DATA, data);
+
+            Map<String, Object> retdata = new HashMap<>();
+            List<Position> positions = new ArrayList<Position>();
+            Map<String, Object> data =positionService.getPositions(page, QexzConst.positionPageSize);
+            List<Department> departments = departmentService.getDepartments();
+            positions = (List<Position>) data.get("positions");
+            for(Position position : positions){
+                Department department = departmentService.getDepartmentById(position.getDepartment_id());
+                position.setDepartment(department);
+            }
+            retdata.put("positionsSize",positions.size());
+            retdata.put("positions", positions);
+            retdata.put("departments", departments);
+            model.addAttribute(QexzConst.DATA, retdata);
             return "manage/manage-positionBoard";
         }
     }
