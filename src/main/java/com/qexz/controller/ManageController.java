@@ -56,6 +56,9 @@ public class ManageController {
     @Autowired
     private DepartmentService departmentService;
 
+    @Autowired
+    private PositionTypeService positionTypeService;
+
     /**
      * 管理员登录页
      */
@@ -362,12 +365,16 @@ public class ManageController {
             Map<String, Object> data =positionService.getPositions(page, QexzConst.positionPageSize);
             List<Department> departments = departmentService.getDepartments();
             positions = (List<Position>) data.get("positions");
+            List<PositionType> positionTypes = positionTypeService.getPositionTypes();
             for(Position position : positions){
                 Department department = departmentService.getDepartmentById(position.getDepartment_id());
+                PositionType positionType  = positionTypeService.getPositionTypeById(position.getPosi_type());
                 position.setDepartment(department);
+                position.setPositionType(positionType);
             }
             retdata.put("positionsSize",positions.size());
             retdata.put("positions", positions);
+            retdata.put("positionTypes", positionTypes);
             retdata.put("departments", departments);
             model.addAttribute(QexzConst.DATA, retdata);
             return "manage/manage-positionBoard";
@@ -505,6 +512,26 @@ public class ManageController {
             data.put("answerDetails", examinationAnswerDetails);
             model.addAttribute(QexzConst.DATA, data);
             return "manage/manage-answerDetailBoard";
+        }
+    }
+
+    /**
+     * 职位类型管理
+     */
+    @RequestMapping(value="/positiontype/list", method= RequestMethod.GET)
+    public String positionTypeList(HttpServletRequest request,
+                                 @RequestParam(value = "page", defaultValue = "1") int page,
+                                 Model model) {
+        Account currentAccount = (Account) request.getSession().getAttribute(QexzConst.CURRENT_MANAGE_ACCOUNT);
+        //TODO::处理
+        //currentAccount = accountService.getAccountByUsername("admin");
+        model.addAttribute(QexzConst.CURRENT_MANAGE_ACCOUNT, currentAccount);
+        if (currentAccount == null || currentAccount.getLevel() < 1) {
+            return "error/404";
+        } else {
+            Map<String, Object> data = positionTypeService.getPositionTypes(page, QexzConst.contestPageSize);
+            model.addAttribute(QexzConst.DATA, data);
+            return "manage/manage-positionTypeBoard";
         }
     }
 }

@@ -250,6 +250,12 @@ var managePositionBoardPage = {
                 department_ids[i].selected = true;
             }
         }
+        var updateposi_types = document.getElementById('updateposi_type');
+        for (var i = 0; i < updateposi_types.length; i++) {
+            if (updateposi_types[i].value == positions[index].posi_type) {
+                updateposi_types[i].selected = true;
+            }
+        }
     },
     checkUpdatePositionData: function (name,department_id,posi_code,place,posi_type,degree,depth,positionNum,descr) {
         if (name == null || name == ''

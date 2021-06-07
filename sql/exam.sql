@@ -143,4 +143,17 @@ CREATE TABLE `t_department` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+-- ----------------------------
+-- Table structure for t_penguin_position
+-- ----------------------------
+DROP TABLE IF EXISTS `t_position_type`;
+CREATE TABLE `t_position_type` (
+                                      `id` int(8) NOT NULL AUTO_INCREMENT COMMENT '主键ID',
+                                      `name` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '名称',
+                                      `create_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+                                      `update_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+                                      `state` int(4) DEFAULT '0' COMMENT '状态,0表示正常,1表示弃用',
+                                      PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
 

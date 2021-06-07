@@ -15,7 +15,7 @@ public class Position {
     private int department_id;
     private String posi_code ;
     private String place;
-    private String posi_type ;
+    private int posi_type ;
     private String degree;
     private String deepth ;
     private String attr1 ;
@@ -23,6 +23,16 @@ public class Position {
     private String attr3 ;
 
     private Department department;
+
+    private PositionType positionType;
+
+    public PositionType getPositionType() {
+        return positionType;
+    }
+
+    public void setPositionType(PositionType positionType) {
+        this.positionType = positionType;
+    }
 
     public Department getDepartment() {
         return department;
@@ -64,11 +74,11 @@ public class Position {
         this.place = place;
     }
 
-    public String getPosi_type() {
+    public int getPosi_type() {
         return posi_type;
     }
 
-    public void setPosi_type(String posi_type) {
+    public void setPosi_type(int posi_type) {
         this.posi_type = posi_type;
     }
 

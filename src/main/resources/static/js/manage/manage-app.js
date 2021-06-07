@@ -214,6 +214,19 @@ var app = {
         updatePositionUrl: function () {
             return app.data.contextPath+"/position/api/updatePosition";
         },
+        deletePositionUrl: function () {
+            return app.data.contextPath+"/position/api/deletePosition/";
+        },
+        //职位类型
+        addPositionTypeUrl: function () {
+            return app.data.contextPath+"/positionType/api/addPositionType";
+        },
+        updatePositionTypeUrl: function () {
+            return app.data.contextPath+"/positionType/api/updatePositionType";
+        },
+        deletePositionTypeUrl: function () {
+            return app.data.contextPath+"/positionType/api/deletePositionType/";
+        },
 
 
     },

@@ -13,7 +13,7 @@
         <result column="department_id" property="department_id" jdbcType="VARCHAR" />
         <result column="posi_code" property="posi_code" jdbcType="VARCHAR" />
         <result column="place" property="place" jdbcType="VARCHAR" />
-        <result column="posi_type" property="posi_type" jdbcType="VARCHAR" />
+        <result column="posi_type" property="posi_type" jdbcType="INTEGER" />
         <result column="degree" property="degree" jdbcType="VARCHAR" />
         <result column="deepth" property="deepth" jdbcType="VARCHAR" />
     </resultMap>
