@@ -33,7 +33,7 @@ public class AjaxResult extends HashMap<String, Object> {
     }
 
     public AjaxResult() {
-        put(MESSAGE, "");
+        put(MESSAGE, "操作成功");
         put(SUCCESS, false);
     }
 

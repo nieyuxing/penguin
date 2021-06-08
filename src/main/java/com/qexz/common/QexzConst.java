@@ -15,6 +15,8 @@ public class QexzConst {
     public static final String UPLOAD_FILE_PATH = "file:/usr/java/data/springboot-penguin/upload/";
     public static final String UPLOAD_FILE_IMAGE_PATH = "/usr/java/data/springboot-penguin/upload/images/";
 
+    public static final String UPLOAD_FILE_RESUME_PATH = "/usr/local/exam/upload/";
+
     //默认头像url
     public static final String DEFAULT_AVATAR_IMG_URL = "headimg_placeholder.png";
     //职位默认图片

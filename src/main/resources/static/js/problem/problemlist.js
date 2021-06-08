@@ -47,29 +47,16 @@ var problemListPage = {
                     });
                 });
 
-        /**
-         TODO::代码规范,折叠菜单效果
-         */
-
-
-        $('.ui.accordion').accordion(
-            {
-                exclusive: true,/*不可打开多节*/
-            }
-        );
-        $('#cancelAddQuestionBtn').click(function(){
-             $("#addQuestionModal").modal('hide');
+        //审核通过
+        $('#uploadResumeBtn').click(function(){
+            problemListPage.uploadResume();
         });
-        /**
-         TODO::代码规范,难度系数
-         */
-        $('.ui.star.rating')
-            .rating({
-                initialRating: 0,
-                maxRating: 5,
-                disable: true,
-            })
-        ;
+
+        //编辑账号，取消编辑
+        $('#cancelUploadBtn').click(function(){
+            $("#addQuestionModal").modal('hide');
+        });
+
     },
     firstPage: function () {
         var problemsetId = problemListPage.data.problemsetId;
@@ -121,5 +108,41 @@ var problemListPage = {
             subPageStr += '<a onclick="problemListPage.lastPage()" class="item">末页</a>';
         }
         $('#subPageMenu').html(subPageStr);
+    },
+
+
+    /**
+     * ajax上传简历文件
+     */
+    uploadResume: function (){
+        var fileName = $('#myfile').val();　　　　　　　　　　　　　//获得文件名称
+        var fileType = fileName.substr(fileName.lastIndexOf('.'),fileName.length);
+        console.log(fileName.lastIndexOf('.'));　　//截取文件类型,如(.xls)
+        if(fileType=='.doc' || fileType=='.docx'|| fileType=='.pdf'){　　　　　//验证文件类型,此处验证也可使用正则
+            var formData = new FormData();
+            formData.append('file', $('#myfile')[0].files[0]);
+            $.ajax({
+                url: app.data.contextPath+'/manage/uploadResume',　　　　　　　　　　//上传地址
+                type: 'POST',
+                cache: false,
+                data: formData,　　　　　　　　　　　　　//表单数据
+                processData: false,
+                contentType: false,
+                success:function(result){
+                    if (result && result['success']) {
+                        window.location.reload();
+                    } else {
+                        $('#updateAccountErrorMessage').html('<i class="close icon"></i><div class="header">错误提示</div>\n' +
+                            '                <p>'+result.message+'</p>');
+                        $('#updateAccountErrorMessage').removeClass('hidden');
+                    }
+
+                }
+            });
+        }else{
+            $('#updateAccountErrorMessage').html('<i class="close icon"></i><div class="header">错误提示</div>\n' +
+                '                <p>*上传文件类型错误,支持类型: .pdf .doc .docx</p>');
+            $('#updateAccountErrorMessage').removeClass('hidden');
+        }
     },
 };
