@@ -169,7 +169,7 @@ public class AccountController {
             String description = request.getParameter("description");
             String avatarImgUrl = request.getParameter("avatarImgUrl");
 
-            User currentAccount = (User) request.getSession().getAttribute(QexzConst.CURRENT_MANAGE_ACCOUNT);
+            User currentAccount = (User) request.getSession().getAttribute(QexzConst.CURRENT_ACCOUNT);
             currentAccount.setPhone(phone);
             currentAccount.setQq(qq);
             currentAccount.setEmail(email);
@@ -225,7 +225,7 @@ public class AccountController {
         request.getSession().setAttribute(QexzConst.CURRENT_ACCOUNT,null);
         String url=request.getHeader("Referer");
         LOG.info("url = " + url);
-        return "home";
+        return "redirect:"+"/";
     }
 
     /**

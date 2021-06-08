@@ -55,7 +55,7 @@
                                 </div>
                             </div>
                         </div>
-                        <img th:src="@{'/upload/images/'+${current_account.avatarImgUrl}}" />
+<!--                        <img th:src="@{'/upload/images/'+${current_account.avatarImgUrl}}" />-->
                     </div>
                     <div class="content">
                         <div class="header" th:text="${current_account.name}"></div>
@@ -78,7 +78,7 @@
                         <i class="pointing left icon"></i>
                     </div>
                     <div class="content">
-                        <a th:href="@{/account/password}">
+                        <a th:href="@{/user/password}">
                             <i class="edit icon"></i>更改密码
                         </a>
                     </div>
@@ -101,44 +101,45 @@
                         -->
                     </div>
                     <div class="field">
-                        <label><i class="user icon"></i>姓名</label>
-                        <input id="myName" name="myName" readonly="" placeholder="请输入姓名"
-                               type="text" th:value="${current_account.name}" />
+                        <label><i class="mobile icon"></i>手机号码</label>
+                        <input id="myPhone" name="myPhone" readonly="" placeholder="请输入手机号码" type="text"
+                               th:value="${current_account.phone}" />
                     </div>
                     <div class="field">
-                        <label><i class="student icon"></i>学号</label>
-                        <input id="myUsername" name="myUsername" readonly="" placeholder="请输入学号"
+                        <label><i class="user icon"></i>姓名</label>
+                        <input id="myName" name="myName"  placeholder="请输入姓名"
                                type="text" th:value="${current_account.name}" />
                     </div>
+<!--                    <div class="field">-->
+<!--                        <label><i class="student icon"></i>学号</label>-->
+<!--                        <input id="myUsername" name="myUsername" readonly="" placeholder="请输入学号"-->
+<!--                               type="text" th:value="${current_account.name}" />-->
+<!--                    </div>-->
                     <div class="field">
                         <label><i class="qq icon"></i>QQ</label>
                         <input id="myQq" name="myQq" placeholder="请输入QQ" type="text"
                                th:value="${current_account.qq}" />
                     </div>
-                    <div class="field">
-                        <label><i class="mobile icon"></i>手机号码</label>
-                        <input id="myPhone" name="myPhone" placeholder="请输入手机号码" type="text"
-                               th:value="${current_account.phone}" />
-                    </div>
+
                     <div class="field">
                         <label><i class="mail outline icon"></i>邮箱</label>
                         <input id="myEmail" name="myEmail" placeholder="请输入邮箱地址" type="text"
                                th:value="${current_account.email}" />
                     </div>
-                    <div class="field">
-                        <label><i class="upload icon"></i>上传头像</label>
-                        <div class="ui three column grid">
-                            <div class="column">
-                                <div class="ui fluid card">
-                                    <div class="image">
-                                        <img id="avatarImgPreview" class="ui tiny image" th:src="@{'/upload/images/'+${current_account.avatarImgUrl}}" />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <input type="file" id="myfile" name="myfile" value="" onchange="profilePage.uploadAvatar()"/>
-                        <input type="hidden" id="myavatarImgUrl" name="myavatarImgUrl" value="" />
-                    </div>
+<!--                    <div class="field">-->
+<!--                        <label><i class="upload icon"></i>上传头像</label>-->
+<!--                        <div class="ui three column grid">-->
+<!--                            <div class="column">-->
+<!--                                <div class="ui fluid card">-->
+<!--                                    <div class="image">-->
+<!--                                        <img id="avatarImgPreview" class="ui tiny image" th:src="@{'/upload/images/'+${current_account.avatarImgUrl}}" />-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <input type="file" id="myfile" name="myfile" value="" onchange="profilePage.uploadAvatar()"/>-->
+<!--                        <input type="hidden" id="myavatarImgUrl" name="myavatarImgUrl" value="" />-->
+<!--                    </div>-->
                     <div class="field">
                         <label><i class="smile icon"></i>自我描述</label>
                         <textarea  id="myDescription" name="myDescription" rows="6"

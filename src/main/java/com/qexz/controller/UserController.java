@@ -84,11 +84,11 @@ public class UserController {
      */
     @RequestMapping(value="/password", method= RequestMethod.GET)
     public String password(HttpServletRequest request, Model model) {
-        Account currentAccount = (Account) request.getSession().getAttribute(QexzConst.CURRENT_ACCOUNT);
+        User currentAccount = (User) request.getSession().getAttribute(QexzConst.CURRENT_ACCOUNT);
         //TODO::拦截器过滤处理
         if (currentAccount == null) {
             //用户未登录直接返回首页面
-            return "redirect:/";
+            return "home";
         }
         model.addAttribute(QexzConst.CURRENT_ACCOUNT, currentAccount);
         return "user/password";
@@ -165,7 +165,7 @@ public class UserController {
                 return AjaxResult.fixedError(QexzWebError.WRONG_PASSWORD);
             }
             currentAccount.setPassword(md5NewPassword);
-            boolean result = userService.updateUser(currentAccount);
+            boolean result = userService.updatePassword(currentAccount);
             ajaxResult.setSuccess(result);
         } catch (Exception e) {
             LOG.error(e.getMessage(), e);

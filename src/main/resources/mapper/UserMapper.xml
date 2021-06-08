@@ -55,6 +55,16 @@
         id = #{user.id}
     </update>
 
+    <update id="updatePassword" parameterType="com.qexz.model.User">
+        UPDATE t_user
+        SET
+
+        password = #{user.password}
+
+        WHERE
+        id = #{user.id}
+    </update>
+
     <update id="updateAvatarImgUrlById">
         UPDATE t_user
         SET

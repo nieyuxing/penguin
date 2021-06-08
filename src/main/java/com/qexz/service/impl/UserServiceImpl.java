@@ -26,6 +26,10 @@ public class UserServiceImpl implements UserService {
     public boolean updateUser(User user) {
         return userMapper.updateUserById(user) > 0;
     }
+    @Override
+    public boolean updatePassword(User user) {
+        return userMapper.updatePassword(user) > 0;
+    }
 
     @Override
     public boolean updateAvatarImgUrlById(String avatarImgUrl, int id) {

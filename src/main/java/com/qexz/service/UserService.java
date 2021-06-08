@@ -12,6 +12,8 @@ public interface UserService {
 
     boolean updateUser(User user);
 
+    boolean updatePassword(User user);
+
     boolean updateAvatarImgUrlById(String avatarImgUrl, int id);
 
     User getUserByUsername(String username);

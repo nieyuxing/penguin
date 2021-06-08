@@ -84,7 +84,7 @@ var passwordPage = {
         var confirmPassword = $('#confirmNewPassword').val();
         if (passwordPage.checkPassword(oldPassword, newPassword, confirmPassword)) {
             //调用后端API
-            $.post(app.URL.updatePasswordUrl(), {
+            $.post("/user/api/updatePassword", {
                 oldPassword: oldPassword,
                 newPassword: newPassword,
                 confirmNewPassword: confirmPassword
