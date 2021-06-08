@@ -24,6 +24,16 @@ public class ExaminationPaper implements Serializable {
     private Date startDate;
     private Date endDate;
 
+    private Department department;
+
+    public Department getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(Department department) {
+        this.department = department;
+    }
+
     public int getId() {
         return id;
     }

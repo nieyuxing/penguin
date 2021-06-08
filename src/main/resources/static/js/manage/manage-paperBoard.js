@@ -18,7 +18,7 @@ var managePaperBoardPage = {
         managePaperBoardPage.data.papers = papers;
         managePaperBoardPage.data.departments=departments;
 
-        console.log("dshak：",papers);
+        console.log("dshak：",departments);
         //分页初始化
         managePaperBoardPage.subPageMenuInit();
 
@@ -240,6 +240,12 @@ var managePaperBoardPage = {
         for (var i = 0; i < states.length; i++) {
             if (states[i].value == papers[index].state) {
                 states[i].selected = true;
+            }
+        }
+        var departments = document.getElementById('updatedepartment_id');
+        for (var i = 0; i < departments.length; i++) {
+            if (departments[i].value == papers[index].department_id) {
+                departments[i].selected = true;
             }
         }
 

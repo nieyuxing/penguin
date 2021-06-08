@@ -112,7 +112,7 @@ public class ManageController {
         } else {
             Map<String, Object> data = userService.getUsers(page, QexzConst.accountPageSize);
             model.addAttribute(QexzConst.DATA, data);
-            return "manage/manage-UserList";
+            return "manage/manage-userList";
         }
     }
     @PostMapping("/upload")
@@ -175,8 +175,10 @@ public class ManageController {
         } else {
             Map<String, Object> data = new HashMap<>();
             List<Question> questions = questionService.getQuestionsByContestId(contestId);
+            List<Department> departments =departmentService.getDepartments();
             Contest contest = contestService.getContestById(contestId);
             data.put("questionsSize", questions.size());
+            data.put("departments", departments);
             data.put("questions", questions);
             data.put("contest", contest);
             model.addAttribute(QexzConst.DATA, data);
@@ -453,8 +455,18 @@ public class ManageController {
         if (currentAccount == null || currentAccount.getLevel() < 1) {
             return "error/404";
         } else {
+            Map<String, Object> retdata = new HashMap<>();
             Map<String, Object> data = examinationPaperService.getPagesExaminationPapers(page, QexzConst.contestPageSize);
-            model.addAttribute(QexzConst.DATA, data);
+            List<ExaminationPaper> papers = (List<ExaminationPaper>) data.get("papers");
+            List<Department> departments = departmentService.getDepartments();
+            for(ExaminationPaper paper : papers){
+                Department department = departmentService.getDepartmentById(paper.getDepartment_id());
+                paper.setDepartment(department);
+            }
+            retdata.put("papersSize",papers.size());
+            retdata.put("papers", papers);
+            retdata.put("departments", departments);
+            model.addAttribute(QexzConst.DATA, retdata);
             return "manage/manage-paperBoard";
         }
     }

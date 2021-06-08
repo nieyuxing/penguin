@@ -125,7 +125,7 @@
     <tr th:each="item,itemStats : ${data['papers']}">
     <td th:text="${item.exam_name}">慧为智能2017年数据库原理与应用考试试题</td>
     <td th:text="${item.examination_type}">慧为智能2017年数据库原理与应用考试试题</td>
-    <td th:text="${item.department_id}">慧为智能2017年数据库原理与应用考试试题</td>
+    <td th:text="${item.department.name}">慧为智能2017年数据库原理与应用考试试题</td>
         <td th:if="${item.state == 0}"><span class="label label-warning">新建</span></td>
         <td th:if="${item.state == 1}"><span class="label label-success">启用</span></td>
         <td th:if="${item.state == 2}"><span class="label label-danger">作废</span></td>
@@ -218,9 +218,11 @@
         <div class="form-group">
             <label class="col-sm-2 control-label">所属部门</label>
             <div class="col-sm-8">
-                <option th:each="item,itemStats : ${data['departments']}"
-                        th:value="${item.id}" th:text="${item.name}">
-                </option>
+                <select class="form-control" id="adddepartment_id">
+                    <option th:each="item,itemStats : ${data['departments']}"
+                            th:value="${item.id}" th:text="${item.name}">
+                    </option>
+                </select>
             </div>
         </div>
         <div class="form-group">
@@ -290,8 +292,9 @@
                             <label class="col-sm-2 control-label">所属部门</label>
                             <div class="col-sm-8">
                                 <select class="form-control" id="updatedepartment_id">
-                                    <option th:value="1">电子银行事业部</option>
-
+                                    <option th:each="item,itemStats : ${data['departments']}"
+                                            th:value="${item.id}" th:text="${item.name}">
+                                    </option>
                                 </select>
                             </div>
                         </div>
