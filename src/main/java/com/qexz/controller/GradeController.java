@@ -48,8 +48,8 @@ public class GradeController {
         List<Question> questions = questionService.getQuestionsByContestId(grade.getContestId());
         //List<ExaminationAnswerDetail> examinationAnswersDetail = new ArrayList<>();
         ExaminationAnswer examinationAnswer = examinationAnswerService.getExaminationAnswerById(grade.getAnswerId());
-        examinationAnswer.setState(1);
-        examinationAnswerService.updateState(grade.getAnswerId(),1);
+        examinationAnswer.setState(2);
+        examinationAnswerService.updateState(grade.getAnswerId(),2);
         ExaminationAnswerDetail examinationAnswersDetail;
         for (int i = 0; i < questions.size(); i++) {
             Question question = questions.get(i);
