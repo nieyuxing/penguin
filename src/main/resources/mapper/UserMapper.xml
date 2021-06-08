@@ -154,4 +154,13 @@
         where id = #{id}
     </update>
 
+
+    <select id="getApprovedUsers" resultMap="BaseResultMap" >
+        SELECT
+            *
+        FROM t_user t
+        where t.approvestatus = '1' and t.state='0'
+        ORDER BY create_time DESC
+    </select>
+
 </mapper>

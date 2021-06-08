@@ -81,4 +81,8 @@ public class ExaminationPaperDetailServiceImpl implements ExaminationPaperDetail
         data.put("positions", positions);
         return data;
     }
+
+    public List<ExaminationPaperDetail> getExaminationPaperDetailsByQuestionId(int question_id){
+        return examinationPaperDetailMapper.getExaminationPaperDetailsByQuestionId(question_id);
+    }
 }

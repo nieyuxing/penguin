@@ -102,5 +102,18 @@
         where id = #{id}
     </update>
 
+    <select id="getActiveCount" resultType="int">
+        SELECT
+            COUNT(1)
+        FROM t_examination_answer where state ='1'
+    </select>
+
+    <select id="getActiveExaminationAnswers" resultMap="BaseResultMap" >
+        SELECT
+            *
+        FROM t_examination_answer where state ='1'
+        ORDER BY create_time DESC
+    </select>
+
 
 </mapper>

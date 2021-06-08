@@ -2,12 +2,16 @@ package com.qexz.controller;
 
 import com.qexz.dto.AjaxResult;
 import com.qexz.model.Contest;
+import com.qexz.model.ExaminationPaperDetail;
 import com.qexz.model.Question;
+import com.qexz.service.ExaminationPaperDetailService;
 import com.qexz.service.QuestionService;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "/question")
@@ -17,6 +21,9 @@ public class QuestionController {
 
     @Autowired
     private QuestionService questionService;
+
+    @Autowired
+    private ExaminationPaperDetailService examinationPaperDetailService;
 
     //添加题目
     @RequestMapping(value="/api/addQuestion", method= RequestMethod.POST)
@@ -40,7 +47,13 @@ public class QuestionController {
     @DeleteMapping("/api/deleteQuestion/{id}")
     public AjaxResult deleteContest(@PathVariable int id) {
         AjaxResult ajaxResult = new AjaxResult();
-        boolean result = questionService.deleteQuestion(id);
-        return new AjaxResult().setData(result);
+        List<ExaminationPaperDetail> list = examinationPaperDetailService.getExaminationPaperDetailsByQuestionId(id);
+        if(list==null && list.size()<1){
+            boolean result = questionService.deleteQuestion(id);
+            return new AjaxResult().setData(result);
+        }else{
+            ajaxResult.setMessage("该问题已被引用，不能删除");
+            return ajaxResult;
+        }
     }
 }

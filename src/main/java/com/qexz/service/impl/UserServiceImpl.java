@@ -121,4 +121,10 @@ public class UserServiceImpl implements UserService {
     public List<User> getUsers() {
         return userMapper.getUsers();
     }
+
+    @Override
+    public List<User> getApprovedUsers() {
+        return userMapper.getApprovedUsers();
+    }
+
 }

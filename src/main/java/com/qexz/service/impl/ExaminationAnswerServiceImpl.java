@@ -56,7 +56,7 @@ public class ExaminationAnswerServiceImpl implements ExaminationAnswerService {
     @Override
     public Map<String, Object> getExaminationAnswers(int pageNum, int pageSize) {
         Map<String, Object> data = new HashMap<>();
-        int count = examinationAnswerMapper.getCount();
+        int count = examinationAnswerMapper.getActiveCount();
         if (count == 0) {
             data.put("pageNum", 0);
             data.put("pageSize", 0);
@@ -75,7 +75,7 @@ public class ExaminationAnswerServiceImpl implements ExaminationAnswerService {
             return data;
         }
         PageHelper.startPage(pageNum, pageSize);
-        List<ExaminationAnswer> examinationAnswers = examinationAnswerMapper.getExaminationAnswers();
+        List<ExaminationAnswer> examinationAnswers = examinationAnswerMapper.getActiveExaminationAnswers();
         data.put("pageNum", pageNum);
         data.put("pageSize", pageSize);
         data.put("totalPageNum", totalPageNum);

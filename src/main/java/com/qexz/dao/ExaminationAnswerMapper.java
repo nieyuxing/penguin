@@ -33,4 +33,8 @@ public interface ExaminationAnswerMapper {
     ExaminationAnswer getExaminationAnswerByUserIdAndPaperId(@Param("userId")int userId,@Param("paperId")int paperId);
 
     int finishAnswer(@Param("id") int id, @Param("score") int score ,@Param("state") int state);
+
+    List<ExaminationAnswer> getActiveExaminationAnswers();
+
+    int getActiveCount();
 }

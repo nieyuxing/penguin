@@ -196,4 +196,98 @@ var manageUserListPage = {
             });
         }
     },
+
+    //简历审核框触发
+    approveUserModalAction: function (index) {
+        //编辑考试，弹出编辑窗口
+        //输入框初始化数据
+        manageUserListPage.initApproveUserData(index);
+        $("#approveUserModal").modal({
+            keyboard : false,
+            show : true,
+            backdrop : "static"
+        });
+    },
+
+    initApproveUserData: function (index) {
+        var users = manageUserListPage.data.users;
+        //初始化数据
+        $('#approveUserIndex').val(users[index].id);
+        $('#approveName').val(users[index].name);
+        $('#approvesex').val(users[index].sex);
+        $('#approveismarry').val(users[index].ismarry);
+        $('#approveQq').val(users[index].qq);
+        $('#approvePhone').val(users[index].phone);
+        $('#approveEmail').val(users[index].email);
+        $('#approvevchat').val(users[index].vchat);
+
+    },
+
+
+
+    approvedUserAction: function () {
+        var index = $('#approveUserIndex').val();
+        $.ajax({
+            url : app.URL.approvedUserUrl()+index,
+            type : "POST",
+            dataType: "json",
+            contentType : "application/json;charset=UTF-8",
+            success:function(result) {
+                if (result && result['success']) {
+                    // 验证通过 刷新页面
+                    window.location.reload();
+                } else {
+                    console.log(result.message);
+                }
+            },
+            error:function(result){
+                console.log(result.message);
+            }
+        });
+    },
+
+    rejectedUserAction: function () {
+        var index = $('#approveUserIndex').val();
+        $.ajax({
+            url : app.URL.rejectedUserUrl()+index,
+            type : "POST",
+            dataType: "json",
+            contentType : "application/json;charset=UTF-8",
+            success:function(result) {
+                if (result && result['success']) {
+                    // 验证通过 刷新页面
+                    window.location.reload();
+                } else {
+                    console.log(result.message);
+                }
+            },
+            error:function(result){
+                console.log(result.message);
+            }
+        });
+    },
+
+    deleteUserAction: function (index) {
+        $.ajax({
+            url : app.URL.deleteUserUrl()+index,
+            type : "DELETE",
+            dataType: "json",
+            contentType : "application/json;charset=UTF-8",
+            success:function(result) {
+                if (result && result['success']) {
+                    // 验证通过 刷新页面
+                    window.location.reload();
+                } else {
+                    $('#approveModalErrorMessage').html('<i class="close icon"></i><div class="header">错误提示</div>\n' +
+                        '<p>'+  result.message  +'</p>');
+                    $('#approveModalErrorMessage').removeClass('hidden');
+                }
+            },
+            error:function(result){
+                $('#approveModalErrorMessage').html('<i class="close icon"></i><div class="header">错误提示</div>\n' +
+                    '<p>'+  result.message  +'</p>');
+                $('#approveModalErrorMessage').removeClass('hidden');
+            }
+        });
+    },
 };

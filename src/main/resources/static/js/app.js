@@ -74,6 +74,9 @@ var app = {
         uploadImageUrl: function () {
             return app.data.contextPath+'/upload/images/';
         },
+        uploadResume: function () {
+            return app.data.contextPath+'/manage/upload';
+        },
     },
     /**
      * 全局初始化:服务器时间获取,登录功能,退出登录

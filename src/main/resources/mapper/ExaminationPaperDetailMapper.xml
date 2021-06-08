@@ -89,5 +89,13 @@
         where paper_id = #{id}
     </select>
 
+    <!--根据试卷ID查询信息-->
+    <select id="getExaminationPaperDetailsByQuestionId" resultMap="BaseResultMap" parameterType="int" >
+        select
+            *
+        from t_examination_paper_detail
+        where question_id = #{quesion_id}
+    </select>
+
 
 </mapper>

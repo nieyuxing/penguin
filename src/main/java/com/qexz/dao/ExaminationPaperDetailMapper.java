@@ -1,5 +1,6 @@
 package com.qexz.dao;
 
+import com.qexz.model.ExaminationAnswerDetail;
 import com.qexz.model.ExaminationPaperDetail;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -31,5 +32,7 @@ public interface ExaminationPaperDetailMapper {
     ExaminationPaperDetail getExaminationPaperDetailDetailById(@Param("id") int id);
 
     List<ExaminationPaperDetail> getExaminationPaperDetailDetailByPaperId(int parperId);
+
+    List<ExaminationPaperDetail> getExaminationPaperDetailsByQuestionId(@Param("quesion_id") int quesion_id);
 
 }

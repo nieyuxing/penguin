@@ -39,4 +39,6 @@ public interface UserMapper {
     User getUserById(@Param("id") int id);
 
     int updateApproveStatus(@Param("id") int id, @Param("approvestatus") int approvestatus);
+
+    List<User> getApprovedUsers();
 }
