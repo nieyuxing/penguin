@@ -293,12 +293,28 @@ var app = {
                 email: email,
 
             }, function (result) {
-                // console.log("result.success = " + result.success);
-                // console.log("result.success = " + result['success']);
-                // console.log(result);
+                 // console.log("result.success = " + result.success);
+                 // console.log("result.success = " + result['success']);
+                 // console.log(result);
                 if (result && result['success']) {
                     // 验证通过 刷新页面
-                    window.location.reload();
+                    //window.location.reload();
+                    swal({
+                            title: "注册成功",
+                            text: "",
+                            type: "warning",
+                            showCancelButton: false,
+                            confirmButtonColor: "#DD6B55",
+                            confirmButtonText: "确定",
+                            closeOnConfirm: false,
+                            closeOnCancel: false
+                        },
+                        function(isConfirm){
+                            if (isConfirm) {
+                                window.location.reload();
+                            }
+                    });
+
                 } else {
                     $('#loginModalErrorMessage').html('<i class="close icon"></i><div class="header">错误提示</div>\n' +
                         '                <p>'+result.message+'</p>');
