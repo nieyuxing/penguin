@@ -347,7 +347,7 @@ var managePaperBoardPage = {
     },
     disabledAction: function (index) {
         $.ajax({
-            url : app.URL.disabledAccountUrl()+index,
+            url : app.URL.disabledPaperUrl()+index,
             type : "POST",
             dataType: "json",
             contentType : "application/json;charset=UTF-8",
@@ -366,7 +366,7 @@ var managePaperBoardPage = {
     },
     abledAction: function (index) {
         $.ajax({
-            url : app.URL.abledAccountUrl()+index,
+            url : app.URL.abledPaperUrl()+index,
             type : "POST",
             dataType: "json",
             contentType : "application/json;charset=UTF-8",
