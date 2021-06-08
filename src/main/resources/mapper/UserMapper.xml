@@ -50,6 +50,7 @@
             vchat = #{user.vchat},
             phone = #{user.phone},
             email = #{user.email}
+            resume_file = #{user.resume_file}
 
         WHERE
         id = #{user.id}

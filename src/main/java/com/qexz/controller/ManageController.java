@@ -117,7 +117,7 @@ public class ManageController {
     }
     @PostMapping("/upload")
     @ResponseBody
-    public String upload(@RequestParam("file") MultipartFile file) {
+    public String upload(@RequestParam("file") MultipartFile file,HttpServletRequest request) {
         if (file.isEmpty()) {
             return "上传失败，请选择文件";
         }
@@ -127,6 +127,9 @@ public class ManageController {
         File dest = new File(filePath + fileName);
         try {
             file.transferTo(dest);
+            User currentAccount = (User) request.getSession().getAttribute(QexzConst.CURRENT_ACCOUNT);
+            currentAccount.setResume_file(filePath + fileName);
+            userService.updateUser(currentAccount);
             LOG.info("上传成功");
             return "上传成功";
         } catch (IOException e) {

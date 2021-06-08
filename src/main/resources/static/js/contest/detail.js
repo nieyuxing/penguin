@@ -307,7 +307,7 @@ var contestDetailPage = {
 
         setTimeout(function () {
             $("#waitSubmitModal").modal("hide");
-            window.location.href = app.URL.contestIndexUrl();
+            window.location.href = app.URL.homeUrl();
         }, 5000);
     },
 
