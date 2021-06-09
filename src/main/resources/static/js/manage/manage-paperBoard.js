@@ -122,48 +122,31 @@ var managePaperBoardPage = {
         $('#endDate').val("");
     },
     checkAddPaperData: function (exam_name, examination_type, department_id,  score,difficulty) {
-        if (exam_name == null || exam_name == ''
-            || exam_name.replace(/(^s*)|(s*$)/g, "").length == 0) {
-            //TODO::信息校验
-            $('#loginModalErrorMessage').html('<i class="close icon"></i><div class="header">错误提示</div>\n' +
-                '                <p>'+'名称不能为空'+'</p>');
-            $('#loginModalErrorMessage').removeClass('hidden');
-            return false;
+        var flag = false;
+        var msg ='';
+        if (exam_name == null || exam_name == '' || exam_name.replace(/(^s*)|(s*$)/g, "").length == 0) {
+            msg = '试卷名称不能为空!'
         }
-        if (examination_type == null || examination_type == ''
-            || examination_type.replace(/(^s*)|(s*$)/g, "").length == 0) {
-            //TODO::信息校验
-            $('#loginModalErrorMessage').html('<i class="close icon"></i><div class="header">错误提示</div>\n' +
-                '                <p>'+'考卷类型不能为空'+'</p>');
-            $('#loginModalErrorMessage').removeClass('hidden');
-            return false;
+        if (examination_type == null || examination_type == '' || examination_type.replace(/(^s*)|(s*$)/g, "").length == 0) {
+            msg = '试卷类型不能为空!'
         }
-        if (department_id == null || department_id == ''
-            || department_id.replace(/(^s*)|(s*$)/g, "").length == 0) {
-            //TODO::信息校验
-            $('#loginModalErrorMessage').html('<i class="close icon"></i><div class="header">错误提示</div>\n' +
-                '                <p>'+'所属部门不能为空'+'</p>');
-            $('#loginModalErrorMessage').removeClass('hidden');
-            return false;
+        if (department_id == null || department_id == '' || department_id.replace(/(^s*)|(s*$)/g, "").length == 0) {
+            msg = '部门不能为空!'
         }
-        if (score == null || score == ''
-            || score.replace(/(^s*)|(s*$)/g, "").length == 0) {
-            //TODO::信息校验
-            $('#loginModalErrorMessage').html('<i class="close icon"></i><div class="header">错误提示</div>\n' +
-                '                <p>'+'分值不能为空'+'</p>');
-            $('#loginModalErrorMessage').removeClass('hidden');
-            return false;
+        if (score == null || score == '' || score.replace(/(^s*)|(s*$)/g, "").length == 0) {
+            msg = '总分值不能为空!'
         }
-        if (difficulty == null || difficulty == ''
-            || difficulty.replace(/(^s*)|(s*$)/g, "").length == 0) {
-            //TODO::信息校验
-            $('#loginModalErrorMessage').html('<i class="close icon"></i><div class="header">错误提示</div>\n' +
-                '                <p>'+'难度不能为空'+'</p>');
-            $('#loginModalErrorMessage').removeClass('hidden');
-            return false;
+        if (difficulty == null || difficulty == '' || difficulty.replace(/(^s*)|(s*$)/g, "").length == 0) {
+            msg = '难度设置不能为空!'
         }
-
-        return true;
+        if(!flag){
+            layer.open({
+                title: '温馨提示',
+                content: msg
+            });
+        }
+        flag = true ;
+        return flag;
     },
     addPaperAction: function () {
         var exam_name = $('#addexam_name').val();
@@ -196,20 +179,20 @@ var managePaperBoardPage = {
                     version:1,
                 }),
                 success:function(result) {
-                    console.log(exam_name);
                     if (result && result['success']) {
-                        // 验证通过 刷新页面
                         window.location.reload();
                     } else {
-                        $('#loginModalErrorMessage').html('<i class="close icon"></i><div class="header">错误提示</div>\n' +
-                            '                <p>'+result.message+'</p>');
-                        $('#loginModalErrorMessage').removeClass('hidden');
+                        layer.open({
+                            title: '温馨提示',
+                            content: result.message
+                        });
                     }
                 },
                 error:function(result){
-                    $('#loginModalErrorMessage').html('<i class="close icon"></i><div class="header">错误提示</div>\n' +
-                        '                <p>'+result.message+'</p>');
-                    $('#loginModalErrorMessage').removeClass('hidden');
+                    layer.open({
+                        title: '温馨提示',
+                        content: result.message
+                    });
                 }
             });
         }
@@ -253,23 +236,32 @@ var managePaperBoardPage = {
 
 
     },
-    checkUpdatePaperData: function (contestTitle, startTime, endTime) {
-        if (contestTitle == null || contestTitle == ''
-            || contestTitle.replace(/(^s*)|(s*$)/g, "").length == 0) {
-            //TODO::信息校验
-            $('#loginModalErrorMessage').html('<i class="close icon"></i><div class="header">错误提示</div>\n' +
-                '                <p>'+'账号不能为空'+'</p>');
-            $('#loginModalErrorMessage').removeClass('hidden');
-            return false;
+    checkUpdatePaperData: function (exam_name, examination_type, department_id,  score,difficulty) {
+        var flag = false;
+        var msg ='';
+        if (exam_name == null || exam_name == '' || exam_name.replace(/(^s*)|(s*$)/g, "").length == 0) {
+            msg = '试卷名称不能为空!'
         }
-        if (startTime == null || startTime == ''
-            || startTime.replace(/(^s*)|(s*$)/g, "").length == 0) {
-            $('#loginModalErrorMessage').html('<i class="close icon"></i><div class="header">错误提示</div>\n' +
-                '                <p>'+'密码不能为空'+'</p>');
-            $('#loginModalErrorMessage').removeClass('hidden');
-            return false;
+        if (examination_type == null || examination_type == '' || examination_type.replace(/(^s*)|(s*$)/g, "").length == 0) {
+            msg = '试卷类型不能为空!'
         }
-        return true;
+        if (department_id == null || department_id == '' || department_id.replace(/(^s*)|(s*$)/g, "").length == 0) {
+            msg = '部门不能为空!'
+        }
+        if (score == null || score == '' || score.replace(/(^s*)|(s*$)/g, "").length == 0) {
+            msg = '总分值不能为空!'
+        }
+        if (difficulty == null || difficulty == '' || difficulty.replace(/(^s*)|(s*$)/g, "").length == 0) {
+            msg = '难度设置不能为空!'
+        }
+        if(!flag){
+            layer.open({
+                title: '温馨提示',
+                content: msg
+            });
+        }
+        flag = true ;
+        return flag;
     },
     updatePaperAction: function () {
 
@@ -306,18 +298,19 @@ var managePaperBoardPage = {
                 }),
                 success:function(result) {
                     if (result && result['success']) {
-                        // 验证通过 刷新页面
                         window.location.reload();
                     } else {
-                        $('#loginModalErrorMessage').html('<i class="close icon"></i><div class="header">错误提示</div>\n' +
-                            '                <p>'+result.message+'</p>');
-                        $('#loginModalErrorMessage').removeClass('hidden');
+                        layer.open({
+                            title: '温馨提示',
+                            content: result.message
+                        });
                     }
                 },
                 error:function(result){
-                    $('#loginModalErrorMessage').html('<i class="close icon"></i><div class="header">错误提示</div>\n' +
-                        '                <p>'+result.message+'</p>');
-                    $('#loginModalErrorMessage').removeClass('hidden');
+                    layer.open({
+                        title: '温馨提示',
+                        content: result.message
+                    });
                 }
             });
         }
@@ -353,14 +346,19 @@ var managePaperBoardPage = {
             contentType : "application/json;charset=UTF-8",
             success:function(result) {
                 if (result && result['success']) {
-                    // 验证通过 刷新页面
                     window.location.reload();
                 } else {
-                    console.log(result.message);
+                    layer.open({
+                        title: '温馨提示',
+                        content: result.message
+                    });
                 }
             },
             error:function(result){
-                console.log(result.message);
+                layer.open({
+                    title: '温馨提示',
+                    content: result.message
+                });
             }
         });
     },
@@ -372,14 +370,19 @@ var managePaperBoardPage = {
             contentType : "application/json;charset=UTF-8",
             success:function(result) {
                 if (result && result['success']) {
-                    // 验证通过 刷新页面
                     window.location.reload();
                 } else {
-                    console.log(result.message);
+                    layer.open({
+                        title: '温馨提示',
+                        content: result.message
+                    });
                 }
             },
             error:function(result){
-                console.log(result.message);
+                layer.open({
+                    title: '温馨提示',
+                    content: result.message
+                });
             }
         });
     },

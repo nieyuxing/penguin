@@ -94,14 +94,19 @@ var manageUserListPage = {
             contentType : "application/json;charset=UTF-8",
             success:function(result) {
                 if (result && result['success']) {
-                    // 验证通过 刷新页面
                     window.location.reload();
                 } else {
-                    console.log(result.message);
+                    layer.open({
+                        title: '温馨提示',
+                        content: result.message
+                    });
                 }
             },
             error:function(result){
-                console.log(result.message);
+                layer.open({
+                    title: '温馨提示',
+                    content: result.message
+                });
             }
         });
     },
@@ -113,14 +118,19 @@ var manageUserListPage = {
             contentType : "application/json;charset=UTF-8",
             success:function(result) {
                 if (result && result['success']) {
-                    // 验证通过 刷新页面
                     window.location.reload();
                 } else {
-                    console.log(result.message);
+                    layer.open({
+                        title: '温馨提示',
+                        content: result.message
+                    });
                 }
             },
             error:function(result){
-                console.log(result.message);
+                layer.open({
+                    title: '温馨提示',
+                    content: result.message
+                });
             }
         });
     },
@@ -151,8 +161,23 @@ var manageUserListPage = {
         $('#updatevchat').val(users[index].vchat);
 
     },
-    checkUpdateUserData: function (name, sex, ismarry, qq, phone, email ,vchat) {
-        return true;
+    checkUserData: function (name, sex, ismarry, qq, phone, email ,vchat) {
+        var flag = false;
+        var msg ='';
+        if (phone == null || phone == '' || phone.replace(/(^s*)|(s*$)/g, "").length == 0) {
+            msg = '手机号不能为空!'
+        }
+        if (name == null || name == '' || name.replace(/(^s*)|(s*$)/g, "").length == 0) {
+            msg = '用户名不能为空!'
+        }
+        if(!flag){
+            layer.open({
+                title: '温馨提示',
+                content: msg
+            });
+        }
+        flag = true ;
+        return flag;
     },
     updateUserAction: function () {
         var index = $('#updateUserIndex').val();
@@ -165,7 +190,7 @@ var manageUserListPage = {
         var email = $('#updateEmail').val();
         var vchat = $('#updatevchat').val();
 
-        if (manageUserListPage.checkUpdateUserData(name, sex, ismarry, qq, phone, email ,vchat)) {
+        if (manageUserListPage.checkUserData(name, sex, ismarry, qq, phone, email ,vchat)) {
             $.ajax({
                 url : app.URL.updateUserUrl(),
                 type : "POST",
@@ -234,14 +259,19 @@ var manageUserListPage = {
             contentType : "application/json;charset=UTF-8",
             success:function(result) {
                 if (result && result['success']) {
-                    // 验证通过 刷新页面
                     window.location.reload();
                 } else {
-                    console.log(result.message);
+                    layer.open({
+                        title: '温馨提示',
+                        content: result.message
+                    });
                 }
             },
             error:function(result){
-                console.log(result.message);
+                layer.open({
+                    title: '温馨提示',
+                    content: result.message
+                });
             }
         });
     },
@@ -255,14 +285,19 @@ var manageUserListPage = {
             contentType : "application/json;charset=UTF-8",
             success:function(result) {
                 if (result && result['success']) {
-                    // 验证通过 刷新页面
                     window.location.reload();
                 } else {
-                    console.log(result.message);
+                    layer.open({
+                        title: '温馨提示',
+                        content: result.message
+                    });
                 }
             },
             error:function(result){
-                console.log(result.message);
+                layer.open({
+                    title: '温馨提示',
+                    content: result.message
+                });
             }
         });
     },
@@ -275,18 +310,19 @@ var manageUserListPage = {
             contentType : "application/json;charset=UTF-8",
             success:function(result) {
                 if (result && result['success']) {
-                    // 验证通过 刷新页面
                     window.location.reload();
                 } else {
-                    $('#approveModalErrorMessage').html('<i class="close icon"></i><div class="header">错误提示</div>\n' +
-                        '<p>'+  result.message  +'</p>');
-                    $('#approveModalErrorMessage').removeClass('hidden');
+                    layer.open({
+                        title: '温馨提示',
+                        content: result.message
+                    });
                 }
             },
             error:function(result){
-                $('#approveModalErrorMessage').html('<i class="close icon"></i><div class="header">错误提示</div>\n' +
-                    '<p>'+  result.message  +'</p>');
-                $('#approveModalErrorMessage').removeClass('hidden');
+                layer.open({
+                    title: '温馨提示',
+                    content: result.message
+                });
             }
         });
     },

@@ -131,7 +131,27 @@ var manageQuestionBoardPage = {
                                     questionAnswer, questionParse, questionDifficulty,
                                     questionValue) {
         //TODO::校验
-        return true;
+        var flag = false;
+        var msg ='';
+        if (questionTitle == null || questionTitle == '' || questionTitle.replace(/(^s*)|(s*$)/g, "").length == 0) {
+            msg = '考题名称不能为空!'
+        }
+        if (questionContent == null || questionContent == '' || questionContent.replace(/(^s*)|(s*$)/g, "").length == 0) {
+            msg = '考题内容不能为空!'
+        }
+        if (questionAnswer == null || questionAnswer == '' || questionAnswer.replace(/(^s*)|(s*$)/g, "").length == 0) {
+            msg = '考题答案不能为空!'
+        }
+        if (questionParse == null || questionParse == '' || questionParse.replace(/(^s*)|(s*$)/g, "").length == 0) {
+            msg = '考题名答案解析不能为空!'
+        }
+        if(!flag){
+            layer.open({
+                title: '温馨提示',
+                content: msg
+            });
+        }
+        return flag;
 
     },
     addQuestionAction: function () {
@@ -173,18 +193,19 @@ var manageQuestionBoardPage = {
                 }),
                 success:function(result) {
                     if (result && result['success']) {
-                        // 验证通过 刷新页面
                         window.location.reload();
                     } else {
-                        $('#loginModalErrorMessage').html('<i class="close icon"></i><div class="header">错误提示</div>\n' +
-                            '                <p>'+result.message+'</p>');
-                        $('#loginModalErrorMessage').removeClass('hidden');
+                        layer.open({
+                            title: '温馨提示',
+                            content: result.message
+                        });
                     }
                 },
                 error:function(result){
-                    $('#loginModalErrorMessage').html('<i class="close icon"></i><div class="header">错误提示</div>\n' +
-                        '                <p>'+result.message+'</p>');
-                    $('#loginModalErrorMessage').removeClass('hidden');
+                    layer.open({
+                        title: '温馨提示',
+                        content: result.message
+                    });
                 }
             });
         }
@@ -236,8 +257,28 @@ var manageQuestionBoardPage = {
                                        optionA, optionB, optionC, optionD,
                                        questionAnswer, questionParse, questionDifficulty) {
         //TODO::校验
-        return true;
-
+        var flag = false;
+        var msg ='';
+        if (questionTitle == null || questionTitle == '' || questionTitle.replace(/(^s*)|(s*$)/g, "").length == 0) {
+            msg = '考题名称不能为空!'
+        }
+        if (questionContent == null || questionContent == '' || questionContent.replace(/(^s*)|(s*$)/g, "").length == 0) {
+            msg = '考题内容不能为空!'
+        }
+        if (questionAnswer == null || questionAnswer == '' || questionAnswer.replace(/(^s*)|(s*$)/g, "").length == 0) {
+            msg = '考题答案不能为空!'
+        }
+        if (questionParse == null || questionParse == '' || questionParse.replace(/(^s*)|(s*$)/g, "").length == 0) {
+            msg = '考题名答案解析不能为空!'
+        }
+        if(!flag){
+            layer.open({
+                title: '温馨提示',
+                content: msg
+            });
+        }
+        flag = true;
+        return flag;
     },
     updateQuestionAction: function () {
         var index = $('#updateQuestionIndex').val();
@@ -281,18 +322,19 @@ var manageQuestionBoardPage = {
                 }),
                 success:function(result) {
                     if (result && result['success']) {
-                        // 验证通过 刷新页面
                         window.location.reload();
                     } else {
-                        $('#loginModalErrorMessage').html('<i class="close icon"></i><div class="header">错误提示</div>\n' +
-                            '                <p>'+result.message+'</p>');
-                        $('#loginModalErrorMessage').removeClass('hidden');
+                        layer.open({
+                            title: '温馨提示',
+                            content: result.message
+                        });
                     }
                 },
                 error:function(result){
-                    $('#loginModalErrorMessage').html('<i class="close icon"></i><div class="header">错误提示</div>\n' +
-                        '                <p>'+result.message+'</p>');
-                    $('#loginModalErrorMessage').removeClass('hidden');
+                    layer.open({
+                        title: '温馨提示',
+                        content: result.message
+                    });
                 }
             });
         }
@@ -305,18 +347,19 @@ var manageQuestionBoardPage = {
             contentType : "application/json;charset=UTF-8",
             success:function(result) {
                 if (result && result['success']) {
-                    // 验证通过 刷新页面
                     window.location.reload();
                 } else {
-                    $('#loginModalErrorMessage').html('<i class="close icon"></i><div class="header">错误提示</div>\n' +
-                        '                <p>'+result.message+'</p>');
-                    $('#loginModalErrorMessage').removeClass('hidden');
+                    layer.open({
+                        title: '温馨提示',
+                        content: result.message
+                    });
                 }
             },
             error:function(result){
-                $('#loginModalErrorMessage').html('<i class="close icon"></i><div class="header">错误提示</div>\n' +
-                    '                <p>'+result.message+'</p>');
-                $('#loginModalErrorMessage').removeClass('hidden');
+                layer.open({
+                    title: '温馨提示',
+                    content: result.message
+                });
             }
         });
     },

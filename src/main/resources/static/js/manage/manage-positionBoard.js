@@ -207,14 +207,19 @@ var managePositionBoardPage = {
                 }),
                 success:function(result) {
                     if (result && result['success']) {
-                        // 验证通过 刷新页面
                         window.location.reload();
                     } else {
-                        console.log(result.message);
+                        layer.open({
+                            title: '温馨提示',
+                            content: result.message
+                        });
                     }
                 },
                 error:function(result){
-                    console.log(result.message);
+                    layer.open({
+                        title: '温馨提示',
+                        content: result.message
+                    });
                 }
             });
         }
@@ -258,69 +263,40 @@ var managePositionBoardPage = {
         }
     },
     checkUpdatePositionData: function (name,department_id,posi_code,place,posi_type,degree,depth,positionNum,descr) {
-        if (name == null || name == ''
-            || name.replace(/(^s*)|(s*$)/g, "").length == 0) {
-            $('#updateModalErrorMessage').html('<i class="close icon"></i><div class="header">错误提示</div>\n' +
-                '                <p>'+'职位名称不能为空'+'</p>');
-            $('#updateModalErrorMessage').removeClass('hidden');
-            return false;
+        var flag = false;
+        var msg ='';
+        if (name == null || name == '' || name.replace(/(^s*)|(s*$)/g, "").length == 0) {
+            msg = '名称不能为空!'
         }
-        if (department_id == null || department_id == '') {
-            $('#updateModalErrorMessage').html('<i class="close icon"></i><div class="header">错误提示</div>\n' +
-                '                <p>'+'所属部门不能为空'+'</p>');
-            $('#updateModalErrorMessage').removeClass('hidden');
-            return false;
+        if (department_id == null || department_id == '' || department_id.replace(/(^s*)|(s*$)/g, "").length == 0) {
+            msg = '部门不能为空!'
         }
-        if (posi_code == null || posi_code == ''
-            || posi_code.replace(/(^s*)|(s*$)/g, "").length == 0) {
-            $('#updateModalErrorMessage').html('<i class="close icon"></i><div class="header">错误提示</div>\n' +
-                '                <p>'+'职位编码不能为空'+'</p>');
-            $('#updateModalErrorMessage').removeClass('hidden');
-            return false;
+        if (posi_code == null || posi_code == '' || posi_code.replace(/(^s*)|(s*$)/g, "").length == 0) {
+            msg = '编码不能为空!'
         }
-        if (place == null || place == ''
-            || place.replace(/(^s*)|(s*$)/g, "").length == 0) {
-            $('#updateModalErrorMessage').html('<i class="close icon"></i><div class="header">错误提示</div>\n' +
-                '                <p>'+'招聘地点不能为空'+'</p>');
-            $('#updateModalErrorMessage').removeClass('hidden');
-            return false;
+        if (place == null || place == '' || place.replace(/(^s*)|(s*$)/g, "").length == 0) {
+            msg = '招聘地点不能为空!'
         }
-        if (posi_type == null || posi_type == ''
-            || posi_type.replace(/(^s*)|(s*$)/g, "").length == 0) {
-            $('#updateModalErrorMessage').html('<i class="close icon"></i><div class="header">错误提示</div>\n' +
-                '                <p>'+'职位类型不能为空'+'</p>');
-            $('#updateModalErrorMessage').removeClass('hidden');
-            return false;
+        if (posi_type == null || posi_type == '' || posi_type.replace(/(^s*)|(s*$)/g, "").length == 0) {
+            msg = '职位类型不能为空!'
         }
-        if (positionNum == null || positionNum == ''
-            || positionNum.replace(/(^s*)|(s*$)/g, "").length == 0) {
-            $('#updateModalErrorMessage').html('<i class="close icon"></i><div class="header">错误提示</div>\n' +
-                '                <p>'+'招聘人数不能为空'+'</p>');
-            $('#updateModalErrorMessage').removeClass('hidden');
-            return false;
+        if (degree == null || degree == '' || degree.replace(/(^s*)|(s*$)/g, "").length == 0) {
+            msg = '学历不能为空!'
         }
-        if (degree == null || degree == ''
-            || degree.replace(/(^s*)|(s*$)/g, "").length == 0) {
-            $('#updateModalErrorMessage').html('<i class="close icon"></i><div class="header">错误提示</div>\n' +
-                '                <p>'+'学历不能为空'+'</p>');
-            $('#updateModalErrorMessage').removeClass('hidden');
-            return false;
+        if (depth == null || depth == '' || depth.replace(/(^s*)|(s*$)/g, "").length == 0) {
+            msg = '工作年限不能为空!'
         }
-        if (depth == null || depth == ''
-            || depth.replace(/(^s*)|(s*$)/g, "").length == 0) {
-            $('#updateModalErrorMessage').html('<i class="close icon"></i><div class="header">错误提示</div>\n' +
-                '                <p>'+'工作年限不能为空'+'</p>');
-            $('#updateModalErrorMessage').removeClass('hidden');
-            return false;
+        if (positionNum == null || positionNum == '' || positionNum.replace(/(^s*)|(s*$)/g, "").length == 0) {
+            msg = '招聘人数不能为空!'
         }
-        if (descr == null || descr == ''
-            || descr.replace(/(^s*)|(s*$)/g, "").length == 0) {
-            $('#updateModalErrorMessage').html('<i class="close icon"></i><div class="header">错误提示</div>\n' +
-                '                <p>'+'职位描述不能为空'+'</p>');
-            $('#updateModalErrorMessage').removeClass('hidden');
-            return false;
+        if(!flag){
+            layer.open({
+                title: '温馨提示',
+                content: msg
+            });
         }
-        return true;
+        flag = true ;
+        return flag;
     },
     updatePositionAction: function () {
         var positions = managePositionBoardPage.data.positions;
@@ -357,14 +333,19 @@ var managePositionBoardPage = {
                 }),
                 success:function(result) {
                     if (result && result['success']) {
-                        // 验证通过 刷新页面
                         window.location.reload();
                     } else {
-                        console.log(result.message);
+                        layer.open({
+                            title: '温馨提示',
+                            content: result.message
+                        });
                     }
                 },
                 error:function(result){
-                    console.log(result.message);
+                    layer.open({
+                        title: '温馨提示',
+                        content: result.message
+                    });
                 }
             });
         }
@@ -377,14 +358,19 @@ var managePositionBoardPage = {
             contentType : "application/json;charset=UTF-8",
             success:function(result) {
                 if (result && result['success']) {
-                    // 验证通过 刷新页面
                     window.location.reload();
                 } else {
-                    console.log(result.message);
+                    layer.open({
+                        title: '温馨提示',
+                        content: result.message
+                    });
                 }
             },
             error:function(result){
-                console.log(result.message);
+                layer.open({
+                    title: '温馨提示',
+                    content: result.message
+                });
             }
         });
     }

@@ -125,7 +125,22 @@ var manageExamAnswerBoardPage = {
 
     checkAddAnswerData: function (user_id,question_id) {
 
-        return true;
+        var flag = false;
+        var msg ='';
+        if (user_id == null || user_id == '' || user_id.replace(/(^s*)|(s*$)/g, "").length == 0) {
+            msg = '用户不能为空!'
+        }
+        if (question_id == null || question_id == '' || question_id.replace(/(^s*)|(s*$)/g, "").length == 0) {
+            msg = '考题不能为空!'
+        }
+        if(!flag){
+            layer.open({
+                title: '温馨提示',
+                content: msg
+            });
+        }
+        flag = true ;
+        return flag;
     },
     addAnswerAction: function () {
         var user_id = $('#adduser_id').val();
@@ -145,18 +160,19 @@ var manageExamAnswerBoardPage = {
                 }),
                 success:function(result) {
                     if (result && result['success']) {
-                        // 验证通过 刷新页面
                         window.location.reload();
                     } else {
-                        $('#loginModalErrorMessage').html('<i class="close icon"></i><div class="header">错误提示</div>\n' +
-                            '                <p>'+result.message+'</p>');
-                        $('#loginModalErrorMessage').removeClass('hidden');
+                        layer.open({
+                            title: '温馨提示',
+                            content: result.message
+                        });
                     }
                 },
                 error:function(result){
-                    $('#loginModalErrorMessage').html('<i class="close icon"></i><div class="header">错误提示</div>\n' +
-                        '                <p>'+result.message+'</p>');
-                    $('#loginModalErrorMessage').removeClass('hidden');
+                    layer.open({
+                        title: '温馨提示',
+                        content: result.message
+                    });
                 }
             });
         }

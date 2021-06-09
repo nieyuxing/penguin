@@ -105,7 +105,25 @@ var manageAccountListPage = {
         $('#addEmail').val("");
     },
     checkAddAccountData: function (name, username, password, qq, phone, email) {
-        return true;
+        var flag = false;
+        var msg ='';
+        if (name == null || name == '' || name.replace(/(^s*)|(s*$)/g, "").length == 0) {
+            msg = '用户名不能为空!'
+        }
+        if (username == null || username == '' || username.replace(/(^s*)|(s*$)/g, "").length == 0) {
+            msg = '账号不能为空!'
+        }
+        if (phone == null || phone == '' || phone.replace(/(^s*)|(s*$)/g, "").length == 0) {
+            msg = '手机号码不能为空!'
+        }
+        if(!flag){
+            layer.open({
+                title: '温馨提示',
+                content: msg
+            });
+        }
+        flag = true;
+        return flag;
     },
     addAccountAction: function () {
         var name = $('#addName').val();
@@ -134,14 +152,19 @@ var manageAccountListPage = {
                 }),
                 success:function(result) {
                     if (result && result['success']) {
-                        // 验证通过 刷新页面
                         window.location.reload();
                     } else {
-                        console.log(result.message);
+                        layer.open({
+                            title: '温馨提示',
+                            content: result.message
+                        });
                     }
                 },
                 error:function(result){
-                    console.log(result.message);
+                    layer.open({
+                        title: '温馨提示',
+                        content: result.message
+                    });
                 }
             });
         }
@@ -176,7 +199,25 @@ var manageAccountListPage = {
         }
     },
     checkUpdateAccountData: function (name, username, password, qq, phone, email) {
-        return true;
+        var flag = false;
+        var msg ='';
+        if (name == null || name == '' || name.replace(/(^s*)|(s*$)/g, "").length == 0) {
+            msg = '用户名不能为空!'
+        }
+        if (username == null || username == '' || username.replace(/(^s*)|(s*$)/g, "").length == 0) {
+            msg = '账号不能为空!'
+        }
+        if (phone == null || phone == '' || phone.replace(/(^s*)|(s*$)/g, "").length == 0) {
+            msg = '手机号码不能为空!'
+        }
+        if(!flag){
+            layer.open({
+                title: '温馨提示',
+                content: msg
+            });
+        }
+        flag = true;
+        return flag;
     },
     updateAccountAction: function () {
         var index = $('#updateAccountIndex').val();
@@ -188,7 +229,7 @@ var manageAccountListPage = {
         var email = $('#updateEmail').val();
         var level = $('#updateLevel').val();
 
-        if (manageAccountListPage.checkUpdateAccountData(username, phone, qq, password)) {
+        if (manageAccountListPage.checkUpdateAccountData(name, username, password, qq, phone, email)) {
             $.ajax({
                 url : app.URL.updateAccountUrl(),
                 type : "POST",
@@ -207,14 +248,19 @@ var manageAccountListPage = {
                 }),
                 success:function(result) {
                     if (result && result['success']) {
-                        // 验证通过 刷新页面
                         window.location.reload();
                     } else {
-                        console.log(result.message);
+                        layer.open({
+                            title: '温馨提示',
+                            content: result.message
+                        });
                     }
                 },
                 error:function(result){
-                    console.log(result.message);
+                    layer.open({
+                        title: '温馨提示',
+                        content: result.message
+                    });
                 }
             });
         }
@@ -227,14 +273,19 @@ var manageAccountListPage = {
             contentType : "application/json;charset=UTF-8",
             success:function(result) {
                 if (result && result['success']) {
-                    // 验证通过 刷新页面
                     window.location.reload();
                 } else {
-                    console.log(result.message);
+                    layer.open({
+                        title: '温馨提示',
+                        content: result.message
+                    });
                 }
             },
             error:function(result){
-                console.log(result.message);
+                layer.open({
+                    title: '温馨提示',
+                    content: result.message
+                });
             }
         });
     },
@@ -246,14 +297,19 @@ var manageAccountListPage = {
             contentType : "application/json;charset=UTF-8",
             success:function(result) {
                 if (result && result['success']) {
-                    // 验证通过 刷新页面
                     window.location.reload();
                 } else {
-                    console.log(result.message);
+                    layer.open({
+                        title: '温馨提示',
+                        content: result.message
+                    });
                 }
             },
             error:function(result){
-                console.log(result.message);
+                layer.open({
+                    title: '温馨提示',
+                    content: result.message
+                });
             }
         });
     },
@@ -265,14 +321,19 @@ var manageAccountListPage = {
             contentType : "application/json;charset=UTF-8",
             success:function(result) {
                 if (result && result['success']) {
-                    // 验证通过 刷新页面
                     window.location.reload();
                 } else {
-                    console.log(result.message);
+                    layer.open({
+                        title: '温馨提示',
+                        content: result.message
+                    });
                 }
             },
             error:function(result){
-                console.log(result.message);
+                layer.open({
+                    title: '温馨提示',
+                    content: result.message
+                });
             }
         });
     },

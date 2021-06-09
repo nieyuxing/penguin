@@ -174,18 +174,19 @@ var manageQuestionBoardPage = {
                 }),
                 success:function(result) {
                     if (result && result['success']) {
-                        // 验证通过 刷新页面
                         window.location.reload();
                     } else {
-                        $('#loginModalErrorMessage').html('<i class="close icon"></i><div class="header">错误提示</div>\n' +
-                            '                <p>'+result.message+'</p>');
-                        $('#loginModalErrorMessage').removeClass('hidden');
+                        layer.open({
+                            title: '温馨提示',
+                            content: result.message
+                        });
                     }
                 },
                 error:function(result){
-                    $('#loginModalErrorMessage').html('<i class="close icon"></i><div class="header">错误提示</div>\n' +
-                        '                <p>'+result.message+'</p>');
-                    $('#loginModalErrorMessage').removeClass('hidden');
+                    layer.open({
+                        title: '温馨提示',
+                        content: result.message
+                    });
                 }
             });
         }
@@ -233,12 +234,35 @@ var manageQuestionBoardPage = {
         }
         $('#updateQuestionScore').val(questions[index].score);
     },
-    checkUpdateQuestionData: function (questionTitle, questionContent, questionType,
-                                       optionA, optionB, optionC, optionD,
-                                       questionAnswer, questionParse, questionDifficulty,
-                                       questionScore) {
+    checkUpdateQuestionData: function (questionTitle, questionContent,
+                                       questionType, optionA,optionB, optionC, optionD, questionAnswer, questionParse,
+                                       questionDifficulty, questionScore) {
         //TODO::校验
-        return true;
+        var flag = false;
+        var msg ='';
+        if (questionTitle == null || questionTitle == '' || questionTitle.replace(/(^s*)|(s*$)/g, "").length == 0) {
+            msg = '名称不能为空!'
+        }
+        if (questionContent == null || questionContent == '' || questionContent.replace(/(^s*)|(s*$)/g, "").length == 0) {
+            msg = '试卷类型不能为空!'
+        }
+        if (questionAnswer == null || questionAnswer == '' || questionAnswer.replace(/(^s*)|(s*$)/g, "").length == 0) {
+            msg = '部门不能为空!'
+        }
+        if (questionParse == null || questionParse == '' || questionParse.replace(/(^s*)|(s*$)/g, "").length == 0) {
+            msg = '总分值不能为空!'
+        }
+        if (questionScore == null || questionScore == '' || questionScore.replace(/(^s*)|(s*$)/g, "").length == 0) {
+            msg = '难度设置不能为空!'
+        }
+        if(!flag){
+            layer.open({
+                title: '温馨提示',
+                content: msg
+            });
+        }
+        flag = true ;
+        return flag;
 
     },
     updateQuestionAction: function () {
@@ -283,18 +307,19 @@ var manageQuestionBoardPage = {
                 }),
                 success:function(result) {
                     if (result && result['success']) {
-                        // 验证通过 刷新页面
                         window.location.reload();
                     } else {
-                        $('#loginModalErrorMessage').html('<i class="close icon"></i><div class="header">错误提示</div>\n' +
-                            '                <p>'+result.message+'</p>');
-                        $('#loginModalErrorMessage').removeClass('hidden');
+                        layer.open({
+                            title: '温馨提示',
+                            content: result.message
+                        });
                     }
                 },
                 error:function(result){
-                    $('#loginModalErrorMessage').html('<i class="close icon"></i><div class="header">错误提示</div>\n' +
-                        '                <p>'+result.message+'</p>');
-                    $('#loginModalErrorMessage').removeClass('hidden');
+                    layer.open({
+                        title: '温馨提示',
+                        content: result.message
+                    });
                 }
             });
         }
@@ -307,18 +332,19 @@ var manageQuestionBoardPage = {
             contentType : "application/json;charset=UTF-8",
             success:function(result) {
                 if (result && result['success']) {
-                    // 验证通过 刷新页面
                     window.location.reload();
                 } else {
-                    $('#loginModalErrorMessage').html('<i class="close icon"></i><div class="header">错误提示</div>\n' +
-                        '                <p>'+result.message+'</p>');
-                    $('#loginModalErrorMessage').removeClass('hidden');
+                    layer.open({
+                        title: '温馨提示',
+                        content: result.message
+                    });
                 }
             },
             error:function(result){
-                $('#loginModalErrorMessage').html('<i class="close icon"></i><div class="header">错误提示</div>\n' +
-                    '                <p>'+result.message+'</p>');
-                $('#loginModalErrorMessage').removeClass('hidden');
+                layer.open({
+                    title: '温馨提示',
+                    content: result.message
+                });
             }
         });
     },

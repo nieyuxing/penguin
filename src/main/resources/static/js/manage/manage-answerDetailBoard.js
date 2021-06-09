@@ -89,21 +89,23 @@ var manageAnswerDetailBoardPage = {
     },
 
     checkAnswerDetailData: function (index,score) {
+        var flag = false;
+        var msg ='';
+        if (index == null || index == '' || index.replace(/(^s*)|(s*$)/g, "").length == 0) {
+            msg = '题号不能为空!'
+        }
+        if (score == null || score == '' || score.replace(/(^s*)|(s*$)/g, "").length == 0) {
+            msg = '得分不能为空!'
+        }
 
-        if (index == null || index == '') {
-            //TODO::信息校验
-            $('#loginModalErrorMessage').html('<i class="close icon"></i><div class="header">错误提示</div>\n' +
-                '                <p>'+'题号'+'</p>');
-            $('#loginModalErrorMessage').removeClass('hidden');
-            return false;
+        if(!flag){
+            layer.open({
+                title: '温馨提示',
+                content: msg
+            });
         }
-        if (score == null || score == '') {
-            $('#loginModalErrorMessage').html('<i class="close icon"></i><div class="header">错误提示</div>\n' +
-                '                <p>'+'得分不能为空'+'</p>');
-            $('#loginModalErrorMessage').removeClass('hidden');
-            return false;
-        }
-        return true;
+        flag = true ;
+        return flag;
     },
     updateAnswerDetailAction: function () {
         var answerDetails =  manageAnswerDetailBoardPage.data.answerDetails;
@@ -131,14 +133,19 @@ var manageAnswerDetailBoardPage = {
             }),
             success:function(result) {
                 if (result && result['success']) {
-                    // 验证通过 刷新页面
                     window.location.reload();
                 } else {
-                    console.log(result.message);
+                    layer.open({
+                        title: '温馨提示',
+                        content: result.message
+                    });
                 }
             },
             error:function(result){
-                console.log(result.message);
+                layer.open({
+                    title: '温馨提示',
+                    content: result.message
+                });
             }
         });
     },
@@ -151,14 +158,19 @@ var manageAnswerDetailBoardPage = {
             contentType : "application/json;charset=UTF-8",
             success:function(result) {
                 if (result && result['success']) {
-                    // 验证通过 刷新页面
                     window.location.reload();
                 } else {
-                    console.log(result.message);
+                    layer.open({
+                        title: '温馨提示',
+                        content: result.message
+                    });
                 }
             },
             error:function(result){
-                console.log(result.message);
+                layer.open({
+                    title: '温馨提示',
+                    content: result.message
+                });
             }
         });
     },

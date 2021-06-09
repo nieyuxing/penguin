@@ -99,8 +99,24 @@ var manageDepartmentBoardPage = {
         //初始化数据
         $('#departmentName').val("");
     },
-    checkAddDepartmentData: function (departmentName) {
-        return true;
+    checkAddDepartmentData: function (departmentName,departmentCode,departmentState,departmentDesc) {
+        var flag = false;
+        var msg ='';
+        if (departmentName == null || departmentName == '' || departmentName.replace(/(^s*)|(s*$)/g, "").length == 0) {
+            msg = '名称不能为空!'
+        }
+        if (departmentCode == null || departmentCode == '' || departmentCode.replace(/(^s*)|(s*$)/g, "").length == 0) {
+            msg = '编码不能为空!'
+        }
+        if(!flag){
+            layer.open({
+                title: '温馨提示',
+                content: msg
+            });
+        }
+        flag = true ;
+        return flag;
+
     },
     addDepartmentAction: function () {
         var departmentName = $('#departmentName').val();
@@ -125,14 +141,19 @@ var manageDepartmentBoardPage = {
                 }),
                 success:function(result) {
                     if (result && result['success']) {
-                        // 验证通过 刷新页面
                         window.location.reload();
                     } else {
-                        console.log(result.message);
+                        layer.open({
+                            title: '温馨提示',
+                            content: result.message
+                        });
                     }
                 },
                 error:function(result){
-                    console.log(result.message);
+                    layer.open({
+                        title: '温馨提示',
+                        content: result.message
+                    });
                 }
             });
         }
@@ -185,14 +206,19 @@ var manageDepartmentBoardPage = {
                 }),
                 success:function(result) {
                     if (result && result['success']) {
-                        // 验证通过 刷新页面
                         window.location.reload();
                     } else {
-                        console.log(result.message);
+                        layer.open({
+                            title: '温馨提示',
+                            content: result.message
+                        });
                     }
                 },
                 error:function(result){
-                    console.log(result.message);
+                    layer.open({
+                        title: '温馨提示',
+                        content: result.message
+                    });
                 }
             });
         }
@@ -205,14 +231,19 @@ var manageDepartmentBoardPage = {
             contentType : "application/json;charset=UTF-8",
             success:function(result) {
                 if (result && result['success']) {
-                    // 验证通过 刷新页面
                     window.location.reload();
                 } else {
-                    console.log(result.message);
+                    layer.open({
+                        title: '温馨提示',
+                        content: result.message
+                    });
                 }
             },
             error:function(result){
-                console.log(result.message);
+                layer.open({
+                    title: '温馨提示',
+                    content: result.message
+                });
             }
         });
     }
