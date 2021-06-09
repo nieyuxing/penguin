@@ -154,7 +154,7 @@ public class ManageController {
         try {
             file.transferTo(dest);
             User currentAccount = (User) request.getSession().getAttribute(QexzConst.CURRENT_ACCOUNT);
-            currentAccount.setResume_file(filePath + fileName);
+            currentAccount.setResume_file(fileName);
             userService.updateUser(currentAccount);
             LOG.info("上传成功");
             return ajaxResult.setSuccess(true);

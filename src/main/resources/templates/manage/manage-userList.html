@@ -75,6 +75,7 @@
     <th>手机</th>
     <th>邮箱</th>
     <th>微信</th>
+        <th>简历</th>
     <th>账号状态</th>
     <th>审核状态</th>
     <th>操作</th>
@@ -92,6 +93,7 @@
     <td th:text="${item.phone}"></td>
     <td th:text="${item.email}"></td>
     <td th:text="${item.vchat}"></td>
+        <td > <a th:href="${item.resume_file}">下载简历</a></td>
     <td th:if="${item.state == 0}"><span class="label label-success">正常</span></td>
     <td th:if="${item.state == 1}"><span class="label label-danger">禁用</span></td>
     <td th:if="${item.approvestatus == 0}"><span class="label label-warning">未审核</span></td>

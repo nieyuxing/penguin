@@ -64,11 +64,13 @@ public class GradeController {
             }
             examinationAnswersDetail.setCreate_time(new Date());
             examinationAnswersDetail.setUpdate_time(new Date());
+            if (question.getQuestionType() <= 1 && question.getAnswer()
+                    .equals(answerStrs.get(i))) {
+                examinationAnswersDetail.setScore(question.getScore());
+                autoResult += question.getScore();
+            }
             examinationAnswerDetailService.addExaminationAnswerDetail(examinationAnswersDetail);
-//            if (question.getQuestionType() <= 1 && question.getAnswer()
-//                    .equals(answerStrs.get(i))) {
-//                autoResult += question.getScore();
-//            }
+
         }
         grade.setStudentId(currentAccount.getId());
         grade.setResult(autoResult);

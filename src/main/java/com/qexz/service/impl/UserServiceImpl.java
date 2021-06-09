@@ -74,6 +74,11 @@ public class UserServiceImpl implements UserService {
         }
         PageHelper.startPage(pageNum, pageSize);
         List<User> users = userMapper.getUsers();
+        for(User user:users){
+            if(user.getResume_file()!=null && user.getResume_file() !=""){
+                user.setResume_file(QexzConst.IPADDRESS + user.getResume_file());
+            }
+        }
         data.put("pageNum", pageNum);
         data.put("pageSize", pageSize);
         data.put("totalPageNum", totalPageNum);
