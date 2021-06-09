@@ -268,8 +268,7 @@ public class ManageController {
             Map<Integer, String> positionId2name = positions.stream().
                     collect(Collectors.toMap(Position::getId, Position::getName));
             for (Question question : questions) {
-                question.setPositionName(positionId2name.
-                        getOrDefault(question.getpositionId(), "未知科目"));
+                question.setPositionName(positionId2name. getOrDefault(question.getpositionId(), "未知科目"));
             }
             data.put("positions", positions);
             data.put("content", content);

@@ -56,6 +56,42 @@ public class ExaminationAnswerServiceImpl implements ExaminationAnswerService {
     @Override
     public Map<String, Object> getExaminationAnswers(int pageNum, int pageSize) {
         Map<String, Object> data = new HashMap<>();
+        int count = examinationAnswerMapper.getCount();
+        if (count == 0) {
+            data.put("pageNum", 0);
+            data.put("pageSize", 0);
+            data.put("totalPageNum", 1);
+            data.put("totalPageSize", 0);
+            data.put("examinationAnswers", new ArrayList<>());
+            return data;
+        }
+        int totalPageNum = count % pageSize == 0 ? count / pageSize : count / pageSize + 1;
+        if (pageNum > totalPageNum) {
+            data.put("pageNum", 0);
+            data.put("pageSize", 0);
+            data.put("totalPageNum", totalPageNum);
+            data.put("totalPageSize", 0);
+            data.put("examinationAnswers", new ArrayList<>());
+            return data;
+        }
+        PageHelper.startPage(pageNum, pageSize);
+        List<ExaminationAnswer> examinationAnswers = examinationAnswerMapper.getExaminationAnswers();
+        data.put("pageNum", pageNum);
+        data.put("pageSize", pageSize);
+        data.put("totalPageNum", totalPageNum);
+        data.put("totalPageSize", count);
+        data.put("examinationAnswers", examinationAnswers);
+        return data;
+    }
+
+    @Override
+    public boolean finishAnswer(ExaminationAnswer answer) {
+        return examinationAnswerMapper.finishAnswer(answer.getId(),answer.getScore(),answer.getState())>0;
+    }
+
+    @Override
+    public Map<String, Object> getActiveExaminationAnswers(int pageNum, int pageSize) {
+        Map<String, Object> data = new HashMap<>();
         int count = examinationAnswerMapper.getActiveCount();
         if (count == 0) {
             data.put("pageNum", 0);
@@ -82,10 +118,5 @@ public class ExaminationAnswerServiceImpl implements ExaminationAnswerService {
         data.put("totalPageSize", count);
         data.put("examinationAnswers", examinationAnswers);
         return data;
-    }
-
-    @Override
-    public boolean finishAnswer(ExaminationAnswer answer) {
-        return examinationAnswerMapper.finishAnswer(answer.getId(),answer.getScore(),answer.getState())>0;
     }
 }

@@ -29,12 +29,11 @@
     <insert id="insertQuestion" parameterType="com.qexz.model.Question" >
         insert into t_penguin_question
         (title, content, question_type, option_a, option_b, option_c,
-        option_d, answer, parse, position_id, contest_id, score, difficulty,
+        option_d, answer, parse, difficulty,
         state)
         values (#{question.title}, #{question.content}, #{question.questionType},
         #{question.optionA}, #{question.optionB}, #{question.optionC}, #{question.optionD},
-        #{question.answer}, #{question.parse}, #{question.positionId}, #{question.contestId},
-        #{question.score}, #{question.difficulty}, #{question.state})
+        #{question.answer}, #{question.parse}, #{question.difficulty}, #{question.state})
     </insert>
 
     <delete id="deleteQuestion" parameterType="int">
@@ -49,8 +48,8 @@
           question_type = #{question.questionType}, option_a = #{question.optionA},
           option_b = #{question.optionB}, option_c = #{question.optionC},
           option_d = #{question.optionD}, answer = #{question.answer},
-          parse = #{question.parse}, position_id = #{question.positionId},
-          contest_id = #{question.contestId}, score = #{question.score},
+          parse = #{question.parse},
+
           difficulty = #{question.difficulty}
         WHERE
         id = #{question.id}

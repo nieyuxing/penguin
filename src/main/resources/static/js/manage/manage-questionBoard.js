@@ -124,7 +124,7 @@ var manageQuestionBoardPage = {
         $('#optionD').val("");
         $('#questionAnswer').val("");
         $('#questionParse').val("");
-        $('#questionScore').val("");
+        // $('#questionScore').val("");
     },
     checkAddQuestionData: function (questionTitle, questionContent, questionType,
                                     optionA, optionB, optionC, optionD,
@@ -138,7 +138,7 @@ var manageQuestionBoardPage = {
         var questionTitle = $('#questionTitle').val();
         var questionContent = $('#questionContent').val();
         var questionType = $('#questionType').val();
-        var positionId = $('#positionId').val();
+        // var subjectId = $('#subjectId').val();
         var optionA = $('#optionA').val();
         var optionB = $('#optionB').val();
         var optionC = $('#optionC').val();
@@ -146,11 +146,10 @@ var manageQuestionBoardPage = {
         var questionAnswer = $('#questionAnswer').val();
         var questionParse = $('#questionParse').val();
         var questionDifficulty = $('#questionDifficulty').val();
-        var questionScore = $('#questionScore').val();
 
         if (manageQuestionBoardPage.checkAddQuestionData(questionTitle, questionContent,
-                questionType, optionA,optionB, optionC, optionD, questionAnswer, questionParse,
-                questionDifficulty, questionScore)) {
+            questionType, optionA,optionB, optionC, optionD, questionAnswer, questionParse,
+            questionDifficulty)) {
             $.ajax({
                 url : app.URL.addQuestionUrl(),
                 type : "POST",
@@ -167,9 +166,9 @@ var manageQuestionBoardPage = {
                     optionD: optionD,
                     answer: questionAnswer,
                     parse: questionParse,
-                    positionId: positionId,
-                    contestId: 0,
-                    score: questionScore,
+                    // subjectId: subjectId,
+                    // contestId: 0,
+                    // score: questionScore,
                     difficulty: questionDifficulty,
                 }),
                 success:function(result) {
@@ -213,12 +212,12 @@ var manageQuestionBoardPage = {
                 selectQuestionTypes[i].selected = true;
             }
         }
-        var selectpositionIds = document.getElementById('updatepositionId');
-        for (var i = 0; i < selectpositionIds.length; i++) {
-            if (selectpositionIds[i].value == questions[index].positionId) {
-                selectpositionIds[i].selected = true;
-            }
-        }
+        // var selectSubjectIds = document.getElementById('updateSubjectId');
+        // for (var i = 0; i < selectSubjectIds.length; i++) {
+        //     if (selectSubjectIds[i].value == questions[index].subjectId) {
+        //         selectSubjectIds[i].selected = true;
+        //     }
+        // }
         $('#updateOptionA').val(questions[index].optionA);
         $('#updateOptionB').val(questions[index].optionB);
         $('#updateOptionC').val(questions[index].optionC);
@@ -235,8 +234,7 @@ var manageQuestionBoardPage = {
     },
     checkUpdateQuestionData: function (questionTitle, questionContent, questionType,
                                        optionA, optionB, optionC, optionD,
-                                       questionAnswer, questionParse, questionDifficulty,
-                                       questionScore) {
+                                       questionAnswer, questionParse, questionDifficulty) {
         //TODO::校验
         return true;
 
@@ -246,7 +244,7 @@ var manageQuestionBoardPage = {
         var questionTitle = $('#updateQuestionTitle').val();
         var questionContent = $('#updateQuestionContent').val();
         var questionType = $('#updateQuestionType').val();
-        var positionId = $('#updatepositionId').val();
+        // var subjectId = $('#updateSubjectId').val();
         var optionA = $('#updateOptionA').val();
         var optionB = $('#updateOptionB').val();
         var optionC = $('#updateOptionC').val();
@@ -254,11 +252,11 @@ var manageQuestionBoardPage = {
         var questionAnswer = $('#updateQuestionAnswer').val();
         var questionParse = $('#updateQuestionParse').val();
         var questionDifficulty = $('#updateQuestionDifficulty').val();
-        var questionScore = $('#updateQuestionScore').val();
+        // var questionScore = $('#updateQuestionScore').val();
 
         if (manageQuestionBoardPage.checkUpdateQuestionData(questionTitle, questionContent,
-                questionType, optionA,optionB, optionC, optionD, questionAnswer, questionParse,
-                questionDifficulty, questionScore)) {
+            questionType, optionA,optionB, optionC, optionD, questionAnswer, questionParse,
+            questionDifficulty)) {
             $.ajax({
                 url : app.URL.updateQuestionUrl(),
                 type : "POST",
@@ -276,9 +274,9 @@ var manageQuestionBoardPage = {
                     optionD: optionD,
                     answer: questionAnswer,
                     parse: questionParse,
-                    positionId: positionId,
-                    contestId: 0,
-                    score: questionScore,
+                    // subjectId: subjectId,
+                    // contestId: 0,
+                    // score: questionScore,
                     difficulty: questionDifficulty,
                 }),
                 success:function(result) {

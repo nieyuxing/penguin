@@ -31,7 +31,7 @@ public class AnsweDetailController {
         return new AjaxResult().setData(examinationAnswerDetailId);
     }
 
-    //更新考试信息
+    //批改试卷
     @RequestMapping(value="/api/updateAnswerDetail", method= RequestMethod.POST)
     @ResponseBody
     public AjaxResult updateExaminationAnswerDetail(@RequestBody ExaminationAnswerDetail examinationAnswerDetail) {

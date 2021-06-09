@@ -34,9 +34,6 @@ public class QuestionServiceImpl implements QuestionService {
             question.setState(1);
         } else {
             question.setState(0);
-            Contest contest = contestMapper.getContestById(question.getContestId());
-            contest.setTotalScore(contest.getTotalScore()+question.getScore());
-            contestMapper.updateContestById(contest);
         }
         return questionMapper.insertQuestion(question);
     }
