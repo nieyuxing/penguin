@@ -103,8 +103,9 @@ var manageAnswerDetailBoardPage = {
                 title: '温馨提示',
                 content: msg
             });
+        }else{
+            flag = true ;
         }
-        flag = true ;
         return flag;
     },
     updateAnswerDetailAction: function () {

@@ -67,7 +67,7 @@ var manageEditExaminationPaperDetailPage = {
                 content: msg
             });
         }else{
-		flag = true ;
+		    flag = true ;
 		}
         return flag;
 

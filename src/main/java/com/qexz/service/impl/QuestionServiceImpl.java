@@ -40,13 +40,6 @@ public class QuestionServiceImpl implements QuestionService {
 
     @Override
     public boolean updateQuestion(Question question) {
-        if (question.getContestId() != 0) {
-            Contest contest = contestMapper.getContestById(question.getContestId());
-            Question sourceQuestion = questionMapper.getQuestionById(question.getId());
-            contest.setTotalScore(contest.getTotalScore()-sourceQuestion.getScore()
-                    +question.getScore());
-            contestMapper.updateContestById(contest);
-        }
         return questionMapper.updateQuestionById(question) > 0;
     }
 

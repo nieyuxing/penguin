@@ -145,11 +145,13 @@ var manageQuestionBoardPage = {
         if (questionParse == null || questionParse == '' || questionParse.replace(/(^s*)|(s*$)/g, "").length == 0) {
             msg = '考题名答案解析不能为空!'
         }
-        if(!flag){
+        if(msg!= ''){
             layer.open({
                 title: '温馨提示',
                 content: msg
             });
+        }else{
+            flag = true;
         }
         return flag;
 
@@ -271,13 +273,14 @@ var manageQuestionBoardPage = {
         if (questionParse == null || questionParse == '' || questionParse.replace(/(^s*)|(s*$)/g, "").length == 0) {
             msg = '考题名答案解析不能为空!'
         }
-        if(!flag){
+        if(msg!= ''){
             layer.open({
                 title: '温馨提示',
                 content: msg
             });
+        }else{
+            flag = true;
         }
-        flag = true;
         return flag;
     },
     updateQuestionAction: function () {

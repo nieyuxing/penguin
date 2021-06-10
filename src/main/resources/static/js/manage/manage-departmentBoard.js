@@ -113,8 +113,9 @@ var manageDepartmentBoardPage = {
                 title: '温馨提示',
                 content: msg
             });
+        }else{
+            flag = true ;
         }
-        flag = true ;
         return flag;
 
     },
@@ -179,8 +180,24 @@ var manageDepartmentBoardPage = {
         $('#updatestate').val(departments[index].state);
         $('#updatedesc').val(departments[index].desc);
     },
-    checkUpdateDepartmentData: function (departmentName) {
-        return true;
+    checkUpdateDepartmentData: function (name,state,code,desc) {
+        var flag = false;
+        var msg ='';
+        if (departmentName == null || departmentName == '' || departmentName.replace(/(^s*)|(s*$)/g, "").length == 0) {
+            msg = '名称不能为空!'
+        }
+        if (departmentCode == null || departmentCode == '' || departmentCode.replace(/(^s*)|(s*$)/g, "").length == 0) {
+            msg = '编码不能为空!'
+        }
+        if(msg!=''){
+            layer.open({
+                title: '温馨提示',
+                content: msg
+            });
+        }else{
+            flag = true ;
+        }
+        return flag;
     },
     updateDepartmentAction: function () {
         var departments = manageDepartmentBoardPage.data.departments;
@@ -190,7 +207,7 @@ var manageDepartmentBoardPage = {
         var code = $('#updatecode').val();
         var desc = $('#updatedesc').val();
 
-        if (manageDepartmentBoardPage.checkUpdateDepartmentData(departmentName)) {
+        if (manageDepartmentBoardPage.checkUpdateDepartmentData(name,state,code,desc)) {
             $.ajax({
                 url : app.URL.updateDepartmentUrl(),
                 type : "POST",
