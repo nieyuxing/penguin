@@ -289,13 +289,14 @@ var managePositionBoardPage = {
         if (positionNum == null || positionNum == '' || positionNum.replace(/(^s*)|(s*$)/g, "").length == 0) {
             msg = '招聘人数不能为空!'
         }
-        if(!flag){
+        if(msg!=''){
             layer.open({
                 title: '温馨提示',
                 content: msg
             });
-        }
-        flag = true ;
+        }else{
+		flag = true ;
+		}
         return flag;
     },
     updatePositionAction: function () {

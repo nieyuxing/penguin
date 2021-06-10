@@ -1,6 +1,7 @@
 package com.qexz.dto;
 
 import com.qexz.exception.QexzWebError;
+import org.apache.commons.lang.StringUtils;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -51,7 +52,12 @@ public class AjaxResult extends HashMap<String, Object> {
 
     public AjaxResult setMessage(String msg) {
         setSuccess(false);
-        put(MESSAGE, msg);
+        if(StringUtils.isNotEmpty(msg)){
+            put(MESSAGE, msg);
+        }else{
+            put(MESSAGE, "操作失败");
+        }
+
         return this;
     }
 

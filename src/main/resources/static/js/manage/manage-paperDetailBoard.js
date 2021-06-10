@@ -255,13 +255,14 @@ var manageQuestionBoardPage = {
         if (questionScore == null || questionScore == '' || questionScore.replace(/(^s*)|(s*$)/g, "").length == 0) {
             msg = '难度设置不能为空!'
         }
-        if(!flag){
+        if(msg!=''){
             layer.open({
                 title: '温馨提示',
                 content: msg
             });
-        }
-        flag = true ;
+        }else{
+		flag = true ;
+		}
         return flag;
 
     },

@@ -133,13 +133,14 @@ var manageExamAnswerBoardPage = {
         if (question_id == null || question_id == '' || question_id.replace(/(^s*)|(s*$)/g, "").length == 0) {
             msg = '考题不能为空!'
         }
-        if(!flag){
+        if(msg!=''){
             layer.open({
                 title: '温馨提示',
                 content: msg
             });
-        }
-        flag = true ;
+        }else{
+		flag = true ;
+		}
         return flag;
     },
     addAnswerAction: function () {

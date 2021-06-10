@@ -98,7 +98,7 @@ var manageAnswerDetailBoardPage = {
             msg = '得分不能为空!'
         }
 
-        if(!flag){
+        if(msg!=''){
             layer.open({
                 title: '温馨提示',
                 content: msg

@@ -139,13 +139,14 @@ var managePaperBoardPage = {
         if (difficulty == null || difficulty == '' || difficulty.replace(/(^s*)|(s*$)/g, "").length == 0) {
             msg = '难度设置不能为空!'
         }
-        if(!flag){
+        if(msg!=''){
             layer.open({
                 title: '温馨提示',
                 content: msg
             });
-        }
-        flag = true ;
+        }else{
+		flag = true ;
+		}
         return flag;
     },
     addPaperAction: function () {
@@ -254,13 +255,14 @@ var managePaperBoardPage = {
         if (difficulty == null || difficulty == '' || difficulty.replace(/(^s*)|(s*$)/g, "").length == 0) {
             msg = '难度设置不能为空!'
         }
-        if(!flag){
+        if(msg!=''){
             layer.open({
                 title: '温馨提示',
                 content: msg
             });
-        }
-        flag = true ;
+        }else{
+		flag = true ;
+		}
         return flag;
     },
     updatePaperAction: function () {

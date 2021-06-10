@@ -117,13 +117,14 @@ var managePositionTypeListPage = {
         if (difficulty == null || difficulty == '' || difficulty.replace(/(^s*)|(s*$)/g, "").length == 0) {
             msg = '难度设置不能为空!'
         }
-        if(!flag){
+        if(msg!=''){
             layer.open({
                 title: '温馨提示',
                 content: msg
             });
-        }
-        flag = true ;
+        }else{
+		flag = true ;
+		}
         return flag;
     },
     addPositionTypeAction: function () {
@@ -182,13 +183,14 @@ var managePositionTypeListPage = {
         if (name == null || name == '' || name.replace(/(^s*)|(s*$)/g, "").length == 0) {
             msg = '名称不能为空!'
         }
-        if(!flag){
+        if(msg!=''){
             layer.open({
                 title: '温馨提示',
                 content: msg
             });
-        }
-        flag = true ;
+        }else{
+		flag = true ;
+		}
         return flag;
     },
     updatePositionTypeAction: function () {

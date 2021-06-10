@@ -170,13 +170,14 @@ var manageUserListPage = {
         if (name == null || name == '' || name.replace(/(^s*)|(s*$)/g, "").length == 0) {
             msg = '用户名不能为空!'
         }
-        if(!flag){
+        if(msg!=''){
             layer.open({
                 title: '温馨提示',
                 content: msg
             });
-        }
-        flag = true ;
+        }else{
+		    flag = true ;
+		}
         return flag;
     },
     updateUserAction: function () {

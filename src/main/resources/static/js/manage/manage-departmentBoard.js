@@ -108,7 +108,7 @@ var manageDepartmentBoardPage = {
         if (departmentCode == null || departmentCode == '' || departmentCode.replace(/(^s*)|(s*$)/g, "").length == 0) {
             msg = '编码不能为空!'
         }
-        if(!flag){
+        if(msg!=''){
             layer.open({
                 title: '温馨提示',
                 content: msg

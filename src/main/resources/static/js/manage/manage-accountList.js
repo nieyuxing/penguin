@@ -116,13 +116,15 @@ var manageAccountListPage = {
         if (phone == null || phone == '' || phone.replace(/(^s*)|(s*$)/g, "").length == 0) {
             msg = '手机号码不能为空!'
         }
-        if(!flag){
+        if(msg!=''){
             layer.open({
                 title: '温馨提示',
                 content: msg
             });
+        }else{
+            flag = true;
         }
-        flag = true;
+
         return flag;
     },
     addAccountAction: function () {
