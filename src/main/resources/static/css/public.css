@@ -1,0 +1,320 @@
+/** 清除内外边距 **/
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+hr,
+p,
+blockquote,
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+pre,
+form,
+fieldset,
+legend,
+button,
+input,
+textarea,
+th,
+td {
+  margin: 0;
+  padding: 0;
+}
+/** 设置默认字体 **/
+ul,
+ol,
+li {
+  list-style-type: none;
+}
+body,
+button,
+input,
+select,
+textarea {
+  font-family: "Microsoft YaHei";
+  font-size: 12px;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: 12px;
+  text-rendering: auto;
+}
+address,
+cite,
+dfn,
+em,
+var,
+i {
+  font-style: normal;
+}
+/* 将斜体扶正 */
+img {
+  max-width: 100%;
+}
+code,
+kbd,
+pre,
+samp {
+  font-family: courier new, courier, monospace;
+}
+/* 统一等宽字体 */
+small {
+  font-size: 12px;
+}
+/* 小于 12px 的中文很难阅读，让 small 正常化 */
+/** 重置列表元素 **/
+li {
+  line-height: normal;
+}
+/** 重置文本格式元素 **/
+a {
+  text-decoration: none;
+  color: #666666;
+}
+a:hover {
+  text-decoration: underline;
+  outline: none;
+}
+/** 重置表单元素 **/
+legend {
+  color: #000;
+}
+/* for ie6 */
+fieldset,
+img {
+  border: 0;
+}
+/* img 搭车：让链接里的 img 无边框 */
+button,
+input,
+select,
+textarea {
+  font-size: 14px;
+}
+/* 使得表单元素在 ie 下能继承字体大小 */
+/* 注：optgroup 无法扶正 */
+/** 重置表格元素
+table { border-collapse: collapse; border-spacing: 0; }
+ **/
+/*去除箭头*/
+textarea {
+  resize: none;
+}
+/* 清除浮动 */
+.ks-clear:after,
+.clear:after {
+  content: '\20';
+  display: block;
+  height: 0;
+  clear: both;
+}
+.ks-clear,
+.clear {
+  *zoom: 1;
+}
+a:active,
+a:hover {
+  color: #0091a5;
+  text-decoration: none;
+}
+select,
+textarea,
+input[type="text"],
+input[type="password"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="date"],
+input[type="month"],
+input[type="time"],
+input[type="week"],
+input[type="number"],
+input[type="email"],
+input[type="url"],
+input[type="search"],
+input[type="tel"],
+input[type="color"],
+.uneditable-input {
+  margin-bottom: 0;
+}
+*,
+*:before,
+*:after {
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+}
+/*盒模型--区分所定宽度和border，padding的宽度*/
+/*-------------------</END 重置>-----------------------*/
+/*------------------媒体查询---------------*/
+@media screen and (min-width: 750px) {
+  #min_body {
+    position: fixed;
+    width: 750px;
+    height: 100%;
+    left: 50%;
+    margin-left: -375px;
+    top: 0;
+    overflow: hidden;
+    overflow-y: scroll;
+  }
+}
+@media screen and (max-width: 750px) {
+  #min_body {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    overflow-y: scroll;
+  }
+}
+.banner_box img {
+  width: 100%;
+  vertical-align: top;
+}
+.alert_box {
+  position: fixed;
+  width: 460px;
+  height: auto;
+  left: 50%;
+  margin-left: -230px;
+  top: 7.5rem;
+  background: #fff;
+  border-radius: 0.46rem;
+  box-shadow: 0 0.23rem 2.3rem 0 rgba(0, 0, 0, 0.2);
+}
+.alert_box .close_btn {
+  position: absolute;
+  display: block;
+  width: 3rem;
+  height: 3rem;
+  left: 50%;
+  margin-left: -1.5rem;
+  bottom: -8rem;
+  border: 0.15rem solid #fff;
+  border-radius: 50%;
+}
+.alert_box .close_btn:before {
+  display: block;
+  position: absolute;
+  content: '';
+  width: 2rem;
+  height: 0.16rem;
+  background: #fff;
+  left: 50%;
+  margin-left: -1rem;
+  top: 50%;
+  margin-top: -0.08rem;
+  transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  /* IE 9 */
+  -moz-transform: rotate(-45deg);
+  /* Firefox */
+  -webkit-transform: rotate(-45deg);
+  /* Safari 和 Chrome */
+  -o-transform: rotate(-45deg);
+  /* Opera */
+}
+.alert_box .close_btn:after {
+  display: block;
+  position: absolute;
+  content: '';
+  width: 2rem;
+  height: 0.16rem;
+  background: #fff;
+  left: 50%;
+  margin-left: -1rem;
+  top: 50%;
+  margin-top: -0.08rem;
+  transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  /* IE 9 */
+  -moz-transform: rotate(45deg);
+  /* Firefox */
+  -webkit-transform: rotate(45deg);
+  /* Safari 和 Chrome */
+  -o-transform: rotate(45deg);
+  /* Opera */
+}
+.rule_btn {
+  position: absolute;
+  right: 0;
+  top: 1.5rem;
+}
+.rule_btn img {
+  vertical-align: top;
+}
+.rule_alert {
+  display: none;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  left: 0;
+  top: 0;
+  z-index: 5000;
+}
+.rule_alert .alert_box {
+  background: none;
+  top: 12rem;
+  position: relative;
+}
+.rule_alert .alert_box:after {
+  position: absolute;
+  content: '在法律允许范围内最终解释权归斜杠成长营';
+  display: block;
+  width: 100%;
+  bottom: 2rem;
+  left: 0;
+  text-align: center;
+  font-size: 0.8rem;
+  color: #dcdada;
+}
+.rule_alert .close_rule {
+  display: block;
+  position: absolute;
+  right: -1.4rem;
+  width: 2.8rem;
+  height: 2.8rem;
+  top: -5rem;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.rule_alert .rule_body {
+  position: absolute;
+  left: 0;
+  top: 6rem;
+  width: 100%;
+  height: auto;
+  border-top: 0.15rem dashed #999;
+  padding-top: 1.5rem;
+}
+.rule_alert .rule_body p {
+  font-size: 1.2rem;
+  line-height: 2rem;
+  padding-left: 7.5rem;
+  margin-right: 2rem;
+  text-align: justify;
+  text-indent: -5.5rem;
+}
+.rule_alert .rule_body span {
+  color: red;
+}
+@media screen and (min-width: 750px) {
+  .rule_alert {
+    position: fixed;
+    width: 750px;
+    left: 50%;
+    margin-left: -375px;
+  }
+}

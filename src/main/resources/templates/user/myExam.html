@@ -85,7 +85,7 @@
                 <div class="ui three cards">
                     <div class="ui card paper" th:each="item,itemStats : ${data['grades']}">
                         <div class="content">
-                            <div class="header paper-title" th:text="${item.contest.title}">顺丰2017校招研发工程师笔试试卷</div>
+                            <div class="header paper-title" th:text="${item.contest.title}"></div>
                         </div>
                         <!--<div class="extra content paper-type" style="background-color: #9ED5C9;color: #FFFFFF;" th:text="${item.contest.positionName}">
                             计算机网络
@@ -99,7 +99,7 @@
                                 </div>
                                 <div class="event">
                                     <div class="content">
-                                        <div class="summary"><a><i class="database icon"></i>得分&nbsp;:&nbsp;</a><span th:text="${item.result}">100</span></div>
+                                        <div class="summary"><a><i class="database icon"></i>得分&nbsp;:&nbsp;</a><span th:text="${item.result}"></span></div>
                                     </div>
                                 </div>
 <!--                                <div class="event">-->

@@ -44,76 +44,41 @@
             <i class="right chevron icon divider"></i>
             <div class="active section" th:text="${data['position'].name}"></div>
         </div>
-        <button type="button" class="btn btn-success" id="applyPositionBtn" style="float: right;"><i class="fa fa-plus"></i>申请</button>
     </div>
 
-    <div class="ui problemList container" style="padding: 0;">
+    <div class="ui problemList container">
         <div class="ui secondary pointing menu">
             <a class="active item"><i class="list icon"></i>职位详情</a>
         </div>
-
-        <div class="ui column steps">
-            <div class="step">
-              <i class="puzzle piece icon"></i>
-              <div class="content">
-                <div class="title">职位编码</div>
-                <div class="description" th:text="${data['position'].posi_code}"></div>
-              </div>
-            </div>
+        <div class="column">
+            <h4 >职位编码</h4>
+            <div class="active section" th:text="${data['position'].posi_code}"></div>
         </div>
-        <div class="ui column steps">
-            <div class="step">
-              <i class="marker icon"></i>
-              <div class="content">
-                <div class="title">招聘地点</div>
-                <div class="description" th:text="${data['position'].place}"></div>
-              </div>
-            </div>
+        <div class="column">
+            <h4 >招聘地点</h4>
+            <div class="active section" th:text="${data['position'].place}"></div>
         </div>
-        <div class="ui column steps">
-            <div class="step">
-                <i class="tag icon"></i>
-                <div class="content">
-                  <div class="title">职位类型</div>
-                  <div class="description" th:text="${data['position'].posi_type}"></div>
-                </div>
-              </div>
+        <div class="column">
+            <h4 >职位类型</h4>
+            <div class="active section" th:text="${data['position'].posi_type}"></div>
         </div>
-        <div class="ui column steps">
-            <div class="step">
-              <i class="graduation cap icon"></i>
-              <div class="content">
-                <div class="title">学历</div>
-                <div class="description" th:text="${data['position'].degree}"></div>
-              </div>
-            </div>
+        <div class="column">
+            <h4 >学历</h4>
+            <div class="active section" th:text="${data['position'].degree}"></div>
         </div>
-        <div class="ui column steps">
-            <div class="step">
-              <i class="users icon"></i>
-              <div class="content">
-                <div class="title">招聘人数</div>
-                <div class="description" th:text="${data['position'].positionNum}"></div>
-              </div>
-            </div>
+        <div class="column">
+            <h4 >招聘人数</h4>
+            <div class="active section" th:text="${data['position'].positionNum}"></div>
         </div>
-        <div class="ui column steps">
-            <div class="step">
-                <i class="calendar check outline icon"></i>
-                <div class="content">
-                  <div class="title">工作年限</div>
-                  <div class="description" th:text="${data['position'].deepth}"></div>
-                </div>
-              </div>
+        <div class="column">
+            <h4 >工作年限</h4>
+            <div class="active section" th:text="${data['position'].deepth}"></div>
         </div>
-        <div class="ui column grid">
-            <div class="column">
-                <div class="ui raised segment">
-                    <a class="ui red ribbon label">职位描述</a>
-                    <div class="active section" th:text="${data['position'].descr}" style="min-height: 300px;"></div>
-                </div>
-            </div>
+        <div class="column">
+            <h4 >职位描述</h4>
+            <div class="active section" th:text="${data['position'].descr}"></div>
         </div>
+        <button type="button" class="btn btn-success" id="applyPositionBtn"><i class="fa fa-plus"></i>申请</button>
     </div>
 
     <!--新增窗口-->

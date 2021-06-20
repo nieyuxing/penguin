@@ -26,3 +26,63 @@ body {
 .ui.four.column.stackable.grid {
     padding-top: 1em;
 }
+
+
+body{
+    padding: 0;
+    margin: 0;
+    background-color: #eee;
+}
+
+/* 主体内容 */
+.min-contant{
+    width: 100%;
+    min-width: 1000px;
+    height: calc(100% - 250px);
+    padding-top: 50px;
+}
+.min-box{
+    display: flex;
+    justify-content: space-between;
+}
+.min-box .left{
+    margin: 10px;
+    margin-left: 0;
+    padding: 20px 30px;
+    width: 240px;
+    background-color: #fff;
+}
+.min-box .refash{
+    float: right;
+    cursor: pointer;
+    display: inline-block;
+    color: #b1b1b1;
+}
+.min-box .right{
+    flex: 1;
+    overflow-y: auto;
+    margin-bottom: 10px;
+}
+.min-box .list-item{
+    margin: 0;
+    float: left;
+    width: 100%;
+    height: 150px;
+}
+.list-item .content{
+    margin: 10px 10px 0 0;
+    height: 140px;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.radio-box{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex !important;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+}

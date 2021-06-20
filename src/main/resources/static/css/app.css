@@ -17,3 +17,91 @@ body, html{
 #footer a{
     color: #fff;
 }
+
+/* 头部 */
+.fixed-header{
+    position: fixed;
+    width: 100%;
+    height: 50px;line-height: 50px;
+    left: 0;
+    top: 0;
+    display: flex;
+    justify-content: space-between;
+    z-index: 2;
+    background: #fff;
+}
+.fixed-header .logo{width: 220px;text-align: center;}
+.fixed-header .center{flex: 1;display: flex;justify-content: center;}
+.fixed-header .menu{color:#333;margin: 1px 0;padding: 0 25px;cursor: pointer;}
+.fixed-header .active{color: #000;border-bottom: 2px solid #de201b;}
+/* .fixed-header .right{
+    width: 100px; 
+} */
+.fixed-header .right{
+    width: 100px;
+    cursor: pointer;
+    margin-right: 30px;
+}
+.fixed-header .btn{
+    float: left;
+    width: 70px;
+    color: #de201b;
+    border: 1px solid #de201b;
+    background-color: #fff;
+    border-radius: 20px;
+    line-height: 28px;
+    height: 28px;
+    text-align: center;
+    margin: 10px;
+    padding: 0;
+}
+.fixed-header .btn2{
+    color: #333;
+    border-color: #333;
+}
+
+/* 底部 */
+.fixed-footer{
+    padding: 30px 0;
+    background-color: #fff;
+    width: 100%;
+}
+.bottom-footer{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+.fixed-footer .main-width{
+    width: 1000px;
+    margin: 0 auto;
+}
+.fixed-footer .flex{
+    display: flex;
+    justify-content: center;
+}
+.fixed-footer p{
+    line-height: 30px;
+}
+.fixed-footer span{
+    font-weight: bold;
+    margin-right: 10px;
+}
+.fixed-footer .text-center{
+    text-align: center;
+}
+
+/* 登录模态框 */
+.fix-login{
+    height: 300px;
+    padding: 10px;
+}
+.fix-login .content{
+    width: auto !important;
+    margin: 0 30px;
+    padding: 1.5em 0 !important;
+}
+.fix-login .title{
+    text-indent: 30px;
+    font-size: 1.2rem;
+}
