@@ -98,4 +98,18 @@
         FROM t_position
         where  name = #{name}
     </select>
+
+    <select id="getCountBySourceType" resultType="int" >
+        SELECT
+        COUNT(1)
+        FROM t_position
+        where  source_type = #{sourceType}
+    </select>
+
+    <select id="getPositionsBySourceType" resultMap="BaseResultMap" >
+        SELECT
+        *
+        FROM t_position
+        where  source_type = #{sourceType}
+    </select>
 </mapper>

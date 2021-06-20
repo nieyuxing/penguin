@@ -23,4 +23,6 @@ public interface PositionService {
 
     Map<String, Object> getPositionsByType(int pageNum, int pageSize,int type);
 
+    Map<String, Object> getPositionsBySourceType(int pageNum, int pageSize,String sourCeType);
+
 }

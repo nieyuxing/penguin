@@ -75,6 +75,37 @@ public class PositionServiceImpl implements PositionService {
     }
 
     @Override
+    public Map<String, Object> getPositionsBySourceType(int pageNum, int pageSize,String sourceType) {
+        Map<String, Object> data = new HashMap<>();
+        int count = positionMapper.getCountBySourceType(sourceType);
+        if (count == 0) {
+            data.put("pageNum", 0);
+            data.put("pageSize", 0);
+            data.put("totalPageNum", 1);
+            data.put("totalPageSize", 0);
+            data.put("positions", new ArrayList<>());
+            return data;
+        }
+        int totalPageNum = count % pageSize == 0 ? count / pageSize : count / pageSize + 1;
+        if (pageNum > totalPageNum) {
+            data.put("pageNum", 0);
+            data.put("pageSize", 0);
+            data.put("totalPageNum", totalPageNum);
+            data.put("totalPageSize", 0);
+            data.put("positions", new ArrayList<>());
+            return data;
+        }
+        PageHelper.startPage(pageNum, pageSize);
+        List<Position> positions = positionMapper.getPositionsBySourceType(sourceType);
+        data.put("pageNum", pageNum);
+        data.put("pageSize", pageSize);
+        data.put("totalPageNum", totalPageNum);
+        data.put("totalPageSize", count);
+        data.put("positions", positions);
+        return data;
+    }
+
+    @Override
     public Map<String, Object> getPositions(int pageNum, int pageSize) {
         Map<String, Object> data = new HashMap<>();
         int count = positionMapper.getCount();

@@ -30,4 +30,8 @@ public interface PositionMapper {
     int getCountByName(String name);
 
     List<Position> getPositionsByName(String name);
+
+    int getCountBySourceType(String sourceType);
+
+    List<Position> getPositionsBySourceType(String sourceType);
 }
