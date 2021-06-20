@@ -2,8 +2,10 @@ package com.qexz.controller;
 
 import com.qexz.dao.ExaminationPaperDetailMapper;
 import com.qexz.dto.AjaxResult;
+import com.qexz.model.ExaminationAnswer;
 import com.qexz.model.ExaminationPaper;
 import com.qexz.model.ExaminationPaperDetail;
+import com.qexz.service.ExaminationAnswerService;
 import com.qexz.service.ExaminationPaperDetailService;
 import com.qexz.service.ExaminationPaperService;
 import com.qexz.service.QuestionService;
@@ -24,6 +26,8 @@ public class PaperController {
     private ExaminationPaperService examinationPaperService;
     @Autowired
     private QuestionService questionService;
+    @Autowired
+    private ExaminationAnswerService examinationAnswerService;
 
     @Autowired
     private ExaminationPaperDetailService examinationPaperDetailService ;
@@ -50,6 +54,11 @@ public class PaperController {
     @DeleteMapping("/api/deletePaper/{id}")
     public AjaxResult deleteExaminationPaper(@PathVariable int id) {
         AjaxResult ajaxResult = new AjaxResult();
+        ExaminationAnswer answer = examinationAnswerService.getExaminationAnswerByPaperId(id);
+        if(answer!=null ){
+            ajaxResult.setMessage("该问卷已经被引用，不能删除");
+            return ajaxResult;
+        }
         boolean result = examinationPaperService.deleteExaminationPaper(id);
         return new AjaxResult().setData(result);
     }

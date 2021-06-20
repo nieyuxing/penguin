@@ -119,4 +119,11 @@ public class ExaminationAnswerServiceImpl implements ExaminationAnswerService {
         data.put("examinationAnswers", examinationAnswers);
         return data;
     }
+
+    @Override
+    public ExaminationAnswer getExaminationAnswerByPaperId(int id) {
+        return examinationAnswerMapper.getExaminationAnswerByPaperId(id);
+    }
+
+
 }

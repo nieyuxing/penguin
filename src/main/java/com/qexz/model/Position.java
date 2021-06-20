@@ -16,6 +16,7 @@ public class Position {
     private String posi_code ;
     private String place;
     private int posi_type ;
+    private int sourceType ;
     private String degree;
     private String deepth ;
     private String attr1 ;
@@ -177,6 +178,14 @@ public class Position {
 
     public void setDepartment_id(int department_id) {
         this.department_id = department_id;
+    }
+
+    public int getSourceType() {
+        return sourceType;
+    }
+
+    public void setSourceType(int sourceType) {
+        this.sourceType = sourceType;
     }
 
     @Override

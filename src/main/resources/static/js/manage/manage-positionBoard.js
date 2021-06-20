@@ -108,6 +108,7 @@ var managePositionBoardPage = {
         $('#adddepth').val("");
         $('#addpositionNum').val("");
         $('#adddescr').val("");
+        $('#addsourceType').val("");
 
     },
     checkAddPositionData: function (name,department_id,posi_code,place,posi_type,degree,depth,positionNum,descr) {
@@ -157,6 +158,7 @@ var managePositionBoardPage = {
         var depth =$('#adddepth').val();
         var positionNum =$('#addpositionNum').val();
         var descr =$('#adddescr').val();
+        var sourceType =$('#addsourceType').val();
 
         if (managePositionBoardPage.checkAddPositionData(name,department_id,posi_code,place,posi_type,degree,depth,positionNum,descr)) {
             $.ajax({
@@ -175,6 +177,7 @@ var managePositionBoardPage = {
                     deepth:depth,
                     positionNum:positionNum,
                     descr:descr,
+                    sourceType:sourceType,
 
                 }),
                 success:function(result) {
@@ -214,6 +217,7 @@ var managePositionBoardPage = {
         $('#updatePositionIndex').val(index);
         $('#updatename').val(positions[index].name);
         $('#updatedepartment_id').val(positions[index].department_id);
+        $('#updatesourceType').val(positions[index].sourceType);
         $('#updateposi_code').val(positions[index].posi_code);
         $('#updateplace').val(positions[index].place);
         $('#updateposi_type').val(positions[index].posi_type);
@@ -231,6 +235,12 @@ var managePositionBoardPage = {
         for (var i = 0; i < updateposi_types.length; i++) {
             if (updateposi_types[i].value == positions[index].posi_type) {
                 updateposi_types[i].selected = true;
+            }
+        }
+        var updatesourceTypes = document.getElementById('updatesourceType');
+        for (var i = 0; i < updatesourceTypes.length; i++) {
+            if (updatesourceTypes[i].value == positions[index].sourceType) {
+                updatesourceTypes[i].selected = true;
             }
         }
     },
@@ -283,6 +293,7 @@ var managePositionBoardPage = {
         var depth =$('#updatedepth').val();
         var positionNum =$('#updatepositionNum').val();
         var descr =$('#updatedescr').val();
+        var sourceType =$('#updatesourceType').val();
 
         if (managePositionBoardPage.checkUpdatePositionData(name,department_id,posi_code,place,posi_type,degree,depth,positionNum,descr)) {
             $.ajax({
@@ -302,6 +313,7 @@ var managePositionBoardPage = {
                     deepth:depth,
                     positionNum:positionNum,
                     descr:descr,
+                    sourceType:sourceType,
 
                 }),
                 success:function(result) {

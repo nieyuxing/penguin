@@ -52,13 +52,13 @@ var manageEditExaminationPaperDetailPage = {
     checkAddData: function (question_id,questionScore,contestId) {
         var flag = false;
         var msg ='';
-        if (question_id == null || question_id == '' || question_id.replace(/(^s*)|(s*$)/g, "").length == 0) {
+        if (question_id == null || question_id == '' ) {
             msg = '考题不能为空!'
         }
-        if (questionScore == null || questionScore == '' || questionScore.replace(/(^s*)|(s*$)/g, "").length == 0) {
+        if (questionScore == null || questionScore == '' ) {
             msg = '分值设置不能为空!'
         }
-        if (contestId == null || contestId == '' || contestId.replace(/(^s*)|(s*$)/g, "").length == 0) {
+        if (contestId == null || contestId == '' ) {
             msg = '考卷不能为空!'
         }
         if(msg!=''){

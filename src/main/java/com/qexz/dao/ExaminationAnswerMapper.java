@@ -37,4 +37,6 @@ public interface ExaminationAnswerMapper {
     List<ExaminationAnswer> getActiveExaminationAnswers();
 
     int getActiveCount();
+
+    ExaminationAnswer getExaminationAnswerByPaperId(@Param("id") int id);
 }

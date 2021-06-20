@@ -115,5 +115,12 @@
         ORDER BY create_time DESC
     </select>
 
+    <!--根据主键ID查询账号信息-->
+    <select id="getExaminationAnswerByPaperId" resultMap="BaseResultMap" parameterType="int" >
+        select
+            *
+        from t_examination_answer
+        where paper_id = #{id}
+    </select>
 
 </mapper>

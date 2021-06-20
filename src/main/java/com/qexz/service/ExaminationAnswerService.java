@@ -23,4 +23,6 @@ public interface ExaminationAnswerService {
     boolean finishAnswer(ExaminationAnswer answer);
 
     Map<String, Object> getActiveExaminationAnswers(int pageNum, int pageSize);
+
+    ExaminationAnswer getExaminationAnswerByPaperId(int id);
 }
