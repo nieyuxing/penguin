@@ -54,7 +54,7 @@ public class PositionTypeController {
     /**
      * 分页获取所有职位列表
      */
-    @RequestMapping(value = "/api/getPositions", method = RequestMethod.GET)
+    @RequestMapping(value = "/api/getPositionTypes", method = RequestMethod.GET)
     @ResponseBody
     public AjaxResult getPositionTypes(HttpServletRequest request, HttpServletResponse response) {
         AjaxResult ajaxResult = new AjaxResult();

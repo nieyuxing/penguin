@@ -123,7 +123,7 @@ public class DefaultController {
         return "problem/problemset";
     }
 
-    @RequestMapping(value="/position/listByType", method= RequestMethod.GET)
+    @RequestMapping(value="/position/listBySourceType", method= RequestMethod.GET)
     public String positionBySourceType(@PathVariable("sourceType") String sourceType,HttpServletRequest request, @RequestParam(value = "page", defaultValue = "1") int page, Model model) {
         User currentAccount = (User) request.getSession().getAttribute(QexzConst.CURRENT_ACCOUNT);
         Map<String, Object> data = positionService.getPositionsBySourceType(page, QexzConst.positionPageSize,sourceType);
