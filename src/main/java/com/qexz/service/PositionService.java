@@ -15,9 +15,12 @@ public interface PositionService {
 
     Map<String, Object> getPositions(int pageNum, int pageSize);
 
+    Map<String, Object> getPositions(int pageNum,String name, int pageSize);
+
     List<Position> getPositions();
 
     boolean deletePositionById(int id);
 
     Map<String, Object> getPositionsByType(int pageNum, int pageSize,int type);
+
 }

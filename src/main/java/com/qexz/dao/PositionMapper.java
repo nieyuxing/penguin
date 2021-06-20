@@ -26,4 +26,8 @@ public interface PositionMapper {
     int getCountByType(@Param("type") int type);
 
     List<Position> getPositionsByType(@Param("type") int type);
+
+    int getCountByName(String name);
+
+    List<Position> getPositionsByName(String name);
 }

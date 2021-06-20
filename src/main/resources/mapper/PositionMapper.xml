@@ -82,4 +82,18 @@
         FROM t_position
         where  posi_type = #{type}
     </select>
+
+    <select id="getCountByName" resultType="int" >
+        SELECT
+        COUNT(1)
+        FROM t_position
+        where  posi_type = #{type}
+    </select>
+
+    <select id="getPositionsByName" resultMap="BaseResultMap" >
+        SELECT
+        *
+        FROM t_position
+        where  name = #{name}
+    </select>
 </mapper>
