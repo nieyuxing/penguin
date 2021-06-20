@@ -4,6 +4,7 @@
     <meta charset="utf-8" />
     <title>慧为智能在线考试系统</title>
     <link rel="stylesheet" th:href="@{https://cdn.bootcss.com/semantic-ui/2.2.13/semantic.min.css}" />
+    <link rel="stylesheet" th:href="@{/css/public.css}" />
     <link rel="stylesheet" th:href="@{/css/app.css}" />
     <link rel="stylesheet" th:href="@{/css/problem/problemset.css}" />
     <script type="text/javascript" th:src="@{https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js}"></script>
@@ -14,218 +15,235 @@
     <script type="text/javascript" th:src="@{/js/problem/problemset.js}"></script>
 </head>
 <body>
-<div class="ui fixed inverted menu">
-    <a th:href="@{/}" class="header item">
-        <!--<img class="ui" th:src="@{/img/logo_flat.png}" width="104" height="24" alt="" />-->
-        <img class="ui" th:src="@{/img/logo.png}" width="156" height="32" alt="" />
-    </a>
-    <a th:href="@{/contest/index}" href="#" class="item">
-        <i class="desktop icon"></i>在线考试
-    </a>
-    <a th:href="@{/problemset/list}" class="active item">
-        <i class="list layout icon"></i>职位
-    </a>
-
-    <a th:onclick="'app.showLogin()'" class="right item" th:if="${current_account == null}">
-        <i class="sign in icon"></i>登录
-    </a>
-    <div class="ui simple dropdown right item" th:if="${current_account != null}">
-        <img class="ui avatar image" th:src="@{'/upload/images/'+${current_account.avatarImgUrl}}" />
-        <span th:text="${current_account.name}"></span> <i class="dropdown icon"></i>
-        <div class="menu">
-            <a class="item" th:href="@{/account/profile}">
-                <i class="user icon"></i>我的主页
-            </a>
-            <a class="item" id="logout">
-                <i class="sign out icon"></i>退出
-            </a>
-        </div>
-    </div>
-</div>
-<div class="ui header container">
-    <div class="ui large breadcrumb">
-        <a class="section" th:href="@{/}"><i class="home icon"></i>首页</a>
-        <i class="right chevron icon divider"></i>
-        <div class="active section"> </div>
-    </div>
-</div>
-
-<div class="ui problemSet container">
-    <div class="ui secondary pointing menu">
-        <a class="active item"><i class="book icon"></i>所有职位</a>
-    </div>
-    <!-- 第一排 -->
-    <div class="ui four column stackable grid">
-        <div class="column" th:each="item,itemStats : ${data['positions']}">
-            <div class="ui fluid card">
-                <a href="javascript:void(0)" class="image">
-                    <img th:src="@{'/upload/images/'+${item.imgUrl}}" style="max-height: 240px;" />
-                </a>
-                <div class="content">
-                    <div class="header">
-                        <!-- TODO::跳转处理 -->
-                        <a th:if="${current_account != null}" th:href="@{'/problemset/'+${item.id}+'/problems'}" th:text="${item.name}">计算机组成原理</a>
-                        <a th:if="${current_account == null}" th:onclick="'app.showLogin()'" th:text="${item.name}">计算机组成原理</a>
-                    </div>
-                    <p class="meta">
-                        <i class="user icon"></i>
-                        <a href="javascript:void(0)" th:text="${item.descr}"></a>
-                    </p>
-                    <p class="description"></p>
-                </div>
-                <div class="extra content">
-                    <span class="right floated">
-                        <span>
-                        <i class="globe icon"></i>
-                        </span>
-                    </span>
-                    <i class="file text outline icon"></i>
-                    <span th:text="${item.place}"></span>
-                </div>
-
-            </div>
-        </div>
-        <!-- 第一列 -->
-        <!--
-        <div class="column">
-            <div class="ui fluid card">
-                <a href="javascript:void(0)" class="image">
-                    <img th:src="@{'/upload/images/problemset_default.jpg'}" style="max-height: 240px;" />
-                </a>
-                <div class="content">
-                    <div class="header">
-                        <a href="javascript:void(0)">计算机组成原理</a>
-                    </div>
-                    <p class="meta">
-                        <i class="user icon"></i>
-                        <a href="javascript:void(0)">manage</a>
-                    </p>
-                    <p class="description"></p>
-                </div>
-                <div class="extra content">
-                    <span class="right floated">
-                        <span>
-                        <i class="globe icon" th:text="${item.positionNum}"></i>
-                        </span>
-                    </span>
-                    <i class="file text outline icon"></i>478题
+    <div class="min-contant min-box">
+        <!-- 搜索 筛选 -->
+        <div class="left">
+            <h3>精确搜索 <span class="refash">重置筛选</span></h3>
+            <div class="ui search">
+                <div class="ui icon input" style="width: 100%;margin: 20px 0;">
+                    <input class="prompt" type="text" placeholder="请输入职位或关键词搜索" />
+                    <i class="search icon"></i>
                 </div>
             </div>
-        </div>
-        -->
-    </div>
-</div>
-<!-- 分页 -->
-<div class="ui subPage container">
-    <div class="ui pagination menu" id="subPageMenu">
-        <!--
-        <a th:onclick="'problemSetPage.firstPage()'" class="item">
-            首页
-        </a>
-        <a th:onclick="'problemSetPage.prevPage()'" class="item">
-            上一页
-        </a>
-        <a class="active item">
-            1
-        </a>
-        <a class="item">
-            2
-        </a>
-        <a th:onclick="'problemSetPage.nextPage()'" class="item">
-            下一页
-        </a>
-        <a th:onclick="'problemSetPage.lastPage()'" class="item">
-            末页
-        </a>
-        -->
-    </div>
-</div>
-<!-- 不可抗力元素 -->
-<div class="second-footer">
-</div>
-<div id="footer">
-    <div class="ui container">
-        <div class="ui stackable two columns grid">
-            <div class="column">
-                <div class="ui two columns grid">
-                    <div class="column">
-                        <h3>项目介绍</h3>
-                        在线考试系统是一个在线测试学习系统，并用于辅助职位教学和学生学习。
+            <div class="ui accordion">
+                <!-- 招聘类型 -->
+                <div class="title active">
+                  <i class="dropdown icon" style="float: right;"></i>
+                  招聘类型
+                </div>
+                <div class="content active">
+                    <div class="ui form">
+                        <div class="grouped fields radio-box">
+                            <div class="field">
+                                <div class="ui radio checkbox checked">
+                                    <input type="radio" name="fruit"  class="hidden" checked="checked" />
+                                    <label>全部类型</label>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="ui radio checkbox">
+                                    <input type="radio" name="fruit1"  class="hidden" />
+                                    <label>社会招聘</label>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="ui radio checkbox">
+                                    <input type="radio" name="fruit2"  class="hidden" />
+                                    <label>校园招聘</label>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="column">
-                        <h3>联系我们</h3>
-                        如有问题请发邮件到
-                        zzqnxx@foxmail.com
+                </div>
+                <!-- 工作领域 -->
+                <div class="title active">
+                    工作领域
+                  <i class="dropdown icon" style="float: right;"></i>
+                </div>
+                <div class="content active">
+                    <div class="ui form">
+                        <div class="grouped fields radio-box">
+                            <div class="field">
+                                <div class="ui radio checkbox checked">
+                                    <input type="radio" name="1fruit"   class="hidden" checked="checked" />
+                                    <label>全部领域</label>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="ui radio checkbox">
+                                    <input type="radio" name="2fruit"  class="hidden" />
+                                    <label>销售类</label>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="ui radio checkbox">
+                                    <input type="radio" name="3fruit"  class="hidden" />
+                                    <label>软件类</label>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="ui radio checkbox">
+                                    <input type="radio" name="4fruit"  class="hidden" />
+                                    <label>行政类</label>
+                                </div>
+                            </div><div class="field">
+                                <div class="ui radio checkbox">
+                                    <input type="radio" name="5fruit"  class="hidden" />
+                                    <label>产品类</label>
+                                </div>
+                            </div><div class="field">
+                                <div class="ui radio checkbox">
+                                    <input type="radio" name="6fruit"  class="hidden" />
+                                    <label>业务类</label>
+                                </div>
+                            </div><div class="field">
+                                <div class="ui radio checkbox">
+                                    <input type="radio" name="7fruit"  class="hidden" />
+                                    <label>设计类</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+              </div>
+        </div>
+        <div class="right">
+            <div class="column list-item" th:each="item,itemStats : ${data['positions']}">
+                <div class="content" th:onclick="'toDetail('+${item.id}+')'">
+                    <div class="ui fluid card">
+                        <!-- <a href="javascript:void(0)" class="image">
+                            <img th:src="@{'/upload/images/'+${item.imgUrl}}" style="max-height: 240px;" />
+                        </a> -->
+                        <div class="content">
+                            <div class="header" style="margin-bottom: 10px;">
+                                <!-- TODO::跳转处理 -->
+                                <a th:if="${current_account != null}" th:href="@{'/problemset/'+${item.id}+'/problems'}" th:text="${item.name}">计算机组成原理</a>
+                                <a th:if="${current_account == null}" th:onclick="'app.showLogin()'" th:text="${item.name}">计算机组成原理</a>
+                            </div>
+                            <p class="meta">
+                                <i class="user icon"></i>
+                                <a href="javascript:void(0)" th:text="${item.descr}"></a>
+                            </p>
+                            <p class="description"></p>
+                        </div>
+                        <div class="extra content">
+                            <span class="right floated">
+                                <span>
+                                <i class="globe icon"></i>
+                                </span>
+                            </span>
+                            <i class="file text outline icon"></i>
+                            <span th:text="${item.place}"></span>
+                        </div>
+        
                     </div>
                 </div>
             </div>
-            <div class="right aligned column">
+        </div>
+    </div>
+    <!-- 头部 -->
+    <div class="fixed-header">
+        <div class="logo"><img src="../img/home_logo.png" style="width: 80px;margin: 6px auto;" /></div>
+        <div class="center">
+            <a th:href="@{/answer/index}" class="menu"><i class="desktop icon"></i>首页</a>
+            <a th:href="@{/problemset/list}" class="menu active"><i class="list layout icon"></i>职位搜索</a>
+            <a th:href="@{/contest/index}" class="menu"><i class="desktop icon"></i>在线考试</a>
+        </div>
+        <div class="right">
+            <div class="btn" th:onclick="'app.showLogin()'" th:if="${current_account == null}">登录</div>
+            <div class="ui simple right dropdown item" th:if="${current_account != null}">
+                <span th:text="${current_account.name}"></span> <i class="dropdown icon"></i>
+                <div class="menu">
+                    <a class="item" th:href="@{/user/profile}">
+                        <i class="user icon"></i>我的主页
+                    </a>
+                    <a class="item" id="logout">
+                        <i class="sign out icon"></i>退出
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 底部 -->
+    <div class="fixed-footer">
+        <div class="main-width">
+            <div class="flex">
+                <img src="../img/home_logo.png" style="width: 130px;height:90px;margin-right: 20px;" />
+                <div>
+                    <p><span>项目介绍</span>在线考试系统是一个在线测试学习系统，并用于辅助职位教学和学生学习。</p>
+                    <p><span>联系我们</span>如有问题请发邮件到 zzqnxx@foxmail.com</p>
+                    <p>站长统计 | 今日IP[91] | 今日PV[4511] | 昨日IP[133] | 昨日PV[10109] | 当前在线[1]</p>
+                </div>
+            </div>
+            
+            <p class="text-center" style="margin-top: 20px;">
                 &copy; 2018 慧为智能 All Rights Reserved &nbsp;&nbsp;
-                <br />
-                网站版本：<a href="#">v1.0.0 Beta #20180109</a>&nbsp;&nbsp;
+                网站版本：<a href="javascript:;">v1.0.0 Beta #20180109</a>&nbsp;&nbsp;
                 服务器时间：<span id="current_server_timer"></span>
-                <br />
-                站长统计 | 今日IP[91] | 今日PV[4511] | 昨日IP[133] | 昨日PV[10109] | 当前在线[1]
-                <!--
-                TODO::pv,uv统计
-                <span id='cnzz_stat_icon_1261763113'></span>
-                <script th:src='@{//s95.cnzz.com/stat.php?id=1261763113&amp;online=1&amp;show=line}' type='text/javascript'></script>
-                -->
-            </div>
+            </p>
         </div>
     </div>
-</div>
-<!-- 登录模态框 -->
-<div class="ui mini modal" id="loginModal">
-    <div class="header">登录</div>
-    <div class="content">
-        <form class="ui form" id="loginModalForm">
-            <div class="ui hidden negative message" id="loginModalErrorMessage">
-                <!--
-                <div class="header">错误提示</div>
-                <p></p>
-                -->
-            </div>
-            <div class="field required">
-                <label>账号</label>
-                <div class="ui left icon input">
-                    <input id="phoneNum" type="text" placeholder="请输入登录手机号" />
-                    <i class="user icon"></i>
+    <!-- 登录模态框 -->
+    <div class="bootbox fix-login ui mini modal" id="loginModal">
+        <h3 class="title">登录</h3>
+        <div class="content">
+            <form class="ui form" id="loginModalForm">
+                <div class="ui hidden negative message" id="loginModalErrorMessage">
                 </div>
-            </div>
-            <div class="field required">
-                <label>密码</label>
-                <div class="ui left icon input">
-                    <input id="pwd" type="password" />
-                    <i class="lock icon"></i>
+                <div class="field required">
+                    <label>账号</label>
+                    <div class="ui left icon input">
+                        <input id="phoneNum" type="text" placeholder="请输入手机号" />
+                        <i class="user icon"></i>
+                    </div>
                 </div>
-            </div>
-            <div class="field">
-                <div class="ui toggle checkbox">
-                    <input type="checkbox" id="rememberMe" name="rememberMe" tabindex="0" class="hidden" />
-                    <label>记住登录</label>
+                <div class="field required">
+                    <label>密码</label>
+                    <div class="ui left icon input">
+                        <input id="pwd" type="password" />
+                        <i class="lock icon"></i>
+                    </div>
                 </div>
-            </div>
-            <div class="ui button" id="loginModalCloseButton">关闭</div>
-            <div class="ui primary button" id="loginModalSubmitButton">登录</div>
-        </form>
+                <div class="field">
+                    <div class="ui toggle checkbox">
+                        <input type="checkbox" id="rememberMe" name="rememberMe" tabindex="0" class="hidden" />
+                        <label>记住登录</label>
+                    </div>
+                </div>
+                <div class="ui button" id="loginModalCloseButton">关闭</div>
+                <div class="ui primary button" id="loginModalSubmitButton">登录</div>
+            </form>
+        </div>
     </div>
-</div>
-<script th:inline="javascript">
-    /*<![CDATA[*/
-    var pageNum = /*[[${data['pageNum']}]]*/;
-    var pageSize = /*[[${data['pageSize']}]]*/;
-    var totalPageNum = /*[[${data['totalPageNum']}]]*/;
-    var totalPageSize = /*[[${data['totalPageSize']}]]*/;
-    var positions = /*[[${data['positions']}]]*/;
-    var contextPath = /*[[${#httpServletRequest.getContextPath()}]]*/;
+    
+    <script th:inline="javascript">
+        // 手风琴
+        $(".ui.accordion").accordion({
+            exclusive:false,//true只能打开一部分的内容
+            duration:300//动画持续时间，默认600
+        });
+        // 单选
+        $('.ui.radio.checkbox').checkbox();
 
-    $(function(){
-        app.init(contextPath);
-        //console.log(contextPath);
-        problemSetPage.init(pageNum, pageSize, totalPageNum, totalPageSize, positions);
-    });
-    /*]]>*/
-</script>
+        function toDetail(id){
+            window.location.href = contextPath+'/problemset/'+id+'/problems';
+        }
+
+        /*<![CDATA[*/
+        var pageNum = /*[[${data['pageNum']}]]*/;
+        var pageSize = /*[[${data['pageSize']}]]*/;
+        var totalPageNum = /*[[${data['totalPageNum']}]]*/;
+        var totalPageSize = /*[[${data['totalPageSize']}]]*/;
+        var positions = /*[[${data['positions']}]]*/;
+        var contextPath = /*[[${#httpServletRequest.getContextPath()}]]*/;
+
+        $(function(){
+            app.init(contextPath);
+            console.log('contextPath:',contextPath);
+            problemSetPage.init(pageNum, pageSize, totalPageNum, totalPageSize, positions);
+        });
+        /*]]>*/
+    </script>
 </body>
 </html>
