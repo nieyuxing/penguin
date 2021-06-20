@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <title>慧为智能在线考试系统</title>
+
+    <link rel="stylesheet" th:href="@{https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css}" />
+    <link th:href="@{https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css}" rel="stylesheet" />
+    <link th:href="@{/css/bootstrap-datetimepicker/bootstrap-datetimepicker.min.css}" rel="stylesheet" />
+    <link rel="stylesheet" th:href="@{/css/manage/manage-app.css}" />
+
+    <script type="text/javascript" th:src="@{https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js}"></script>
+    <script type="text/javascript" th:src="@{https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/bootstrap-datetimepicker/locales/bootstrap-datetimepicker.zh-CN.js}"></script>
+    <script type="text/javascript" th:src="@{/js/manage/manage-app.js}"></script>
+    <script type="text/javascript" th:src="@{/js/manage/manage-questionBoard.js}"></script>
+    <script type="text/javascript" th:src="@{/js/problem/problemlist.js}"></script>
+
+    <link rel="stylesheet" th:href="@{https://cdn.bootcss.com/semantic-ui/2.2.13/semantic.min.css}" />
+    <link rel="stylesheet" th:href="@{/css/app.css}" />
+    <link rel="stylesheet" th:href="@{/css/problem/problemlist.css}" />
+    <style>
+        /* 主体内容 */
+        .min-contant{
+            width: 100%;
+            min-width: 1000px;
+            min-height: calc(100% - 250px);
+            padding-top: 50px;
+        }
+        .main-width{
+            width: 1000px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+<div class="min-contant">
+    <div class="ui header container">
+        <div class="ui large breadcrumb">
+            <a class="section" th:href="@{/}"><i class="home icon"></i>首页</a>
+            <i class="right chevron icon divider"></i>
+            <a class="section" th:href="@{/problemset/list}">职位中心</a>
+            <i class="right chevron icon divider"></i>
+            <div class="active section" th:text="${data['position'].name}"></div>
+        </div>
+    </div>
+
+    <div class="ui problemList container">
+        <div class="ui secondary pointing menu">
+            <a class="active item"><i class="list icon"></i>职位详情</a>
+        </div>
+        <div class="column">
+            <h4 >职位编码</h4>
+            <div class="active section" th:text="${data['position'].posi_code}"></div>
+        </div>
+        <div class="column">
+            <h4 >招聘地点</h4>
+            <div class="active section" th:text="${data['position'].place}"></div>
+        </div>
+        <div class="column">
+            <h4 >职位类型</h4>
+            <div class="active section" th:text="${data['position'].posi_type}"></div>
+        </div>
+        <div class="column">
+            <h4 >学历</h4>
+            <div class="active section" th:text="${data['position'].degree}"></div>
+        </div>
+        <div class="column">
+            <h4 >招聘人数</h4>
+            <div class="active section" th:text="${data['position'].positionNum}"></div>
+        </div>
+        <div class="column">
+            <h4 >工作年限</h4>
+            <div class="active section" th:text="${data['position'].deepth}"></div>
+        </div>
+        <div class="column">
+            <h4 >职位描述</h4>
+            <div class="active section" th:text="${data['position'].descr}"></div>
+        </div>
+        <button type="button" class="btn btn-success" id="applyPositionBtn"><i class="fa fa-plus"></i>申请</button>
+    </div>
+
+    <!--新增窗口-->
+    <div id="addQuestionModal" class="bootbox modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog ">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">上传简历</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="field">
+                        <label><i class="upload icon"></i>请选择文件</label>
+                        <input type="file" id="myfile" name="myfile" value="" />
+                        <input type="hidden" id="myavatarImgUrl" name="myavatarImgUrl" value="" />
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="ui hidden negative message" id="approveModalErrorMessage"></div>
+                    <button data-bb-handler="confirm" type="button" id="uploadResumeBtn" class="btn btn-success radius">
+                        <span><i class="icon-ok"></i></span> 上传
+                    </button>
+                    <button data-bb-handler="cancel" type="button" id="cancelUploadBtn" class="btn btn-danger radius">
+                        关闭</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- 不可抗力元素 -->
+    <div class="second-footer">
+    </div>
+</div>
+
+<!-- 头部 -->
+<div class="fixed-header">
+    <div class="logo"><img src="../../img/home_logo.png" style="width: 80px;margin: 6px auto;" /></div>
+    <div class="center">
+        <a th:href="@{/answer/index}" class="menu"><i class="desktop icon"></i>首页</a>
+        <a th:href="@{/problemset/list}" class="menu"><i class="list layout icon"></i>职位搜索</a>
+        <a th:href="@{/contest/index}" class="menu"><i class="desktop icon"></i>在线考试</a>
+    </div>
+    <div class="right">
+        <div class="btn" th:onclick="'app.showLogin()'" th:if="${current_account == null}">登录</div>
+        <div class="ui simple right dropdown item" th:if="${current_account != null}">
+            <span th:text="${current_account.name}"></span> <i class="dropdown icon"></i>
+            <div class="menu">
+                <a class="item" th:href="@{/user/profile}">
+                    <i class="user icon"></i>我的主页
+                </a>
+                <a class="item" id="logout">
+                    <i class="sign out icon"></i>退出
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 底部 -->
+<div class="fixed-footer">
+    <div class="main-width">
+        <div class="flex">
+            <img src="../../img/home_logo.png" style="width: 130px;height:90px;margin-right: 20px;" />
+            <div>
+                <p><span>项目介绍</span>在线考试系统是一个在线测试学习系统，并用于辅助职位教学和学生学习。</p>
+                <p><span>联系我们</span>如有问题请发邮件到 zzqnxx@foxmail.com</p>
+                <p>站长统计 | 今日IP[91] | 今日PV[4511] | 昨日IP[133] | 昨日PV[10109] | 当前在线[1]</p>
+            </div>
+        </div>
+        
+        <p class="text-center" style="margin-top: 20px;">
+            &copy; 2018 慧为智能 All Rights Reserved &nbsp;&nbsp;
+            网站版本：<a href="javascript:;">v1.0.0 Beta #20180109</a>&nbsp;&nbsp;
+            服务器时间：<span id="current_server_timer"></span>
+        </p>
+    </div>
+</div>
+<!-- 登录模态框 -->
+<div class="bootbox fix-login ui mini modal" id="loginModal">
+    <h3 class="title">登录</h3>
+    <div class="content">
+        <form class="ui form" id="loginModalForm">
+            <div class="ui hidden negative message" id="loginModalErrorMessage">
+            </div>
+            <div class="field required">
+                <label>账号</label>
+                <div class="ui left icon input">
+                    <input id="phoneNum" type="text" placeholder="请输入手机号" />
+                    <i class="user icon"></i>
+                </div>
+            </div>
+            <div class="field required">
+                <label>密码</label>
+                <div class="ui left icon input">
+                    <input id="pwd" type="password" />
+                    <i class="lock icon"></i>
+                </div>
+            </div>
+            <div class="field">
+                <div class="ui toggle checkbox">
+                    <input type="checkbox" id="rememberMe" name="rememberMe" tabindex="0" class="hidden" />
+                    <label>记住登录</label>
+                </div>
+            </div>
+            <div class="ui button" id="loginModalCloseButton">关闭</div>
+            <div class="ui primary button" id="loginModalSubmitButton">登录</div>
+        </form>
+    </div>
+</div>
+
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    var pageNum = /*[[${data['pageNum']}]]*/;
+    var pageSize = /*[[${data['pageSize']}]]*/;
+    var totalPageNum = /*[[${data['totalPageNum']}]]*/;
+    var totalPageSize = /*[[${data['totalPageSize']}]]*/;
+    var problemsetId = /*[[${data['problemsetId']}]]*/;
+    var questions = /*[[${data['questions']}]]*/;
+    var contextPath = /*[[${#httpServletRequest.getContextPath()}]]*/;
+
+    $(function(){
+        app.init(contextPath);
+        problemListPage.init(pageNum, pageSize, totalPageNum, totalPageSize,problemsetId, questions);
+    });
+     /*]]>*/
+</script>
+</body>
+</html>
