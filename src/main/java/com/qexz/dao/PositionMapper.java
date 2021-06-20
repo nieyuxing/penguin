@@ -22,4 +22,8 @@ public interface PositionMapper {
     List<Position> getPositions();
 
     int deletePositionById(@Param("id") int id);
+
+    int getCountByType(@Param("type") int type);
+
+    List<Position> getPositionsByType(@Param("type") int type);
 }

@@ -68,4 +68,18 @@
         DELETE FROM t_position
         where id = #{id}
     </delete>
+
+    <select id="getCountByType" resultType="int">
+        SELECT
+                COUNT(1)
+        FROM t_position
+        where  posi_type = #{type}
+    </select>
+
+    <select id="getPositionsByType" resultMap="BaseResultMap" >
+        SELECT
+                *
+        FROM t_position
+        where  posi_type = #{type}
+    </select>
 </mapper>

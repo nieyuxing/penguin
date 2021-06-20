@@ -70,34 +70,34 @@
                                 </div>
                             </div>
                             <div class="field">
-                                <div class="ui radio checkbox">
+                                <div class="ui radio radio">
                                     <input type="radio" name="2fruit"  class="hidden" />
                                     <label>销售类</label>
                                 </div>
                             </div>
                             <div class="field">
-                                <div class="ui radio checkbox">
+                                <div class="ui radio radio">
                                     <input type="radio" name="3fruit"  class="hidden" />
                                     <label>软件类</label>
                                 </div>
                             </div>
                             <div class="field">
-                                <div class="ui radio checkbox">
+                                <div class="ui radio radio">
                                     <input type="radio" name="4fruit"  class="hidden" />
                                     <label>行政类</label>
                                 </div>
                             </div><div class="field">
-                                <div class="ui radio checkbox">
+                                <div class="ui radio radio">
                                     <input type="radio" name="5fruit"  class="hidden" />
                                     <label>产品类</label>
                                 </div>
                             </div><div class="field">
-                                <div class="ui radio checkbox">
+                                <div class="ui radio radio">
                                     <input type="radio" name="6fruit"  class="hidden" />
                                     <label>业务类</label>
                                 </div>
                             </div><div class="field">
-                                <div class="ui radio checkbox">
+                                <div class="ui radio radio">
                                     <input type="radio" name="7fruit"  class="hidden" />
                                     <label>设计类</label>
                                 </div>
@@ -118,8 +118,8 @@
                         <div class="content">
                             <div class="header" style="margin-bottom: 10px;">
                                 <!-- TODO::跳转处理 -->
-                                <a th:if="${current_account != null}" th:href="@{'/problemset/'+${item.id}+'/problems'}" th:text="${item.name}">计算机组成原理</a>
-                                <a th:if="${current_account == null}" th:onclick="'app.showLogin()'" th:text="${item.name}">计算机组成原理</a>
+                                <a th:if="${current_account != null}" th:href="@{'/problemset/'+${item.id}+'/problems'}" th:text="${item.name}"></a>
+                                <a th:if="${current_account == null}" th:onclick="'app.showLogin()'" th:text="${item.name}"></a>
                             </div>
                             <p class="meta">
                                 <i class="user icon"></i>
