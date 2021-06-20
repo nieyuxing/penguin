@@ -8,13 +8,15 @@ var problemSetPage = {
         totalPageNum: 0,
         totalPageSize: 0,
         positions: [],
+        current_account:[],
     },
-    init: function (pageNum, pageSize, totalPageNum, totalPageSize, positions) {
+    init: function (pageNum, pageSize, totalPageNum, totalPageSize, positions,current_account) {
         problemSetPage.data.pageNum = pageNum;
         problemSetPage.data.pageSize = pageSize;
         problemSetPage.data.totalPageNum = totalPageNum;
         problemSetPage.data.totalPageSize = totalPageSize;
         problemSetPage.data.positions = positions;
+        problemSetPage.data.current_account=current_account;
         //分页初始化
         problemSetPage.subPageMenuInit();
     },

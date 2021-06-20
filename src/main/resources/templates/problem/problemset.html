@@ -227,7 +227,13 @@
         $('.ui.radio.checkbox').checkbox();
 
         function toDetail(id){
-            window.location.href = contextPath+'/problemset/'+id+'/problems';
+
+            if(current_account != null){
+                window.location.href = contextPath+'/problemset/'+id+'/problems';
+            }else{
+                app.showLogin();
+            }
+
         }
 
         /*<![CDATA[*/
@@ -237,11 +243,12 @@
         var totalPageSize = /*[[${data['totalPageSize']}]]*/;
         var positions = /*[[${data['positions']}]]*/;
         var contextPath = /*[[${#httpServletRequest.getContextPath()}]]*/;
+        var current_account = /*[[${current_account]]*/;
 
         $(function(){
             app.init(contextPath);
             console.log('contextPath:',contextPath);
-            problemSetPage.init(pageNum, pageSize, totalPageNum, totalPageSize, positions);
+            problemSetPage.init(pageNum, pageSize, totalPageNum, totalPageSize, positions,current_account);
         });
         /*]]>*/
     </script>

@@ -105,7 +105,7 @@ var app = {
          * 登录模态框关闭按钮触发
          */
         $('#loginModalCloseButton').click(function (e) {
-
+            console("nidaye");
             $('#loginModal').modal('hide');
         });
 
@@ -116,6 +116,7 @@ var app = {
          * 登录模态框登录按钮触发
          */
         $('#loginModalSubmitButton').click(function (e) {
+            console("nidayew");
             app.checkLogin();
         });
         $('#confirmAddAccountBtn').click(function (e) {
@@ -201,7 +202,7 @@ var app = {
             /**
              * 必须点击相关按钮才能关闭
              */
-            closable  : false,
+            closable  : true,
             /**
              * 模糊背景
              */
