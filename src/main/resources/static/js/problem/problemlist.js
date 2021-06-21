@@ -1,3 +1,4 @@
+
 /**
  * 模块JavaScript
  */
@@ -36,16 +37,16 @@ var problemListPage = {
         $("#addQuestionModal").attr("style","display:none");
 
         //新增题目，弹出新增窗口
-                $("#applyPositionBtn").click(function () {
-                    //输入框初始化数据
-                    problemListPage.initAddUserData();
+        $("#applyPositionBtn").click(function () {
+            //输入框初始化数据
+            problemListPage.initAddUserData();
 
-                    $("#addQuestionModal").modal({
-                        keyboard : false,
-                        show : true,
-                        backdrop : "static"
-                    });
-                });
+            $("#addQuestionModal").modal({
+                keyboard : false,
+                show : true,
+                backdrop : "static"
+            });
+        });
 
         //审核通过
         $('#uploadResumeBtn').click(function(){
@@ -144,5 +145,25 @@ var problemListPage = {
                 '                <p>*上传文件类型错误,支持类型: .pdf .doc .docx</p>');
             $('#updateAccountErrorMessage').removeClass('hidden');
         }
+    },
+    
+    /**
+     * 登录模态框显示
+     */
+     showLogin: function() {
+        var username = $.cookie('penguinUsername');
+        var password = $.cookie('penguinPassword');
+        $('#username').val(username);
+        $('#password').val(password);
+        $('#loginModal').modal({
+            /**
+             * 必须点击相关按钮才能关闭
+             */
+            closable  : true,
+            /**
+             * 模糊背景
+             */
+            blurring: true,
+        }).modal('show');
     },
 };

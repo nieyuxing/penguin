@@ -18,12 +18,12 @@
     <div class="min-contant min-box">
         <!-- 搜索 筛选 -->
         <div class="left">
-            <h3>精确搜索 <span class="refash">重置筛选</span></h3>
+            <h3>精确搜索 <span class="refash" onclick="refash()">重置筛选</span></h3>
             <div class="ui search">
-                <div class="ui icon input" style="width: 100%;margin: 20px 0;">
-                    <input class="prompt" type="text" placeholder="请输入职位或关键词搜索" />
-                    <i class="search icon"></i>
-                </div>
+                <div class="ui action input" style="width: 100%;margin: 20px 0;">
+                    <input type="text" id="search" placeholder="输入关键词搜索" />
+                    <button class="ui button" onclick="search()">搜索</button>
+                  </div>
             </div>
             <div class="ui accordion">
                 <!-- 招聘类型 -->
@@ -35,20 +35,20 @@
                     <div class="ui form">
                         <div class="grouped fields radio-box">
                             <div class="field">
-                                <div class="ui radio checkbox checked">
-                                    <input type="radio" name="fruit"  class="hidden" checked="checked" />
+                                <div class="ui radio checkbox checked checkAll">
+                                    <input type="radio" name="type" value="全部类型" checked="checked" />
                                     <label>全部类型</label>
                                 </div>
                             </div>
                             <div class="field">
                                 <div class="ui radio checkbox">
-                                    <input type="radio" name="fruit1"  class="hidden" />
+                                    <input type="radio" name="type" value="社会招聘"/>
                                     <label>社会招聘</label>
                                 </div>
                             </div>
                             <div class="field">
                                 <div class="ui radio checkbox">
-                                    <input type="radio" name="fruit2"  class="hidden" />
+                                    <input type="radio" name="type" value="校园招聘"/>
                                     <label>校园招聘</label>
                                 </div>
                             </div>
@@ -64,41 +64,41 @@
                     <div class="ui form">
                         <div class="grouped fields radio-box">
                             <div class="field">
-                                <div class="ui radio checkbox checked">
-                                    <input type="radio" name="1fruit"   class="hidden" checked="checked" />
+                                <div class="ui radio checkbox checked checkAll">
+                                    <input type="radio" name="lingyu" value="全部领域" checked="checked" />
                                     <label>全部领域</label>
                                 </div>
                             </div>
                             <div class="field">
-                                <div class="ui radio radio">
-                                    <input type="radio" name="2fruit"  class="hidden" />
+                                <div class="ui radio checkbox">
+                                    <input type="radio" name="lingyu" value="销售类" />
                                     <label>销售类</label>
                                 </div>
                             </div>
                             <div class="field">
-                                <div class="ui radio radio">
-                                    <input type="radio" name="3fruit"  class="hidden" />
+                                <div class="ui radio checkbox">
+                                    <input type="radio" name="lingyu" value="软件类" />
                                     <label>软件类</label>
                                 </div>
                             </div>
                             <div class="field">
-                                <div class="ui radio radio">
-                                    <input type="radio" name="4fruit"  class="hidden" />
+                                <div class="ui radio checkbox">
+                                    <input type="radio" name="lingyu" value="行政类" />
                                     <label>行政类</label>
                                 </div>
                             </div><div class="field">
-                                <div class="ui radio radio">
-                                    <input type="radio" name="5fruit"  class="hidden" />
+                                <div class="ui radio checkbox">
+                                    <input type="radio" name="lingyu" value="产品类" />
                                     <label>产品类</label>
                                 </div>
                             </div><div class="field">
-                                <div class="ui radio radio">
-                                    <input type="radio" name="6fruit"  class="hidden" />
+                                <div class="ui radio checkbox">
+                                    <input type="radio" name="lingyu" value="业务类" />
                                     <label>业务类</label>
                                 </div>
                             </div><div class="field">
-                                <div class="ui radio radio">
-                                    <input type="radio" name="7fruit"  class="hidden" />
+                                <div class="ui radio checkbox">
+                                    <input type="radio" name="lingyu" value="设计类" />
                                     <label>设计类</label>
                                 </div>
                             </div>
@@ -106,7 +106,7 @@
                     </div>
                 </div>
                 
-              </div>
+            </div>
         </div>
         <div class="right">
             <div class="column list-item" th:each="item,itemStats : ${data['positions']}">
@@ -218,23 +218,50 @@
     </div>
     
     <script th:inline="javascript">
-        // 手风琴
+        var isRefash = false;
+        // 输入框搜索
+        function search(){
+            $('.refash').addClass('active');
+            var search = $('#search').val();
+            console.log(search);
+        }
+        // 单选搜索
+        $('.ui.radio.checkbox').checkbox({
+            onChange: function() {
+                $('.refash').addClass('active');
+                if(!isRefash) {
+                    console.log(this.value);
+                }
+            }
+        });
+        // 重置筛选
+        function refash() {
+            isRefash = true;
+            var search = $('#search').val('');
+            $('.ui.radio.checkbox').checkbox('uncheck');
+            $('.ui.radio.checkAll').checkbox('toggle');
+
+
+            
+            // 在这之前做数据
+            isRefash = false;
+        }
+
+        // 跳转职位详情
+        function toDetail(id){
+            window.location.href = contextPath+'/problemset/'+id+'/problems';
+        }
+        $(function() { 
+            $('.refash').click(function() { 
+                $('.refash').removeClass('active');
+            }); 
+        }); 
+        
+        // 手风琴效果
         $(".ui.accordion").accordion({
             exclusive:false,//true只能打开一部分的内容
             duration:300//动画持续时间，默认600
         });
-        // 单选
-        $('.ui.radio.checkbox').checkbox();
-
-        function toDetail(id){
-
-            if(current_account != null){
-                window.location.href = contextPath+'/problemset/'+id+'/problems';
-            }else{
-                app.showLogin();
-            }
-
-        }
 
         /*<![CDATA[*/
         var pageNum = /*[[${data['pageNum']}]]*/;
@@ -243,7 +270,7 @@
         var totalPageSize = /*[[${data['totalPageSize']}]]*/;
         var positions = /*[[${data['positions']}]]*/;
         var contextPath = /*[[${#httpServletRequest.getContextPath()}]]*/;
-        var current_account = /*[[${current_account]]*/;
+        var current_account = /*[[${current_account}]]*/;
 
         $(function(){
             app.init(contextPath);

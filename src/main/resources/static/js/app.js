@@ -105,7 +105,7 @@ var app = {
          * 登录模态框关闭按钮触发
          */
         $('#loginModalCloseButton').click(function (e) {
-            console("nidaye");
+            // console("nidaye");
             $('#loginModal').modal('hide');
         });
 
@@ -116,7 +116,6 @@ var app = {
          * 登录模态框登录按钮触发
          */
         $('#loginModalSubmitButton').click(function (e) {
-            console("nidayew");
             app.checkLogin();
         });
         $('#confirmAddAccountBtn').click(function (e) {

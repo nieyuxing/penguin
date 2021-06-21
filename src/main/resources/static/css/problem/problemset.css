@@ -58,6 +58,9 @@ body{
     display: inline-block;
     color: #b1b1b1;
 }
+.min-box .active{
+    color: #4cae4c;
+}
 .min-box .right{
     flex: 1;
     overflow-y: auto;
