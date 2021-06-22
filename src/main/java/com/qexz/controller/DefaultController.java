@@ -103,20 +103,25 @@ public class DefaultController {
         return "problem/problemset";
     }
 
-    @RequestMapping(value="/position/listByName", method= RequestMethod.GET)
+    @RequestMapping(value="/position/listByName{name}", method= RequestMethod.GET)
     public String positionByName(HttpServletRequest request, @RequestParam(value = "page", defaultValue = "1") int page,@RequestParam(value = "name") String name, Model model) {
         User currentAccount = (User) request.getSession().getAttribute(QexzConst.CURRENT_ACCOUNT);
-        Map<String, Object> data = positionService.getPositions(page,name, QexzConst.positionPageSize);
+        String tmp = request.getParameter("name");
+        if("".equals(tmp)){
+            tmp = null;
+        }
+        Map<String, Object> data = positionService.getPositions(page,tmp, QexzConst.positionPageSize);
 
         model.addAttribute(QexzConst.CURRENT_ACCOUNT, currentAccount);
         model.addAttribute(QexzConst.DATA, data);
         return "problem/problemset";
     }
 
-    @RequestMapping(value="/position/listByType", method= RequestMethod.GET)
-    public String positionByType(@PathVariable("type") Integer type,HttpServletRequest request, @RequestParam(value = "page", defaultValue = "1") int page, Model model) {
+    @RequestMapping(value="/position/listByType{type}", method= RequestMethod.GET)
+    public String positionByType(@PathVariable("type") String type,HttpServletRequest request, @RequestParam(value = "page", defaultValue = "1") int page, Model model) {
         User currentAccount = (User) request.getSession().getAttribute(QexzConst.CURRENT_ACCOUNT);
-        Map<String, Object> data = positionService.getPositionsByType(page, QexzConst.positionPageSize,type);
+        String tmp = request.getParameter("type");
+        Map<String, Object> data = positionService.getPositionsByType(page, QexzConst.positionPageSize,Integer.valueOf(tmp));
 
         model.addAttribute(QexzConst.CURRENT_ACCOUNT, currentAccount);
         model.addAttribute(QexzConst.DATA, data);

@@ -3,7 +3,9 @@ package com.qexz.service.impl;
 import com.github.pagehelper.PageHelper;
 import com.qexz.common.QexzConst;
 import com.qexz.dao.PositionMapper;
+import com.qexz.dao.PositionTypeMapper;
 import com.qexz.model.Position;
+import com.qexz.model.PositionType;
 import com.qexz.service.PositionService;
 import com.qexz.service.PositionService;
 import org.apache.commons.lang3.StringUtils;
@@ -24,6 +26,8 @@ public class PositionServiceImpl implements PositionService {
 
     @Autowired
     private PositionMapper positionMapper;
+    @Autowired
+    private PositionTypeMapper positionTypeMapper;
 
     @Override
     public int addPosition(Position position) {
@@ -46,6 +50,8 @@ public class PositionServiceImpl implements PositionService {
     @Override
     public Map<String, Object> getPositionsByType(int pageNum, int pageSize,int type) {
         Map<String, Object> data = new HashMap<>();
+        List<PositionType> typeList = positionTypeMapper.getPositionTypes();
+        data.put("typeList", typeList);
         int count = positionMapper.getCountByType(type);
         if (count == 0) {
             data.put("pageNum", 0);
@@ -66,6 +72,7 @@ public class PositionServiceImpl implements PositionService {
         }
         PageHelper.startPage(pageNum, pageSize);
         List<Position> positions = positionMapper.getPositionsByType(type);
+
         data.put("pageNum", pageNum);
         data.put("pageSize", pageSize);
         data.put("totalPageNum", totalPageNum);
@@ -77,6 +84,8 @@ public class PositionServiceImpl implements PositionService {
     @Override
     public Map<String, Object> getPositionsBySourceType(int pageNum, int pageSize,String sourceType) {
         Map<String, Object> data = new HashMap<>();
+        List<PositionType> typeList = positionTypeMapper.getPositionTypes();
+        data.put("typeList", typeList);
         int count = positionMapper.getCountBySourceType(sourceType);
         if (count == 0) {
             data.put("pageNum", 0);
@@ -108,6 +117,8 @@ public class PositionServiceImpl implements PositionService {
     @Override
     public Map<String, Object> getPositions(int pageNum, int pageSize) {
         Map<String, Object> data = new HashMap<>();
+        List<PositionType> typeList = positionTypeMapper.getPositionTypes();
+        data.put("typeList", typeList);
         int count = positionMapper.getCount();
         if (count == 0) {
             data.put("pageNum", 0);
@@ -139,6 +150,8 @@ public class PositionServiceImpl implements PositionService {
     @Override
     public Map<String, Object> getPositions(int pageNum,String name, int pageSize) {
         Map<String, Object> data = new HashMap<>();
+        List<PositionType> typeList = positionTypeMapper.getPositionTypes();
+        data.put("typeList", typeList);
         int count = positionMapper.getCountByName(name);
         if (count == 0) {
             data.put("pageNum", 0);

@@ -82,21 +82,29 @@
         SELECT
                 *
         FROM t_position
-        where  posi_type = #{type}
+        <if test="type!=null and type!='0'">
+            where  posi_type = #{type}
+        </if>
+
     </select>
 
     <select id="getCountByName" resultType="int" >
         SELECT
         COUNT(1)
         FROM t_position
-        where  posi_type = #{type}
+        <if test="_parameter!=null">
+            where  name like CONCAT('%',#{name},'%')
+        </if>
+
     </select>
 
     <select id="getPositionsByName" resultMap="BaseResultMap" >
         SELECT
         *
         FROM t_position
-        where  name = #{name}
+        <if test="_parameter!=null">
+            where  name like CONCAT('%',#{name},'%')
+        </if>
     </select>
 
     <select id="getCountBySourceType" resultType="int" >

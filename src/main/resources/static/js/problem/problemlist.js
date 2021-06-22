@@ -119,7 +119,10 @@ var problemListPage = {
         var fileName = $('#myfile').val();　　　　　　　　　　　　　//获得文件名称
         var fileType = fileName.substr(fileName.lastIndexOf('.'),fileName.length);
         console.log(fileName.lastIndexOf('.'));　　//截取文件类型,如(.xls)
-        if(fileType=='.doc' || fileType=='.docx'|| fileType=='.pdf'){　　　　　//验证文件类型,此处验证也可使用正则
+        console.log("fileName",fileName);
+        if(fileType=='.doc' || fileType=='.docx'|| fileType=='.pdf'){　　
+            　　　//验证文件类型,此处验证也可使用正则
+            console.log("进入上传");
             var formData = new FormData();
             formData.append('file', $('#myfile')[0].files[0]);
             $.ajax({
@@ -141,6 +144,11 @@ var problemListPage = {
                 }
             });
         }else{
+            console.log("失败上传");
+            layer.open({
+                title: '温馨提示',
+                content: "*上传文件类型错误,支持类型: .pdf .doc .docx"
+            });
             $('#updateAccountErrorMessage').html('<i class="close icon"></i><div class="header">错误提示</div>\n' +
                 '                <p>*上传文件类型错误,支持类型: .pdf .doc .docx</p>');
             $('#updateAccountErrorMessage').removeClass('hidden');

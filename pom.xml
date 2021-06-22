@@ -179,16 +179,28 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+<!--			<plugin>-->
+<!--				<groupId>org.apache.maven.plugins</groupId>-->
+<!--				<artifactId>maven-surefire-plugin</artifactId>-->
+<!--				<version>2.22.2</version>-->
+<!--				<configuration>-->
+<!--					&lt;!&ndash; 跳过测试类 &ndash;&gt;-->
+<!--					<skipTests>true</skipTests>-->
+<!--					<testFailureIgnore>true</testFailureIgnore>-->
+<!--				</configuration>-->
+<!--			</plugin>-->
 			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-surefire-plugin</artifactId>
-				<version>2.22.2</version>
+				<groupId>org.mybatis.generator</groupId>
+				<artifactId>mybatis-generator-maven-plugin</artifactId>
+				<version>1.3.5</version>
 				<configuration>
-					<!-- 跳过测试类 -->
-					<skipTests>true</skipTests>
-					<testFailureIgnore>true</testFailureIgnore>
+					<configurationFile>${basedir}/src/main/resources/mybatis-generator/generatorConfig.xml
+					</configurationFile>
+					<overwrite>true</overwrite>
+					<verbose>true</verbose>
 				</configuration>
 			</plugin>
+
 		</plugins>
 		<finalName>OnlineExam</finalName>
 	</build>

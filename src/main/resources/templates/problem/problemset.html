@@ -36,19 +36,19 @@
                         <div class="grouped fields radio-box">
                             <div class="field">
                                 <div class="ui radio checkbox checked checkAll">
-                                    <input type="radio" name="type" data-type="类型" value="全部类型" checked="checked" />
+                                    <input type="radio" name="type" value="0" checked="checked" />
                                     <label>全部类型</label>
                                 </div>
                             </div>
                             <div class="field">
                                 <div class="ui radio checkbox">
-                                    <input type="radio" name="type" data-type="类型" value="社会招聘"/>
+                                    <input type="radio" name="type" value="1"/>
                                     <label>社会招聘</label>
                                 </div>
                             </div>
                             <div class="field">
                                 <div class="ui radio checkbox">
-                                    <input type="radio" name="type" data-type="类型" value="校园招聘"/>
+                                    <input type="radio" name="type" value="2"/>
                                     <label>校园招聘</label>
                                 </div>
                             </div>
@@ -65,41 +65,16 @@
                         <div class="grouped fields radio-box">
                             <div class="field">
                                 <div class="ui radio checkbox checked checkAll">
-                                    <input type="radio" name="lingyu" data-type="领域" value="全部领域" checked="checked" />
+                                    <input type="radio" name="lingyu" value="0" checked="checked" />
                                     <label>全部领域</label>
                                 </div>
                             </div>
-                            <div class="field">
-                                <div class="ui radio checkbox">
-                                    <input type="radio" name="lingyu" data-type="领域" value="销售类" />
-                                    <label>销售类</label>
-                                </div>
-                            </div>
-                            <div class="field">
-                                <div class="ui radio checkbox">
-                                    <input type="radio" name="lingyu" data-type="领域" value="软件类" />
-                                    <label>软件类</label>
-                                </div>
-                            </div>
-                            <div class="field">
-                                <div class="ui radio checkbox">
-                                    <input type="radio" name="lingyu" data-type="领域" value="行政类" />
-                                    <label>行政类</label>
-                                </div>
-                            </div><div class="field">
-                                <div class="ui radio checkbox">
-                                    <input type="radio" name="lingyu" data-type="领域" value="产品类" />
-                                    <label>产品类</label>
-                                </div>
-                            </div><div class="field">
-                                <div class="ui radio checkbox">
-                                    <input type="radio" name="lingyu" data-type="领域" value="业务类" />
-                                    <label>业务类</label>
-                                </div>
-                            </div><div class="field">
-                                <div class="ui radio checkbox">
-                                    <input type="radio" name="lingyu" data-type="领域" value="设计类" />
-                                    <label>设计类</label>
+                            <div class="grouped fields radio-box" th:each="item,itemStats : ${data['typeList']}">
+                                <div class="field">
+                                    <div class="ui radio checkbox">
+                                        <input type="radio" name="lingyu"  th:value="${item.id}"/>
+                                        <label th:text="${item.name}"></label>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -188,7 +163,7 @@
         </div>
     </div>
     <!-- 登录模态框 -->
-    <div class="bootbox fix-login ui mini modal" id="loginModal" style="height: 360px;margin-top: -180px;z-index: 100001;">
+    <div class="bootbox fix-login ui mini modal" id="loginModal">
         <h3 class="title">登录</h3>
         <div class="content">
             <form class="ui form" id="loginModalForm">
@@ -209,7 +184,7 @@
                     </div>
                 </div>
                 <div class="field">
-                    <div class="ui toggle checkbox" style="margin: 0;">
+                    <div class="ui toggle checkbox">
                         <input type="checkbox" id="rememberMe" name="rememberMe" tabindex="0" class="hidden" />
                         <label>记住登录</label>
                     </div>
@@ -273,7 +248,7 @@
             </form>
         </div>
     </div>
-    
+
     <script th:inline="javascript">
         var isRefash = false;
         // 输入框搜索
@@ -288,7 +263,8 @@
                 $('.refash').addClass('active');
                 if(!isRefash) {
                     console.log(this.dataset.type); // 类型 领域
-                    console.log(this.value);
+                    console.log("value",this.value);
+                    window.location.href = contextPath+'/position/listByType?type='+this.value;
                 }
             }
         });
