@@ -120,7 +120,7 @@ var app = {
         });
         $('#confirmAddAccountBtn').click(function (e) {
                     app.checkRegister();
-                });
+        });
         /**
          * 退出登录
          */
@@ -133,6 +133,44 @@ var app = {
         $('#loginModalErrorMessage,.close').on('click', function() {
             $(this).closest('#loginModalErrorMessage').transition('fade');
             //$('#loginModalErrorMessage').addClass('hidden');
+        });
+        /**
+         * 注册错误提示消息可关闭
+         */
+        $('#registeredErrorMessage,.close').on('click', function() {
+            $(this).closest('#registeredErrorMessage').transition('fade');
+            //$('#registeredErrorMessage').addClass('hidden');
+        });
+
+        
+
+        $('.ui.form').form({
+            fields: {
+                name: {
+                    identifier: 'name',
+                    rules: [{type   : 'empty',}]
+                },
+                password: {
+                    identifier: 'password',
+                    rules: [{type   : 'empty',}]
+                },
+                vchat: {
+                    identifier: 'vchat',
+                    rules: [{type   : 'empty',}]
+                },
+                qq: {
+                    identifier: 'qq',
+                    rules: [{type   : 'empty',}]
+                },
+                phone: {
+                    identifier: 'phone',
+                    rules: [{type   : 'empty',}]
+                },
+                email: {
+                    identifier: 'email',
+                    rules: [{type   : 'empty',}]
+                },
+            }
         });
     },
     convertTime: function (localDateTime) {
@@ -209,19 +247,19 @@ var app = {
         }).modal('show');
     },
 
-    showRegister: function() {
-            $('#addUsername').val("");
-            $('#addPassword').val("");
-            $('#registerModal').modal({
-                /**
-                 * 必须点击相关按钮才能关闭
-                 */
-                closable  : false,
-                /**
-                 * 模糊背景
-                 */
-                blurring: false,
-            }).modal('show');
+    showRegister: function () {        
+        $('#addUsername').val("");
+        $('#addPassword').val("");
+        $('#registerModal').modal({
+            /**
+             * 必须点击相关按钮才能关闭
+             */
+            closable  : false,
+            /**
+             * 模糊背景
+             */
+            blurring: false,
+        }).modal('show');
     },
     /**
      * 验证用户名和密码是否合法
@@ -246,10 +284,10 @@ var app = {
     /**
      * 验证登录
      */
-    checkLogin: function () {
-        var phone = $('#phoneNum').val();
+    checkLogin: function (phoneNumber,passwordValue) {
+        var phone = $('#phoneNum').val() || phoneNumber;
         console.log("phoneNum",phone);
-        var password = $('#pwd').val();
+        var password = $('#pwd').val() || passwordValue;
         if (app.checkUsernameAndPassword(phone, password)) {
             //调用后端API
             $.post(app.URL.checkLoginUrl(), {
@@ -296,33 +334,15 @@ var app = {
                 email: email,
 
             }, function (result) {
-                 // console.log("result.success = " + result.success);
-                 // console.log("result.success = " + result['success']);
-                 // console.log(result);
-                if (result && result['success']) {
-                    // 验证通过 刷新页面
-                    //window.location.reload();
-                    swal({
-                            title: "注册成功",
-                            text: "",
-                            type: "warning",
-                            showCancelButton: false,
-                            confirmButtonColor: "#DD6B55",
-                            confirmButtonText: "确定",
-                            closeOnConfirm: false,
-                            closeOnCancel: false
-                        },
-                        function(isConfirm){
-                            if (isConfirm) {
-                                window.location.reload();
-                            }
-                    });
-
+                if (result.data === 1 && result.success) {
+                    app.checkLogin(phone, password);
+                    $('#registerModal').modal('hide');
+                    // window.location.reload();
                 } else {
-                    $('#loginModalErrorMessage').html('<i class="close icon"></i><div class="header">错误提示</div>\n' +
-                        '                <p>'+result.message+'</p>');
-                    $('#loginModalErrorMessage').removeClass('hidden');
+                    $('#registeredErrorMessage').html('<i class="close icon"></i><div class="header">错误提示</div>\n' +'<p>'+result.message+'</p>');
+                    $('#registeredErrorMessage').removeClass('hidden');
                 }
+                console.log(result);
             }, "json");
         }
     }

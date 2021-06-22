@@ -156,15 +156,18 @@
 
 <!-- 头部 -->
 <div class="fixed-header">
-    <div class="logo"><img src="../../img/home_logo.png" style="width: 80px;margin: 6px auto;" /></div>
+    <div class="logo"><img src="../img/home_logo.png" style="width: 80px;margin: 6px auto;" /></div>
     <div class="center">
-        <a th:href="@{/answer/index}" class="menu"><i class="desktop icon"></i>首页</a>
+        <a th:href="@{/}" class="menu"><i class="desktop icon"></i>首页</a>
         <a th:href="@{/problemset/list}" class="menu"><i class="list layout icon"></i>职位搜索</a>
-        <a th:href="@{/contest/index}" class="menu"><i class="desktop icon"></i>在线考试</a>
+        <a th:href="@{/answer/index}" class="menu"><i class="desktop icon"></i>在线考试</a>
     </div>
-    <div class="right">
-        <div class="btn" th:onclick="'problemListPage.showLogin()'" th:if="${current_account == null}">登录</div>
-        <div class="ui simple right dropdown item" th:if="${current_account != null}">
+    <div class="right" th:if="${current_account == null}" style="width: 200px;">
+        <div class="btn" th:onclick="'app.showLogin()'">登录</div>
+        <div class="btn" th:onclick="'app.showRegister()'" style="color: #000;border-color: #000;">注册</div>
+    </div>
+    <div class="right" th:if="${current_account != null}">
+        <div class="ui simple right dropdown item">
             <span th:text="${current_account.name}"></span> <i class="dropdown icon"></i>
             <div class="menu">
                 <a class="item" th:href="@{/user/profile}">
@@ -181,7 +184,7 @@
 <div class="fixed-footer">
     <div class="main-width">
         <div class="flex">
-            <img src="../../img/home_logo.png" style="width: 130px;height:90px;margin-right: 20px;" />
+            <img src="../img/home_logo.png" style="width: 130px;height:90px;margin-right: 20px;" />
             <div>
                 <p><span>项目介绍</span>在线考试系统是一个在线测试学习系统，并用于辅助职位教学和学生学习。</p>
                 <p><span>联系我们</span>如有问题请发邮件到 zzqnxx@foxmail.com</p>
@@ -197,7 +200,7 @@
     </div>
 </div>
 <!-- 登录模态框 -->
-<div class="bootbox fix-login ui mini modal" id="loginModal" style="z-index: 100001;height: 320px;margin-top: -160px;">
+<div class="bootbox fix-login ui mini modal" id="loginModal" style="height: 360px;margin-top: -180px;z-index: 100001;">
     <h3 class="title">登录</h3>
     <div class="content">
         <form class="ui form" id="loginModalForm">
@@ -225,6 +228,60 @@
             </div>
             <div class="ui button" id="loginModalCloseButton">关闭</div>
             <div class="ui primary button" id="loginModalSubmitButton">登录</div>
+        </form>
+    </div>
+</div>
+<!-- 注册模态框 -->
+<div class="bootbox fix-login ui mini modal" id="registerModal" role="dialog" style="margin-top: -320px;height: 640px;z-index: 100001;">
+    <h3 class="title">注册</h3>
+    <div class="content">
+        <div class="ui hidden negative message" id="registeredErrorMessage">
+        </div>
+        <form class="ui form zhuce" role="form" onsubmit="return false;">
+            <div class="field required">
+                <label>姓名</label>
+                <div class="ui left icon input">
+                    <i class="user icon"></i>
+                    <input id="name" name="name" type="text" class="form-control" placeholder="" />
+                </div>
+            </div>
+            <div class="field required">
+                <label>密码</label>
+                <div class="ui left icon input">
+                    <i class="lock icon"></i>
+                    <input id="password" name="password" type="password" class="form-control" placeholder="" />
+                </div>
+            </div>
+            <div class="field required">
+                <label>微信</label>
+                <div class="ui left icon input">
+                    <i class="comments icon"></i>
+                    <input id="vchat" name="vchat" type="text" class="form-control" placeholder="" />
+                </div>
+            </div>
+            <div class="field required">
+                <label>QQ</label>
+                <div class="ui left icon input">
+                    <i class="comment icon"></i>
+                    <input id="qq" name="qq" type="text" class="form-control" placeholder="" />
+                </div>
+            </div>
+            <div class="field required">
+                <label>手机</label>
+                <div class="ui left icon input">
+                    <i class="phone icon"></i>
+                    <input id="phone" name="phone" type="text" class="form-control" placeholder="" />
+                </div>
+            </div>
+            <div class="field required">
+                <label>邮箱</label>
+                <div class="ui left icon input">
+                    <i class="envelope open icon"></i>
+                    <input id="email" name="email" type="text" class="form-control" placeholder="" />
+                </div>
+            </div>
+            <div class="ui button" id="cancelAddAccountBtn">取消</div>
+            <div class="ui primary submit button" id="confirmAddAccountBtn">确定</div>
         </form>
     </div>
 </div>

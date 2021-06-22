@@ -36,19 +36,19 @@
                         <div class="grouped fields radio-box">
                             <div class="field">
                                 <div class="ui radio checkbox checked checkAll">
-                                    <input type="radio" name="type" value="全部类型" checked="checked" />
+                                    <input type="radio" name="type" data-type="类型" value="全部类型" checked="checked" />
                                     <label>全部类型</label>
                                 </div>
                             </div>
                             <div class="field">
                                 <div class="ui radio checkbox">
-                                    <input type="radio" name="type" value="社会招聘"/>
+                                    <input type="radio" name="type" data-type="类型" value="社会招聘"/>
                                     <label>社会招聘</label>
                                 </div>
                             </div>
                             <div class="field">
                                 <div class="ui radio checkbox">
-                                    <input type="radio" name="type" value="校园招聘"/>
+                                    <input type="radio" name="type" data-type="类型" value="校园招聘"/>
                                     <label>校园招聘</label>
                                 </div>
                             </div>
@@ -65,40 +65,40 @@
                         <div class="grouped fields radio-box">
                             <div class="field">
                                 <div class="ui radio checkbox checked checkAll">
-                                    <input type="radio" name="lingyu" value="全部领域" checked="checked" />
+                                    <input type="radio" name="lingyu" data-type="领域" value="全部领域" checked="checked" />
                                     <label>全部领域</label>
                                 </div>
                             </div>
                             <div class="field">
                                 <div class="ui radio checkbox">
-                                    <input type="radio" name="lingyu" value="销售类" />
+                                    <input type="radio" name="lingyu" data-type="领域" value="销售类" />
                                     <label>销售类</label>
                                 </div>
                             </div>
                             <div class="field">
                                 <div class="ui radio checkbox">
-                                    <input type="radio" name="lingyu" value="软件类" />
+                                    <input type="radio" name="lingyu" data-type="领域" value="软件类" />
                                     <label>软件类</label>
                                 </div>
                             </div>
                             <div class="field">
                                 <div class="ui radio checkbox">
-                                    <input type="radio" name="lingyu" value="行政类" />
+                                    <input type="radio" name="lingyu" data-type="领域" value="行政类" />
                                     <label>行政类</label>
                                 </div>
                             </div><div class="field">
                                 <div class="ui radio checkbox">
-                                    <input type="radio" name="lingyu" value="产品类" />
+                                    <input type="radio" name="lingyu" data-type="领域" value="产品类" />
                                     <label>产品类</label>
                                 </div>
                             </div><div class="field">
                                 <div class="ui radio checkbox">
-                                    <input type="radio" name="lingyu" value="业务类" />
+                                    <input type="radio" name="lingyu" data-type="领域" value="业务类" />
                                     <label>业务类</label>
                                 </div>
                             </div><div class="field">
                                 <div class="ui radio checkbox">
-                                    <input type="radio" name="lingyu" value="设计类" />
+                                    <input type="radio" name="lingyu" data-type="领域" value="设计类" />
                                     <label>设计类</label>
                                 </div>
                             </div>
@@ -150,9 +150,12 @@
             <a th:href="@{/problemset/list}" class="menu active"><i class="list layout icon"></i>职位搜索</a>
             <a th:href="@{/answer/index}" class="menu"><i class="desktop icon"></i>在线考试</a>
         </div>
-        <div class="right">
-            <div class="btn" th:onclick="'app.showLogin()'" th:if="${current_account == null}">登录</div>
-            <div class="ui simple right dropdown item" th:if="${current_account != null}">
+        <div class="right" th:if="${current_account == null}" style="width: 200px;">
+            <div class="btn" th:onclick="'app.showLogin()'">登录</div>
+            <div class="btn" th:onclick="'app.showRegister()'" style="color: #000;border-color: #000;">注册</div>
+        </div>
+        <div class="right" th:if="${current_account != null}">
+            <div class="ui simple right dropdown item">
                 <span th:text="${current_account.name}"></span> <i class="dropdown icon"></i>
                 <div class="menu">
                     <a class="item" th:href="@{/user/profile}">
@@ -185,7 +188,7 @@
         </div>
     </div>
     <!-- 登录模态框 -->
-    <div class="bootbox fix-login ui mini modal" id="loginModal">
+    <div class="bootbox fix-login ui mini modal" id="loginModal" style="height: 360px;margin-top: -180px;z-index: 100001;">
         <h3 class="title">登录</h3>
         <div class="content">
             <form class="ui form" id="loginModalForm">
@@ -206,13 +209,67 @@
                     </div>
                 </div>
                 <div class="field">
-                    <div class="ui toggle checkbox">
+                    <div class="ui toggle checkbox" style="margin: 0;">
                         <input type="checkbox" id="rememberMe" name="rememberMe" tabindex="0" class="hidden" />
                         <label>记住登录</label>
                     </div>
                 </div>
                 <div class="ui button" id="loginModalCloseButton">关闭</div>
                 <div class="ui primary button" id="loginModalSubmitButton">登录</div>
+            </form>
+        </div>
+    </div>
+    <!-- 注册模态框 -->
+    <div class="bootbox fix-login ui mini modal" id="registerModal" role="dialog" style="margin-top: -320px;height: 640px;z-index: 100001;">
+        <h3 class="title">注册</h3>
+        <div class="content">
+            <div class="ui hidden negative message" id="registeredErrorMessage">
+            </div>
+            <form class="ui form zhuce" role="form" onsubmit="return false;">
+                <div class="field required">
+                    <label>姓名</label>
+                    <div class="ui left icon input">
+                        <i class="user icon"></i>
+                        <input id="name" name="name" type="text" class="form-control" placeholder="" />
+                    </div>
+                </div>
+                <div class="field required">
+                    <label>密码</label>
+                    <div class="ui left icon input">
+                        <i class="lock icon"></i>
+                        <input id="password" name="password" type="password" class="form-control" placeholder="" />
+                    </div>
+                </div>
+                <div class="field required">
+                    <label>微信</label>
+                    <div class="ui left icon input">
+                        <i class="comments icon"></i>
+                        <input id="vchat" name="vchat" type="text" class="form-control" placeholder="" />
+                    </div>
+                </div>
+                <div class="field required">
+                    <label>QQ</label>
+                    <div class="ui left icon input">
+                        <i class="comment icon"></i>
+                        <input id="qq" name="qq" type="text" class="form-control" placeholder="" />
+                    </div>
+                </div>
+                <div class="field required">
+                    <label>手机</label>
+                    <div class="ui left icon input">
+                        <i class="phone icon"></i>
+                        <input id="phone" name="phone" type="text" class="form-control" placeholder="" />
+                    </div>
+                </div>
+                <div class="field required">
+                    <label>邮箱</label>
+                    <div class="ui left icon input">
+                        <i class="envelope open icon"></i>
+                        <input id="email" name="email" type="text" class="form-control" placeholder="" />
+                    </div>
+                </div>
+                <div class="ui button" id="cancelAddAccountBtn">取消</div>
+                <div class="ui primary submit button" id="confirmAddAccountBtn">确定</div>
             </form>
         </div>
     </div>
@@ -230,6 +287,7 @@
             onChange: function() {
                 $('.refash').addClass('active');
                 if(!isRefash) {
+                    console.log(this.dataset.type); // 类型 领域
                     console.log(this.value);
                 }
             }
