@@ -256,6 +256,8 @@
             $('.refash').addClass('active');
             var search = $('#search').val();
             console.log(search);
+            window.location.href = contextPath+'/position/listByName?name='+search;
+
         }
         // 单选搜索
         $('.ui.radio.checkbox').checkbox({
