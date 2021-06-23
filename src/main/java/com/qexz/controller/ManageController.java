@@ -4,6 +4,7 @@ import com.qexz.common.QexzConst;
 import com.qexz.dto.AjaxResult;
 import com.qexz.model.*;
 import com.qexz.service.*;
+import com.qexz.util.QuestionExcelReader;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -573,4 +574,33 @@ public class ManageController {
             return "manage/manage-positionTypeBoard";
         }
     }
+
+    @RequestMapping(value ="/uploadQuesion", method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String,Object> uploadQuesion(HttpServletRequest request, @RequestParam("file") MultipartFile file) throws IllegalStateException, IOException{
+        AjaxResult ajaxResult = new AjaxResult();
+        if (file.isEmpty()) {
+            ajaxResult.setMessage("上传失败，请选择文件");
+            return ajaxResult;
+        }
+
+        String fileName = file.getOriginalFilename();
+        String filePath = QexzConst.UPLOAD_FILE_RESUME_PATH;
+        File dest = new File(filePath + fileName);
+        try {
+            file.transferTo(dest);
+            // 读取Excel文件内容
+            List<Question> readResult = QuestionExcelReader.readExcel(filePath + fileName); //重点 相关代码在下一段
+            Iterator<Question> iterator=readResult.iterator();
+            while (iterator.hasNext()){
+                questionService.addQuestion(iterator.next());
+            }
+            LOG.info("上传成功");
+            return ajaxResult.setSuccess(true);
+        } catch (IOException e) {
+            LOG.error(e.toString(), e);
+        }
+        return ajaxResult.setMessage("上传失败");
+    }
+
 }

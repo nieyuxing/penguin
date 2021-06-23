@@ -33,6 +33,18 @@ var manageQuestionBoardPage = {
             });
         });
 
+        $("#uploadModal").attr("style","display:none");
+
+        //批量新增题目，弹出上传窗口
+        $("#uploadBtn").click(function () {
+            //输入框初始化数据
+            $("#uploadModal").modal({
+                keyboard : false,
+                show : true,
+                backdrop : "static"
+            });
+        });
+
         //新增题目，取消题目增加
         $('#cancelAddQuestionBtn').click(function(){
             $("#addQuestionModal").modal('hide');
@@ -56,6 +68,16 @@ var manageQuestionBoardPage = {
         //查詢按鈕触发
         $('#queryQuestionBtn').click(function () {
             manageQuestionBoardPage.queryQuestionAction();
+        });
+
+        //批量上传
+        $('#uploadQuestionBtn').click(function(){
+            manageQuestionBoardPage.uploadQuestion();
+        });
+
+        //关闭
+        $('#cancelUploadBtn').click(function(){
+            $("#uploadModal").modal('hide');
         });
 
     },
@@ -370,6 +392,47 @@ var manageQuestionBoardPage = {
     queryQuestionAction: function () {
         var content = $('#content').val();
         window.location.href = app.URL.manageQuestionUrl() + '?page=1&content='+content;
+    },
+
+    /**
+     * ajax上传Excel文件
+     */
+    uploadQuestion: function (){
+        var fileName = $('#myfile').val();　　　　　　　　　　　　　//获得文件名称
+        var fileType = fileName.substr(fileName.lastIndexOf('.'),fileName.length);
+        console.log(fileName.lastIndexOf('.'));　　//截取文件类型,如(.xls)
+        console.log("fileName",fileName);
+        if(fileType=='.xls' || fileType=='.xlsx'){
+            //验证文件类型,此处验证也可使用正则
+            console.log("进入上传");
+            var formData = new FormData();
+            formData.append('file', $('#myfile')[0].files[0]);
+            $.ajax({
+                url: app.data.contextPath+'/manage/uploadQuesion',　　　　　　　　　　//上传地址
+                type: 'POST',
+                cache: false,
+                data: formData,　　　　　　　　　　　　　//表单数据
+                processData: false,
+                contentType: false,
+                success:function(result){
+                    if (result && result['success']) {
+                        window.location.reload();
+                    } else {
+                        layer.open({
+                            title: '温馨提示',
+                            content: result.message
+                        });
+                    }
+
+                }
+            });
+        }else{
+            console.log("失败上传");
+            layer.open({
+                title: '温馨提示',
+                content: "*上传文件类型错误,支持类型: .xls .xlsx "
+            });
+        }
     },
 
 
