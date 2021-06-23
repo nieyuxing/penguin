@@ -94,7 +94,7 @@
                             <div class="header" style="margin-bottom: 10px;">
                                 <!-- TODO::跳转处理 -->
                                 <a th:if="${current_account != null}" th:href="@{'/problemset/'+${item.id}+'/problems'}" th:text="${item.name}"></a>
-                                <a th:if="${current_account == null}" th:onclick="'app.showLogin()'" th:text="${item.name}"></a>
+<!--                                <a th:if="${current_account == null}" th:onclick="'app.showLogin()'" th:text="${item.name}"></a>-->
                             </div>
                             <p class="meta">
                                 <i class="user icon"></i>
@@ -123,7 +123,8 @@
         <div class="center">
             <a th:href="@{/}" class="menu"><i class="desktop icon"></i>首页</a>
             <a th:href="@{/problemset/list}" class="menu active"><i class="list layout icon"></i>职位搜索</a>
-            <a th:href="@{/answer/index}" class="menu"><i class="desktop icon"></i>在线考试</a>
+            <a th:if="${current_account != null}" th:href="@{/answer/index}" class="menu"><i class="desktop icon"></i>在线考试</a>
+            <a th:if="${current_account == null}" th:onclick="'app.showLogin()'" class="menu"><i class="desktop icon"></i>在线考试</a>
         </div>
         <div class="right" th:if="${current_account == null}" style="width: 200px;">
             <div class="btn" th:onclick="'app.showLogin()'">登录</div>
