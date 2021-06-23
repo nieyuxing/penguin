@@ -265,8 +265,12 @@
                 $('.refash').addClass('active');
                 if(!isRefash) {
                     console.log(this.dataset.type); // 类型 领域
+                    if(this.dataset.type == "领域"){
+                        window.location.href = contextPath+'/position/listBySourceType?sourceType='+this.value;
+                    }else{
+                        window.location.href = contextPath+'/position/listByType?type='+this.value;
+                    }
                     console.log("value",this.value);
-                    window.location.href = contextPath+'/position/listByType?type='+this.value;
                 }
             }
         });
