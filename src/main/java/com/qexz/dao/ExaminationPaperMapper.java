@@ -33,5 +33,7 @@ public interface ExaminationPaperMapper {
 
     ExaminationPaper getExaminationPaperById(@Param("id") int id);
 
+    ExaminationPaper getExaminationPaperByAnswerId(@Param("answerId") int answerId);
+
     List<ExaminationPaper> getExaminationPaperByUserId(@Param("userId") int userId);
 }

@@ -85,6 +85,6 @@ var contestIndexPage = {
         $('#subPageMenu').html(subPageStr);
     },
     startToContestAction: function (contestId) {
-        window.location.href = app.URL.contestDetailUrl()+contestId;
+        window.location.href = app.URL.contestDetailUrl()+answerId;
     },
 };

@@ -51,6 +51,11 @@ public class ExaminationPaperServiceImpl implements ExaminationPaperService {
     }
 
     @Override
+    public ExaminationPaper getExaminationPaperByAnswerId(int id) {
+        return examinationPaperMapper.getExaminationPaperByAnswerId(id);
+    }
+
+    @Override
     public Map<String, Object> getPagesExaminationPapers(int pageNum, int pageSize) {
         Map<String, Object> data = new HashMap<>();
         int count = examinationPaperMapper.getCount();

@@ -112,19 +112,21 @@ public class AnsweController {
     /**
      * 在线考试页
      */
-    @RequestMapping(value="/{contestId}", method= RequestMethod.GET)
+    @RequestMapping(value="/{answerId}", method= RequestMethod.GET)
     public String contestDetail(HttpServletRequest request,
-                                @PathVariable("contestId") int contestId,
+                                @PathVariable("answerId") int answerId,
                                 Model model) {
         User currentAccount = (User) request.getSession().getAttribute(QexzConst.CURRENT_ACCOUNT);
         model.addAttribute(QexzConst.CURRENT_ACCOUNT, currentAccount);
-        ExaminationPaper  contest = examinationPaperService.getExaminationPaperById(contestId);
-        ExaminationAnswer  answer= examinationAnswerService.getExaminationAnswerByUserIdAndPaperId(currentAccount.getId(),contest.getId());
+      //  ExaminationPaper  contest = examinationPaperService.getExaminationPaperById(contestId);
+      //  ExaminationAnswer  answer= examinationAnswerService.getExaminationAnswerByUserIdAndPaperId(currentAccount.getId(),contest.getId());
+        ExaminationPaper  contest = examinationPaperService.getExaminationPaperByAnswerId(answerId);
+        ExaminationAnswer  answer = examinationAnswerService.getExaminationAnswerById(answerId);
         answer.setPaper(contest);
         if (currentAccount == null ) {
             return "home";
         }
-        List<Question> questions = questionService.getQuestionsByContestId(contestId);
+        List<Question> questions = questionService.getQuestionsByContestId(contest.getId());
         for (Question question : questions) {
             question.setAnswer("");
         }

@@ -102,15 +102,31 @@
         where id = #{id}
     </select>
 
-    <select id="getExaminationPaperByUserId" resultMap="BaseResultMap" parameterType="int" >
+<!--    <select id="getExaminationPaperByUserId" resultMap="BaseResultMap" parameterType="int" >-->
+<!--        select-->
+<!--            p.*-->
+<!--        from t_examination_answer a left join t_examination_paper p on a.paper_id = p.id-->
+<!--        where a.id = #{answerId}-->
+<!--    </select>-->
+
+    <select id="getExaminationPaperByUserId" resultType="com.qexz.model.ExaminationPaper" parameterType="int" >
         SELECT
-        paper.*
+        paper.*,answer.id answerId
         FROM t_examination_answer answer
         LEFT JOIN
         t_examination_paper  paper
         on answer.paper_id = paper.id
         where answer.user_id = #{userId}
+        and answer.state = 0
     </select>
 
-
+    <select id="getExaminationPaperByAnswerId" resultType="com.qexz.model.ExaminationPaper" parameterType="int" >
+        SELECT
+            paper.*,answer.id answerId
+        FROM t_examination_answer answer
+                 LEFT JOIN
+             t_examination_paper  paper
+             on answer.paper_id = paper.id
+        where answer.id = #{answerId}
+    </select>
 </mapper>

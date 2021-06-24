@@ -24,4 +24,6 @@ public interface ExaminationPaperService {
     List<ExaminationPaper> getExaminationPapers();
 
     Map<String, Object> getExaminationPaperByUserId(int pageNum, int pageSize,int userId);
+
+    ExaminationPaper getExaminationPaperByAnswerId(int id);
 }

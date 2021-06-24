@@ -23,6 +23,15 @@ public class ExaminationPaper implements Serializable {
     private int version;//'数据版本',
     private Date startDate;
     private Date endDate;
+    private int answerId;
+
+    public int getAnswerId() {
+        return answerId;
+    }
+
+    public void setAnswerId(int answerId) {
+        this.answerId = answerId;
+    }
 
     private Department department;
 

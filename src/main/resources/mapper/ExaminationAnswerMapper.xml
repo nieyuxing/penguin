@@ -92,7 +92,7 @@
         select
         *
         from t_examination_answer
-        where user_id = #{userId} and paper_id = #{paperId}
+        where user_id = #{userId} and id = #{paperId}
     </select>
 
     <update id="finishAnswer" >
