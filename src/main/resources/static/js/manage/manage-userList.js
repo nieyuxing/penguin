@@ -164,10 +164,10 @@ var manageUserListPage = {
     checkUserData: function (name, sex, ismarry, qq, phone, email ,vchat) {
         var flag = false;
         var msg ='';
-        if (phone == null || phone == '' || phone.replace(/(^s*)|(s*$)/g, "").length == 0) {
+        if (phone == null || phone == '' ) {
             msg = '手机号不能为空!'
         }
-        if (name == null || name == '' || name.replace(/(^s*)|(s*$)/g, "").length == 0) {
+        if (name == null || name == '' ) {
             msg = '用户名不能为空!'
         }
         if(msg!=''){

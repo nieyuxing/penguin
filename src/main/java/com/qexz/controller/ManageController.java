@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -577,7 +578,7 @@ public class ManageController {
 
     @RequestMapping(value ="/uploadQuesion", method = RequestMethod.POST)
     @ResponseBody
-    public Map<String,Object> uploadQuesion(HttpServletRequest request, @RequestParam("file") MultipartFile file) throws IllegalStateException, IOException{
+    public Map<String,Object> uploadQuesion(HttpServletRequest request, @RequestParam("file") MultipartFile file) throws IllegalStateException, IOException ,Exception{
         AjaxResult ajaxResult = new AjaxResult();
         if (file.isEmpty()) {
             ajaxResult.setMessage("上传失败，请选择文件");
@@ -585,22 +586,32 @@ public class ManageController {
         }
 
         String fileName = file.getOriginalFilename();
-        String filePath = QexzConst.UPLOAD_FILE_RESUME_PATH;
+        String filePath = QexzConst.UPLOAD_FILE_RESUME_PATH + new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
+
+        File dir = new File(filePath);
+        if (!dir.exists()) {
+            dir.mkdirs();
+        }
         File dest = new File(filePath + fileName);
         try {
             file.transferTo(dest);
             // 读取Excel文件内容
             List<Question> readResult = QuestionExcelReader.readExcel(filePath + fileName); //重点 相关代码在下一段
-            Iterator<Question> iterator=readResult.iterator();
-            while (iterator.hasNext()){
-                questionService.addQuestion(iterator.next());
+            if(readResult!=null &&  readResult.size() >0 ){
+                Iterator<Question> iterator=readResult.iterator();
+                while (iterator.hasNext()){
+                    questionService.addQuestion(iterator.next());
+                }
+            }else{
+                return ajaxResult.setMessage("上传失败,文件解析异常");
             }
+
             LOG.info("上传成功");
             return ajaxResult.setSuccess(true);
         } catch (IOException e) {
             LOG.error(e.toString(), e);
+            return ajaxResult.setMessage("上传失败,文件解析异常"+ e.toString());
         }
-        return ajaxResult.setMessage("上传失败");
     }
 
 }

@@ -91,10 +91,10 @@ var manageAnswerDetailBoardPage = {
     checkAnswerDetailData: function (index,score) {
         var flag = false;
         var msg ='';
-        if (index == null || index == '' || index.replace(/(^s*)|(s*$)/g, "").length == 0) {
+        if (index == null || index == '' ) {
             msg = '题号不能为空!'
         }
-        if (score == null || score == '' || score.replace(/(^s*)|(s*$)/g, "").length == 0) {
+        if (score == null || score == '' ) {
             msg = '得分不能为空!'
         }
 

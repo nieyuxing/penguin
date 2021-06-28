@@ -124,19 +124,19 @@ var managePaperBoardPage = {
     checkAddPaperData: function (exam_name, examination_type, department_id,  score,difficulty) {
         var flag = false;
         var msg ='';
-        if (exam_name == null || exam_name == '' || exam_name.replace(/(^s*)|(s*$)/g, "").length == 0) {
+        if (exam_name == null || exam_name == '' ) {
             msg = '试卷名称不能为空!'
         }
-        if (examination_type == null || examination_type == '' || examination_type.replace(/(^s*)|(s*$)/g, "").length == 0) {
+        if (examination_type == null || examination_type == '' ) {
             msg = '试卷类型不能为空!'
         }
-        if (department_id == null || department_id == '' || department_id.replace(/(^s*)|(s*$)/g, "").length == 0) {
+        if (department_id == null || department_id == '' ) {
             msg = '部门不能为空!'
         }
-        if (score == null || score == '' || score.replace(/(^s*)|(s*$)/g, "").length == 0) {
+        if (score == null || score == '' ) {
             msg = '总分值不能为空!'
         }
-        if (difficulty == null || difficulty == '' || difficulty.replace(/(^s*)|(s*$)/g, "").length == 0) {
+        if (difficulty == null || difficulty == '' ) {
             msg = '难度设置不能为空!'
         }
         if(msg!=''){

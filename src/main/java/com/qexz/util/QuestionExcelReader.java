@@ -47,7 +47,7 @@ public class QuestionExcelReader {
      * @param fileName 要读取的Excel文件所在路径
      * @return 读取结果列表，读取失败时返回null
      */
-    public static List<Question> readExcel(String fileName) {
+    public static List<Question> readExcel(String fileName) throws Exception {
         Workbook workbook = null;
         FileInputStream inputStream = null;
         try {
@@ -70,7 +70,7 @@ public class QuestionExcelReader {
             return resultDataList;
         } catch (Exception e) {
             logger.info("解析Excel失败，文件名：" + fileName + " 错误信息：" + e.getMessage());
-            return null;
+            throw new Exception("解析Excel失败，文件名：" + fileName + " 错误信息：" + e.getMessage()) ;
         } finally {
             try {
                 if (null != workbook) {

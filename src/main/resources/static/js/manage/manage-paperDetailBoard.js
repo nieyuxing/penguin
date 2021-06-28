@@ -240,19 +240,19 @@ var manageQuestionBoardPage = {
         //TODO::校验
         var flag = false;
         var msg ='';
-        if (questionTitle == null || questionTitle == '' || questionTitle.replace(/(^s*)|(s*$)/g, "").length == 0) {
+        if (questionTitle == null || questionTitle == '' ) {
             msg = '名称不能为空!'
         }
-        if (questionContent == null || questionContent == '' || questionContent.replace(/(^s*)|(s*$)/g, "").length == 0) {
+        if (questionContent == null || questionContent == '' ) {
             msg = '试卷类型不能为空!'
         }
-        if (questionAnswer == null || questionAnswer == '' || questionAnswer.replace(/(^s*)|(s*$)/g, "").length == 0) {
+        if (questionAnswer == null || questionAnswer == '' ) {
             msg = '部门不能为空!'
         }
-        if (questionParse == null || questionParse == '' || questionParse.replace(/(^s*)|(s*$)/g, "").length == 0) {
+        if (questionParse == null || questionParse == '' ) {
             msg = '总分值不能为空!'
         }
-        if (questionScore == null || questionScore == '' || questionScore.replace(/(^s*)|(s*$)/g, "").length == 0) {
+        if (questionScore == null || questionScore == '' ) {
             msg = '难度设置不能为空!'
         }
         if(msg!=''){

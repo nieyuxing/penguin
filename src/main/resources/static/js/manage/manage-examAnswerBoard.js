@@ -127,10 +127,10 @@ var manageExamAnswerBoardPage = {
 
         var flag = false;
         var msg ='';
-        if (user_id == null || user_id == '' || user_id.replace(/(^s*)|(s*$)/g, "").length == 0) {
+        if (user_id == null || user_id == '' ) {
             msg = '用户不能为空!'
         }
-        if (question_id == null || question_id == '' || question_id.replace(/(^s*)|(s*$)/g, "").length == 0) {
+        if (question_id == null || question_id == '' ) {
             msg = '考题不能为空!'
         }
         if(msg!=''){

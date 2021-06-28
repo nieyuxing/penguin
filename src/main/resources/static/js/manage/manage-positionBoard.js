@@ -114,28 +114,28 @@ var managePositionBoardPage = {
     checkAddPositionData: function (name,department_id,posi_code,place,posi_type,degree,depth,positionNum,descr) {
         var flag = false;
         var msg ='';
-        if (name == null || name == '' || name.replace(/(^s*)|(s*$)/g, "").length == 0) {
+        if (name == null || name == '' ) {
             msg = '名称不能为空!'
         }
-        if (department_id == null || department_id == '' || department_id.replace(/(^s*)|(s*$)/g, "").length == 0) {
+        if (department_id == null || department_id == '' ) {
             msg = '部门不能为空!'
         }
-        if (posi_code == null || posi_code == '' || posi_code.replace(/(^s*)|(s*$)/g, "").length == 0) {
+        if (posi_code == null || posi_code == '' ) {
             msg = '编码不能为空!'
         }
-        if (place == null || place == '' || place.replace(/(^s*)|(s*$)/g, "").length == 0) {
+        if (place == null || place == '' ) {
             msg = '招聘地点不能为空!'
         }
-        if (posi_type == null || posi_type == '' || posi_type.replace(/(^s*)|(s*$)/g, "").length == 0) {
+        if (posi_type == null || posi_type == '' ) {
             msg = '职位类型不能为空!'
         }
-        if (degree == null || degree == '' || degree.replace(/(^s*)|(s*$)/g, "").length == 0) {
+        if (degree == null || degree == '' ) {
             msg = '学历不能为空!'
         }
-        if (depth == null || depth == '' || depth.replace(/(^s*)|(s*$)/g, "").length == 0) {
+        if (depth == null || depth == '' ) {
             msg = '工作年限不能为空!'
         }
-        if (positionNum == null || positionNum == '' || positionNum.replace(/(^s*)|(s*$)/g, "").length == 0) {
+        if (positionNum == null || positionNum == '' ) {
             msg = '招聘人数不能为空!'
         }
         if(msg!=''){
@@ -247,28 +247,28 @@ var managePositionBoardPage = {
     checkUpdatePositionData: function (name,department_id,posi_code,place,posi_type,degree,depth,positionNum,descr) {
         var flag = false;
         var msg ='';
-        if (name == null || name == '' || name.replace(/(^s*)|(s*$)/g, "").length == 0) {
+        if (name == null || name == '' ) {
             msg = '名称不能为空!'
         }
-        if (department_id == null || department_id == '' || department_id.replace(/(^s*)|(s*$)/g, "").length == 0) {
+        if (department_id == null || department_id == '' ) {
             msg = '部门不能为空!'
         }
-        if (posi_code == null || posi_code == '' || posi_code.replace(/(^s*)|(s*$)/g, "").length == 0) {
+        if (posi_code == null || posi_code == '' ) {
             msg = '编码不能为空!'
         }
-        if (place == null || place == '' || place.replace(/(^s*)|(s*$)/g, "").length == 0) {
+        if (place == null || place == '' ) {
             msg = '招聘地点不能为空!'
         }
-        if (posi_type == null || posi_type == '' || posi_type.replace(/(^s*)|(s*$)/g, "").length == 0) {
+        if (posi_type == null || posi_type == '' ) {
             msg = '职位类型不能为空!'
         }
-        if (degree == null || degree == '' || degree.replace(/(^s*)|(s*$)/g, "").length == 0) {
+        if (degree == null || degree == '' ) {
             msg = '学历不能为空!'
         }
-        if (depth == null || depth == '' || depth.replace(/(^s*)|(s*$)/g, "").length == 0) {
+        if (depth == null || depth == '' ) {
             msg = '工作年限不能为空!'
         }
-        if (positionNum == null || positionNum == '' || positionNum.replace(/(^s*)|(s*$)/g, "").length == 0) {
+        if (positionNum == null || positionNum == '' ) {
             msg = '招聘人数不能为空!'
         }
         if(msg!=''){

@@ -102,10 +102,10 @@ var manageDepartmentBoardPage = {
     checkAddDepartmentData: function (departmentName,departmentCode,departmentState,departmentDesc) {
         var flag = false;
         var msg ='';
-        if (departmentName == null || departmentName == '' || departmentName.replace(/(^s*)|(s*$)/g, "").length == 0) {
+        if (departmentName == null || departmentName == '' ) {
             msg = '名称不能为空!'
         }
-        if (departmentCode == null || departmentCode == '' || departmentCode.replace(/(^s*)|(s*$)/g, "").length == 0) {
+        if (departmentCode == null || departmentCode == '' ) {
             msg = '编码不能为空!'
         }
         if(msg!=''){
@@ -183,10 +183,10 @@ var manageDepartmentBoardPage = {
     checkUpdateDepartmentData: function (name,state,code,desc) {
         var flag = false;
         var msg ='';
-        if (departmentName == null || departmentName == '' || departmentName.replace(/(^s*)|(s*$)/g, "").length == 0) {
+        if (departmentName == null || departmentName == '' ) {
             msg = '名称不能为空!'
         }
-        if (departmentCode == null || departmentCode == '' || departmentCode.replace(/(^s*)|(s*$)/g, "").length == 0) {
+        if (departmentCode == null || departmentCode == '' ) {
             msg = '编码不能为空!'
         }
         if(msg!=''){

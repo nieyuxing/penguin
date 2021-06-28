@@ -60,10 +60,16 @@ body{
     background-repeat: no-repeat;
 }
 .banner1{
-    background-image: url(../img/home/banner_1.jpg);
+    background-image: url(../img/home/banner_3.jpg);
 }
 .banner2{
-    background-image: url(../img/home/banner_2.jpg);
+    background-image: url(../img/home/banner_4.jpg);
+}
+.banner3{
+    background-image: url(../img/home/banner_5.jpg);
+}
+.banner4{
+    background-image: url(../img/home/banner_6.jpg);
 }
 
 .container .txt{

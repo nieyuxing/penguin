@@ -48,7 +48,7 @@ public class QuestionController {
     public AjaxResult deleteContest(@PathVariable int id) {
         AjaxResult ajaxResult = new AjaxResult();
         List<ExaminationPaperDetail> list = examinationPaperDetailService.getExaminationPaperDetailsByQuestionId(id);
-        if(list==null && list.size()<1){
+        if(list.size()<1){
             boolean result = questionService.deleteQuestion(id);
             return new AjaxResult().setData(result);
         }else{
