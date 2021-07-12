@@ -300,7 +300,7 @@ var app = {
                 if (result && result['success']) {
                     if ($('#rememberMe').is(":checked")) {
                         // 把账号信息记入cookie
-                        $.cookie('penguinUsername', username, {expires: 7, path: '/'});
+                        $.cookie('penguinUsername', phone, {expires: 7, path: '/'});
                         $.cookie('penguinPassword', password, {expires: 7, path: '/'});
                     }
                     // 验证通过 刷新页面

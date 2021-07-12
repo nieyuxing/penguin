@@ -190,6 +190,7 @@ var manageQuestionBoardPage = {
         var questionAnswer = $('#questionAnswer').val();
         var questionParse = $('#questionParse').val();
         var questionDifficulty = $('#questionDifficulty').val();
+        var imgUrl = $('#imgUrl').val();
 
         if (manageQuestionBoardPage.checkAddQuestionData(questionTitle, questionContent,
             questionType, optionA,optionB, optionC, optionD, questionAnswer, questionParse,
@@ -214,6 +215,7 @@ var manageQuestionBoardPage = {
                     // contestId: 0,
                     // score: questionScore,
                     difficulty: questionDifficulty,
+                    imgUrl: imgUrl,
                 }),
                 success:function(result) {
                     if (result && result['success']) {
@@ -318,6 +320,7 @@ var manageQuestionBoardPage = {
         var questionAnswer = $('#updateQuestionAnswer').val();
         var questionParse = $('#updateQuestionParse').val();
         var questionDifficulty = $('#updateQuestionDifficulty').val();
+        var imgUrl = $('#imgUrlsEdit').val();
         // var questionScore = $('#updateQuestionScore').val();
 
         if (manageQuestionBoardPage.checkUpdateQuestionData(questionTitle, questionContent,
@@ -344,6 +347,7 @@ var manageQuestionBoardPage = {
                     // contestId: 0,
                     // score: questionScore,
                     difficulty: questionDifficulty,
+                    imgUrl: imgUrl,
                 }),
                 success:function(result) {
                     if (result && result['success']) {
@@ -435,5 +439,74 @@ var manageQuestionBoardPage = {
         }
     },
 
+    uploadImg: function (){
+            var fileName = $('#myfile1').val();　　
+            console.log("sss:",fileName);　　　　　　　　　　　　　　　　//获得文件名称
+            var fileType = fileName.substr(fileName.length-4,fileName.length);　　//截取文件类型,如(.xls)
+            if(fileType=='.jpg' || fileType=='.png'){　　　　　//验证文件类型,此处验证也可使用正则
+                var formData = new FormData();
+                formData.append('file', $('#myfile1')[0].files[0]);
+                $.ajax({
+                    url: '/user/api/uploadAvatar',　　　　　　　　　　//上传地址
+                    type: 'POST',
+                    cache: false,
+                    data: formData,　　　　　　　　　　　　　//表单数据
+                    processData: false,
+                    contentType: false,
+                    success:function(result){
+                        // $('#myavatar_img_url').val(result.response.imgUrl);
+                        // $('#avatarImgPreview').attr("src", '/upload/images/'+result.response.imgUrl);
+                        if (result && result['success']) {
+                            $('#imgUrls').val(result.data);
+                            //$('#imgUrls').attr("src", "D:\\Temp/" +result.data);
+                        } else {
+                            $('#updateAccountErrorMessage').html('<i class="close icon"></i><div class="header">错误提示</div>\n' +
+                                '                <p>'+result.message+'</p>');
+                            $('#updateAccountErrorMessage').removeClass('hidden');
+                        }
 
+                    }
+                });
+            }else{
+                $('#updateAccountErrorMessage').html('<i class="close icon"></i><div class="header">错误提示</div>\n' +
+                    '                <p>*上传文件类型错误,支持类型: .jpg .png</p>');
+                $('#updateAccountErrorMessage').removeClass('hidden');
+            }
+        },
+
+    updateImg: function (){
+                var fileName = $('#myfileEdit').val();　　
+                var fileType = fileName.substr(fileName.length-4,fileName.length);　　//截取文件类型,如(.xls)
+                if(fileType=='.jpg' || fileType=='.png'){　　　　　//验证文件类型,此处验证也可使用正则
+                    var formData = new FormData();　　
+                    formData.append('file', $('#myfileEdit')[0].files[0]);
+                    $.ajax({
+                        url: '/user/api/uploadAvatar',　　　　　　　　　　//上传地址
+                        type: 'POST',
+                        cache: false,
+                        data: formData,　　　　　　　　　　　　　//表单数据
+                        processData: false,
+                        contentType: false,
+                        success:function(result){
+                            console.log("s:",result.data);
+                            // $('#myavatar_img_url').val(result.response.imgUrl);
+                            // $('#avatarImgPreview').attr("src", '/upload/images/'+result.response.imgUrl);
+                            if (result && result['success']) {
+                                console.log("ssss:",result.data);　　　　　　　　　　　　　　　　//获得文件名称
+                                $('#imgUrlsEdit').val(result.data);
+                                //$('#imgUrls').attr("src", "D:\\Temp/" +result.data);
+                            } else {
+                                $('#updateAccountErrorMessage').html('<i class="close icon"></i><div class="header">错误提示</div>\n' +
+                                    '                <p>'+result.message+'</p>');
+                                $('#updateAccountErrorMessage').removeClass('hidden');
+                            }
+
+                        }
+                    });
+                }else{
+                    $('#updateAccountErrorMessage').html('<i class="close icon"></i><div class="header">错误提示</div>\n' +
+                        '                <p>*上传文件类型错误,支持类型: .jpg .png</p>');
+                    $('#updateAccountErrorMessage').removeClass('hidden');
+                }
+            }
 };

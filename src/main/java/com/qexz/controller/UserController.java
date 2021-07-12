@@ -234,7 +234,7 @@ public class UserController {
      */
     @RequestMapping(value = "/api/uploadAvatar", method = RequestMethod.POST)
     @ResponseBody
-    public Map<String,Object> uploadAvatar(HttpServletRequest request, @RequestParam("file") MultipartFile file) throws IllegalStateException, IOException{
+    public Map<String,Object> uploadAvatar( @RequestParam("file") MultipartFile file) throws IllegalStateException, IOException{
         AjaxResult ajaxResult = new AjaxResult();
         try {
             //原始名称

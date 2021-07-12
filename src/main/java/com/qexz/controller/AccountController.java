@@ -50,7 +50,7 @@ public class AccountController {
      */
     @RequestMapping(value="/profile", method= RequestMethod.GET)
     public String profile(HttpServletRequest request, Model model) {
-        User currentAccount = (User) request.getSession().getAttribute(QexzConst.CURRENT_MANAGE_ACCOUNT);
+        User currentAccount = (User) request.getSession().getAttribute(QexzConst.CURRENT_ACCOUNT);
         //TODO::拦截器过滤处理
         if (currentAccount == null) {
             //用户未登录直接返回首页面

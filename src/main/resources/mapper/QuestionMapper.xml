@@ -30,10 +30,10 @@
         insert into t_penguin_question
         (title, content, question_type, option_a, option_b, option_c,
         option_d, answer, parse, difficulty,
-        state)
+        state,img_url)
         values (#{question.title}, #{question.content}, #{question.questionType},
         #{question.optionA}, #{question.optionB}, #{question.optionC}, #{question.optionD},
-        #{question.answer}, #{question.parse}, #{question.difficulty}, #{question.state})
+        #{question.answer}, #{question.parse}, #{question.difficulty}, #{question.state},#{question.imgUrl})
     </insert>
 
     <delete id="deleteQuestion" parameterType="int">
@@ -49,8 +49,8 @@
           option_b = #{question.optionB}, option_c = #{question.optionC},
           option_d = #{question.optionD}, answer = #{question.answer},
           parse = #{question.parse},
-
-          difficulty = #{question.difficulty}
+          difficulty = #{question.difficulty},
+          img_url = #{question.imgUrl}
         WHERE
         id = #{question.id}
     </update>

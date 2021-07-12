@@ -18,11 +18,20 @@ public class Question {
     private int contestId;
     private int score;
     private int difficulty;
+    private String imgUrl;
     private Date createTime;
     private Date updateTime;
     private int state;
 
     private String positionName;
+
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
+    }
 
     public int getId() {
         return id;
