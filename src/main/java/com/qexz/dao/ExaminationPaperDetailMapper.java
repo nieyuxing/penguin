@@ -35,4 +35,6 @@ public interface ExaminationPaperDetailMapper {
 
     List<ExaminationPaperDetail> getExaminationPaperDetailsByQuestionId(@Param("quesion_id") int quesion_id);
 
+    ExaminationPaperDetail getByPaperQuestionId(@Param("paperId") int paperId, @Param("questionId") int questionId);
+
 }

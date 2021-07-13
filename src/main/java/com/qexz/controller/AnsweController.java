@@ -3,10 +3,7 @@ package com.qexz.controller;
 import com.qexz.common.QexzConst;
 import com.qexz.dto.AjaxResult;
 import com.qexz.model.*;
-import com.qexz.service.ExaminationAnswerDetailService;
-import com.qexz.service.ExaminationAnswerService;
-import com.qexz.service.ExaminationPaperService;
-import com.qexz.service.QuestionService;
+import com.qexz.service.*;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +31,8 @@ public class AnsweController {
     private ExaminationPaperService examinationPaperService;
     @Autowired
     private ExaminationAnswerDetailService examinationAnswerDetailService;
+    @Autowired
+    private ExaminationPaperDetailService examinationPaperDetailService;
 
 
     //添加考试
@@ -128,6 +127,8 @@ public class AnsweController {
         }
         List<Question> questions = questionService.getQuestionsByContestId(contest.getId());
         for (Question question : questions) {
+            ExaminationPaperDetail e = examinationPaperDetailService.getByPaperQuestionId(contest.getId(),question.getId());
+            question.setScore(e.getScore());
             question.setAnswer("");
         }
         Map<String, Object> data = new HashMap<>();

@@ -85,4 +85,8 @@ public class ExaminationPaperDetailServiceImpl implements ExaminationPaperDetail
     public List<ExaminationPaperDetail> getExaminationPaperDetailsByQuestionId(int question_id){
         return examinationPaperDetailMapper.getExaminationPaperDetailsByQuestionId(question_id);
     }
+
+    public ExaminationPaperDetail getByPaperQuestionId(int paperId,int questionId){
+        return examinationPaperDetailMapper.getByPaperQuestionId(paperId,questionId);
+    }
 }

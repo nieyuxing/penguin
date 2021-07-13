@@ -52,6 +52,8 @@ public class GradeController {
         examinationAnswerService.updateState(grade.getAnswerId(),2);
         ExaminationAnswerDetail examinationAnswersDetail;
         for (int i = 0; i < questions.size(); i++) {
+
+
             Question question = questions.get(i);
             examinationAnswersDetail = new ExaminationAnswerDetail();
             examinationAnswersDetail.setAnswer_id(grade.getAnswerId());

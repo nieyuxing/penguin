@@ -21,4 +21,6 @@ public interface ExaminationPaperDetailService {
     Map<String, Object> getExaminationPaperDetails(int pageNum, int pageSize, int paper);
 
     List<ExaminationPaperDetail> getExaminationPaperDetailsByQuestionId(int question_id);
+
+    ExaminationPaperDetail getByPaperQuestionId(int paperId,int questionId);
 }
