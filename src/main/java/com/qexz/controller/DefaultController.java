@@ -6,6 +6,7 @@ import com.qexz.model.*;
 import com.qexz.service.*;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.codehaus.groovy.util.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -82,6 +83,9 @@ public class DefaultController {
         List<Question> questions = questionService.getQuestionsByContestId(contestId);
         for (Question question : questions) {
             question.setAnswer("");
+            if(question.getImgUrl() != null && question.getImgUrl()!=""){
+                question.setImgUrl(QexzConst.UPLOAD_FILE_IMAGE_PATH + question.getImgUrl());
+            }
         }
         Map<String, Object> data = new HashMap<>();
         data.put("contest", contest);

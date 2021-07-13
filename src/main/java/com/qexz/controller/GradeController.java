@@ -3,10 +3,7 @@ package com.qexz.controller;
 import com.qexz.common.QexzConst;
 import com.qexz.dto.AjaxResult;
 import com.qexz.model.*;
-import com.qexz.service.ExaminationAnswerDetailService;
-import com.qexz.service.ExaminationAnswerService;
-import com.qexz.service.GradeService;
-import com.qexz.service.QuestionService;
+import com.qexz.service.*;
 import net.sf.json.JSONObject;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -37,6 +34,8 @@ public class GradeController {
     private ExaminationAnswerDetailService examinationAnswerDetailService;
     @Autowired
     private ExaminationAnswerService examinationAnswerService;
+    @Autowired
+    private ExaminationPaperDetailService examinationPaperDetailService;
 
     //提交试卷
     @RequestMapping(value="/api/submitContest", method= RequestMethod.POST)
@@ -68,12 +67,17 @@ public class GradeController {
             examinationAnswersDetail.setUpdate_time(new Date());
             if (question.getQuestionType() <= 1 && question.getAnswer()
                     .equals(answerStrs.get(i))) {
+                ExaminationPaperDetail e = examinationPaperDetailService.getByPaperQuestionId(grade.getContestId(),question.getId());
+                question.setScore(e.getScore());
                 examinationAnswersDetail.setScore(question.getScore());
                 autoResult += question.getScore();
             }
             examinationAnswerDetailService.addExaminationAnswerDetail(examinationAnswersDetail);
 
         }
+
+
+
         grade.setStudentId(currentAccount.getId());
         grade.setResult(autoResult);
         grade.setAutoResult(autoResult);

@@ -27,8 +27,14 @@ var contestDetailPage = {
         });
 
         if (contestDetailPage.data.questions[0].questionType == 0) {
-            $('#currentQuetionTitle').html('(单选)'+contestDetailPage.data.questions[0].content+'('+contestDetailPage.data.questions[0].score+'分)');
-            var selectOptionStr = '<div class="grouped fields">\n' +
+            var tmpHtml = '(单选)'+contestDetailPage.data.questions[0].content+'('+contestDetailPage.data.questions[0].score+'分)\n';
+            var imgUrl = contestDetailPage.data.questions[0].imgUrl;
+            if(imgUrl != null && imgUrl!=undefined){
+                tmpHtml += '<img class="ui" th:src="'+contestDetailPage.data.questions[0].imgUrl + '" width="156" height="32" alt="" />'
+            }
+            $('#currentQuetionTitle').html(tmpHtml);
+            var selectOptionStr =
+                    '<div class="grouped fields">\n' +
                 '    <div class="field">\n' +
                 '      <div class="ui toggle checkbox">\n' +
                 '        <input type="radio" name="questionAnswer" value="A"/>\n' +
@@ -56,7 +62,12 @@ var contestDetailPage = {
                 '  </div>';
             $('#currentQuestionAnswer').html(selectOptionStr);
         } else if (contestDetailPage.data.questions[0].questionType == 1) {
-            $('#currentQuetionTitle').html('(多选)'+contestDetailPage.data.questions[0].content+'('+contestDetailPage.data.questions[0].score+'分)');
+            var tmpHtml = '(多选)'+contestDetailPage.data.questions[0].content+'('+contestDetailPage.data.questions[0].score+'分)\n';
+            var imgUrl = contestDetailPage.data.questions[0].imgUrl;
+            if(imgUrl != null && imgUrl!=undefined){
+                tmpHtml += '<img class="ui" th:src="'+contestDetailPage.data.questions[0].imgUrl + '" width="156" height="32" alt="" />'
+            }
+            $('#currentQuetionTitle').html(tmpHtml);
             var selectOptionStr = '<div class="grouped fields">\n' +
                 '    <div class="field">\n' +
                 '      <div class="ui toggle checkbox">\n' +
@@ -85,7 +96,12 @@ var contestDetailPage = {
                 '  </div>';
             $('#currentQuestionAnswer').html(selectOptionStr);
         } else {
-            $('#currentQuetionTitle').html('(问答)'+contestDetailPage.data.questions[0].content+'('+contestDetailPage.data.questions[0].score+'分)');
+            var tmpHtml = '(问答)'+contestDetailPage.data.questions[0].content+'('+contestDetailPage.data.questions[0].score+'分)\n';
+            var imgUrl = contestDetailPage.data.questions[0].imgUrl;
+            if(imgUrl != null && imgUrl!=undefined){
+                tmpHtml += '<img class="ui" th:src="'+contestDetailPage.data.questions[0].imgUrl + '" width="156" height="32" alt="" />'
+            }
+            $('#currentQuetionTitle').html(tmpHtml);
             var selectOptionStr = '<div class="field">\n' +
                 '                        <textarea  id="questionAnswer" rows="20"></textarea>\n' +
                 '                    </div>';
@@ -122,7 +138,13 @@ var contestDetailPage = {
         }
 
         if (contestDetailPage.data.questions[index].questionType == 0) {
-            $('#currentQuetionTitle').html('(单选)'+contestDetailPage.data.questions[index].content+'('+contestDetailPage.data.questions[index].score+'分)');
+            var tmpHtml = '(单选)'+contestDetailPage.data.questions[index].content+'('+contestDetailPage.data.questions[index].score+'分)\n';
+            var imgUrl = contestDetailPage.data.questions[index].imgUrl;
+            console.log("imgUrl:",imgUrl);
+            if(imgUrl != null && imgUrl!=undefined){
+                tmpHtml += '<img class="ui" th:src="'+contestDetailPage.data.questions[index].imgUrl + '" width="156" height="32" alt="" />'
+            }
+            $('#currentQuetionTitle').html(tmpHtml);
             var selectOptionStr = '<div class="grouped fields">\n' +
                 '    <div class="field">\n' +
                 '      <div class="ui toggle checkbox">\n' +
@@ -160,7 +182,13 @@ var contestDetailPage = {
                 });
             }
         } else if (contestDetailPage.data.questions[index].questionType == 1) {
-            $('#currentQuetionTitle').html('(多选)'+contestDetailPage.data.questions[index].content+'('+contestDetailPage.data.questions[index].score+'分)');
+            var tmpHtml = '(多选)'+contestDetailPage.data.questions[index].content+'('+contestDetailPage.data.questions[index].score+'分)\n';
+            var imgUrl = contestDetailPage.data.questions[index].imgUrl;
+            console.log("imgUrl:",imgUrl);
+            if(imgUrl != null && imgUrl!=undefined){
+                tmpHtml += '<img class="ui" th:src="'+contestDetailPage.data.questions[index].imgUrl + '" width="156" height="32" alt="" />'
+            }
+            $('#currentQuetionTitle').html(tmpHtml);
             var selectOptionStr = '<div class="grouped fields">\n' +
                 '    <div class="field">\n' +
                 '      <div class="ui toggle checkbox">\n' +
@@ -198,7 +226,13 @@ var contestDetailPage = {
                 });
             }
         } else {
-            $('#currentQuetionTitle').html('(问答)'+contestDetailPage.data.questions[index].content+'('+contestDetailPage.data.questions[index].score+'分)');
+            var tmpHtml = '(问答)'+contestDetailPage.data.questions[index].content+'('+contestDetailPage.data.questions[index].score+'分)\n';
+            var imgUrl = contestDetailPage.data.questions[index].imgUrl;
+            console.log("imgUrl:",imgUrl);
+            if(imgUrl != null && imgUrl!=undefined){
+                tmpHtml += '<img class="ui" th:src="'+contestDetailPage.data.questions[index].imgUrl + '" width="156" height="32" alt="" />'
+            }
+            $('#currentQuetionTitle').html(tmpHtml);
             var selectOptionStr = '<div class="field">\n' +
                 '                        <textarea  id="questionAnswer" name="questionAnswer" rows="20"></textarea>\n' +
                 '                    </div>';

@@ -253,6 +253,7 @@ var manageQuestionBoardPage = {
         $('#updateQuestionIndex').val(index);
         $('#updateQuestionTitle').val(questions[index].title);
         $('#updateQuestionContent').val(questions[index].content);
+        $('#imgUrlsEdit').val(questions[index].imgUrl);
         var selectQuestionTypes = document.getElementById('updateQuestionType');
         for (var i = 0; i < selectQuestionTypes.length; i++) {
             if (selectQuestionTypes[i].value == questions[index].questionType) {

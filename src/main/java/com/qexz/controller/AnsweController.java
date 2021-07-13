@@ -128,6 +128,9 @@ public class AnsweController {
         List<Question> questions = questionService.getQuestionsByContestId(contest.getId());
         for (Question question : questions) {
             ExaminationPaperDetail e = examinationPaperDetailService.getByPaperQuestionId(contest.getId(),question.getId());
+            if(question.getImgUrl() != null && question.getImgUrl()!=""){
+                question.setImgUrl(QexzConst.UPLOAD_FILE_IMAGE_PATH + question.getImgUrl());
+            }
             question.setScore(e.getScore());
             question.setAnswer("");
         }

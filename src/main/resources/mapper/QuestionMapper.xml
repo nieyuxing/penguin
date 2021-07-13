@@ -19,11 +19,12 @@
         <result column="score" property="score" jdbcType="INTEGER" />
         <result column="difficulty" property="difficulty" jdbcType="INTEGER" />
         <result column="state" property="state" jdbcType="INTEGER" />
+        <result column="img_url" property="imgUrl" jdbcType="VARCHAR" />
     </resultMap>
     <sql id="Base_Column_List" >
         id,title,content,question_type,option_a,option_b,option_c,
         option_d,answer,parse,position_id,contest_id,create_time,
-        update_time,score,difficulty,state
+        update_time,score,difficulty,state,img_url
     </sql>
 
     <insert id="insertQuestion" parameterType="com.qexz.model.Question" >

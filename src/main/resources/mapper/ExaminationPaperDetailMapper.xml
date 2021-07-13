@@ -102,7 +102,7 @@
         select
         *
         from t_examination_paper_detail
-        where question_id = #{quesionId} and paper_id = #{paperId}
+        where question_id = #{questionId} and paper_id = #{paperId}
     </select>
 
 
