@@ -187,9 +187,13 @@ public class QuestionExcelReader {
 
         switch (question_type){
             case "单选": resultData.setQuestionType(0);
+                break;
             case "多选": resultData.setQuestionType(1);
+                break;
             case "问答": resultData.setQuestionType(2);
+                break;
             case "编程": resultData.setQuestionType(3);
+                break;
             default:
                 break;
         }
