@@ -30,7 +30,7 @@ var contestDetailPage = {
             var tmpHtml = '(单选)'+contestDetailPage.data.questions[0].content+'('+contestDetailPage.data.questions[0].score+'分)\n';
             var imgUrl = contestDetailPage.data.questions[0].imgUrl;
             if(imgUrl != null && imgUrl!=undefined){
-                tmpHtml += '<img class="ui" th:src="'+contestDetailPage.data.questions[0].imgUrl + '" width="156" height="32" alt="" />'
+                tmpHtml += '\n<img class="ui" src="'+contestDetailPage.data.questions[0].imgUrl + '" width="600" height="320" alt="" />'
             }
             $('#currentQuetionTitle').html(tmpHtml);
             var selectOptionStr =
@@ -65,7 +65,7 @@ var contestDetailPage = {
             var tmpHtml = '(多选)'+contestDetailPage.data.questions[0].content+'('+contestDetailPage.data.questions[0].score+'分)\n';
             var imgUrl = contestDetailPage.data.questions[0].imgUrl;
             if(imgUrl != null && imgUrl!=undefined){
-                tmpHtml += '<img class="ui" th:src="'+contestDetailPage.data.questions[0].imgUrl + '" width="156" height="32" alt="" />'
+                tmpHtml += '<img class="ui" src="'+contestDetailPage.data.questions[0].imgUrl + '" width="600" height="320" alt="" />'
             }
             $('#currentQuetionTitle').html(tmpHtml);
             var selectOptionStr = '<div class="grouped fields">\n' +
@@ -99,7 +99,7 @@ var contestDetailPage = {
             var tmpHtml = '(问答)'+contestDetailPage.data.questions[0].content+'('+contestDetailPage.data.questions[0].score+'分)\n';
             var imgUrl = contestDetailPage.data.questions[0].imgUrl;
             if(imgUrl != null && imgUrl!=undefined){
-                tmpHtml += '<img class="ui" th:src="'+contestDetailPage.data.questions[0].imgUrl + '" width="156" height="32" alt="" />'
+                tmpHtml += '<img class="ui" src="'+contestDetailPage.data.questions[0].imgUrl + '" width="600" height="320" alt="" />'
             }
             $('#currentQuetionTitle').html(tmpHtml);
             var selectOptionStr = '<div class="field">\n' +
@@ -142,7 +142,7 @@ var contestDetailPage = {
             var imgUrl = contestDetailPage.data.questions[index].imgUrl;
             console.log("imgUrl:",imgUrl);
             if(imgUrl != null && imgUrl!=undefined){
-                tmpHtml += '<img class="ui" th:src="'+contestDetailPage.data.questions[index].imgUrl + '" width="156" height="32" alt="" />'
+                tmpHtml += '<img class="ui" src="'+contestDetailPage.data.questions[index].imgUrl + '" width="600" height="320" alt="" />'
             }
             $('#currentQuetionTitle').html(tmpHtml);
             var selectOptionStr = '<div class="grouped fields">\n' +
@@ -186,7 +186,7 @@ var contestDetailPage = {
             var imgUrl = contestDetailPage.data.questions[index].imgUrl;
             console.log("imgUrl:",imgUrl);
             if(imgUrl != null && imgUrl!=undefined){
-                tmpHtml += '<img class="ui" th:src="'+contestDetailPage.data.questions[index].imgUrl + '" width="156" height="32" alt="" />'
+                tmpHtml += '<img class="ui" src="'+contestDetailPage.data.questions[index].imgUrl + '" width="600" height="320" alt="" />'
             }
             $('#currentQuetionTitle').html(tmpHtml);
             var selectOptionStr = '<div class="grouped fields">\n' +
@@ -230,7 +230,7 @@ var contestDetailPage = {
             var imgUrl = contestDetailPage.data.questions[index].imgUrl;
             console.log("imgUrl:",imgUrl);
             if(imgUrl != null && imgUrl!=undefined){
-                tmpHtml += '<img class="ui" th:src="'+contestDetailPage.data.questions[index].imgUrl + '" width="156" height="32" alt="" />'
+                tmpHtml += '<img class="ui" src="'+contestDetailPage.data.questions[index].imgUrl + '" width="600" height="320" alt="" />'
             }
             $('#currentQuetionTitle').html(tmpHtml);
             var selectOptionStr = '<div class="field">\n' +
