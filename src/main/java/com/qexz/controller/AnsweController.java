@@ -129,7 +129,7 @@ public class AnsweController {
         for (Question question : questions) {
             ExaminationPaperDetail e = examinationPaperDetailService.getByPaperQuestionId(contest.getId(),question.getId());
             if(question.getImgUrl() != null && question.getImgUrl()!=""){
-                question.setImgUrl(QexzConst.UPLOAD_FILE_IMAGE_PATH + question.getImgUrl());
+                question.setImgUrl(QexzConst.IMGIPADDRESS + question.getImgUrl());
             }
             question.setScore(e.getScore());
             question.setAnswer("");

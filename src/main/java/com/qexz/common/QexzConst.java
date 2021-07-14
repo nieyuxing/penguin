@@ -8,15 +8,16 @@ public class QexzConst {
     public final static String CURRENT_MANAGE_ACCOUNT = "current_manage_account";
 
     //本地服务器-文件,图片所在位置,图片上传位置
-    public static final String UPLOAD_FILE_PATH = "D:\\Temp/";
-    public static final String UPLOAD_FILE_IMAGE_PATH = "D:\\Temp/";
+//    public static final String UPLOAD_FILE_PATH = "D:\\Temp/";
+//    public static final String UPLOAD_FILE_IMAGE_PATH = "D:\\Temp/";
     //public static final String UPLOAD_FILE_RESUME_PATH = "file:D:/";
     //云服务器-文件,图片所在位置,图片上传位置
-//    public static final String UPLOAD_FILE_PATH = "file:/usr/java/data/springboot-penguin/upload/";
-//    public static final String UPLOAD_FILE_IMAGE_PATH = "/usr/java/data/springboot-penguin/upload/images/";
+    public static final String UPLOAD_FILE_PATH = "/usr/local/exam/upload/";
+    public static final String UPLOAD_FILE_IMAGE_PATH = "/usr/local/exam/upload/images/";
 
     public static final String UPLOAD_FILE_RESUME_PATH = "/usr/local/exam/upload/";
     public static final String IPADDRESS = "http://47.113.102.217:8083/upload/";
+    public static final String IMGIPADDRESS = "http://47.113.102.217:8083/upload/images/";
 
     //默认头像url
     public static final String DEFAULT_AVATAR_IMG_URL = "headimg_placeholder.png";
