@@ -458,7 +458,7 @@ var manageQuestionBoardPage = {
                         // $('#myavatar_img_url').val(result.response.imgUrl);
                         // $('#avatarImgPreview').attr("src", '/upload/images/'+result.response.imgUrl);
                         if (result && result['success']) {
-                            $('#imgUrls').val(result.data);
+                            $('#imgUrl').val(result.data);
                             //$('#imgUrls').attr("src", "D:\\Temp/" +result.data);
                         } else {
                             $('#updateAccountErrorMessage').html('<i class="close icon"></i><div class="header">错误提示</div>\n' +
