@@ -15,7 +15,7 @@ public class QexzConst {
     public static final String UPLOAD_FILE_PATH = "/usr/local/exam/upload/";
     public static final String UPLOAD_FILE_IMAGE_PATH = "/usr/local/exam/upload/images/";
 
-    public static final String UPLOAD_FILE_RESUME_PATH = "/usr/local/exam/upload/";
+    public static final String UPLOAD_FILE_RESUME_PATH = "D:\\";
     public static final String IPADDRESS = "http://47.113.102.217:8083/upload/";
     public static final String IMGIPADDRESS = "http://47.113.102.217:8083/upload/images/";
 

@@ -65,12 +65,14 @@ public class GradeController {
             }
             examinationAnswersDetail.setCreate_time(new Date());
             examinationAnswersDetail.setUpdate_time(new Date());
+            ExaminationPaperDetail e = examinationPaperDetailService.getByPaperQuestionId(grade.getContestId(),question.getId());
             if (question.getQuestionType() <= 1 && question.getAnswer()
                     .equals(answerStrs.get(i))) {
-                ExaminationPaperDetail e = examinationPaperDetailService.getByPaperQuestionId(grade.getContestId(),question.getId());
                 question.setScore(e.getScore());
                 examinationAnswersDetail.setScore(question.getScore());
                 autoResult += question.getScore();
+            }else{
+                autoResult += e.getExpscore();
             }
             examinationAnswerDetailService.addExaminationAnswerDetail(examinationAnswersDetail);
 
