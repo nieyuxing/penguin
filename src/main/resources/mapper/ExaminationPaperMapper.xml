@@ -61,6 +61,7 @@
         t_examination_paper  paper
         on answer.paper_id = paper.id
         where answer.user_id = #{id}
+        and answer.limit_time > now()
     </select>
 
     <select id="getExaminationPapers" resultMap="BaseResultMap" >
@@ -118,6 +119,7 @@
         on answer.paper_id = paper.id
         where answer.user_id = #{userId}
         and answer.state = 0
+        and answer.limit_time > now()
     </select>
 
     <select id="getExaminationPaperByAnswerId" resultType="com.qexz.model.ExaminationPaper" parameterType="int" >
