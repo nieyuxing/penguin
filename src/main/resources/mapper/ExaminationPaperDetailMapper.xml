@@ -7,21 +7,22 @@
         <result column="question_id" property="question_id" jdbcType="INTEGER" />
         <result column="state" property="state" jdbcType="INTEGER" />
         <result column="score" property="score" jdbcType="INTEGER" />
+        <result column="expscore" property="expscore" jdbcType="INTEGER" />
         <result column="version" property="version" jdbcType="VARCHAR" />
         <result column="create_time" property="create_time" jdbcType="TIMESTAMP" />
         <result column="update_time" property="update_time" jdbcType="TIMESTAMP" />
     </resultMap>
 
     <sql id="Base_Column_List" >
-        id, paper_id, question_id, state, score, version, create_time, update_time, startDate, endDate
+        id, paper_id, question_id, state, score, version, create_time, update_time, startDate, endDate,expscore
     </sql>
    
 
     <insert id="insertExaminationPaperDetailDetail" parameterType="com.qexz.model.ExaminationPaperDetail" >
         insert into t_examination_paper_detail
-          (id, paper_id, question_id, state, score, version, create_time, update_time)
+          (id, paper_id, question_id, state, score,expscore, version, create_time, update_time)
         values
-          (#{ExaminationPaperDetail.id}, #{ExaminationPaperDetail.paper_id}, #{ExaminationPaperDetail.question_id}, 1, #{ExaminationPaperDetail.score}, 1, CURRENT_TIMESTAMP , CURRENT_TIMESTAMP )
+          (#{ExaminationPaperDetail.id}, #{ExaminationPaperDetail.paper_id}, #{ExaminationPaperDetail.question_id}, 1, #{ExaminationPaperDetail.score},#{ExaminationPaperDetail.expscore}, 1, CURRENT_TIMESTAMP , CURRENT_TIMESTAMP )
     </insert>
     
     <update id="updateExaminationPaperDetailDetailById" parameterType="com.qexz.model.ExaminationPaperDetail">
@@ -30,6 +31,7 @@
             paper_id = #{ExaminationPaperDetail.paper_id},
             question_id = #{ExaminationPaperDetail.question_id},
             score = #{ExaminationPaperDetail.score},
+            expscore = #{ExaminationPaperDetail.expscore},
             version = version + 1,
             update_time = CURRENT_TIMESTAMP
         WHERE

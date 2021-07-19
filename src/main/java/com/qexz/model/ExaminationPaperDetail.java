@@ -19,6 +19,7 @@ public class ExaminationPaperDetail implements Serializable{
     private int score;//  '计分',
     private int state;// ,
     private int version;// ,
+    private int expscore ;//答错得分
 
     private Question question;
 
@@ -108,5 +109,13 @@ public class ExaminationPaperDetail implements Serializable{
 
     public void setQuestion(Question question) {
         this.question = question;
+    }
+
+    public int getExpscore() {
+        return expscore;
+    }
+
+    public void setExpscore(int expscore) {
+        this.expscore = expscore;
     }
 }

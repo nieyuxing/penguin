@@ -120,10 +120,11 @@ var manageExamAnswerBoardPage = {
 
         $('#addpaper_id').val("");
         $('#adduser_id').val("");
+        $('#addlimit_time').val("");
     },
 
 
-    checkAddAnswerData: function (user_id,question_id) {
+    checkAddAnswerData: function (user_id,question_id,limit_time) {
 
         var flag = false;
         var msg ='';
@@ -132,6 +133,9 @@ var manageExamAnswerBoardPage = {
         }
         if (question_id == null || question_id == '' ) {
             msg = '考题不能为空!'
+        }
+        if (limit_time == null || limit_time == '' ) {
+            msg = '截止时间不能为空!'
         }
         if(msg!=''){
             layer.open({
@@ -146,9 +150,10 @@ var manageExamAnswerBoardPage = {
     addAnswerAction: function () {
         var user_id = $('#adduser_id').val();
         var paper_id = $('#addpaper_id').val();
+        var limit_time = new Date($('#addlimit_time').val());
 
-        console.log(user_id,paper_id)
-        if (manageExamAnswerBoardPage.checkAddAnswerData(user_id,paper_id)) {
+        console.log(user_id,paper_id,limit_time);
+        if (manageExamAnswerBoardPage.checkAddAnswerData(user_id,paper_id,limit_time)) {
             $.ajax({
                 url : app.URL.addAnswerUrl(),
                 type : "POST",
@@ -158,6 +163,7 @@ var manageExamAnswerBoardPage = {
                 data : JSON.stringify({
                     user_id:user_id,
                     paper_id:paper_id,
+                    limit_time:limit_time,
                 }),
                 success:function(result) {
                     if (result && result['success']) {

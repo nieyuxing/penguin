@@ -23,6 +23,7 @@ public class ExaminationAnswer implements Serializable {
     private int score;// '得分',
     private int state;//'答卷状态',
     private int version;//'答卷状态',
+    private Date limit_time;//截止时间
 
     private ExaminationPaper paper;
     private List<ExaminationAnswerDetail> examinationAnswerDetails ;
@@ -99,6 +100,14 @@ public class ExaminationAnswer implements Serializable {
 
     public void setEnd_time(Date end_time) {
         this.end_time = end_time;
+    }
+
+    public Date getLimit_time() {
+        return limit_time;
+    }
+
+    public void setLimit_time(Date limit_time) {
+        this.limit_time = limit_time;
     }
 
     public int getVersion() {

@@ -48,6 +48,7 @@ var manageEditExaminationPaperDetailPage = {
 
         $('#question_id').val("");
         $('#detailScore').val();
+        $('#expScore').val();
     },
     checkAddData: function (question_id,questionScore,contestId) {
         var flag = false;
@@ -76,6 +77,7 @@ var manageEditExaminationPaperDetailPage = {
 
         var question_id = $('#question_id').val();
         var questionScore = $('#detailScore').val();
+        var expScore = $('#expScore').val();
         var contestId = manageEditExaminationPaperDetailPage.data.examinationPaper.id;
         console.log(question_id,questionScore,contestId)
         if (manageEditExaminationPaperDetailPage.checkAddData(question_id,questionScore,contestId)) {
@@ -86,7 +88,7 @@ var manageEditExaminationPaperDetailPage = {
                 contentType : "application/json;charset=UTF-8",
                 <!-- 向后端传输的数据 -->
                 data : JSON.stringify({
-
+                    expScore:expScore,
                     question_id: question_id,
                     paper_id: contestId,
                     score: questionScore,
@@ -131,6 +133,7 @@ var manageEditExaminationPaperDetailPage = {
         $('#updatePaperDetailIndex').val(examinationPaperDetails[index].id);
         $('#updatequestion_id').val( examinationPaperDetails[index].question_id);
         $('#updatescore').val(examinationPaperDetails[index].score);
+        $('#updateExpScore').val(examinationPaperDetails[index].expscore);
         $('#updatePaperIndex').val(examinationPaperDetails[index].paper_id);
         var question_ids = document.getElementById('updatequestion_id');
         for (var i = 0; i < question_ids.length; i++) {
@@ -151,7 +154,7 @@ var manageEditExaminationPaperDetailPage = {
         var question_id = $('#updatequestion_id').val();
         var score = $('#updatescore').val();
 
-
+        var expscore = $('#updateExpScore').val();
         if (manageEditExaminationPaperDetailPage.checkUpdateData(index,paper_id,question_id,score)) {
             $.ajax({
                 url : app.URL.updatePaperDetailUrl(),
@@ -164,6 +167,7 @@ var manageEditExaminationPaperDetailPage = {
                     question_id: question_id,
                     paper_id: paper_id,
                     score: score,
+                    expscore:expscore,
                 }),
                 success:function(result) {
                     if (result && result['success']) {

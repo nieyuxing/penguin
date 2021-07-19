@@ -40,6 +40,9 @@ public class AnsweController {
     @ResponseBody
     public AjaxResult addExaminationAnswer(@RequestBody ExaminationAnswer examinationAnswer) {
         AjaxResult ajaxResult = new AjaxResult();
+        if(examinationAnswer.getLimit_time()==null){
+            return new AjaxResult().setMessage("分配考试必须设置截止时间");
+        }
         int examinationAnswerId = examinationAnswerService.addExaminationAnswer(examinationAnswer);
         return new AjaxResult().setData(examinationAnswerId);
     }
