@@ -94,9 +94,7 @@ var manageAnswerDetailBoardPage = {
         if (index == null || index == '' ) {
             msg = '题号不能为空!'
         }
-        if (score == null || score == '' ) {
-            msg = '得分不能为空!'
-        }
+
 
         if(msg!=''){
             layer.open({

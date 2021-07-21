@@ -134,9 +134,6 @@ var manageExamAnswerBoardPage = {
         if (question_id == null || question_id == '' ) {
             msg = '考题不能为空!'
         }
-        if (limit_time == null || limit_time == '' ) {
-            msg = '截止时间不能为空!'
-        }
         if(msg!=''){
             layer.open({
                 title: '温馨提示',

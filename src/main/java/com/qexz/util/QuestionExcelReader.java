@@ -225,6 +225,10 @@ public class QuestionExcelReader {
         String diff=convertCellValueToString(cell); //获取第二格内容
         resultData.setDifficulty(Integer.parseInt(diff));
 
+        cell = row.getCell(cellNum++); //下一列
+        String tips=convertCellValueToString(cell); //获取第二格内容
+        resultData.setTips(tips);
+
         resultData.setContestId(0);
         return resultData;
     }

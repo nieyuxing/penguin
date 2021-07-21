@@ -146,6 +146,7 @@ var manageQuestionBoardPage = {
         $('#optionD').val("");
         $('#questionAnswer').val("");
         $('#questionParse').val("");
+        $('#questionTips').val("");
         // $('#questionScore').val("");
     },
     checkAddQuestionData: function (questionTitle, questionContent, questionType,
@@ -189,6 +190,7 @@ var manageQuestionBoardPage = {
         var optionD = $('#optionD').val();
         var questionAnswer = $('#questionAnswer').val();
         var questionParse = $('#questionParse').val();
+        var questionTips = $('#questionTips').val();
         var questionDifficulty = $('#questionDifficulty').val();
         var imgUrl = $('#imgUrl').val();
 
@@ -216,6 +218,7 @@ var manageQuestionBoardPage = {
                     // score: questionScore,
                     difficulty: questionDifficulty,
                     imgUrl: imgUrl,
+                    tips:questionTips,
                 }),
                 success:function(result) {
                     if (result && result['success']) {
@@ -272,6 +275,7 @@ var manageQuestionBoardPage = {
         $('#updateOptionD').val(questions[index].optionD);
         $('#updateQuestionAnswer').val(questions[index].answer);
         $('#updateQuestionParse').val(questions[index].parse);
+        $('#updateQuestionTips').val(questions[index].tips);
         var selectQuestionDifficulty = document.getElementById('updateQuestionDifficulty');
         for (var i = 0; i < selectQuestionDifficulty.length; i++) {
             if (selectQuestionDifficulty[i].value == questions[index].difficulty) {
@@ -322,6 +326,7 @@ var manageQuestionBoardPage = {
         var questionParse = $('#updateQuestionParse').val();
         var questionDifficulty = $('#updateQuestionDifficulty').val();
         var imgUrl = $('#imgUrlsEdit').val();
+        var questionTips = $('#updateQuestionTips').val();
         // var questionScore = $('#updateQuestionScore').val();
 
         if (manageQuestionBoardPage.checkUpdateQuestionData(questionTitle, questionContent,
@@ -349,6 +354,7 @@ var manageQuestionBoardPage = {
                     // score: questionScore,
                     difficulty: questionDifficulty,
                     imgUrl: imgUrl,
+                    tips:questionTips,
                 }),
                 success:function(result) {
                     if (result && result['success']) {

@@ -22,6 +22,7 @@ public class Question {
     private Date createTime;
     private Date updateTime;
     private int state;
+    private String tips;
 
     private String positionName;
 
@@ -175,6 +176,14 @@ public class Question {
 
     public void setPositionName(String positionName) {
         this.positionName = positionName;
+    }
+
+    public String getTips() {
+        return tips;
+    }
+
+    public void setTips(String tips) {
+        this.tips = tips;
     }
 
     @Override

@@ -20,21 +20,22 @@
         <result column="difficulty" property="difficulty" jdbcType="INTEGER" />
         <result column="state" property="state" jdbcType="INTEGER" />
         <result column="img_url" property="imgUrl" jdbcType="VARCHAR" />
+        <result column="tips" property="tips" jdbcType="LONGVARCHAR" />
     </resultMap>
     <sql id="Base_Column_List" >
         id,title,content,question_type,option_a,option_b,option_c,
         option_d,answer,parse,position_id,contest_id,create_time,
-        update_time,score,difficulty,state,img_url
+        update_time,score,difficulty,state,img_url,tips
     </sql>
 
     <insert id="insertQuestion" parameterType="com.qexz.model.Question" >
         insert into t_penguin_question
         (title, content, question_type, option_a, option_b, option_c,
         option_d, answer, parse, difficulty,
-        state,img_url)
+        state,img_url,tips)
         values (#{question.title}, #{question.content}, #{question.questionType},
         #{question.optionA}, #{question.optionB}, #{question.optionC}, #{question.optionD},
-        #{question.answer}, #{question.parse}, #{question.difficulty}, #{question.state},#{question.imgUrl})
+        #{question.answer}, #{question.parse}, #{question.difficulty}, #{question.state},#{question.imgUrl},#{question.tips})
     </insert>
 
     <delete id="deleteQuestion" parameterType="int">
@@ -51,7 +52,8 @@
           option_d = #{question.optionD}, answer = #{question.answer},
           parse = #{question.parse},
           difficulty = #{question.difficulty},
-          img_url = #{question.imgUrl}
+          img_url = #{question.imgUrl},
+          tips = #{question.tips}
         WHERE
         id = #{question.id}
     </update>

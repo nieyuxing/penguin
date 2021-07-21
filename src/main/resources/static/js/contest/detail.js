@@ -33,8 +33,10 @@ var contestDetailPage = {
                 tmpHtml += '\n<img class="ui" src="'+contestDetailPage.data.questions[0].imgUrl + '" width="600" height="320" alt="" />'
             }
             $('#currentQuetionTitle').html(tmpHtml);
-            var expHtml = '温馨提示:'+contestDetailPage.data.questions[0].title+'\n';
-            $('#currentTips').html(expHtml);
+            var expHtml = '温馨提示:'+contestDetailPage.data.questions[0].tips+'\n';
+            if(contestDetailPage.data.questions[0].tips != null && contestDetailPage.data.questions[0].tips!= undefined){
+                $('#currentTips').html(expHtml);
+            }
             var selectOptionStr =
                     '<div class="grouped fields">\n' +
                 '    <div class="field">\n' +
@@ -70,8 +72,10 @@ var contestDetailPage = {
                 tmpHtml += '<img class="ui" src="'+contestDetailPage.data.questions[0].imgUrl + '" width="600" height="320" alt="" />'
             }
             $('#currentQuetionTitle').html(tmpHtml);
-            var expHtml = '温馨提示:'+contestDetailPage.data.questions[0].title+'\n';
-            $('#currentTips').html(expHtml);
+            var expHtml = '温馨提示:'+contestDetailPage.data.questions[0].tips+'\n';
+            if(contestDetailPage.data.questions[0].tips != null && contestDetailPage.data.questions[0].tips!= undefined){
+                $('#currentTips').html(expHtml);
+            }
             var selectOptionStr = '<div class="grouped fields">\n' +
                 '    <div class="field">\n' +
                 '      <div class="ui toggle checkbox">\n' +
@@ -106,8 +110,10 @@ var contestDetailPage = {
                 tmpHtml += '<img class="ui" src="'+contestDetailPage.data.questions[0].imgUrl + '" width="600" height="320" alt="" />'
             }
             $('#currentQuetionTitle').html(tmpHtml);
-            var expHtml = '温馨提示:'+contestDetailPage.data.questions[0].title+'\n';
-            $('#currentTips').html(expHtml);
+            var expHtml = '温馨提示:'+contestDetailPage.data.questions[0].tips+'\n';
+            if(contestDetailPage.data.questions[0].tips != null && contestDetailPage.data.questions[0].tips!= undefined){
+                $('#currentTips').html(expHtml);
+            }
             var selectOptionStr = '<div class="field">\n' +
                 '                        <textarea  id="questionAnswer" rows="20"></textarea>\n' +
                 '                    </div>';
@@ -151,7 +157,7 @@ var contestDetailPage = {
                 tmpHtml += '<img class="ui" src="'+contestDetailPage.data.questions[index].imgUrl + '" width="600" height="320" alt="" />'
             }
             $('#currentQuetionTitle').html(tmpHtml);
-            var expHtml = '温馨提示:'+contestDetailPage.data.questions[index].title+'\n';
+            var expHtml = '温馨提示:'+contestDetailPage.data.questions[index].tips+'\n';
              $('#currentTips').html(expHtml);
             var selectOptionStr = '<div class="grouped fields">\n' +
                 '    <div class="field">\n' +
@@ -197,7 +203,7 @@ var contestDetailPage = {
                 tmpHtml += '<img class="ui" src="'+contestDetailPage.data.questions[index].imgUrl + '" width="600" height="320" alt="" />'
             }
             $('#currentQuetionTitle').html(tmpHtml);
-            var expHtml = '温馨提示:'+contestDetailPage.data.questions[index].title+'\n';
+            var expHtml = '温馨提示:'+contestDetailPage.data.questions[index].tips+'\n';
                          $('#currentTips').html(expHtml);
             var selectOptionStr = '<div class="grouped fields">\n' +
                 '    <div class="field">\n' +
@@ -243,7 +249,7 @@ var contestDetailPage = {
                 tmpHtml += '<img class="ui" src="'+contestDetailPage.data.questions[index].imgUrl + '" width="600" height="320" alt="" />'
             }
             $('#currentQuetionTitle').html(tmpHtml);
-            var expHtml = '温馨提示:'+contestDetailPage.data.questions[index].title+'\n';
+            var expHtml = '温馨提示:'+contestDetailPage.data.questions[index].tips+'\n';
                          $('#currentTips').html(expHtml);
             var selectOptionStr = '<div class="field">\n' +
                 '                        <textarea  id="questionAnswer" name="questionAnswer" rows="20"></textarea>\n' +
@@ -341,13 +347,17 @@ var contestDetailPage = {
             success:function(result) {
                 if (result && result['success']) {
                 } else {
-                    //TODO::发送答题卡出错处理
-                    console.log(result.message);
+                    layer.open({
+                        title: '温馨提示',
+                        content: result.message
+                    });
                 }
             },
             error:function(result){
-                //TODO::发送答题卡出错处理
-                console.log(result.message);
+                layer.open({
+                    title: '温馨提示',
+                    content: result.message
+                });
             }
         });
 
