@@ -467,17 +467,21 @@ var manageQuestionBoardPage = {
                             $('#imgUrl').val(result.data);
                             //$('#imgUrls').attr("src", "D:\\Temp/" +result.data);
                         } else {
-                            $('#updateAccountErrorMessage').html('<i class="close icon"></i><div class="header">错误提示</div>\n' +
-                                '                <p>'+result.message+'</p>');
-                            $('#updateAccountErrorMessage').removeClass('hidden');
+                            layer.open({
+                                title: '温馨提示',
+                                content: result.message
+                            });
+
                         }
 
                     }
                 });
             }else{
-                $('#updateAccountErrorMessage').html('<i class="close icon"></i><div class="header">错误提示</div>\n' +
-                    '                <p>*上传文件类型错误,支持类型: .jpg .png</p>');
-                $('#updateAccountErrorMessage').removeClass('hidden');
+                layer.open({
+                    title: '温馨提示',
+                    content: '*上传文件类型错误,支持类型: .jpg .png'
+                });
+
             }
         },
 
@@ -503,17 +507,19 @@ var manageQuestionBoardPage = {
                                 $('#imgUrlsEdit').val(result.data);
                                 //$('#imgUrls').attr("src", "D:\\Temp/" +result.data);
                             } else {
-                                $('#updateAccountErrorMessage').html('<i class="close icon"></i><div class="header">错误提示</div>\n' +
-                                    '                <p>'+result.message+'</p>');
-                                $('#updateAccountErrorMessage').removeClass('hidden');
+                                layer.open({
+                                    title: '温馨提示',
+                                    content: result.message
+                                });
                             }
 
                         }
                     });
                 }else{
-                    $('#updateAccountErrorMessage').html('<i class="close icon"></i><div class="header">错误提示</div>\n' +
-                        '                <p>*上传文件类型错误,支持类型: .jpg .png</p>');
-                    $('#updateAccountErrorMessage').removeClass('hidden');
+                    layer.open({
+                        title: '温馨提示',
+                        content: '*上传文件类型错误,支持类型: .jpg .png'
+                    });
                 }
             }
 };
